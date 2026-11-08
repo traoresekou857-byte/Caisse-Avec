@@ -157,6 +157,10 @@ fr:{
  createFirst:"Créer mon premier groupe",how:"Comment ça marche",
  steps:["Créez le groupe et ses règles (valeur de la part, intérêt).","Ajoutez les membres.","À chaque réunion, saisissez les parts achetées.","Enregistrez les prêts et les remboursements.","Partagez le rapport sur WhatsApp."],
  deleted:"(supprimé)",
+ adminT:"Accès superviseur",adminHint:"La base globale est protégée. Entrez votre mot de passe superviseur.",password:"Mot de passe",enter:"Entrer",
+ wrongPwd:"Mot de passe incorrect.",lockBtn:"🔒 Verrouiller",lockedMsg:"Base globale verrouillée.",
+ globalHint2:"Données envoyées automatiquement par tous les téléphones qui utilisent l'outil. Accès réservé au superviseur.",
+ designedBy:"Conçu par Sékou Traoré",signLine:"— Outils de gestion des groupements AVEC · © Sékou Traoré",
  syncPending:"⏳ {n} groupement(s) en attente d'envoi à la base globale",syncOk:"☁ Base globale à jour",autoSync:"Envoi automatique à la base globale",
  autoSyncHint:"Chaque fois qu'un groupement est créé ou modifié, il est envoyé automatiquement à la base globale du superviseur dès que le téléphone a internet. Rien à faire de plus.",
  syncNow:"Envoyer maintenant",refreshServer:"🔄 Actualiser depuis le serveur",refreshed:"{n} groupement(s) reçus du serveur",syncFail:"Impossible de joindre le serveur. Vérifiez la connexion internet.",
@@ -234,6 +238,10 @@ bm:{
  createFirst:"N ka tɔn fɔlɔ dabɔ",how:"A bɛ kɛ cogo min",
  steps:["Tɔn n'a sariyaw dabɔ (niyɔrɔ sɔngɔ, tɔnɔ).","Tɔndenw fara a kan.","Ɲɔgɔnye o ɲɔgɔnye, niyɔrɔ sannenw sɛbɛn.","Juruw ani u sarali sɛbɛn.","Jatebɔ ci WhatsApp kan."],
  deleted:"(a jɔsira)",
+ adminT:"Kɔlɔsibaga ka donda",adminHint:"Kunnafoni bɛɛ lakanana. Aw ka kɔlɔsibaga gundo daɲɛ sɛbɛn.",password:"Gundo daɲɛ",enter:"Don",
+ wrongPwd:"Gundo daɲɛ tɛ ɲɛ.",lockBtn:"🔒 A datugu",lockedMsg:"Kunnafoni bɛɛ datugura.",
+ globalHint2:"Telefɔni minnu bɛ baara kɛ ni minɛn in ye, olu bɛɛ ka kunnafoniw bɛ na yan u yɛrɛ ma. Kɔlɔsibaga dɔrɔn de bɛ se ka don.",
+ designedBy:"Sékou Traoré de y'a dilan",signLine:"— AVEC tɔnw ɲɛnabɔ minɛnw · © Sékou Traoré",
  syncPending:"⏳ Tɔn {n} bɛ makɔnɔ ka ci kunnafoni bɛɛ ma",syncOk:"☁ Kunnafoni bɛɛ labɛnnen don",autoSync:"A bɛ ci a yɛrɛ ma kunnafoni bɛɛ ma",
  autoSyncHint:"Tuma o tuma tɔn dabɔra walima a yɛlɛmana, a bɛ ci a yɛrɛ ma kɔlɔsibaga ka kunnafoni bɛɛ ma, ni ɛntɛrinɛti sɔrɔla telefɔni kan. Foyi wɛrɛ tɛ kɛ.",
  syncNow:"A ci sisan",refreshServer:"🔄 Kunnafoniw ta sɛriwɛri la",refreshed:"Tɔn {n} sɔrɔla sɛriwɛri la",syncFail:"Sɛriwɛri ma sɔrɔ. Ɛntɛrinɛti lajɛ.",
@@ -311,6 +319,10 @@ en:{
  createFirst:"Create my first group",how:"How it works",
  steps:["Create the group and its rules (share value, interest).","Add the members.","At each meeting, enter the shares bought.","Record loans and repayments.","Share the report on WhatsApp."],
  deleted:"(deleted)",
+ adminT:"Supervisor access",adminHint:"The global database is protected. Enter your supervisor password.",password:"Password",enter:"Enter",
+ wrongPwd:"Wrong password.",lockBtn:"🔒 Lock",lockedMsg:"Global database locked.",
+ globalHint2:"Data sent automatically by every phone using the tool. Access reserved for the supervisor.",
+ designedBy:"Designed by Sékou Traoré",signLine:"— VSLA Group Management Tools · © Sékou Traoré",
  syncPending:"⏳ {n} group(s) waiting to be sent to the global database",syncOk:"☁ Global database up to date",autoSync:"Automatic sending to the global database",
  autoSyncHint:"Each time a group is created or changed, it is sent automatically to the supervisor's global database as soon as the phone has internet. Nothing else to do.",
  syncNow:"Send now",refreshServer:"🔄 Refresh from server",refreshed:"{n} group(s) received from the server",syncFail:"Cannot reach the server. Check the internet connection.",
@@ -353,9 +365,11 @@ en:{
 var LS_KEY="caisse_avec_v1",LANG_KEY="caisse_avec_lang",GL_KEY="caisse_avec_global_v1",PR_KEY="caisse_avec_profile_v1",MAXM=30;
 var APP_URL="https://traoresekou857-byte.github.io/Caisse-Avec/";
 var globalDb={},profile={};
-try{globalDb=JSON.parse(localStorage.getItem(GL_KEY)||"{}")||{}}catch(e){}
+try{localStorage.removeItem(GL_KEY)}catch(e){}
+var adminOk=false,adminPwd="";
+try{adminPwd=sessionStorage.getItem("avec_admin")||"";adminOk=!!adminPwd}catch(e){}
 try{profile=JSON.parse(localStorage.getItem(PR_KEY)||"{}")||{}}catch(e){}
-function saveGlobal(){try{localStorage.setItem(GL_KEY,JSON.stringify(globalDb))}catch(e){}}
+function saveGlobal(){}
 var SYNC_URL="https://script.google.com/macros/s/AKfycbzfRRbhDrd_jkAnxsiAlgfRN2gFQNM6jhwcaJK5LkkW-JCzcuuVK3EBUWQV5fyjTLgA/exec",SYNC_KEY="avec-ea807024887f4b2e",PEND_KEY="caisse_avec_pending_v1",pending={},pendSeq=0,flushing=false,flushTimer=null;
 try{pending=JSON.parse(localStorage.getItem(PEND_KEY)||"{}")||{}}catch(e){}
 function serverUrl(){return String(profile.server||SYNC_URL||"").trim()}
@@ -388,13 +402,25 @@ function updateSync(){
   if(!serverUrl()){el.textContent="";return}
   var n=Object.keys(pending).length;el.textContent=n?t("syncPending",{n:n}):t("syncOk");
 }
-function pullServer(silent){
-  var u=serverUrl();if(!u){if(!silent)toast(t("noServer"));return}
-  fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&t="+Date.now()).then(function(r){return r.json()}).then(function(d){
-    if(!d||!d.ok)throw 0;var n=0;
-    (d.groups||[]).forEach(function(x){if(x&&x.id){var fr=(d.from&&d.from[x.id])||{};globalDb[x.id]={g:normalize(x),from:fr,recu:today()};n++}});
-    saveGlobal();if(view==="global")render();if(!silent)toast(t("refreshed",{n:n}));
-  }).catch(function(){if(!silent)toast(t("syncFail"))});
+function pullServer(silent,pwd,cb){
+  var u=serverUrl();if(!u){if(!silent)toast(t("noServer"));if(cb)cb(false);return}
+  pwd=pwd||adminPwd;
+  fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&pwd="+encodeURIComponent(pwd)+"&t="+Date.now()).then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok){if(d&&d.err==="mdp"){toast(t("wrongPwd"));if(cb)cb(false,"mdp");return}throw 0}
+    globalDb={};var n=0;
+    (d.groups||[]).forEach(function(x){if(x&&x.id){var fr=(d.from&&d.from[x.id])||{};globalDb[x.id]={g:normalize(x),from:fr,recu:fr.maj?String(fr.maj).slice(0,10):""};n++}});
+    if(cb)cb(true);
+    if(view==="global")render();if(!silent)toast(t("refreshed",{n:n}));
+  }).catch(function(){toast(t("syncFail"));if(cb)cb(false)});
+}
+function adminLogin(){
+  modal('<h3>🔒 '+esc(t("adminT"))+'</h3><p class="muted">'+esc(t("adminHint"))+'</p><label>'+esc(t("password"))+'</label><input type="password" id="aPwd" autocomplete="current-password">'+
+    '<div class="actions"><button class="btn sec" id="aNo">'+esc(t("cancel"))+'</button><button class="btn" id="aOk">'+esc(t("enter"))+'</button></div>',function(m,close){
+    $("aNo").onclick=close;setTimeout(function(){var e=$("aPwd");if(e)e.focus()},50);
+    function go(){var pw=$("aPwd").value;if(!pw)return;$("aOk").disabled=true;
+      pullServer(true,pw,function(ok){if(ok){adminOk=true;adminPwd=pw;try{sessionStorage.setItem("avec_admin",pw)}catch(e){}close();view="global";render();window.scrollTo(0,0)}else{var b=$("aOk");if(b)b.disabled=false}})}
+    $("aOk").onclick=go;$("aPwd").onkeydown=function(e){if(e.key==="Enter")go()};
+  });
 }
 function saveProfile(){try{localStorage.setItem(PR_KEY,JSON.stringify(profile))}catch(e){}}
 var lang="fr";
@@ -801,7 +827,7 @@ function pvText(gr,pv){
   L.push("- "+t("pvCashEnd")+" : "+f(s.caisse));
   if(pv.prochaine){L.push("");L.push(t("pvNext")+" : "+fdate(pv.prochaine))}
   if(pv.secretaire){L.push(t("pvSecretary")+" : "+pv.secretaire)}
-  L.push("");L.push(t("pvSign"));
+  L.push("");L.push(t("pvSign"));L.push("");L.push(t("signLine"));
   return L.join("\n");
 }
 function pvView(gr,pv){
@@ -820,6 +846,7 @@ function reportText(gr){
   L.push(t("toRecover")+" : "+f(s.enc));
   if(s.late.length){L.push("");L.push(t("lateL"));s.late.forEach(function(x){L.push("- "+mName(gr,x.p.membreId)+" : "+f(x.i.reste)+" ("+t("dueOn",{d:fdate(x.i.ech)})+")")})}
   if(gr.membres.length){L.push("");L.push(t("savByMember"));gr.membres.forEach(function(m){var ms=memberStats(gr,m);L.push("- "+m.nom+" : "+f(ms.ep)+(ms.reste>0?" | "+t("owes",{a:f(ms.reste)}):""))})}
+  L.push("");L.push(t("signLine"));
   return L.join("\n");
 }
 function copyText(txt,okMsg){
@@ -830,15 +857,14 @@ function vReport(gr){
   var txt=reportText(gr);
   var h='<h2>'+esc(t("repT"))+'</h2><div class="card"><p class="muted">'+esc(t("repHint"))+'</p><textarea id="rep" readonly>'+esc(txt)+'</textarea><button class="btn full" id="cp">'+esc(t("copyRep"))+'</button></div>'+
     (serverUrl()?'<h2>☁ '+esc(t("autoSync"))+'</h2><div class="card"><p class="muted">'+esc(t("autoSyncHint"))+'</p><p><b>'+esc(Object.keys(pending).length?t("syncPending",{n:Object.keys(pending).length}):t("syncOk"))+'</b>'+(function(){try{var l=localStorage.getItem("caisse_avec_lastsync");return l?'<span class="sub">'+esc(t("lastSync",{d:new Date(l).toLocaleString("fr-FR")}))+'</span>':''}catch(e){return ''}})()+'</p><button class="btn full" id="syncNow">'+esc(t("syncNow"))+'</button></div>':'')+
-    '<h2>📤 '+esc(t("sendSup"))+'</h2><div class="card"><p class="muted">'+esc(t("sendSupHint"))+'</p><button class="btn full" id="supFile">'+esc(t("shareFile"))+'</button><button class="btn sec full" id="supCopy">'+esc(t("copyData"))+'</button></div>'+
     '<h2>'+esc(t("backup"))+'</h2><div class="card"><p class="muted">'+esc(t(mode==="cloud"?"bkCloud":"bkLocal"))+'</p>'+
     '<button class="btn sec full" id="bk">'+esc(t("copyBk"))+'</button>'+
     '<label style="margin-top:14px">'+esc(t("restoreL"))+'</label><textarea id="rs"></textarea><button class="btn sec full" id="rsOk">'+esc(t("restore"))+'</button></div>';
   $("view").innerHTML=h;
   $("cp").onclick=function(){copyText(txt,t("copied"))};
-  $("supFile").onclick=function(){var pk=exportPacket();shareFileOrCopy(JSON.stringify(pk),"groupements-"+((profile.nom||"animateur").replace(/[^\w\-]+/g,"_"))+"-"+today()+".json","application/json",t("dataCopied"))};
+  if($("supFile"))$("supFile").onclick=function(){var pk=exportPacket();shareFileOrCopy(JSON.stringify(pk),"groupements-"+((profile.nom||"animateur").replace(/[^\w\-]+/g,"_"))+"-"+today()+".json","application/json",t("dataCopied"))};
   if($("syncNow"))$("syncNow").onclick=function(){Object.keys(groups).forEach(function(k){markPending(k,"up")});clearTimeout(flushTimer);flush();setTimeout(render,2500)};
-  $("supCopy").onclick=function(){copyText(JSON.stringify(exportPacket()),t("dataCopied"))};
+  if($("supCopy"))$("supCopy").onclick=function(){copyText(JSON.stringify(exportPacket()),t("dataCopied"))};
   $("bk").onclick=function(){copyText(JSON.stringify({app:"caisse-avec",groups:groups}),t("bkCopied"))};
   $("rsOk").onclick=function(){
     var data;try{data=JSON.parse($("rs").value)}catch(e){toast(t("invalid"));return}
@@ -865,9 +891,10 @@ function openMenu(){
     '<button class="menuitem" data-go="share">📲 '+esc(t("shareApp"))+'</button>'+
     '<button class="menuitem" data-go="global">🌍 '+esc(t("global"))+'</button>'+
     '<button class="menuitem" data-go="profile">👤 '+esc(t("profile"))+'</button>'+
+    '<p class="muted" style="text-align:center;margin:12px 0 0">✍️ '+esc(t("designedBy"))+'<br>'+esc(t("copyright"))+'</p>'+
     '<div class="actions"><button class="btn sec" id="mClose">'+esc(t("close"))+'</button></div>',function(m,close){
     $("mClose").onclick=close;
-    m.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){var v=b.getAttribute("data-go");close();if(v==="profile"){profileForm();return}view=v;render();window.scrollTo(0,0)}});
+    m.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){var v=b.getAttribute("data-go");close();if(v==="profile"){profileForm();return}if(v==="global"&&!adminOk){adminLogin();return}view=v;render();window.scrollTo(0,0)}});
   });
 }
 function profileForm(){
@@ -903,6 +930,7 @@ function importPacket(text){
   return n;
 }
 function vGlobal(){
+  if(!adminOk){$("view").innerHTML='<div class="card empty">🔒 '+esc(t("adminHint"))+'<button class="btn full" id="gLogin">'+esc(t("enter"))+'</button></div>';$("gLogin").onclick=adminLogin;return}
   var rows=allGlobal();
   function uniq(key,filter){var o={};rows.forEach(function(r){if(filter(r)&&r.g[key])o[r.g[key]]=1});return Object.keys(o).sort()}
   function sel(id,key,list){return '<select id="'+id+'"><option value="">'+esc(t(key))+' : '+esc(t("filterAll"))+'</option>'+list.map(function(v){return '<option'+(gFilter[key]===v?' selected':'')+'>'+esc(v)+'</option>'}).join("")+'</select>'}
@@ -912,10 +940,8 @@ function vGlobal(){
   var vis=rows.filter(function(r){return (!gFilter.region||r.g.region===gFilter.region)&&(!gFilter.cercle||r.g.cercle===gFilter.cercle)&&(!gFilter.commune||r.g.commune===gFilter.commune)});
   var T={m:0,ep:0,so:0,enc:0,late:0,caisse:0};
   vis.forEach(function(r){var s=stats(r.g);r.s=s;r.m=active(r.g).length;T.m+=r.m;T.ep+=s.ep;T.so+=s.so;T.enc+=s.enc;T.late+=s.late.length;T.caisse+=s.caisse});
-  var h='<h2>🌍 '+esc(t("globalT"))+'</h2><div class="card"><p class="muted">'+esc(t("globalHint"))+'</p>'+
-    '<label>'+esc(t("importFile"))+'</label><input type="file" id="gFile" accept=".json,.txt,application/json,text/plain">'+
-    '<label>'+esc(t("importPaste"))+'</label><textarea id="gPaste" style="min-height:70px"></textarea><button class="btn full" id="gImp">'+esc(t("importBtn"))+'</button></div>'+
-    (serverUrl()?'<button class="btn o full" id="gPull" style="margin:0 0 10px">'+esc(t("refreshServer"))+'</button>':'')+
+  var h='<h2>🌍 '+esc(t("globalT"))+'</h2><div class="card"><p class="muted">'+esc(t("globalHint2"))+'</p>'+
+    '<div class="actions" style="margin-top:6px"><button class="btn o" id="gPull">'+esc(t("refreshServer"))+'</button><button class="btn sec" id="gLock">'+esc(t("lockBtn"))+'</button></div></div>'+
     '<div class="filters">'+sel("fR","region",regs)+sel("fC","cercle",cers)+sel("fM","commune",coms)+'</div>'+
     '<div class="kpis" style="margin-top:8px"><div class="kpi main"><div class="l">'+esc(t("cash"))+'</div><div class="v">'+f(T.caisse)+'</div></div>'+
     '<div class="kpi"><div class="l">'+esc(t("nbGroups"))+'</div><div class="v">'+vis.length+'</div></div>'+
@@ -927,7 +953,7 @@ function vGlobal(){
   if(!vis.length)h+='<div class="card empty">'+esc(t("globalEmpty"))+'</div>';
   else{
     h+='<div class="card" style="overflow-x:auto"><table class="small"><tr><th>'+esc(t("colGroup"))+'</th><th>'+esc(t("colAnim"))+'</th><th class="n">'+esc(t("nbMembers"))+'</th><th class="n">'+esc(t("savings"))+'</th><th class="n">'+esc(t("toRecover"))+'</th><th></th></tr>';
-    vis.forEach(function(r){h+='<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(place(r.g))+'</span></td><td>'+esc(r.src)+(r.recu?'<span class="sub">'+esc(t("updated"))+' '+fdate(r.recu)+'</span>':'')+'</td><td class="n">'+r.m+'</td><td class="n">'+f(r.s.ep)+'</td><td class="n">'+f(r.s.enc)+(r.s.late.length?' ⚠':'')+'</td><td class="n"><button class="x" data-gv="'+r.g.id+'">👁</button>'+(r.mine?'':'<button class="x" data-gd="'+r.g.id+'">×</button>')+'</td></tr>'});
+    vis.forEach(function(r){h+='<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(place(r.g))+'</span></td><td>'+esc(r.src)+(r.recu?'<span class="sub">'+esc(t("updated"))+' '+fdate(r.recu)+'</span>':'')+'</td><td class="n">'+r.m+'</td><td class="n">'+f(r.s.ep)+'</td><td class="n">'+f(r.s.enc)+(r.s.late.length?' ⚠':'')+'</td><td class="n"><button class="x" data-gv="'+r.g.id+'">👁</button></td></tr>'});
     h+='</table><button class="btn sec full" id="gCsv">'+esc(t("exportCsv"))+'</button></div>';
   }
   $("view").innerHTML=h;
@@ -935,12 +961,10 @@ function vGlobal(){
   $("fC").onchange=function(){gFilter.cercle=this.value;gFilter.commune="";render()};
   $("fM").onchange=function(){gFilter.commune=this.value;render()};
   if($("gPull"))$("gPull").onclick=function(){pullServer(false)};
+  $("gLock").onclick=function(){adminOk=false;adminPwd="";globalDb={};try{sessionStorage.removeItem("avec_admin")}catch(e){}view="home";render();toast(t("lockedMsg"))};
   if(!window.__pulled&&serverUrl()){window.__pulled=true;pullServer(true)}
-  $("gImp").onclick=function(){var v=$("gPaste").value.trim();if(v&&importPacket(v))render()};
-  $("gFile").onchange=function(){var fl=this.files&&this.files[0];if(!fl)return;var rd=new FileReader();rd.onload=function(){if(importPacket(String(rd.result)))render()};rd.readAsText(fl)};
   document.querySelectorAll("[data-gv]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-gv"),r=rows.find(function(x){return x.g.id===id});var txt=reportText(r.g);
     modal('<h3>'+esc(t("groupDetail"))+'</h3><textarea class="big" readonly>'+esc(txt)+'</textarea><div class="actions"><button class="btn sec" id="gvNo">'+esc(t("close"))+'</button><button class="btn" id="gvCp">'+esc(t("copyText"))+'</button></div>',function(m,close){$("gvNo").onclick=close;$("gvCp").onclick=function(){copyText(txt,t("textCopied"))}})}});
-  document.querySelectorAll("[data-gd]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-gd");ask(t("removeImportQ",{n:globalDb[id].g.nom}),t("remove"),function(){delete globalDb[id];saveGlobal();render()})}});
   if($("gCsv"))$("gCsv").onclick=function(){
     var head=[t("colGroup"),t("region"),t("cercle"),t("commune"),t("village"),t("colAnim"),t("nbMembers"),t("savings"),t("social"),t("toRecover"),t("lateCount"),t("cash"),t("updated")];
     var q=function(v){v=String(v==null?"":v);return /[";\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
@@ -951,7 +975,7 @@ function vGlobal(){
   };
 }
 function vWelcome(){
-  $("view").innerHTML='<div class="card" style="text-align:center;padding:24px 16px"><div style="font-size:40px">🤝</div><h2 style="margin-top:6px">'+esc(t("welcome"))+'</h2><p class="muted">'+esc(t("welcomeTxt"))+'</p><button class="btn full" id="w1">'+esc(t("createFirst"))+'</button></div>'+
+  $("view").innerHTML='<div class="card" style="text-align:center;padding:24px 16px"><div style="font-size:40px">🤝</div><h2 style="margin-top:6px">'+esc(t("welcome"))+'</h2><p class="muted">'+esc(t("welcomeTxt"))+'</p><p class="muted"><b>✍️ '+esc(t("designedBy"))+'</b></p><button class="btn full" id="w1">'+esc(t("createFirst"))+'</button></div>'+
   '<div class="card muted"><b>'+esc(t("how"))+'</b><ol>'+t("steps").map(function(s){return '<li>'+esc(s)+'</li>'}).join("")+'</ol></div>';
   $("w1").onclick=function(){groupForm(null)};
 }
