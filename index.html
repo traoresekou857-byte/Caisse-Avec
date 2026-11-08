@@ -370,7 +370,7 @@ var adminOk=false,adminPwd="";
 try{adminPwd=sessionStorage.getItem("avec_admin")||"";adminOk=!!adminPwd}catch(e){}
 try{profile=JSON.parse(localStorage.getItem(PR_KEY)||"{}")||{}}catch(e){}
 function saveGlobal(){}
-var SYNC_URL="https://script.google.com/macros/s/AKfycbzfRRbhDrd_jkAnxsiAlgfRN2gFQNM6jhwcaJK5LkkW-JCzcuuVK3EBUWQV5fyjTLgA/exec",SYNC_KEY="avec-ea807024887f4b2e",PEND_KEY="caisse_avec_pending_v1",pending={},pendSeq=0,flushing=false,flushTimer=null;
+var SYNC_URL="https://script.google.com/macros/s/AKfycbzmLGoNATBdXuGXwDicTtVLnc9NK5gCyCtc6rRJz7C3Rpuiy6phM8CaT079qiUfflI/exec",SYNC_KEY="avec-ea807024887f4b2e",PEND_KEY="caisse_avec_pending_v1",pending={},pendSeq=0,flushing=false,flushTimer=null;
 try{pending=JSON.parse(localStorage.getItem(PEND_KEY)||"{}")||{}}catch(e){}
 function serverUrl(){return String(profile.server||SYNC_URL||"").trim()}
 function savePending(){try{localStorage.setItem(PEND_KEY,JSON.stringify(pending))}catch(e){}}
