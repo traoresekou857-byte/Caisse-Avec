@@ -65,6 +65,12 @@ nav button.on{color:var(--g);font-weight:700}
 .meet td input{padding:7px;font-size:15px}
 .hidden{display:none}
 ol{margin:6px 0 0;padding-left:20px}
+.seg{display:flex;gap:6px;margin:4px 0 12px}.seg button{flex:1;padding:9px 6px;border:1px solid var(--b);background:#fff;border-radius:10px;font-size:14px;color:var(--m);cursor:pointer}
+.seg button.on{background:var(--g);color:#fff;border-color:var(--g);font-weight:600}
+.chk{display:flex;align-items:center;gap:8px;padding:7px 2px;border-bottom:1px solid var(--b);font-size:15px}.chk input{width:20px;height:20px;flex:none}
+textarea.big{min-height:380px;font-size:14px;line-height:1.45}
+#foot{text-align:center;font-size:11px;color:var(--m);padding:6px 0 16px}
+.sub{display:block;font-size:12px;color:var(--m)}
 </style>
 </head>
 <body>
@@ -84,11 +90,13 @@ ol{margin:6px 0 0;padding-left:20px}
   <div id="status"></div>
 </header>
 <main id="view"></main>
+<div id="foot"></div>
 <nav id="nav">
   <button data-v="home" class="on"><span class="i">🏠</span><span data-t="navHome"></span></button>
   <button data-v="members"><span class="i">👥</span><span data-t="navMembers"></span></button>
   <button data-v="meeting"><span class="i">💰</span><span data-t="navMeeting"></span></button>
   <button data-v="loans"><span class="i">🤝</span><span data-t="navLoans"></span></button>
+  <button data-v="docs"><span class="i">📄</span><span data-t="navDocs"></span></button>
   <button data-v="report"><span class="i">📋</span><span data-t="navReport"></span></button>
 </nav>
 <div id="modalRoot"></div>
@@ -140,7 +148,25 @@ fr:{
  welcome:"Bienvenue",welcomeTxt:"Gérez l'épargne, le fonds social et les prêts de vos groupements (AVEC, tontines, caisses de femmes) sans cahier.",
  createFirst:"Créer mon premier groupe",how:"Comment ça marche",
  steps:["Créez le groupe et ses règles (valeur de la part, intérêt).","Ajoutez les membres.","À chaque réunion, saisissez les parts achetées.","Enregistrez les prêts et les remboursements.","Partagez le rapport sur WhatsApp."],
- deleted:"(supprimé)"
+ deleted:"(supprimé)",
+ navDocs:"Documents",editMember:"Modifier le membre",memberOut:"Sorti(e)",outMembers:"Membres sortis",markOut:"Marquer comme sorti(e)",
+ markOutQ:"{n} quitte le groupe ? Son historique (épargne, prêts) sera gardé.",reinstate:"Réintégrer",delForever:"Supprimer définitivement",
+ delForeverQ:"Supprimer définitivement {n} ?",hasOps:"Ce membre a déjà des opérations : il sera marqué « sorti(e) » et son historique sera gardé.",
+ memberSaved:"Membre enregistré",edit:"Modifier",removeBtn:"Retirer / supprimer",outNote:"Touchez ✏️ pour modifier ou retirer un membre. Les membres sortis n'apparaissent plus dans les réunions ni les prêts.",
+ owesWarn:"Attention : {n} doit encore {a} au groupe.",
+ docsT:"Documents du groupe",tabRules:"Règlement intérieur",tabPV:"PV des réunions",
+ rulesHint:"Le modèle est rempli avec les règles de votre groupe. Complétez les ______, modifiez librement, puis enregistrez.",
+ genRules:"Générer le modèle",regenQ:"Remplacer le texte actuel par un nouveau modèle ?",replace:"Remplacer",copyText:"Copier le texte",textCopied:"Texte copié",
+ rulesSaved:"Règlement enregistré",rulesEmpty:"Aucun règlement pour l'instant. Générez un modèle à partir des règles de votre groupe.",
+ newPV:"+ Nouveau PV",pvT:"Procès-verbal de réunion",pvPlace:"Lieu",pvTime:"Heure",pvPresent:"Membres présents",pvAgenda:"Ordre du jour",
+ pvAgendaPh:"1. Cotisations\n2. Prêts et remboursements\n3. Divers",pvDecisions:"Déroulement et décisions",pvNext:"Date de la prochaine réunion",
+ pvSecretary:"Secrétaire de séance",pvSaved:"PV enregistré",noPV:"Aucun PV enregistré.",delPVQ:"Supprimer ce PV ?",pvPresentCount:"{p} présents sur {t}",
+ view:"Voir",allPresent:"Tous présents",
+ pvTitle:"PROCÈS-VERBAL DE RÉUNION",pvGroup:"Groupement",pvAbsent:"Absents",pvFinance:"Situation financière",pvCollected:"Épargne collectée",
+ pvSocialDay:"Fonds social collecté",pvLoansDay:"Prêts accordés",pvRepayDay:"Remboursements reçus",pvCashEnd:"Argent en caisse après la réunion",
+ pvSign:"Signatures :\nPrésident(e) : ____________\nSecrétaire : ____________",none:"aucun",
+ copyright:"© 2026 Sékou Traoré – Tous droits réservés",
+ rulesTpl:"RÈGLEMENT INTÉRIEUR\n« {nom} »\n\nArticle 1 – Dénomination et siège\nIl est créé entre les membres une Association Villageoise d'Épargne et de Crédit (AVEC) dénommée « {nom} », dont le siège est à {lieu}.\n\nArticle 2 – Objectifs\nLe groupe permet à ses membres d'épargner régulièrement, d'obtenir de petits crédits et de s'entraider en cas de difficulté grâce au fonds social.\n\nArticle 3 – Adhésion\nPeut devenir membre toute personne volontaire, âgée d'au moins 18 ans, résidant dans la localité et qui accepte le présent règlement. L'adhésion se fait au début du cycle.\n\nArticle 4 – Organes\nL'Assemblée générale (tous les membres) prend les grandes décisions. Le Comité de gestion comprend : un(e) Président(e), un(e) Secrétaire, un(e) Trésorier(ère) et deux Compteurs(euses), élus pour un cycle.\n\nArticle 5 – Réunions\nLe groupe se réunit chaque ______ (jour) à ______ (heure). La présence est obligatoire.\nRetard : amende de ______ F. Absence sans excuse : amende de ______ F.\n\nArticle 6 – Épargne\nLa valeur d'une part est de {part}. À chaque réunion, chaque membre achète de 1 à 5 parts.\n\nArticle 7 – Fonds social\nChaque membre verse {social} par réunion au fonds social. Il sert à aider les membres en cas de maladie, de décès ou d'autre événement grave. Ces aides ne sont pas remboursables. Le montant de chaque aide est décidé par l'Assemblée.\n\nArticle 8 – Crédit\nUn membre peut emprunter jusqu'à 3 fois le montant de son épargne. L'intérêt est de {taux} % par mois. La durée maximale d'un prêt est de 3 mois. Tout prêt doit être remboursé avant la fin du cycle.\n\nArticle 9 – Retard de remboursement\nEn cas de retard, le membre paie une pénalité de ______ F et le Comité l'aide à trouver une solution. Aucun nouveau prêt n'est accordé tant que le précédent n'est pas remboursé.\n\nArticle 10 – Sécurité de la caisse\nLa caisse est fermée par 3 cadenas. Les 3 clés sont gardées par 3 membres différents, qui ne font pas partie du Comité de gestion. La caisse n'est ouverte qu'en réunion, devant tous les membres.\n\nArticle 11 – Cycle et partage\nLe cycle dure ______ mois. À la fin du cycle, l'épargne et les gains (intérêts, amendes) sont partagés entre les membres en proportion du nombre de parts achetées par chacun.\n\nArticle 12 – Départ et exclusion\nUn membre qui quitte le groupe ou qui est exclu récupère son épargne, moins ses dettes envers le groupe. Tout membre qui ne respecte pas gravement le règlement peut être exclu par décision de l'Assemblée.\n\nArticle 13 – Modification\nLe présent règlement peut être modifié par l'Assemblée générale à la majorité des deux tiers (2/3) des membres.\n\nFait à {lieu}, le {date}\n\nSignatures :\nPrésident(e) : ____________\nSecrétaire : ____________\nTrésorier(ère) : ____________"
 },
 bm:{
  appTitle:"AVEC Kɛsu",newGroup:"+ Tɔn",noGroup:"Tɔn si tɛ",
@@ -180,7 +206,25 @@ bm:{
  welcome:"I ni ce",welcomeTxt:"I ka tɔnw ka wari maralen, dɛmɛ kɛsu ani juruw ɲɛnabɔ (AVEC, tontine, musow ka kɛsu) k'a sɔrɔ sɛbɛnnikɛ tɛ.",
  createFirst:"N ka tɔn fɔlɔ dabɔ",how:"A bɛ kɛ cogo min",
  steps:["Tɔn n'a sariyaw dabɔ (niyɔrɔ sɔngɔ, tɔnɔ).","Tɔndenw fara a kan.","Ɲɔgɔnye o ɲɔgɔnye, niyɔrɔ sannenw sɛbɛn.","Juruw ani u sarali sɛbɛn.","Jatebɔ ci WhatsApp kan."],
- deleted:"(a jɔsira)"
+ deleted:"(a jɔsira)",
+ navDocs:"Sɛbɛnw",editMember:"Tɔnden yɛlɛma",memberOut:"A bɔra",outMembers:"Tɔnden bɔlenw",markOut:"A jate bɔlen ye",
+ markOutQ:"{n} bɛ bɔ tɔn na wa? A ka jate (maralen, juru) bɛna to yen.",reinstate:"A segin tɔn na",delForever:"A jɔsi pewu",
+ delForeverQ:"{n} jɔsi pewu wa?",hasOps:"Nin tɔnden ye wari baara kɛ ka ban : a bɛna jate bɔlen ye, a ka jate bɛna mara.",
+ memberSaved:"Tɔnden marala",edit:"A yɛlɛma",removeBtn:"A bɔ / a jɔsi",outNote:"✏️ digi ka tɔnden yɛlɛma walima k'a bɔ. Tɔnden bɔlenw tɛ ye ɲɔgɔnyew ni juruw la tun.",
+ owesWarn:"Aw ye a kɔlɔsi : juru {a} bɛ {n} kan fɔlɔ.",
+ docsT:"Tɔn ka sɛbɛnw",tabRules:"Sariyasɛbɛn",tabPV:"Ɲɔgɔnye sɛbɛnw (PV)",
+ rulesHint:"Misali in dafara ni aw ka tɔn sariyaw ye. ______ fa, k'a yɛlɛma cogo o cogo, ka sɔrɔ k'a mara.",
+ genRules:"Misali dilan",regenQ:"Misali kura bɛ sɛbɛn kɔrɔ nɔ na wa?",replace:"A nɔ falen",copyText:"Sɛbɛn kopi",textCopied:"Sɛbɛn kopira",
+ rulesSaved:"Sariyasɛbɛn marala",rulesEmpty:"Sariyasɛbɛn si tɛ yen fɔlɔ. Misali dilan ni aw ka tɔn sariyaw ye.",
+ newPV:"+ PV kura",pvT:"Ɲɔgɔnye sɛbɛn (PV)",pvPlace:"Yɔrɔ",pvTime:"Waati",pvPresent:"Tɔnden minnu nana",pvAgenda:"Baro kunw",
+ pvAgendaPh:"1. Wari donni\n2. Juruw ni u sarali\n3. Kuma wɛrɛw",pvDecisions:"Baro taabolo ni latigɛw",pvNext:"Ɲɔgɔnye nata don",
+ pvSecretary:"Sɛbɛnnikɛla",pvSaved:"PV marala",noPV:"PV si ma mara fɔlɔ.",delPVQ:"Nin PV jɔsi wa?",pvPresentCount:"{p} nana {t} cɛ",
+ view:"A lajɛ",allPresent:"Bɛɛ nana",
+ pvTitle:"ƝƆGƆNYE SƐBƐN (PV)",pvGroup:"Tɔn",pvAbsent:"Minnu ma na",pvFinance:"Wari jate",pvCollected:"Maracɛ wari donnen",
+ pvSocialDay:"Dɛmɛ kɛsu wari donnen",pvLoansDay:"Juru dilenw",pvRepayDay:"Juru saralenw",pvCashEnd:"Wari min bɛ kɛsu kɔnɔ ɲɔgɔnye kɔfɛ",
+ pvSign:"Bolonɔw :\nƝɛmɔgɔ : ____________\nSɛbɛnnikɛla : ____________",none:"foyi",
+ copyright:"© 2026 Sékou Traoré – Josira bɛɛ ye a ta ye",
+ rulesTpl:"TƆN SARIYASƐBƐN\n« {nom} »\n\nSariya 1 – Tɔgɔ ni sigiyɔrɔ\nTɔndenw ye Wari Maracɛ ni Juru Tɔn (AVEC) dabɔ, a tɔgɔ ye « {nom} ». A sigiyɔrɔ ye {lieu} ye.\n\nSariya 2 – Laɲiniw\nTɔn in b'a to tɔndenw ka wari mara tuma bɛɛ, ka juru fitininw sɔrɔ, ka ɲɔgɔn dɛmɛ gɛlɛya waati la dɛmɛ kɛsu fɛ.\n\nSariya 3 – Donni tɔn na\nMɔgɔ o mɔgɔ ye san 18 sɔrɔ, ni a sigilen bɛ dugu in kɔnɔ, ni a sɔnna nin sariyaw ma, o bɛ se ka don tɔn na. Donni bɛ kɛ sikili daminɛ na.\n\nSariya 4 – Ɲɛmɔgɔw\nTɔndenw bɛɛ ka Ɲɔgɔnye ba de bɛ latigɛ kunbabaw ta. Ɲɛnabɔ jɛkulu bɛ kɛ ni Ɲɛmɔgɔ ye, Sɛbɛnnikɛla, Wari marabaga ani Wari jatebaga fila. U bɛ sugandi sikili kelen kama.\n\nSariya 5 – Ɲɔgɔnyew\nTɔn bɛ ɲɔgɔn ye ______ (don) o don, ______ (waati). Bɛɛ ka kan ka na.\nNi mɔgɔ nana kɔ fɛ : ______ F. Ni mɔgɔ ma na sababu tɛ : ______ F.\n\nSariya 6 – Wari marali\nNiyɔrɔ kelen sɔngɔ ye {part} ye. Ɲɔgɔnye o ɲɔgɔnye, tɔnden kelen kelen bɛ niyɔrɔ 1 fo 5 san.\n\nSariya 7 – Dɛmɛ kɛsu\nTɔnden kelen kelen bɛ {social} don dɛmɛ kɛsu kɔnɔ ɲɔgɔnye o ɲɔgɔnye. A bɛ tɔndenw dɛmɛ bana, saya walima gɛlɛya wɛrɛ waati la. O dɛmɛ tɛ sara kokura. Ɲɔgɔnye ba de bɛ dɛmɛ hakɛ latigɛ.\n\nSariya 8 – Juru\nTɔnden bɛ se ka juru ta fo a ka maralen siɲɛ 3. Juru tɔnɔ ye {taux} % ye kalo o kalo. Juru waati janya laban ye kalo 3 ye. Juru bɛɛ ka kan ka sara sani sikili ka ban.\n\nSariya 9 – Juru sarali mɛnni\nNi juru sarali mɛnna, tɔnden bɛ ______ F sara, Ɲɛnabɔ jɛkulu b'a dɛmɛ ka fɛɛrɛ sɔrɔ. Juru kura tɛ di ni kɔrɔ ma sara fɔlɔ.\n\nSariya 10 – Kɛsu lakanani\nKɛsu bɛ datugu ni kadenasi 3 ye. Kile 3 bɛ tɔnden 3 bolo, minnu tɛ Ɲɛnabɔ jɛkulu la. Kɛsu tɛ da wuli fo ɲɔgɔnye la, tɔndenw bɛɛ ɲɛ kɔrɔ.\n\nSariya 11 – Sikili ni tilali\nSikili bɛ kalo ______ kɛ. Sikili laban na, maralen ni tɔnɔw (juru tɔnɔ, hakɛw) bɛ tila tɔndenw cɛ ka kɛɲɛ ni u kelen kelen ka niyɔrɔ sannenw ye.\n\nSariya 12 – Bɔli ni gɛnni\nTɔnden min bɔra tɔn na walima min gɛnna, o bɛ a ka maralen sɔrɔ, a ka juru bɔlen a la. Tɔnden min ma sariyaw bonya kosɛbɛ, Ɲɔgɔnye ba bɛ se k'a gɛn.\n\nSariya 13 – Sariyaw yɛlɛmani\nƝɔgɔnye ba bɛ se ka nin sariyaw yɛlɛma ni tɔndenw tilayɔrɔ saba la fila (2/3) sɔnna.\n\nA kɛra {lieu}, {date}\n\nBolonɔw :\nƝɛmɔgɔ : ____________\nSɛbɛnnikɛla : ____________\nWari marabaga : ____________"
 },
 en:{
  appTitle:"VSLA Cashbox",newGroup:"+ Group",noGroup:"No group",
@@ -220,7 +264,25 @@ en:{
  welcome:"Welcome",welcomeTxt:"Manage savings, social fund and loans for your groups (VSLA, tontines, women's savings) without a notebook.",
  createFirst:"Create my first group",how:"How it works",
  steps:["Create the group and its rules (share value, interest).","Add the members.","At each meeting, enter the shares bought.","Record loans and repayments.","Share the report on WhatsApp."],
- deleted:"(deleted)"
+ deleted:"(deleted)",
+ navDocs:"Documents",editMember:"Edit member",memberOut:"Left",outMembers:"Former members",markOut:"Mark as left",
+ markOutQ:"{n} is leaving the group? Their history (savings, loans) will be kept.",reinstate:"Bring back",delForever:"Delete permanently",
+ delForeverQ:"Delete {n} permanently?",hasOps:"This member already has transactions: they will be marked as “left” and their history kept.",
+ memberSaved:"Member saved",edit:"Edit",removeBtn:"Remove / delete",outNote:"Tap ✏️ to edit or remove a member. Former members no longer appear in meetings or loans.",
+ owesWarn:"Warning: {n} still owes {a} to the group.",
+ docsT:"Group documents",tabRules:"By-laws",tabPV:"Meeting minutes",
+ rulesHint:"The template is filled in with your group's rules. Complete the ______, edit freely, then save.",
+ genRules:"Generate template",regenQ:"Replace the current text with a new template?",replace:"Replace",copyText:"Copy text",textCopied:"Text copied",
+ rulesSaved:"By-laws saved",rulesEmpty:"No by-laws yet. Generate a template from your group's rules.",
+ newPV:"+ New minutes",pvT:"Meeting minutes",pvPlace:"Place",pvTime:"Time",pvPresent:"Members present",pvAgenda:"Agenda",
+ pvAgendaPh:"1. Contributions\n2. Loans and repayments\n3. Other business",pvDecisions:"Discussion and decisions",pvNext:"Next meeting date",
+ pvSecretary:"Recording secretary",pvSaved:"Minutes saved",noPV:"No minutes recorded yet.",delPVQ:"Delete these minutes?",pvPresentCount:"{p} present out of {t}",
+ view:"View",allPresent:"All present",
+ pvTitle:"MEETING MINUTES",pvGroup:"Group",pvAbsent:"Absent",pvFinance:"Financial status",pvCollected:"Savings collected",
+ pvSocialDay:"Social fund collected",pvLoansDay:"Loans granted",pvRepayDay:"Repayments received",pvCashEnd:"Cash in box after the meeting",
+ pvSign:"Signatures:\nChairperson: ____________\nSecretary: ____________",none:"none",
+ copyright:"© 2026 Sékou Traoré – All rights reserved",
+ rulesTpl:"BY-LAWS\n“{nom}”\n\nArticle 1 – Name and seat\nThe members hereby create a Village Savings and Loan Association (VSLA) named “{nom}”, based in {lieu}.\n\nArticle 2 – Objectives\nThe group enables its members to save regularly, obtain small loans and support each other in hard times through the social fund.\n\nArticle 3 – Membership\nAny volunteer aged 18 or over, living in the area and accepting these by-laws may become a member. New members join at the start of a cycle.\n\nArticle 4 – Governing bodies\nThe General Assembly (all members) takes the main decisions. The Management Committee consists of a Chairperson, a Secretary, a Treasurer and two Money Counters, elected for one cycle.\n\nArticle 5 – Meetings\nThe group meets every ______ (day) at ______ (time). Attendance is compulsory.\nLateness: fine of ______ F. Unexcused absence: fine of ______ F.\n\nArticle 6 – Savings\nThe value of one share is {part}. At each meeting, each member buys 1 to 5 shares.\n\nArticle 7 – Social fund\nEach member pays {social} per meeting into the social fund. It helps members in case of illness, death or other serious events. This help is not repaid. The amount of each grant is decided by the Assembly.\n\nArticle 8 – Loans\nA member may borrow up to 3 times their savings. Interest is {taux}% per month. The maximum loan period is 3 months. All loans must be repaid before the end of the cycle.\n\nArticle 9 – Late repayment\nIn case of late repayment, the member pays a penalty of ______ F and the Committee helps find a solution. No new loan is granted until the previous one is repaid.\n\nArticle 10 – Cash box security\nThe cash box is locked with 3 padlocks. The 3 keys are kept by 3 different members who are not on the Management Committee. The box is only opened during meetings, in front of all members.\n\nArticle 11 – Cycle and share-out\nThe cycle lasts ______ months. At the end of the cycle, savings and earnings (interest, fines) are shared among members in proportion to the number of shares each has bought.\n\nArticle 12 – Leaving and exclusion\nA member who leaves or is excluded gets back their savings minus any debts to the group. A member who seriously breaks these by-laws may be excluded by decision of the Assembly.\n\nArticle 13 – Amendments\nThese by-laws may be amended by the General Assembly with a two-thirds (2/3) majority of members.\n\nDone at {lieu}, on {date}\n\nSignatures:\nChairperson: ____________\nSecretary: ____________\nTreasurer: ____________"
 }};
 
 var LS_KEY="caisse_avec_v1",LANG_KEY="caisse_avec_lang";
@@ -240,10 +302,12 @@ function fdate(s){if(!s)return"";var p=s.split("-");return p[2]+"/"+p[1]+"/"+p[0
 function addMonths(s,m){var d=new Date(s+"T12:00:00");d.setMonth(d.getMonth()+Math.round(m));return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
 function sum(a,fn){return a.reduce(function(s,x){return s+fn(x)},0)}
 function $(id){return document.getElementById(id)}
-function toast(msg){var el=document.createElement("div");el.className="toast";el.textContent=msg;document.body.appendChild(el);setTimeout(function(){el.remove()},2200)}
+function toast(msg){document.querySelectorAll(".toast").forEach(function(x){x.remove()});var el=document.createElement("div");el.className="toast";el.textContent=msg;document.body.appendChild(el);setTimeout(function(){el.remove()},2200)}
 function g(){return groups[currentId]||null}
 function mName(gr,id){var m=gr.membres.find(function(x){return x.id===id});return m?m.nom:t("deleted")}
-function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+function active(gr){return gr.membres.filter(function(m){return !m.sorti})}
+function hasOps(gr,id){return gr.cotisations.some(function(c){return c.membreId===id})||gr.prets.some(function(p){return p.membreId===id})}
 
 /* ---------- stockage ---------- */
 function setStatus(k){statusKey=k;$("status").textContent=t(k)}
@@ -352,33 +416,56 @@ function vHome(gr){
   if(!gr.membres.length)h+='<div class="card empty">'+esc(t("noMembers"))+'</div>';
   else{
     h+='<div class="card"><table><tr><th>'+esc(t("colMember"))+'</th><th class="n">'+esc(t("colSav"))+'</th><th class="n">'+esc(t("colOwes"))+'</th></tr>';
-    gr.membres.forEach(function(m){var ms=memberStats(gr,m);h+='<tr><td>'+esc(m.nom)+'</td><td class="n">'+f(ms.ep)+'</td><td class="n">'+(ms.reste>0?'<b>'+f(ms.reste)+'</b>':'–')+'</td></tr>'});
+    gr.membres.forEach(function(m){var ms=memberStats(gr,m);h+='<tr><td>'+esc(m.nom)+(m.sorti?' <span class="tag run">'+esc(t("memberOut"))+'</span>':'')+'</td><td class="n">'+f(ms.ep)+'</td><td class="n">'+(ms.reste>0?'<b>'+f(ms.reste)+'</b>':'–')+'</td></tr>'});
     h+='</table></div>';
   }
   h+='<div class="card muted">'+esc(t("rulesLine",{p:f(gr.part),s:f(gr.social||0),r:gr.taux}))+(gr.lieu?' · '+esc(gr.lieu):'')+'<br><button class="btn sec sm" id="editG" style="margin-top:8px">'+esc(t("editRules"))+'</button></div>';
   $("view").innerHTML=h;$("editG").onclick=function(){groupForm(gr)};
 }
 function vMembers(gr){
-  var h='<h2>'+esc(t("members"))+' ('+gr.membres.length+')</h2><div class="card"><div class="grid2"><div><label>'+esc(t("name"))+'</label><input id="mNom"></div><div><label>'+esc(t("phone"))+'</label><input id="mTel" inputmode="tel"></div></div><button class="btn full" id="mAdd">'+esc(t("addMember"))+'</button></div>';
-  if(gr.membres.length){
-    h+='<div class="card"><table><tr><th>'+esc(t("name"))+'</th><th>'+esc(t("phone"))+'</th><th></th></tr>';
-    gr.membres.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'</td><td>'+esc(m.tel||"")+'</td><td class="n"><button class="x" data-del="'+m.id+'" aria-label="'+esc(t("remove"))+'">×</button></td></tr>'});
+  var act=active(gr),out=gr.membres.filter(function(m){return m.sorti});
+  var h='<h2>'+esc(t("members"))+' ('+act.length+')</h2><div class="card"><div class="grid2"><div><label>'+esc(t("name"))+'</label><input id="mNom"></div><div><label>'+esc(t("phone"))+'</label><input id="mTel" inputmode="tel"></div></div><button class="btn full" id="mAdd">'+esc(t("addMember"))+'</button></div>';
+  if(act.length){
+    h+='<div class="card"><table>';
+    act.forEach(function(m){h+='<tr><td>'+esc(m.nom)+(m.tel?'<span class="sub">'+esc(m.tel)+'</span>':'')+'</td><td class="n"><button class="btn sec sm" data-edit="'+m.id+'">✏️ '+esc(t("edit"))+'</button></td></tr>'});
+    h+='</table><p class="muted">'+esc(t("outNote"))+'</p></div>';
+  }
+  if(out.length){
+    h+='<h2>'+esc(t("outMembers"))+' ('+out.length+')</h2><div class="card"><table>';
+    out.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'<span class="sub">'+esc(t("memberOut"))+' · '+fdate(m.sorti)+'</span></td><td class="n"><button class="btn sec sm" data-back="'+m.id+'">'+esc(t("reinstate"))+'</button> <button class="btn d sm" data-edit="'+m.id+'">✏️</button></td></tr>'});
     h+='</table></div>';
   }
   $("view").innerHTML=h;
   $("mAdd").onclick=function(){var n=$("mNom").value.trim();if(!n){$("mNom").focus();return}gr.membres.push({id:uid(),nom:n,tel:$("mTel").value.trim()});persist(gr);render();toast(t("added",{n:n}));setTimeout(function(){var e=$("mNom");if(e)e.focus()},50)};
-  document.querySelectorAll("[data-del]").forEach(function(b){b.onclick=function(){
-    var id=b.getAttribute("data-del");
-    if(gr.cotisations.some(function(c){return c.membreId===id})||gr.prets.some(function(p){return p.membreId===id})){toast(t("cantDel"));return}
-    ask(t("removeQ",{n:mName(gr,id)}),t("remove"),function(){gr.membres=gr.membres.filter(function(m){return m.id!==id});persist(gr);render()});
-  }});
+  document.querySelectorAll("[data-edit]").forEach(function(b){b.onclick=function(){memberForm(gr,b.getAttribute("data-edit"))}});
+  document.querySelectorAll("[data-back]").forEach(function(b){b.onclick=function(){var m=gr.membres.find(function(x){return x.id===b.getAttribute("data-back")});delete m.sorti;persist(gr);render();toast(t("memberSaved"))}});
+}
+function memberForm(gr,id){
+  var m=gr.membres.find(function(x){return x.id===id});if(!m)return;
+  var ops=hasOps(gr,id),ms=memberStats(gr,m);
+  modal('<h3>'+esc(t("editMember"))+'</h3><label>'+esc(t("name"))+'</label><input id="eNom" value="'+esc(m.nom)+'"><label>'+esc(t("phone"))+'</label><input id="eTel" inputmode="tel" value="'+esc(m.tel||"")+'">'+
+    '<div class="actions"><button class="btn sec" id="eNo">'+esc(t("cancel"))+'</button><button class="btn" id="eOk">'+esc(t("save"))+'</button></div>'+
+    '<button class="btn d full" id="eDel">🗑 '+esc(t("removeBtn"))+'</button>',function(md,close){
+    $("eNo").onclick=close;
+    $("eOk").onclick=function(){var n=$("eNom").value.trim();if(!n){$("eNom").focus();return}m.nom=n;m.tel=$("eTel").value.trim();persist(gr);close();render();toast(t("memberSaved"))};
+    $("eDel").onclick=function(){
+      close();
+      if(ops){
+        if(m.sorti){toast(t("hasOps"));return}
+        var msg=t("hasOps")+" "+t("markOutQ",{n:m.nom})+(ms.reste>0?" "+t("owesWarn",{n:m.nom,a:f(ms.reste)}):"");
+        ask(msg,t("markOut"),function(){m.sorti=today();persist(gr);render();toast(t("memberSaved"))});
+      }else{
+        ask(t("delForeverQ",{n:m.nom}),t("delForever"),function(){gr.membres=gr.membres.filter(function(x){return x.id!==id});gr.pvs.forEach(function(p){p.presents=(p.presents||[]).filter(function(x){return x!==id})});persist(gr);render()});
+      }
+    };
+  });
 }
 function vMeeting(gr){
-  var h='<h2>'+esc(t("meetT"))+'</h2>';
-  if(!gr.membres.length){$("view").innerHTML=h+'<div class="card empty">'+esc(t("addFirst"))+'</div>';return}
+  var h='<h2>'+esc(t("meetT"))+'</h2>',act=active(gr);
+  if(!act.length){$("view").innerHTML=h+'<div class="card empty">'+esc(t("addFirst"))+'</div>';return}
   h+='<div class="card"><label>'+esc(t("meetDate"))+'</label><input type="date" id="dDate" value="'+today()+'"><p class="muted">'+esc(t("partsHint",{v:f(gr.part)}))+'</p>'+
      '<table class="meet"><tr><th>'+esc(t("colMember"))+'</th><th class="n">'+esc(t("colParts"))+'</th><th class="n">'+esc(t("colSocial"))+'</th></tr>';
-  gr.membres.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'</td><td class="n" style="width:74px"><input inputmode="numeric" data-parts="'+m.id+'" value="1"></td><td class="n" style="width:90px"><input inputmode="numeric" data-soc="'+m.id+'" value="'+(gr.social||0)+'"></td></tr>'});
+  act.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'</td><td class="n" style="width:74px"><input inputmode="numeric" data-parts="'+m.id+'" value="1"></td><td class="n" style="width:90px"><input inputmode="numeric" data-soc="'+m.id+'" value="'+(gr.social||0)+'"></td></tr>'});
   h+='</table><p id="dTot" class="muted"></p><button class="btn full" id="dSave">'+esc(t("saveMeet"))+'</button></div>';
   var byDate={};gr.cotisations.forEach(function(c){(byDate[c.date]=byDate[c.date]||[]).push(c)});
   var dates=Object.keys(byDate).sort().reverse();
@@ -392,7 +479,7 @@ function vMeeting(gr){
   document.querySelectorAll(".meet input").forEach(function(i){i.oninput=tot});tot();
   $("dSave").onclick=function(){
     var d=$("dDate").value||today(),n=0;
-    gr.membres.forEach(function(m){
+    act.forEach(function(m){
       var parts=num(document.querySelector('[data-parts="'+m.id+'"]').value),soc=num(document.querySelector('[data-soc="'+m.id+'"]').value);
       if(parts>0||soc>0){gr.cotisations.push({id:uid(),date:d,membreId:m.id,parts:parts,epargne:parts*gr.part,social:soc});n++}
     });
@@ -402,9 +489,9 @@ function vMeeting(gr){
   document.querySelectorAll("[data-deld]").forEach(function(b){b.onclick=function(){var d=b.getAttribute("data-deld");ask(t("delMeetQ",{d:fdate(d)}),t("del"),function(){gr.cotisations=gr.cotisations.filter(function(c){return c.date!==d});persist(gr);render()})}});
 }
 function vLoans(gr){
-  var s=stats(gr),h='<h2>'+esc(t("loansT"))+'</h2>';
-  if(!gr.membres.length){$("view").innerHTML=h+'<div class="card empty">'+esc(t("addFirst"))+'</div>';return}
-  h+='<div class="card"><label>'+esc(t("colMember"))+'</label><select id="pM">'+gr.membres.map(function(m){return '<option value="'+m.id+'">'+esc(m.nom)+'</option>'}).join("")+'</select>'+
+  var s=stats(gr),h='<h2>'+esc(t("loansT"))+'</h2>',act=active(gr);
+  if(!act.length){$("view").innerHTML=h+'<div class="card empty">'+esc(t("addFirst"))+'</div>';return}
+  h+='<div class="card"><label>'+esc(t("colMember"))+'</label><select id="pM">'+act.map(function(m){return '<option value="'+m.id+'">'+esc(m.nom)+'</option>'}).join("")+'</select>'+
     '<div class="grid2"><div><label>'+esc(t("amount"))+'</label><input id="pMt" inputmode="numeric"></div><div><label>'+esc(t("duration"))+'</label><input id="pDu" inputmode="numeric" value="3"></div></div>'+
     '<div class="grid2"><div><label>'+esc(t("date"))+'</label><input type="date" id="pDt" value="'+today()+'"></div><div><label>'+esc(t("rate"))+'</label><input id="pTx" inputmode="decimal" value="'+gr.taux+'"></div></div>'+
     '<p class="muted" id="pInfo"></p><button class="btn o full" id="pAdd">'+esc(t("grant"))+'</button></div>';
@@ -433,6 +520,97 @@ function vLoans(gr){
     });
   }});
   document.querySelectorAll("[data-delp]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-delp");ask(t("delLoanQ"),t("del"),function(){gr.prets=gr.prets.filter(function(p){return p.id!==id});gr.remboursements=gr.remboursements.filter(function(r){return r.pretId!==id});persist(gr);render()})}});
+}
+var docTab="rules";
+function statsUntil(gr,d){
+  var c={membres:gr.membres,cotisations:gr.cotisations.filter(function(x){return x.date<=d}),prets:gr.prets.filter(function(x){return x.date<=d}),remboursements:gr.remboursements.filter(function(x){return x.date<=d})};
+  return stats(c);
+}
+function rulesFromTemplate(gr){
+  return t("rulesTpl",{nom:gr.nom,lieu:gr.lieu||"______",part:f(gr.part),social:f(gr.social||0),taux:gr.taux,date:fdate(today())});
+}
+function vDocs(gr){
+  var h='<h2>'+esc(t("docsT"))+'</h2><div class="seg"><button data-tab="rules" class="'+(docTab==="rules"?"on":"")+'">📜 '+esc(t("tabRules"))+'</button><button data-tab="pv" class="'+(docTab==="pv"?"on":"")+'">📝 '+esc(t("tabPV"))+'</button></div>';
+  if(docTab==="rules"){
+    if(!gr.reglement)h+='<div class="card empty">'+esc(t("rulesEmpty"))+'<button class="btn full" id="rGen">'+esc(t("genRules"))+'</button></div>';
+    else h+='<div class="card"><p class="muted">'+esc(t("rulesHint"))+'</p><textarea id="rTxt" class="big">'+esc(gr.reglement)+'</textarea><button class="btn full" id="rSave">'+esc(t("save"))+'</button><div class="actions"><button class="btn sec" id="rCopy">'+esc(t("copyText"))+'</button><button class="btn sec" id="rRegen">'+esc(t("genRules"))+'</button></div></div>';
+  }else{
+    h+='<button class="btn full" id="pvNew" style="margin:0 0 12px">'+esc(t("newPV"))+'</button>';
+    var list=gr.pvs.slice().sort(function(a,b){return a.date<b.date?1:-1});
+    if(!list.length)h+='<div class="card empty">'+esc(t("noPV"))+'</div>';
+    list.forEach(function(p){
+      var first=(p.decisions||"").split("\n")[0];
+      h+='<div class="card"><b>'+fdate(p.date)+'</b>'+(p.lieu?' · '+esc(p.lieu):'')+'<span class="sub">'+esc(t("pvPresentCount",{p:(p.presents||[]).length,t:p.total||active(gr).length}))+'</span>'+(first?'<p class="muted" style="margin:6px 0 0">'+esc(first.slice(0,120))+'</p>':'')+
+        '<div class="actions"><button class="btn sm" data-pvv="'+p.id+'">'+esc(t("view"))+'</button><button class="btn sec sm" data-pve="'+p.id+'">✏️ '+esc(t("edit"))+'</button><button class="btn d sm" data-pvd="'+p.id+'">🗑</button></div></div>';
+    });
+  }
+  $("view").innerHTML=h;
+  document.querySelectorAll("[data-tab]").forEach(function(b){b.onclick=function(){docTab=b.getAttribute("data-tab");render()}});
+  if(docTab==="rules"){
+    if($("rGen"))$("rGen").onclick=function(){gr.reglement=rulesFromTemplate(gr);persist(gr);render()};
+    if($("rSave"))$("rSave").onclick=function(){gr.reglement=$("rTxt").value;persist(gr);toast(t("rulesSaved"))};
+    if($("rCopy"))$("rCopy").onclick=function(){copyText($("rTxt").value,t("textCopied"))};
+    if($("rRegen"))$("rRegen").onclick=function(){ask(t("regenQ"),t("replace"),function(){gr.reglement=rulesFromTemplate(gr);persist(gr);render()})};
+  }else{
+    $("pvNew").onclick=function(){pvForm(gr,null)};
+    document.querySelectorAll("[data-pve]").forEach(function(b){b.onclick=function(){pvForm(gr,gr.pvs.find(function(p){return p.id===b.getAttribute("data-pve")}))}});
+    document.querySelectorAll("[data-pvv]").forEach(function(b){b.onclick=function(){pvView(gr,gr.pvs.find(function(p){return p.id===b.getAttribute("data-pvv")}))}});
+    document.querySelectorAll("[data-pvd]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-pvd");ask(t("delPVQ"),t("del"),function(){gr.pvs=gr.pvs.filter(function(p){return p.id!==id});persist(gr);render()})}});
+  }
+}
+function pvForm(gr,pv){
+  var isNew=!pv;pv=pv||{date:today(),lieu:gr.lieu||"",heure:"",presents:active(gr).map(function(m){return m.id}),odj:"",decisions:"",prochaine:"",secretaire:""};
+  var people=gr.membres.filter(function(m){return !m.sorti||(pv.presents||[]).indexOf(m.id)>=0});
+  var chks=people.map(function(m){return '<label class="chk"><input type="checkbox" data-pres="'+m.id+'"'+((pv.presents||[]).indexOf(m.id)>=0?" checked":"")+'>'+esc(m.nom)+'</label>'}).join("");
+  modal('<h3>'+esc(t("pvT"))+'</h3>'+
+    '<div class="grid2"><div><label>'+esc(t("date"))+'</label><input type="date" id="vDate" value="'+esc(pv.date)+'"></div><div><label>'+esc(t("pvTime"))+'</label><input type="time" id="vHeure" value="'+esc(pv.heure||"")+'"></div></div>'+
+    '<label>'+esc(t("pvPlace"))+'</label><input id="vLieu" value="'+esc(pv.lieu||"")+'">'+
+    '<label>'+esc(t("pvPresent"))+' <button class="btn sec sm" id="vAll" type="button" style="margin-left:6px">'+esc(t("allPresent"))+'</button></label><div>'+(chks||'<p class="muted">'+esc(t("addFirst"))+'</p>')+'</div>'+
+    '<label>'+esc(t("pvAgenda"))+'</label><textarea id="vOdj" placeholder="'+esc(t("pvAgendaPh"))+'">'+esc(pv.odj||"")+'</textarea>'+
+    '<label>'+esc(t("pvDecisions"))+'</label><textarea id="vDec">'+esc(pv.decisions||"")+'</textarea>'+
+    '<div class="grid2"><div><label>'+esc(t("pvNext"))+'</label><input type="date" id="vNext" value="'+esc(pv.prochaine||"")+'"></div><div><label>'+esc(t("pvSecretary"))+'</label><input id="vSec" value="'+esc(pv.secretaire||"")+'"></div></div>'+
+    '<div class="actions"><button class="btn sec" id="vNo">'+esc(t("cancel"))+'</button><button class="btn" id="vOk">'+esc(t("save"))+'</button></div>',function(md,close){
+    $("vNo").onclick=close;
+    $("vAll").onclick=function(){document.querySelectorAll("[data-pres]").forEach(function(c){c.checked=true})};
+    $("vOk").onclick=function(){
+      var x=isNew?{id:uid()}:pv;
+      x.date=$("vDate").value||today();x.heure=$("vHeure").value;x.lieu=$("vLieu").value.trim();
+      x.presents=[];document.querySelectorAll("[data-pres]").forEach(function(c){if(c.checked)x.presents.push(c.getAttribute("data-pres"))});
+      x.total=people.length;x.odj=$("vOdj").value;x.decisions=$("vDec").value;x.prochaine=$("vNext").value;x.secretaire=$("vSec").value.trim();
+      if(isNew)gr.pvs.push(x);persist(gr);close();docTab="pv";render();toast(t("pvSaved"));
+    };
+  });
+}
+function pvText(gr,pv){
+  var L=[],pres=(pv.presents||[]),d=pv.date;
+  var abs=gr.membres.filter(function(m){return pres.indexOf(m.id)<0&&(!m.sorti||m.sorti>d)});
+  var day=function(a){return a.filter(function(x){return x.date===d})};
+  var s=statsUntil(gr,d);
+  L.push(t("pvTitle"));
+  L.push(t("pvGroup")+" : "+gr.nom);
+  L.push(t("date")+" : "+fdate(d)+(pv.heure?" – "+pv.heure:""));
+  if(pv.lieu)L.push(t("pvPlace")+" : "+pv.lieu);
+  L.push("");
+  L.push(t("pvPresent")+" ("+pres.length+") : "+(pres.length?pres.map(function(id){return mName(gr,id)}).join(", "):t("none")));
+  L.push(t("pvAbsent")+" ("+abs.length+") : "+(abs.length?abs.map(function(m){return m.nom}).join(", "):t("none")));
+  if(pv.odj&&pv.odj.trim()){L.push("");L.push(t("pvAgenda")+" :");L.push(pv.odj.trim())}
+  if(pv.decisions&&pv.decisions.trim()){L.push("");L.push(t("pvDecisions")+" :");L.push(pv.decisions.trim())}
+  L.push("");L.push(t("pvFinance")+" :");
+  L.push("- "+t("pvCollected")+" : "+f(sum(day(gr.cotisations),function(c){return c.epargne})));
+  L.push("- "+t("pvSocialDay")+" : "+f(sum(day(gr.cotisations),function(c){return c.social})));
+  L.push("- "+t("pvLoansDay")+" : "+f(sum(day(gr.prets),function(p){return p.montant})));
+  L.push("- "+t("pvRepayDay")+" : "+f(sum(day(gr.remboursements),function(r){return r.montant})));
+  L.push("- "+t("pvCashEnd")+" : "+f(s.caisse));
+  if(pv.prochaine){L.push("");L.push(t("pvNext")+" : "+fdate(pv.prochaine))}
+  if(pv.secretaire){L.push(t("pvSecretary")+" : "+pv.secretaire)}
+  L.push("");L.push(t("pvSign"));
+  return L.join("\n");
+}
+function pvView(gr,pv){
+  var txt=pvText(gr,pv);
+  modal('<h3>'+esc(t("pvT"))+' – '+fdate(pv.date)+'</h3><textarea class="big" readonly>'+esc(txt)+'</textarea><div class="actions"><button class="btn sec" id="wNo">'+esc(t("cancel"))+'</button><button class="btn" id="wCp">'+esc(t("copyText"))+'</button></div>',function(md,close){
+    $("wNo").onclick=close;$("wCp").onclick=function(){copyText(txt,t("textCopied"))};
+  });
 }
 function reportText(gr){
   var s=stats(gr),L=[];
@@ -478,6 +656,7 @@ function applyChrome(){
   $("langSel").value=lang;
   document.querySelectorAll("[data-t]").forEach(function(el){el.textContent=t(el.getAttribute("data-t"))});
   $("status").textContent=t(statusKey);
+  $("foot").textContent=t("copyright");
 }
 function render(){
   applyChrome();
@@ -489,7 +668,7 @@ function render(){
   document.querySelectorAll("#nav button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-v")===view)});
   $("nav").classList.toggle("hidden",!g());
   var gr=g();if(!gr){vWelcome();return}
-  ({home:vHome,members:vMembers,meeting:vMeeting,loans:vLoans,report:vReport})[view](gr);
+  ({home:vHome,members:vMembers,meeting:vMeeting,loans:vLoans,docs:vDocs,report:vReport})[view](gr);
 }
 
 /* ---------- démarrage ---------- */
@@ -500,11 +679,8 @@ document.querySelectorAll("#nav button").forEach(function(b){b.onclick=function(
 loadLocal();render();startCloud();
 })();
 </script>
-
 <script>
-if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
-  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
-}
+if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});}
 </script>
 </body>
 </html>
