@@ -1,7 +1,7 @@
 {
-  "name": "Caisse AVEC – Gestion de tontine",
-  "short_name": "Caisse AVEC",
-  "description": "Épargne, fonds social et prêts des groupements AVEC et tontines. Français, bamanankan, English.",
+  "name": "Outils de gestion des groupements AVEC",
+  "short_name": "Outils AVEC",
+  "description": "Gestion des groupements AVEC : membres, épargne, fonds social, prêts, règlement, PV, base globale. Français, bamanankan, English.",
   "id": "./",
   "start_url": "./index.html",
   "scope": "./",
@@ -10,10 +10,28 @@
   "background_color": "#f6f8f7",
   "theme_color": "#1f6b4a",
   "lang": "fr",
-  "categories": ["finance", "productivity"],
+  "categories": [
+    "finance",
+    "productivity"
+  ],
   "icons": [
-    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }

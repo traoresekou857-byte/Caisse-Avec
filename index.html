@@ -6,18 +6,24 @@
 <meta name="theme-color" content="#1f6b4a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Caisse AVEC">
+<meta name="apple-mobile-web-app-title" content="Outils AVEC">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Caisse AVEC – Gestion de tontine</title>
+<title>Outils de gestion des groupements AVEC</title>
 <style>
 :root{--g:#1f6b4a;--g2:#e6f2ec;--o:#d9822b;--o2:#fbefe2;--r:#b3261e;--r2:#fbe7e5;--t:#1d2421;--m:#5d6a64;--b:#dde4e0;--bg:#f6f8f7;--w:#fff}
 *{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;background:var(--bg);color:var(--t);font-size:16px;padding-bottom:76px}
 header{background:var(--g);color:#fff;padding:12px 14px 10px;position:sticky;top:0;z-index:5}
 .top{display:flex;align-items:center;gap:8px}
-header h1{margin:0;font-size:17px;font-weight:700;flex:1}
+header h1{margin:0;font-size:15px;font-weight:700;flex:1;line-height:1.25}
+#menuBtn{font-size:18px;padding:4px 10px}
+.qrbox{text-align:center;padding:10px 0}.qrbox svg{max-width:80vw;height:auto;border:8px solid #fff;border-radius:8px}
+.url{word-break:break-all;font-size:13px;background:var(--g2);padding:8px;border-radius:8px;color:var(--g)}
+.menuitem{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:#fff;border:1px solid var(--b);border-radius:10px;padding:12px;font-size:15px;margin-bottom:8px;cursor:pointer;color:var(--t)}
+.filters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}.filters select{padding:7px;font-size:13px}
+table.small td,table.small th{font-size:12px;padding:6px 3px}
 #langSel{width:auto;padding:5px 6px;font-size:13px;border-radius:8px;border:0;background:rgba(255,255,255,.18);color:#fff}
 #langSel option{color:#1d2421}
 header .row{display:flex;gap:8px;align-items:center;margin-top:8px}
@@ -76,7 +82,8 @@ textarea.big{min-height:380px;font-size:14px;line-height:1.45}
 <body>
 <header>
   <div class="top">
-    <h1 id="appTitle">Caisse AVEC</h1>
+    <button id="menuBtn" aria-label="Menu">☰</button>
+    <h1 id="appTitle">Outils de gestion des groupements AVEC</h1>
     <select id="langSel" aria-label="Langue">
       <option value="fr">Français</option>
       <option value="bm">Bamanankan</option>
@@ -111,7 +118,7 @@ textarea.big{min-height:380px;font-size:14px;line-height:1.45}
    ========================================================= */
 var I18N={
 fr:{
- appTitle:"Caisse AVEC",newGroup:"+ Groupe",noGroup:"Aucun groupe",
+ appTitle:"Outils de gestion des groupements AVEC",newGroup:"+ Groupe",noGroup:"Aucun groupe",
  navHome:"Accueil",navMembers:"Membres",navMeeting:"Réunion",navLoans:"Prêts",navReport:"Rapport",
  loading:"Chargement…",connecting:"Connexion à votre compte…",saved:"✔ Enregistré",synced:"✔ Synchronisé avec votre compte",
  saveFail:"⚠ Échec en ligne – copie gardée sur ce téléphone",slow:"Connexion lente… données du téléphone affichées",
@@ -149,6 +156,21 @@ fr:{
  createFirst:"Créer mon premier groupe",how:"Comment ça marche",
  steps:["Créez le groupe et ses règles (valeur de la part, intérêt).","Ajoutez les membres.","À chaque réunion, saisissez les parts achetées.","Enregistrez les prêts et les remboursements.","Partagez le rapport sur WhatsApp."],
  deleted:"(supprimé)",
+ region:"Région",cercle:"Cercle",commune:"Commune",village:"Village / quartier",animateur:"Animateur / facilitateur",
+ maxMembers:"Limite atteinte : 30 membres maximum par groupement.",memberParts:"Nombre de parts",partsN:"{n} part(s)",
+ meetHint:"Cochez les membres qui ont cotisé. Le nombre de parts de chacun est fixé à son inscription (onglet Membres) et reste le même jusqu'à la fin du cycle.",
+ colPaid:"Cotisé",colAmount:"Montant",sameDayQ:"Des cotisations existent déjà pour le {d}. Les ajouter quand même ?",add:"Ajouter",
+ menu:"Menu",shareApp:"Partager l'application",shareHint:"Faites scanner ce code QR avec l'appareil photo de l'autre téléphone (ou Google Lens). Le lien s'ouvre dans Chrome : touchez ⋮ puis « Installer l'application ».",
+ xenderNote:"Xender et Bluetooth envoient les applications Android au format .apk. Dès que la version .apk (Google Play) sera prête, vous pourrez l'envoyer par Xender. En attendant, utilisez ce code QR ou le lien.",
+ shareBtn:"Partager le lien",copyLink:"Copier le lien",linkCopied:"Lien copié",
+ global:"Base globale (superviseur)",globalT:"Base globale des groupements",globalHint:"Rassemblez ici les groupements de tous les animateurs. Chaque animateur vous envoie son fichier (onglet Rapport > « Envoyer au superviseur »), puis vous l'importez ici. Vos propres groupements sont inclus automatiquement.",
+ importFile:"Importer un fichier reçu",importPaste:"…ou collez le texte reçu",importBtn:"Importer",imported:"{n} groupement(s) importé(s)",
+ filterAll:"Tous",nbGroups:"Groupements",nbMembers:"Membres actifs",lateCount:"Prêts en retard",colGroup:"Groupement",colPlace:"Localité",colAnim:"Animateur",
+ mine:"Moi",updated:"Reçu le",exportCsv:"Exporter pour Excel (CSV)",csvCopied:"Tableau copié – collez-le dans Excel ou Google Sheets",csvDone:"Fichier CSV créé",
+ removeImportQ:"Retirer « {n} » de la base globale ?",globalEmpty:"Aucun groupement pour l'instant.",groupDetail:"Détail du groupement",
+ profile:"Mon profil (animateur)",profileHint:"Ces informations accompagnent les données que vous envoyez au superviseur.",structure:"Structure / ONG",profileSaved:"Profil enregistré",
+ sendSup:"Envoyer au superviseur",sendSupHint:"Envoyez toutes les données de vos groupements à votre superviseur (WhatsApp, e-mail…). Il les importera dans sa base globale.",
+ shareFile:"Partager le fichier",copyData:"Copier les données",dataCopied:"Données copiées – collez-les dans WhatsApp",close:"Fermer",
  navDocs:"Documents",editMember:"Modifier le membre",memberOut:"Sorti(e)",outMembers:"Membres sortis",markOut:"Marquer comme sorti(e)",
  markOutQ:"{n} quitte le groupe ? Son historique (épargne, prêts) sera gardé.",reinstate:"Réintégrer",delForever:"Supprimer définitivement",
  delForeverQ:"Supprimer définitivement {n} ?",hasOps:"Ce membre a déjà des opérations : il sera marqué « sorti(e) » et son historique sera gardé.",
@@ -166,10 +188,10 @@ fr:{
  pvSocialDay:"Fonds social collecté",pvLoansDay:"Prêts accordés",pvRepayDay:"Remboursements reçus",pvCashEnd:"Argent en caisse après la réunion",
  pvSign:"Signatures :\nPrésident(e) : ____________\nSecrétaire : ____________",none:"aucun",
  copyright:"© 2026 Sékou Traoré – Tous droits réservés",
- rulesTpl:"RÈGLEMENT INTÉRIEUR\n« {nom} »\n\nArticle 1 – Dénomination et siège\nIl est créé entre les membres une Association Villageoise d'Épargne et de Crédit (AVEC) dénommée « {nom} », dont le siège est à {lieu}.\n\nArticle 2 – Objectifs\nLe groupe permet à ses membres d'épargner régulièrement, d'obtenir de petits crédits et de s'entraider en cas de difficulté grâce au fonds social.\n\nArticle 3 – Adhésion\nPeut devenir membre toute personne volontaire, âgée d'au moins 18 ans, résidant dans la localité et qui accepte le présent règlement. L'adhésion se fait au début du cycle.\n\nArticle 4 – Organes\nL'Assemblée générale (tous les membres) prend les grandes décisions. Le Comité de gestion comprend : un(e) Président(e), un(e) Secrétaire, un(e) Trésorier(ère) et deux Compteurs(euses), élus pour un cycle.\n\nArticle 5 – Réunions\nLe groupe se réunit chaque ______ (jour) à ______ (heure). La présence est obligatoire.\nRetard : amende de ______ F. Absence sans excuse : amende de ______ F.\n\nArticle 6 – Épargne\nLa valeur d'une part est de {part}. À chaque réunion, chaque membre achète de 1 à 5 parts.\n\nArticle 7 – Fonds social\nChaque membre verse {social} par réunion au fonds social. Il sert à aider les membres en cas de maladie, de décès ou d'autre événement grave. Ces aides ne sont pas remboursables. Le montant de chaque aide est décidé par l'Assemblée.\n\nArticle 8 – Crédit\nUn membre peut emprunter jusqu'à 3 fois le montant de son épargne. L'intérêt est de {taux} % par mois. La durée maximale d'un prêt est de 3 mois. Tout prêt doit être remboursé avant la fin du cycle.\n\nArticle 9 – Retard de remboursement\nEn cas de retard, le membre paie une pénalité de ______ F et le Comité l'aide à trouver une solution. Aucun nouveau prêt n'est accordé tant que le précédent n'est pas remboursé.\n\nArticle 10 – Sécurité de la caisse\nLa caisse est fermée par 3 cadenas. Les 3 clés sont gardées par 3 membres différents, qui ne font pas partie du Comité de gestion. La caisse n'est ouverte qu'en réunion, devant tous les membres.\n\nArticle 11 – Cycle et partage\nLe cycle dure ______ mois. À la fin du cycle, l'épargne et les gains (intérêts, amendes) sont partagés entre les membres en proportion du nombre de parts achetées par chacun.\n\nArticle 12 – Départ et exclusion\nUn membre qui quitte le groupe ou qui est exclu récupère son épargne, moins ses dettes envers le groupe. Tout membre qui ne respecte pas gravement le règlement peut être exclu par décision de l'Assemblée.\n\nArticle 13 – Modification\nLe présent règlement peut être modifié par l'Assemblée générale à la majorité des deux tiers (2/3) des membres.\n\nFait à {lieu}, le {date}\n\nSignatures :\nPrésident(e) : ____________\nSecrétaire : ____________\nTrésorier(ère) : ____________"
+ rulesTpl:"RÈGLEMENT INTÉRIEUR\n« {nom} »\n\nArticle 1 – Dénomination et siège\nIl est créé entre les membres une Association Villageoise d'Épargne et de Crédit (AVEC) dénommée « {nom} », dont le siège est à {lieu}.\n\nArticle 2 – Objectifs\nLe groupe permet à ses membres d'épargner régulièrement, d'obtenir de petits crédits et de s'entraider en cas de difficulté grâce au fonds social.\n\nArticle 3 – Adhésion\nPeut devenir membre toute personne volontaire, âgée d'au moins 18 ans, résidant dans la localité et qui accepte le présent règlement. L'adhésion se fait au début du cycle. Le groupement compte au maximum 30 membres.\n\nArticle 4 – Organes\nL'Assemblée générale (tous les membres) prend les grandes décisions. Le Comité de gestion comprend : un(e) Président(e), un(e) Secrétaire, un(e) Trésorier(ère) et deux Compteurs(euses), élus pour un cycle.\n\nArticle 5 – Réunions\nLe groupe se réunit chaque ______ (jour) à ______ (heure). La présence est obligatoire.\nRetard : amende de ______ F. Absence sans excuse : amende de ______ F.\n\nArticle 6 – Épargne\nLa valeur d'une part est de {part}. Chaque membre choisit son nombre de parts à l'adhésion ; ce nombre reste le même à chaque réunion jusqu'à la fin du cycle.\n\nArticle 7 – Fonds social\nChaque membre verse {social} par réunion au fonds social. Il sert à aider les membres en cas de maladie, de décès ou d'autre événement grave. Ces aides ne sont pas remboursables. Le montant de chaque aide est décidé par l'Assemblée.\n\nArticle 8 – Crédit\nUn membre peut emprunter jusqu'à 3 fois le montant de son épargne. L'intérêt est de {taux} % par mois. La durée maximale d'un prêt est de 3 mois. Tout prêt doit être remboursé avant la fin du cycle.\n\nArticle 9 – Retard de remboursement\nEn cas de retard, le membre paie une pénalité de ______ F et le Comité l'aide à trouver une solution. Aucun nouveau prêt n'est accordé tant que le précédent n'est pas remboursé.\n\nArticle 10 – Sécurité de la caisse\nLa caisse est fermée par 3 cadenas. Les 3 clés sont gardées par 3 membres différents, qui ne font pas partie du Comité de gestion. La caisse n'est ouverte qu'en réunion, devant tous les membres.\n\nArticle 11 – Cycle et partage\nLe cycle dure ______ mois. À la fin du cycle, l'épargne et les gains (intérêts, amendes) sont partagés entre les membres en proportion du nombre de parts achetées par chacun.\n\nArticle 12 – Départ et exclusion\nUn membre qui quitte le groupe ou qui est exclu récupère son épargne, moins ses dettes envers le groupe. Tout membre qui ne respecte pas gravement le règlement peut être exclu par décision de l'Assemblée.\n\nArticle 13 – Modification\nLe présent règlement peut être modifié par l'Assemblée générale à la majorité des deux tiers (2/3) des membres.\n\nFait à {lieu}, le {date}\n\nSignatures :\nPrésident(e) : ____________\nSecrétaire : ____________\nTrésorier(ère) : ____________"
 },
 bm:{
- appTitle:"AVEC Kɛsu",newGroup:"+ Tɔn",noGroup:"Tɔn si tɛ",
+ appTitle:"AVEC tɔnw ɲɛnabɔ minɛnw",newGroup:"+ Tɔn",noGroup:"Tɔn si tɛ",
  navHome:"Daminɛ",navMembers:"Tɔndenw",navMeeting:"Ɲɔgɔnye",navLoans:"Juruw",navReport:"Jatebɔ",
  loading:"A bɛ na…",connecting:"A bɛ ka siri…",saved:"✔ A marala",synced:"✔ A marala i ka kɔnti la",
  saveFail:"⚠ A ma se ka mara ɛntɛrinɛti kan – a marala telefɔni kɔnɔ",slow:"Siri ka gɛlɛn… telefɔni ka kunnafoniw bɛ yira",
@@ -207,6 +229,21 @@ bm:{
  createFirst:"N ka tɔn fɔlɔ dabɔ",how:"A bɛ kɛ cogo min",
  steps:["Tɔn n'a sariyaw dabɔ (niyɔrɔ sɔngɔ, tɔnɔ).","Tɔndenw fara a kan.","Ɲɔgɔnye o ɲɔgɔnye, niyɔrɔ sannenw sɛbɛn.","Juruw ani u sarali sɛbɛn.","Jatebɔ ci WhatsApp kan."],
  deleted:"(a jɔsira)",
+ region:"Mara",cercle:"Serikili",commune:"Komini",village:"Dugu / kin",animateur:"Animatɛri / dɛmɛbaga",
+ maxMembers:"Dan sera : tɔn kelen tɛ se ka tɛmɛ tɔnden 30 kan.",memberParts:"Niyɔrɔ hakɛ",partsN:"niyɔrɔ {n}",
+ meetHint:"Tɔnden minnu ye wari don, olu taamasiyɛn. Tɔnden kelen kelen ka niyɔrɔ hakɛ sɛbɛnna a donni waati la (Tɔndenw), a bɛ to a cogo la fo sikili ka ban.",
+ colPaid:"A donna",colAmount:"Hakɛ",sameDayQ:"Wari donnenw bɛ yen ka ban {d}. Aw b'u fara a kan hali bi wa?",add:"A fara a kan",
+ menu:"Menu",shareApp:"Aplikasiyɔn ci mɔgɔw ma",shareHint:"Telefɔni wɛrɛ ka kamera (walima Google Lens) ka nin QR kode in ja ta. Lien bɛ da wuli Chrome kɔnɔ : ⋮ digi, ka « Installer l'application » sugandi.",
+ xenderNote:"Xender ni Bluetooth bɛ Android aplikasiyɔnw ci .apk cogo la. Ni .apk (Google Play) labɛnna, aw bɛ se k'a ci Xender fɛ. Sisan, QR kode walima lien kɛ.",
+ shareBtn:"Lien ci",copyLink:"Lien kopi",linkCopied:"Lien kopira",
+ global:"Kunnafoni bɛɛ (kɔlɔsibaga)",globalT:"Tɔnw bɛɛ ka kunnafoniw",globalHint:"Animatɛriw bɛɛ ka tɔnw lajɛ yan. Animatɛri kelen kelen b'a ka fisiye ci aw ma (Jatebɔ > « A ci kɔlɔsibaga ma »), aw b'a don yan. Aw yɛrɛ ka tɔnw bɛ yen ka ban.",
+ importFile:"Fisiye sɔrɔlen don",importPaste:"…walima sɛbɛn sɔrɔlen bila yan",importBtn:"A don",imported:"Tɔn {n} donna",
+ filterAll:"Bɛɛ",nbGroups:"Tɔnw",nbMembers:"Tɔndenw",lateCount:"Juru waati tɛmɛnenw",colGroup:"Tɔn",colPlace:"Yɔrɔ",colAnim:"Animatɛri",
+ mine:"Ne",updated:"A sɔrɔla",exportCsv:"A bɔ Excel kama (CSV)",csvCopied:"Tabali kopira – a bila Excel walima Google Sheets kɔnɔ",csvDone:"CSV fisiye dilanna",
+ removeImportQ:"« {n} » bɔ kunnafoni bɛɛ la wa?",globalEmpty:"Tɔn si tɛ yen fɔlɔ.",groupDetail:"Tɔn kunnafoniw",
+ profile:"N ka kunnafoniw (animatɛri)",profileHint:"Nin kunnafoniw bɛ taa ni aw ka sɛbɛnw ye kɔlɔsibaga fɛ.",structure:"Jɛkulu / ONG",profileSaved:"Kunnafoniw marala",
+ sendSup:"A ci kɔlɔsibaga ma",sendSupHint:"Aw ka tɔnw ka kunnafoniw bɛɛ ci aw ka kɔlɔsibaga ma (WhatsApp, e-mail…). A b'u don a ka kunnafoni bɛɛ la.",
+ shareFile:"Fisiye ci",copyData:"Kunnafoniw kopi",dataCopied:"Kunnafoniw kopira – u bila WhatsApp kɔnɔ",close:"A datugu",
  navDocs:"Sɛbɛnw",editMember:"Tɔnden yɛlɛma",memberOut:"A bɔra",outMembers:"Tɔnden bɔlenw",markOut:"A jate bɔlen ye",
  markOutQ:"{n} bɛ bɔ tɔn na wa? A ka jate (maralen, juru) bɛna to yen.",reinstate:"A segin tɔn na",delForever:"A jɔsi pewu",
  delForeverQ:"{n} jɔsi pewu wa?",hasOps:"Nin tɔnden ye wari baara kɛ ka ban : a bɛna jate bɔlen ye, a ka jate bɛna mara.",
@@ -224,10 +261,10 @@ bm:{
  pvSocialDay:"Dɛmɛ kɛsu wari donnen",pvLoansDay:"Juru dilenw",pvRepayDay:"Juru saralenw",pvCashEnd:"Wari min bɛ kɛsu kɔnɔ ɲɔgɔnye kɔfɛ",
  pvSign:"Bolonɔw :\nƝɛmɔgɔ : ____________\nSɛbɛnnikɛla : ____________",none:"foyi",
  copyright:"© 2026 Sékou Traoré – Josira bɛɛ ye a ta ye",
- rulesTpl:"TƆN SARIYASƐBƐN\n« {nom} »\n\nSariya 1 – Tɔgɔ ni sigiyɔrɔ\nTɔndenw ye Wari Maracɛ ni Juru Tɔn (AVEC) dabɔ, a tɔgɔ ye « {nom} ». A sigiyɔrɔ ye {lieu} ye.\n\nSariya 2 – Laɲiniw\nTɔn in b'a to tɔndenw ka wari mara tuma bɛɛ, ka juru fitininw sɔrɔ, ka ɲɔgɔn dɛmɛ gɛlɛya waati la dɛmɛ kɛsu fɛ.\n\nSariya 3 – Donni tɔn na\nMɔgɔ o mɔgɔ ye san 18 sɔrɔ, ni a sigilen bɛ dugu in kɔnɔ, ni a sɔnna nin sariyaw ma, o bɛ se ka don tɔn na. Donni bɛ kɛ sikili daminɛ na.\n\nSariya 4 – Ɲɛmɔgɔw\nTɔndenw bɛɛ ka Ɲɔgɔnye ba de bɛ latigɛ kunbabaw ta. Ɲɛnabɔ jɛkulu bɛ kɛ ni Ɲɛmɔgɔ ye, Sɛbɛnnikɛla, Wari marabaga ani Wari jatebaga fila. U bɛ sugandi sikili kelen kama.\n\nSariya 5 – Ɲɔgɔnyew\nTɔn bɛ ɲɔgɔn ye ______ (don) o don, ______ (waati). Bɛɛ ka kan ka na.\nNi mɔgɔ nana kɔ fɛ : ______ F. Ni mɔgɔ ma na sababu tɛ : ______ F.\n\nSariya 6 – Wari marali\nNiyɔrɔ kelen sɔngɔ ye {part} ye. Ɲɔgɔnye o ɲɔgɔnye, tɔnden kelen kelen bɛ niyɔrɔ 1 fo 5 san.\n\nSariya 7 – Dɛmɛ kɛsu\nTɔnden kelen kelen bɛ {social} don dɛmɛ kɛsu kɔnɔ ɲɔgɔnye o ɲɔgɔnye. A bɛ tɔndenw dɛmɛ bana, saya walima gɛlɛya wɛrɛ waati la. O dɛmɛ tɛ sara kokura. Ɲɔgɔnye ba de bɛ dɛmɛ hakɛ latigɛ.\n\nSariya 8 – Juru\nTɔnden bɛ se ka juru ta fo a ka maralen siɲɛ 3. Juru tɔnɔ ye {taux} % ye kalo o kalo. Juru waati janya laban ye kalo 3 ye. Juru bɛɛ ka kan ka sara sani sikili ka ban.\n\nSariya 9 – Juru sarali mɛnni\nNi juru sarali mɛnna, tɔnden bɛ ______ F sara, Ɲɛnabɔ jɛkulu b'a dɛmɛ ka fɛɛrɛ sɔrɔ. Juru kura tɛ di ni kɔrɔ ma sara fɔlɔ.\n\nSariya 10 – Kɛsu lakanani\nKɛsu bɛ datugu ni kadenasi 3 ye. Kile 3 bɛ tɔnden 3 bolo, minnu tɛ Ɲɛnabɔ jɛkulu la. Kɛsu tɛ da wuli fo ɲɔgɔnye la, tɔndenw bɛɛ ɲɛ kɔrɔ.\n\nSariya 11 – Sikili ni tilali\nSikili bɛ kalo ______ kɛ. Sikili laban na, maralen ni tɔnɔw (juru tɔnɔ, hakɛw) bɛ tila tɔndenw cɛ ka kɛɲɛ ni u kelen kelen ka niyɔrɔ sannenw ye.\n\nSariya 12 – Bɔli ni gɛnni\nTɔnden min bɔra tɔn na walima min gɛnna, o bɛ a ka maralen sɔrɔ, a ka juru bɔlen a la. Tɔnden min ma sariyaw bonya kosɛbɛ, Ɲɔgɔnye ba bɛ se k'a gɛn.\n\nSariya 13 – Sariyaw yɛlɛmani\nƝɔgɔnye ba bɛ se ka nin sariyaw yɛlɛma ni tɔndenw tilayɔrɔ saba la fila (2/3) sɔnna.\n\nA kɛra {lieu}, {date}\n\nBolonɔw :\nƝɛmɔgɔ : ____________\nSɛbɛnnikɛla : ____________\nWari marabaga : ____________"
+ rulesTpl:"TƆN SARIYASƐBƐN\n« {nom} »\n\nSariya 1 – Tɔgɔ ni sigiyɔrɔ\nTɔndenw ye Wari Maracɛ ni Juru Tɔn (AVEC) dabɔ, a tɔgɔ ye « {nom} ». A sigiyɔrɔ ye {lieu} ye.\n\nSariya 2 – Laɲiniw\nTɔn in b'a to tɔndenw ka wari mara tuma bɛɛ, ka juru fitininw sɔrɔ, ka ɲɔgɔn dɛmɛ gɛlɛya waati la dɛmɛ kɛsu fɛ.\n\nSariya 3 – Donni tɔn na\nMɔgɔ o mɔgɔ ye san 18 sɔrɔ, ni a sigilen bɛ dugu in kɔnɔ, ni a sɔnna nin sariyaw ma, o bɛ se ka don tɔn na. Donni bɛ kɛ sikili daminɛ na. Tɔn tɛ se ka tɛmɛ tɔnden 30 kan.\n\nSariya 4 – Ɲɛmɔgɔw\nTɔndenw bɛɛ ka Ɲɔgɔnye ba de bɛ latigɛ kunbabaw ta. Ɲɛnabɔ jɛkulu bɛ kɛ ni Ɲɛmɔgɔ ye, Sɛbɛnnikɛla, Wari marabaga ani Wari jatebaga fila. U bɛ sugandi sikili kelen kama.\n\nSariya 5 – Ɲɔgɔnyew\nTɔn bɛ ɲɔgɔn ye ______ (don) o don, ______ (waati). Bɛɛ ka kan ka na.\nNi mɔgɔ nana kɔ fɛ : ______ F. Ni mɔgɔ ma na sababu tɛ : ______ F.\n\nSariya 6 – Wari marali\nNiyɔrɔ kelen sɔngɔ ye {part} ye. Tɔnden kelen kelen bɛ a ka niyɔrɔ hakɛ sugandi a donni waati la ; o hakɛ bɛ to a cogo la ɲɔgɔnye bɛɛ la fo sikili ka ban.\n\nSariya 7 – Dɛmɛ kɛsu\nTɔnden kelen kelen bɛ {social} don dɛmɛ kɛsu kɔnɔ ɲɔgɔnye o ɲɔgɔnye. A bɛ tɔndenw dɛmɛ bana, saya walima gɛlɛya wɛrɛ waati la. O dɛmɛ tɛ sara kokura. Ɲɔgɔnye ba de bɛ dɛmɛ hakɛ latigɛ.\n\nSariya 8 – Juru\nTɔnden bɛ se ka juru ta fo a ka maralen siɲɛ 3. Juru tɔnɔ ye {taux} % ye kalo o kalo. Juru waati janya laban ye kalo 3 ye. Juru bɛɛ ka kan ka sara sani sikili ka ban.\n\nSariya 9 – Juru sarali mɛnni\nNi juru sarali mɛnna, tɔnden bɛ ______ F sara, Ɲɛnabɔ jɛkulu b'a dɛmɛ ka fɛɛrɛ sɔrɔ. Juru kura tɛ di ni kɔrɔ ma sara fɔlɔ.\n\nSariya 10 – Kɛsu lakanani\nKɛsu bɛ datugu ni kadenasi 3 ye. Kile 3 bɛ tɔnden 3 bolo, minnu tɛ Ɲɛnabɔ jɛkulu la. Kɛsu tɛ da wuli fo ɲɔgɔnye la, tɔndenw bɛɛ ɲɛ kɔrɔ.\n\nSariya 11 – Sikili ni tilali\nSikili bɛ kalo ______ kɛ. Sikili laban na, maralen ni tɔnɔw (juru tɔnɔ, hakɛw) bɛ tila tɔndenw cɛ ka kɛɲɛ ni u kelen kelen ka niyɔrɔ sannenw ye.\n\nSariya 12 – Bɔli ni gɛnni\nTɔnden min bɔra tɔn na walima min gɛnna, o bɛ a ka maralen sɔrɔ, a ka juru bɔlen a la. Tɔnden min ma sariyaw bonya kosɛbɛ, Ɲɔgɔnye ba bɛ se k'a gɛn.\n\nSariya 13 – Sariyaw yɛlɛmani\nƝɔgɔnye ba bɛ se ka nin sariyaw yɛlɛma ni tɔndenw tilayɔrɔ saba la fila (2/3) sɔnna.\n\nA kɛra {lieu}, {date}\n\nBolonɔw :\nƝɛmɔgɔ : ____________\nSɛbɛnnikɛla : ____________\nWari marabaga : ____________"
 },
 en:{
- appTitle:"VSLA Cashbox",newGroup:"+ Group",noGroup:"No group",
+ appTitle:"VSLA Group Management Tools",newGroup:"+ Group",noGroup:"No group",
  navHome:"Home",navMembers:"Members",navMeeting:"Meeting",navLoans:"Loans",navReport:"Report",
  loading:"Loading…",connecting:"Connecting to your account…",saved:"✔ Saved",synced:"✔ Synced with your account",
  saveFail:"⚠ Online save failed – copy kept on this phone",slow:"Slow connection… showing data from this phone",
@@ -265,6 +302,21 @@ en:{
  createFirst:"Create my first group",how:"How it works",
  steps:["Create the group and its rules (share value, interest).","Add the members.","At each meeting, enter the shares bought.","Record loans and repayments.","Share the report on WhatsApp."],
  deleted:"(deleted)",
+ region:"Region",cercle:"Cercle (district)",commune:"Commune",village:"Village / area",animateur:"Field officer",
+ maxMembers:"Limit reached: maximum 30 members per group.",memberParts:"Number of shares",partsN:"{n} share(s)",
+ meetHint:"Tick the members who paid. Each member's number of shares is set when they join (Members tab) and stays the same until the end of the cycle.",
+ colPaid:"Paid",colAmount:"Amount",sameDayQ:"Contributions already exist for {d}. Add them anyway?",add:"Add",
+ menu:"Menu",shareApp:"Share the app",shareHint:"Have the other phone scan this QR code with its camera (or Google Lens). The link opens in Chrome: tap ⋮ then “Install app”.",
+ xenderNote:"Xender and Bluetooth send Android apps as .apk files. Once the .apk (Google Play) version is ready, you can send it with Xender. Until then, use this QR code or the link.",
+ shareBtn:"Share link",copyLink:"Copy link",linkCopied:"Link copied",
+ global:"Global database (supervisor)",globalT:"Global database of groups",globalHint:"Collect all field officers' groups here. Each officer sends you their file (Report tab > “Send to supervisor”), then you import it here. Your own groups are included automatically.",
+ importFile:"Import a received file",importPaste:"…or paste the received text",importBtn:"Import",imported:"{n} group(s) imported",
+ filterAll:"All",nbGroups:"Groups",nbMembers:"Active members",lateCount:"Late loans",colGroup:"Group",colPlace:"Location",colAnim:"Officer",
+ mine:"Me",updated:"Received",exportCsv:"Export for Excel (CSV)",csvCopied:"Table copied – paste it into Excel or Google Sheets",csvDone:"CSV file created",
+ removeImportQ:"Remove “{n}” from the global database?",globalEmpty:"No groups yet.",groupDetail:"Group details",
+ profile:"My profile (field officer)",profileHint:"This information is attached to the data you send to your supervisor.",structure:"Organisation / NGO",profileSaved:"Profile saved",
+ sendSup:"Send to supervisor",sendSupHint:"Send all your groups' data to your supervisor (WhatsApp, email…). They will import it into the global database.",
+ shareFile:"Share file",copyData:"Copy data",dataCopied:"Data copied – paste it into WhatsApp",close:"Close",
  navDocs:"Documents",editMember:"Edit member",memberOut:"Left",outMembers:"Former members",markOut:"Mark as left",
  markOutQ:"{n} is leaving the group? Their history (savings, loans) will be kept.",reinstate:"Bring back",delForever:"Delete permanently",
  delForeverQ:"Delete {n} permanently?",hasOps:"This member already has transactions: they will be marked as “left” and their history kept.",
@@ -282,15 +334,97 @@ en:{
  pvSocialDay:"Social fund collected",pvLoansDay:"Loans granted",pvRepayDay:"Repayments received",pvCashEnd:"Cash in box after the meeting",
  pvSign:"Signatures:\nChairperson: ____________\nSecretary: ____________",none:"none",
  copyright:"© 2026 Sékou Traoré – All rights reserved",
- rulesTpl:"BY-LAWS\n“{nom}”\n\nArticle 1 – Name and seat\nThe members hereby create a Village Savings and Loan Association (VSLA) named “{nom}”, based in {lieu}.\n\nArticle 2 – Objectives\nThe group enables its members to save regularly, obtain small loans and support each other in hard times through the social fund.\n\nArticle 3 – Membership\nAny volunteer aged 18 or over, living in the area and accepting these by-laws may become a member. New members join at the start of a cycle.\n\nArticle 4 – Governing bodies\nThe General Assembly (all members) takes the main decisions. The Management Committee consists of a Chairperson, a Secretary, a Treasurer and two Money Counters, elected for one cycle.\n\nArticle 5 – Meetings\nThe group meets every ______ (day) at ______ (time). Attendance is compulsory.\nLateness: fine of ______ F. Unexcused absence: fine of ______ F.\n\nArticle 6 – Savings\nThe value of one share is {part}. At each meeting, each member buys 1 to 5 shares.\n\nArticle 7 – Social fund\nEach member pays {social} per meeting into the social fund. It helps members in case of illness, death or other serious events. This help is not repaid. The amount of each grant is decided by the Assembly.\n\nArticle 8 – Loans\nA member may borrow up to 3 times their savings. Interest is {taux}% per month. The maximum loan period is 3 months. All loans must be repaid before the end of the cycle.\n\nArticle 9 – Late repayment\nIn case of late repayment, the member pays a penalty of ______ F and the Committee helps find a solution. No new loan is granted until the previous one is repaid.\n\nArticle 10 – Cash box security\nThe cash box is locked with 3 padlocks. The 3 keys are kept by 3 different members who are not on the Management Committee. The box is only opened during meetings, in front of all members.\n\nArticle 11 – Cycle and share-out\nThe cycle lasts ______ months. At the end of the cycle, savings and earnings (interest, fines) are shared among members in proportion to the number of shares each has bought.\n\nArticle 12 – Leaving and exclusion\nA member who leaves or is excluded gets back their savings minus any debts to the group. A member who seriously breaks these by-laws may be excluded by decision of the Assembly.\n\nArticle 13 – Amendments\nThese by-laws may be amended by the General Assembly with a two-thirds (2/3) majority of members.\n\nDone at {lieu}, on {date}\n\nSignatures:\nChairperson: ____________\nSecretary: ____________\nTreasurer: ____________"
+ rulesTpl:"BY-LAWS\n“{nom}”\n\nArticle 1 – Name and seat\nThe members hereby create a Village Savings and Loan Association (VSLA) named “{nom}”, based in {lieu}.\n\nArticle 2 – Objectives\nThe group enables its members to save regularly, obtain small loans and support each other in hard times through the social fund.\n\nArticle 3 – Membership\nAny volunteer aged 18 or over, living in the area and accepting these by-laws may become a member. New members join at the start of a cycle. The group has a maximum of 30 members.\n\nArticle 4 – Governing bodies\nThe General Assembly (all members) takes the main decisions. The Management Committee consists of a Chairperson, a Secretary, a Treasurer and two Money Counters, elected for one cycle.\n\nArticle 5 – Meetings\nThe group meets every ______ (day) at ______ (time). Attendance is compulsory.\nLateness: fine of ______ F. Unexcused absence: fine of ______ F.\n\nArticle 6 – Savings\nThe value of one share is {part}. Each member chooses their number of shares when joining; this number stays the same at every meeting until the end of the cycle.\n\nArticle 7 – Social fund\nEach member pays {social} per meeting into the social fund. It helps members in case of illness, death or other serious events. This help is not repaid. The amount of each grant is decided by the Assembly.\n\nArticle 8 – Loans\nA member may borrow up to 3 times their savings. Interest is {taux}% per month. The maximum loan period is 3 months. All loans must be repaid before the end of the cycle.\n\nArticle 9 – Late repayment\nIn case of late repayment, the member pays a penalty of ______ F and the Committee helps find a solution. No new loan is granted until the previous one is repaid.\n\nArticle 10 – Cash box security\nThe cash box is locked with 3 padlocks. The 3 keys are kept by 3 different members who are not on the Management Committee. The box is only opened during meetings, in front of all members.\n\nArticle 11 – Cycle and share-out\nThe cycle lasts ______ months. At the end of the cycle, savings and earnings (interest, fines) are shared among members in proportion to the number of shares each has bought.\n\nArticle 12 – Leaving and exclusion\nA member who leaves or is excluded gets back their savings minus any debts to the group. A member who seriously breaks these by-laws may be excluded by decision of the Assembly.\n\nArticle 13 – Amendments\nThese by-laws may be amended by the General Assembly with a two-thirds (2/3) majority of members.\n\nDone at {lieu}, on {date}\n\nSignatures:\nChairperson: ____________\nSecretary: ____________\nTreasurer: ____________"
 }};
 
-var LS_KEY="caisse_avec_v1",LANG_KEY="caisse_avec_lang";
+var LS_KEY="caisse_avec_v1",LANG_KEY="caisse_avec_lang",GL_KEY="caisse_avec_global_v1",PR_KEY="caisse_avec_profile_v1",MAXM=30;
+var APP_URL="https://traoresekou857-byte.github.io/Caisse-Avec/";
+var globalDb={},profile={};
+try{globalDb=JSON.parse(localStorage.getItem(GL_KEY)||"{}")||{}}catch(e){}
+try{profile=JSON.parse(localStorage.getItem(PR_KEY)||"{}")||{}}catch(e){}
+function saveGlobal(){try{localStorage.setItem(GL_KEY,JSON.stringify(globalDb))}catch(e){}}
+function saveProfile(){try{localStorage.setItem(PR_KEY,JSON.stringify(profile))}catch(e){}}
 var lang="fr";
 try{var sl=localStorage.getItem(LANG_KEY);if(sl&&I18N[sl])lang=sl}catch(e){}
 function t(k,v){var s=(I18N[lang]&&I18N[lang][k]!=null)?I18N[lang][k]:I18N.fr[k];if(s==null)return k;if(v&&typeof s==="string")s=s.replace(/\{(\w+)\}/g,function(_,n){return v[n]!=null?v[n]:""});return s}
 
 var groups={},currentId=null,view="home",mode="local",col=null,writeChains={},lastJson={},statusKey="loading";
+
+/* ---------- code QR ---------- */
+/* Générateur de code QR minimal (mode octet, correction M, versions 1 à 6). */
+function makeQR(text){
+  var bytes=[],s=unescape(encodeURIComponent(text));
+  for(var i=0;i<s.length;i++)bytes.push(s.charCodeAt(i));
+  var ECC=[10,16,26,18,24,16],NB=[1,1,1,2,2,4],RAW=[26,44,70,100,134,172],AL=[[],[6,18],[6,22],[6,26],[6,30],[6,34]];
+  var ver=0;
+  for(var v=1;v<=6;v++){var cap=RAW[v-1]-ECC[v-1]*NB[v-1];if(4+8+8*bytes.length<=cap*8){ver=v;break}}
+  if(!ver)return null;
+  var size=17+4*ver,ecc=ECC[ver-1],nb=NB[ver-1],raw=RAW[ver-1],dcw=raw-ecc*nb;
+  // bits
+  var bb=[];function put(val,len){for(var i=len-1;i>=0;i--)bb.push((val>>>i)&1)}
+  put(4,4);put(bytes.length,8);bytes.forEach(function(b){put(b,8)});
+  put(0,Math.min(4,dcw*8-bb.length));while(bb.length%8)bb.push(0);
+  var data=[];for(i=0;i<bb.length;i+=8){var x=0;for(var j=0;j<8;j++)x=(x<<1)|bb[i+j];data.push(x)}
+  for(var pad=0xEC;data.length<dcw;pad^=0xEC^0x11)data.push(pad);
+  // GF(256)
+  var EXP=new Array(512),LOG=new Array(256),xv=1;
+  for(i=0;i<255;i++){EXP[i]=xv;LOG[xv]=i;xv<<=1;if(xv&0x100)xv^=0x11d}
+  for(i=255;i<512;i++)EXP[i]=EXP[i-255];
+  function mul(a,b){return a&&b?EXP[LOG[a]+LOG[b]]:0}
+  var gen=[1];for(i=0;i<ecc;i++){var nx=new Array(gen.length+1).fill(0);for(j=0;j<gen.length;j++){nx[j]^=gen[j];nx[j+1]^=mul(gen[j],EXP[i])}gen=nx}
+  function rs(block){var r=block.concat(new Array(ecc).fill(0));for(var i=0;i<block.length;i++){var c=r[i];if(c)for(var j=0;j<gen.length;j++)r[i+j]^=mul(gen[j],c)}return r.slice(block.length)}
+  var shortLen=Math.floor(raw/nb)-ecc,nShort=nb-raw%nb,blocks=[],ecs=[],k=0;
+  for(i=0;i<nb;i++){var len=shortLen+(i<nShort?0:1);var b=data.slice(k,k+len);k+=len;blocks.push(b);ecs.push(rs(b))}
+  var cw=[];for(i=0;i<=shortLen;i++)for(j=0;j<nb;j++)if(i<blocks[j].length)cw.push(blocks[j][i]);
+  for(i=0;i<ecc;i++)for(j=0;j<nb;j++)cw.push(ecs[j][i]);
+  // matrice
+  var M=[],F=[];for(i=0;i<size;i++){M.push(new Array(size).fill(false));F.push(new Array(size).fill(false))}
+  function setF(x,y,d){M[y][x]=d;F[y][x]=true}
+  for(i=0;i<size;i++){setF(6,i,i%2===0);setF(i,6,i%2===0)}
+  function finder(cx,cy){for(var dy=-4;dy<=4;dy++)for(var dx=-4;dx<=4;dx++){var d=Math.max(Math.abs(dx),Math.abs(dy)),xx=cx+dx,yy=cy+dy;if(xx>=0&&xx<size&&yy>=0&&yy<size)setF(xx,yy,d!==2&&d!==4)}}
+  finder(3,3);finder(size-4,3);finder(3,size-4);
+  var al=AL[ver-1],na=al.length;
+  for(i=0;i<na;i++)for(j=0;j<na;j++){if((i===0&&j===0)||(i===0&&j===na-1)||(i===na-1&&j===0))continue;for(var dy=-2;dy<=2;dy++)for(var dx=-2;dx<=2;dx++)setF(al[i]+dx,al[j]+dy,Math.max(Math.abs(dx),Math.abs(dy))!==1)}
+  function format(mask){
+    var d=(0<<3)|mask,rem=d;for(var i=0;i<10;i++)rem=(rem<<1)^((rem>>>9)*0x537);
+    var bits=((d<<10)|rem)^0x5412;function g(i){return ((bits>>>i)&1)!==0}
+    for(i=0;i<=5;i++)setF(8,i,g(i));setF(8,7,g(6));setF(8,8,g(7));setF(7,8,g(8));
+    for(i=9;i<15;i++)setF(14-i,8,g(i));
+    for(i=0;i<8;i++)setF(size-1-i,8,g(i));
+    for(i=8;i<15;i++)setF(8,size-15+i,g(i));
+    setF(8,size-8,true);
+  }
+  format(0);
+  var bi=0;
+  for(var right=size-1;right>=1;right-=2){if(right===6)right=5;
+    for(var vert=0;vert<size;vert++)for(j=0;j<2;j++){var x2=right-j,up=((right+1)&2)===0,y2=up?size-1-vert:vert;
+      if(!F[y2][x2]&&bi<cw.length*8){M[y2][x2]=((cw[bi>>>3]>>>(7-(bi&7)))&1)!==0;bi++}}}
+  function maskFn(m,x,y){switch(m){case 0:return (x+y)%2===0;case 1:return y%2===0;case 2:return x%3===0;case 3:return (x+y)%3===0;case 4:return (Math.floor(x/3)+Math.floor(y/2))%2===0;case 5:return x*y%2+x*y%3===0;case 6:return (x*y%2+x*y%3)%2===0;default:return ((x+y)%2+x*y%3)%2===0}}
+  function applyMask(m){for(var y=0;y<size;y++)for(var x=0;x<size;x++)if(!F[y][x]&&maskFn(m,x,y))M[y][x]=!M[y][x]}
+  function penalty(){
+    var p=0,y,x,run,dark=0;
+    for(var pass=0;pass<2;pass++)for(y=0;y<size;y++){run=1;for(x=1;x<=size;x++){var a=pass?M[x-1]&&M[x-1][y]:M[y][x-1],b=x<size?(pass?M[x][y]:M[y][x]):null;if(x<size&&a===b)run++;else{if(run>=5)p+=3+run-5;run=1}}}
+    for(y=0;y<size-1;y++)for(x=0;x<size-1;x++){var c=M[y][x];if(c===M[y][x+1]&&c===M[y+1][x]&&c===M[y+1][x+1])p+=3}
+    var pat=[true,false,true,true,true,false,true,false,false,false,false],pat2=pat.slice().reverse();
+    function match(get){for(var i=0;i<11;i++)if(get(i)!==pat[i])return false;return true}
+    function match2(get){for(var i=0;i<11;i++)if(get(i)!==pat2[i])return false;return true}
+    for(y=0;y<size;y++)for(x=0;x+11<=size;x++){(function(y,x){if(match(function(i){return M[y][x+i]})||match2(function(i){return M[y][x+i]}))p+=40;if(match(function(i){return M[x+i][y]})||match2(function(i){return M[x+i][y]}))p+=40})(y,x)}
+    for(y=0;y<size;y++)for(x=0;x<size;x++)if(M[y][x])dark++;
+    p+=Math.floor(Math.abs(dark*20-size*size*10)/(size*size))*10;
+    return p;
+  }
+  var best=0,bestP=1e9;
+  for(var m=0;m<8;m++){applyMask(m);format(m);var pp=penalty();if(pp<bestP){bestP=pp;best=m}applyMask(m)}
+  applyMask(best);format(best);
+  return M;
+}
+function qrSVG(text,px){
+  var M=makeQR(text);if(!M)return "";
+  var n=M.length,q=4,s=n+q*2,d="";
+  for(var y=0;y<n;y++)for(var x=0;x<n;x++)if(M[y][x])d+="M"+(x+q)+" "+(y+q)+"h1v1h-1z";
+  return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+s+' '+s+'" width="'+(px||240)+'" height="'+(px||240)+'" shape-rendering="crispEdges"><rect width="'+s+'" height="'+s+'" fill="#fff"/><path d="'+d+'" fill="#000"/></svg>';
+}
+
 
 /* ---------- utilitaires ---------- */
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
@@ -305,7 +439,8 @@ function $(id){return document.getElementById(id)}
 function toast(msg){document.querySelectorAll(".toast").forEach(function(x){x.remove()});var el=document.createElement("div");el.className="toast";el.textContent=msg;document.body.appendChild(el);setTimeout(function(){el.remove()},2200)}
 function g(){return groups[currentId]||null}
 function mName(gr,id){var m=gr.membres.find(function(x){return x.id===id});return m?m.nom:t("deleted")}
-function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";if(x.village==null)x.village=x.lieu||"";x.lieu=x.village;x.membres.forEach(function(m){if(!m.parts)m.parts=1});x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+function place(gr){return [gr.village,gr.commune,gr.cercle,gr.region].filter(function(x){return x}).join(", ")}
 function active(gr){return gr.membres.filter(function(m){return !m.sorti})}
 function hasOps(gr,id){return gr.cotisations.some(function(c){return c.membreId===id})||gr.prets.some(function(p){return p.membreId===id})}
 
@@ -382,11 +517,16 @@ function ask(msg,okLabel,cb){
     $("mNo").onclick=close;$("mYes").onclick=function(){close();cb()};
   });
 }
+var REGIONS=["Bamako","Kayes","Koulikoro","Sikasso","Ségou","Mopti","Tombouctou","Gao","Kidal","Taoudénit","Ménaka","Bougouni","Dioïla","Koutiala","Kita","Nioro","Nara","San","Douentza","Bandiagara"];
 function groupForm(gr){
-  var isNew=!gr,d=gr||{nom:"",lieu:"",part:500,taux:10,social:100};
+  var isNew=!gr,d=gr||{nom:"",region:"",cercle:"",commune:"",village:"",animateur:profile.nom||"",part:500,taux:10,social:100};
+  function inp(id,key,val,extra){return '<label>'+esc(t(key))+'</label><input id="'+id+'" value="'+esc(val||"")+'"'+(extra||"")+'>'}
   modal('<h3>'+esc(t(isNew?"newGroupT":"editGroupT"))+'</h3>'+
     '<label>'+esc(t("gName"))+'</label><input id="fNom" value="'+esc(d.nom)+'" placeholder="'+esc(t("gNamePh"))+'">'+
-    '<label>'+esc(t("gPlace"))+'</label><input id="fLieu" value="'+esc(d.lieu)+'">'+
+    '<div class="grid2"><div>'+inp("fReg","region",d.region,' list="regList"')+'</div><div>'+inp("fCer","cercle",d.cercle)+'</div></div>'+
+    '<datalist id="regList">'+REGIONS.map(function(r){return '<option value="'+esc(r)+'">'}).join("")+'</datalist>'+
+    '<div class="grid2"><div>'+inp("fCom","commune",d.commune)+'</div><div>'+inp("fVil","village",d.village)+'</div></div>'+
+    inp("fAni","animateur",d.animateur)+
     '<div class="grid2"><div><label>'+esc(t("gPart"))+'</label><input id="fPart" inputmode="numeric" value="'+esc(d.part)+'"></div>'+
     '<div><label>'+esc(t("gSoc"))+'</label><input id="fSoc" inputmode="numeric" value="'+esc(d.social||0)+'"></div></div>'+
     '<label>'+esc(t("gRate"))+'</label><input id="fTaux" inputmode="decimal" value="'+esc(d.taux)+'">'+
@@ -397,7 +537,8 @@ function groupForm(gr){
     $("fOk").onclick=function(){
       var nom=$("fNom").value.trim();if(!nom){$("fNom").focus();return}
       var x=isNew?normalize({id:uid(),cree:today()}):gr;
-      x.nom=nom;x.lieu=$("fLieu").value.trim();x.part=num($("fPart").value);x.social=num($("fSoc").value);x.taux=num($("fTaux").value);
+      x.nom=nom;x.region=$("fReg").value.trim();x.cercle=$("fCer").value.trim();x.commune=$("fCom").value.trim();x.village=$("fVil").value.trim();x.lieu=x.village;
+      x.animateur=$("fAni").value.trim();x.part=num($("fPart").value);x.social=num($("fSoc").value);x.taux=num($("fTaux").value);
       groups[x.id]=x;currentId=x.id;persist(x);close();render();toast(t("gSaved"));
     };
   });
@@ -419,15 +560,15 @@ function vHome(gr){
     gr.membres.forEach(function(m){var ms=memberStats(gr,m);h+='<tr><td>'+esc(m.nom)+(m.sorti?' <span class="tag run">'+esc(t("memberOut"))+'</span>':'')+'</td><td class="n">'+f(ms.ep)+'</td><td class="n">'+(ms.reste>0?'<b>'+f(ms.reste)+'</b>':'–')+'</td></tr>'});
     h+='</table></div>';
   }
-  h+='<div class="card muted">'+esc(t("rulesLine",{p:f(gr.part),s:f(gr.social||0),r:gr.taux}))+(gr.lieu?' · '+esc(gr.lieu):'')+'<br><button class="btn sec sm" id="editG" style="margin-top:8px">'+esc(t("editRules"))+'</button></div>';
+  h+='<div class="card muted">'+esc(t("rulesLine",{p:f(gr.part),s:f(gr.social||0),r:gr.taux}))+(place(gr)?'<br>📍 '+esc(place(gr)):'')+(gr.animateur?'<br>👤 '+esc(gr.animateur):'')+'<br><button class="btn sec sm" id="editG" style="margin-top:8px">'+esc(t("editRules"))+'</button></div>';
   $("view").innerHTML=h;$("editG").onclick=function(){groupForm(gr)};
 }
 function vMembers(gr){
   var act=active(gr),out=gr.membres.filter(function(m){return m.sorti});
-  var h='<h2>'+esc(t("members"))+' ('+act.length+')</h2><div class="card"><div class="grid2"><div><label>'+esc(t("name"))+'</label><input id="mNom"></div><div><label>'+esc(t("phone"))+'</label><input id="mTel" inputmode="tel"></div></div><button class="btn full" id="mAdd">'+esc(t("addMember"))+'</button></div>';
+  var h='<h2>'+esc(t("members"))+' ('+act.length+' / '+MAXM+')</h2>'+(act.length>=MAXM?'<div class="alert">'+esc(t("maxMembers"))+'</div>':'')+'<div class="card"><div class="grid2"><div><label>'+esc(t("name"))+'</label><input id="mNom"></div><div><label>'+esc(t("phone"))+'</label><input id="mTel" inputmode="tel"></div></div><label>'+esc(t("memberParts"))+' ('+esc(t("partsN",{n:1}))+' = '+f(gr.part)+')</label><input id="mParts" inputmode="numeric" value="1"><button class="btn full" id="mAdd">'+esc(t("addMember"))+'</button></div>';
   if(act.length){
     h+='<div class="card"><table>';
-    act.forEach(function(m){h+='<tr><td>'+esc(m.nom)+(m.tel?'<span class="sub">'+esc(m.tel)+'</span>':'')+'</td><td class="n"><button class="btn sec sm" data-edit="'+m.id+'">✏️ '+esc(t("edit"))+'</button></td></tr>'});
+    act.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'<span class="sub">'+esc(t("partsN",{n:m.parts||1}))+' · '+f((m.parts||1)*gr.part)+(m.tel?' · '+esc(m.tel):'')+'</span></td><td class="n"><button class="btn sec sm" data-edit="'+m.id+'">✏️ '+esc(t("edit"))+'</button></td></tr>'});
     h+='</table><p class="muted">'+esc(t("outNote"))+'</p></div>';
   }
   if(out.length){
@@ -436,18 +577,18 @@ function vMembers(gr){
     h+='</table></div>';
   }
   $("view").innerHTML=h;
-  $("mAdd").onclick=function(){var n=$("mNom").value.trim();if(!n){$("mNom").focus();return}gr.membres.push({id:uid(),nom:n,tel:$("mTel").value.trim()});persist(gr);render();toast(t("added",{n:n}));setTimeout(function(){var e=$("mNom");if(e)e.focus()},50)};
+  $("mAdd").onclick=function(){var n=$("mNom").value.trim();if(!n){$("mNom").focus();return}if(active(gr).length>=MAXM){toast(t("maxMembers"));return}var pa=Math.max(1,Math.round(num($("mParts").value)||1));gr.membres.push({id:uid(),nom:n,tel:$("mTel").value.trim(),parts:pa});persist(gr);render();toast(t("added",{n:n}));setTimeout(function(){var e=$("mNom");if(e)e.focus()},50)};
   document.querySelectorAll("[data-edit]").forEach(function(b){b.onclick=function(){memberForm(gr,b.getAttribute("data-edit"))}});
-  document.querySelectorAll("[data-back]").forEach(function(b){b.onclick=function(){var m=gr.membres.find(function(x){return x.id===b.getAttribute("data-back")});delete m.sorti;persist(gr);render();toast(t("memberSaved"))}});
+  document.querySelectorAll("[data-back]").forEach(function(b){b.onclick=function(){if(active(gr).length>=MAXM){toast(t("maxMembers"));return}var m=gr.membres.find(function(x){return x.id===b.getAttribute("data-back")});delete m.sorti;persist(gr);render();toast(t("memberSaved"))}});
 }
 function memberForm(gr,id){
   var m=gr.membres.find(function(x){return x.id===id});if(!m)return;
   var ops=hasOps(gr,id),ms=memberStats(gr,m);
-  modal('<h3>'+esc(t("editMember"))+'</h3><label>'+esc(t("name"))+'</label><input id="eNom" value="'+esc(m.nom)+'"><label>'+esc(t("phone"))+'</label><input id="eTel" inputmode="tel" value="'+esc(m.tel||"")+'">'+
+  modal('<h3>'+esc(t("editMember"))+'</h3><label>'+esc(t("name"))+'</label><input id="eNom" value="'+esc(m.nom)+'"><label>'+esc(t("phone"))+'</label><input id="eTel" inputmode="tel" value="'+esc(m.tel||"")+'"><label>'+esc(t("memberParts"))+'</label><input id="eParts" inputmode="numeric" value="'+esc(m.parts||1)+'">'+
     '<div class="actions"><button class="btn sec" id="eNo">'+esc(t("cancel"))+'</button><button class="btn" id="eOk">'+esc(t("save"))+'</button></div>'+
     '<button class="btn d full" id="eDel">🗑 '+esc(t("removeBtn"))+'</button>',function(md,close){
     $("eNo").onclick=close;
-    $("eOk").onclick=function(){var n=$("eNom").value.trim();if(!n){$("eNom").focus();return}m.nom=n;m.tel=$("eTel").value.trim();persist(gr);close();render();toast(t("memberSaved"))};
+    $("eOk").onclick=function(){var n=$("eNom").value.trim();if(!n){$("eNom").focus();return}m.nom=n;m.tel=$("eTel").value.trim();m.parts=Math.max(1,Math.round(num($("eParts").value)||1));persist(gr);close();render();toast(t("memberSaved"))};
     $("eDel").onclick=function(){
       close();
       if(ops){
@@ -463,9 +604,10 @@ function memberForm(gr,id){
 function vMeeting(gr){
   var h='<h2>'+esc(t("meetT"))+'</h2>',act=active(gr);
   if(!act.length){$("view").innerHTML=h+'<div class="card empty">'+esc(t("addFirst"))+'</div>';return}
-  h+='<div class="card"><label>'+esc(t("meetDate"))+'</label><input type="date" id="dDate" value="'+today()+'"><p class="muted">'+esc(t("partsHint",{v:f(gr.part)}))+'</p>'+
-     '<table class="meet"><tr><th>'+esc(t("colMember"))+'</th><th class="n">'+esc(t("colParts"))+'</th><th class="n">'+esc(t("colSocial"))+'</th></tr>';
-  act.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'</td><td class="n" style="width:74px"><input inputmode="numeric" data-parts="'+m.id+'" value="1"></td><td class="n" style="width:90px"><input inputmode="numeric" data-soc="'+m.id+'" value="'+(gr.social||0)+'"></td></tr>'});
+  h+='<div class="card"><label>'+esc(t("meetDate"))+'</label><input type="date" id="dDate" value="'+today()+'"><p class="muted">'+esc(t("meetHint"))+'</p>'+
+     '<button class="btn sec sm" id="dAll" type="button">'+esc(t("allPresent"))+'</button>'+
+     '<table class="meet"><tr><th>'+esc(t("colPaid"))+'</th><th>'+esc(t("colMember"))+'</th><th class="n">'+esc(t("colParts"))+'</th><th class="n">'+esc(t("colAmount"))+'</th></tr>';
+  act.forEach(function(m){var pa=m.parts||1;h+='<tr><td style="width:44px"><input type="checkbox" data-paid="'+m.id+'" checked style="width:22px;height:22px"></td><td>'+esc(m.nom)+'</td><td class="n">'+pa+'</td><td class="n">'+f(pa*gr.part)+'</td></tr>'});
   h+='</table><p id="dTot" class="muted"></p><button class="btn full" id="dSave">'+esc(t("saveMeet"))+'</button></div>';
   var byDate={};gr.cotisations.forEach(function(c){(byDate[c.date]=byDate[c.date]||[]).push(c)});
   var dates=Object.keys(byDate).sort().reverse();
@@ -475,16 +617,18 @@ function vMeeting(gr){
     dates.forEach(function(d){var l=byDate[d];h+='<tr><td>'+fdate(d)+'<div class="muted">'+esc(t("nMembers",{n:l.length}))+'</div></td><td class="n">'+f(sum(l,function(c){return c.epargne}))+'</td><td class="n">'+f(sum(l,function(c){return c.social}))+'</td><td class="n"><button class="x" data-deld="'+d+'" aria-label="'+esc(t("del"))+'">×</button></td></tr>'});
     h+='</table></div>'}
   $("view").innerHTML=h;
-  function tot(){var e=0,s=0;document.querySelectorAll("[data-parts]").forEach(function(i){e+=num(i.value)*gr.part});document.querySelectorAll("[data-soc]").forEach(function(i){s+=num(i.value)});$("dTot").textContent=t("totalLine",{a:f(e),b:f(s)})}
-  document.querySelectorAll(".meet input").forEach(function(i){i.oninput=tot});tot();
+  function tot(){var e=0,s2=0;act.forEach(function(m){var c=document.querySelector('[data-paid="'+m.id+'"]');if(c&&c.checked){e+=(m.parts||1)*gr.part;s2+=gr.social||0}});$("dTot").textContent=t("totalLine",{a:f(e),b:f(s2)})}
+  document.querySelectorAll("[data-paid]").forEach(function(i){i.onchange=tot});tot();
+  $("dAll").onclick=function(){document.querySelectorAll("[data-paid]").forEach(function(c){c.checked=true});tot()};
   $("dSave").onclick=function(){
-    var d=$("dDate").value||today(),n=0;
-    act.forEach(function(m){
-      var parts=num(document.querySelector('[data-parts="'+m.id+'"]').value),soc=num(document.querySelector('[data-soc="'+m.id+'"]').value);
-      if(parts>0||soc>0){gr.cotisations.push({id:uid(),date:d,membreId:m.id,parts:parts,epargne:parts*gr.part,social:soc});n++}
-    });
-    if(!n){toast(t("nothing"));return}
-    persist(gr);render();toast(t("meetSaved",{d:fdate(d)}));
+    var d=$("dDate").value||today();
+    function go(){
+      var n=0;
+      act.forEach(function(m){var c=document.querySelector('[data-paid="'+m.id+'"]');if(c&&c.checked){var pa=m.parts||1;gr.cotisations.push({id:uid(),date:d,membreId:m.id,parts:pa,epargne:pa*gr.part,social:gr.social||0});n++}});
+      if(!n){toast(t("nothing"));return}
+      persist(gr);render();toast(t("meetSaved",{d:fdate(d)}));
+    }
+    if(byDate[d])ask(t("sameDayQ",{d:fdate(d)}),t("add"),go);else go();
   };
   document.querySelectorAll("[data-deld]").forEach(function(b){b.onclick=function(){var d=b.getAttribute("data-deld");ask(t("delMeetQ",{d:fdate(d)}),t("del"),function(){gr.cotisations=gr.cotisations.filter(function(c){return c.date!==d});persist(gr);render()})}});
 }
@@ -527,7 +671,7 @@ function statsUntil(gr,d){
   return stats(c);
 }
 function rulesFromTemplate(gr){
-  return t("rulesTpl",{nom:gr.nom,lieu:gr.lieu||"______",part:f(gr.part),social:f(gr.social||0),taux:gr.taux,date:fdate(today())});
+  return t("rulesTpl",{nom:gr.nom,lieu:place(gr)||"______",part:f(gr.part),social:f(gr.social||0),taux:gr.taux,date:fdate(today())});
 }
 function vDocs(gr){
   var h='<h2>'+esc(t("docsT"))+'</h2><div class="seg"><button data-tab="rules" class="'+(docTab==="rules"?"on":"")+'">📜 '+esc(t("tabRules"))+'</button><button data-tab="pv" class="'+(docTab==="pv"?"on":"")+'">📝 '+esc(t("tabPV"))+'</button></div>';
@@ -614,7 +758,7 @@ function pvView(gr,pv){
 }
 function reportText(gr){
   var s=stats(gr),L=[];
-  L.push("*"+gr.nom+"*"+(gr.lieu?" – "+gr.lieu:""));
+  L.push("*"+gr.nom+"*");if(place(gr))L.push("📍 "+place(gr));if(gr.animateur)L.push("👤 "+gr.animateur);
   L.push(t("asOf",{d:fdate(today())}));L.push("");
   L.push("💰 "+t("cash")+" : "+f(s.caisse));
   L.push(t("savings")+" : "+f(s.ep));
@@ -631,17 +775,119 @@ function copyText(txt,okMsg){
 function vReport(gr){
   var txt=reportText(gr);
   var h='<h2>'+esc(t("repT"))+'</h2><div class="card"><p class="muted">'+esc(t("repHint"))+'</p><textarea id="rep" readonly>'+esc(txt)+'</textarea><button class="btn full" id="cp">'+esc(t("copyRep"))+'</button></div>'+
+    '<h2>📤 '+esc(t("sendSup"))+'</h2><div class="card"><p class="muted">'+esc(t("sendSupHint"))+'</p><button class="btn full" id="supFile">'+esc(t("shareFile"))+'</button><button class="btn sec full" id="supCopy">'+esc(t("copyData"))+'</button></div>'+
     '<h2>'+esc(t("backup"))+'</h2><div class="card"><p class="muted">'+esc(t(mode==="cloud"?"bkCloud":"bkLocal"))+'</p>'+
     '<button class="btn sec full" id="bk">'+esc(t("copyBk"))+'</button>'+
     '<label style="margin-top:14px">'+esc(t("restoreL"))+'</label><textarea id="rs"></textarea><button class="btn sec full" id="rsOk">'+esc(t("restore"))+'</button></div>';
   $("view").innerHTML=h;
   $("cp").onclick=function(){copyText(txt,t("copied"))};
+  $("supFile").onclick=function(){var pk=exportPacket();shareFileOrCopy(JSON.stringify(pk),"groupements-"+((profile.nom||"animateur").replace(/[^\w\-]+/g,"_"))+"-"+today()+".json","application/json",t("dataCopied"))};
+  $("supCopy").onclick=function(){copyText(JSON.stringify(exportPacket()),t("dataCopied"))};
   $("bk").onclick=function(){copyText(JSON.stringify({app:"caisse-avec",groups:groups}),t("bkCopied"))};
   $("rsOk").onclick=function(){
     var data;try{data=JSON.parse($("rs").value)}catch(e){toast(t("invalid"));return}
     if(!data||!data.groups){toast(t("invalid"));return}
     var n=0,firstId=null;Object.keys(data.groups).forEach(function(k){var x=normalize(data.groups[k]);if(x&&x.id&&x.nom){groups[x.id]=x;persist(x);n++;firstId=firstId||x.id}});
     if(n){currentId=firstId;render();toast(t("restored",{n:n}))}else toast(t("invalid"));
+  };
+}
+function exportPacket(){
+  var list=[];Object.keys(groups).forEach(function(k){list.push(groups[k])});
+  return {app:"outils-avec",type:"export",date:today(),from:{nom:profile.nom||"",tel:profile.tel||"",structure:profile.structure||""},groups:list};
+}
+function shareFileOrCopy(text,fname,mime,copiedMsg){
+  try{
+    var file=new File([text],fname,{type:mime});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){navigator.share({files:[file],title:fname}).catch(function(){});return}
+  }catch(e){}
+  try{var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:mime}));a.download=fname;document.body.appendChild(a);a.click();a.remove();toast(t("csvDone"))}catch(e){}
+  copyText(text,copiedMsg);
+}
+function appUrl(){return /^https?:$/.test(location.protocol)&&/github\.io$/.test(location.hostname)?location.origin+location.pathname.replace(/index\.html$/,""):APP_URL}
+function openMenu(){
+  modal('<h3>'+esc(t("menu"))+'</h3>'+
+    '<button class="menuitem" data-go="share">📲 '+esc(t("shareApp"))+'</button>'+
+    '<button class="menuitem" data-go="global">🌍 '+esc(t("global"))+'</button>'+
+    '<button class="menuitem" data-go="profile">👤 '+esc(t("profile"))+'</button>'+
+    '<div class="actions"><button class="btn sec" id="mClose">'+esc(t("close"))+'</button></div>',function(m,close){
+    $("mClose").onclick=close;
+    m.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){var v=b.getAttribute("data-go");close();if(v==="profile"){profileForm();return}view=v;render();window.scrollTo(0,0)}});
+  });
+}
+function profileForm(){
+  modal('<h3>'+esc(t("profile"))+'</h3><p class="muted">'+esc(t("profileHint"))+'</p>'+
+    '<label>'+esc(t("name"))+'</label><input id="pNom" value="'+esc(profile.nom||"")+'">'+
+    '<label>'+esc(t("phone"))+'</label><input id="pTel" inputmode="tel" value="'+esc(profile.tel||"")+'">'+
+    '<label>'+esc(t("structure"))+'</label><input id="pStr" value="'+esc(profile.structure||"")+'">'+
+    '<div class="actions"><button class="btn sec" id="pNo">'+esc(t("cancel"))+'</button><button class="btn" id="pOk">'+esc(t("save"))+'</button></div>',function(m,close){
+    $("pNo").onclick=close;$("pOk").onclick=function(){profile={nom:$("pNom").value.trim(),tel:$("pTel").value.trim(),structure:$("pStr").value.trim()};saveProfile();close();toast(t("profileSaved"))};
+  });
+}
+function vShare(){
+  var u=appUrl();
+  $("view").innerHTML='<h2>📲 '+esc(t("shareApp"))+'</h2><div class="card"><div class="qrbox">'+qrSVG(u,260)+'</div><p class="url">'+esc(u)+'</p><p class="muted">'+esc(t("shareHint"))+'</p>'+
+    '<button class="btn full" id="shL">'+esc(t("shareBtn"))+'</button><button class="btn sec full" id="cpL">'+esc(t("copyLink"))+'</button></div>'+
+    '<div class="card muted">ℹ️ '+esc(t("xenderNote"))+'</div>';
+  $("cpL").onclick=function(){copyText(u,t("linkCopied"))};
+  $("shL").onclick=function(){try{if(navigator.share){navigator.share({title:t("appTitle"),text:t("appTitle"),url:u}).catch(function(){});return}}catch(e){}copyText(u,t("linkCopied"))};
+}
+var gFilter={region:"",cercle:"",commune:""};
+function allGlobal(){
+  var rows=[];
+  Object.keys(groups).forEach(function(k){rows.push({g:groups[k],src:t("mine"),recu:"",mine:true})});
+  Object.keys(globalDb).forEach(function(k){if(groups[k])return;var e=globalDb[k];rows.push({g:normalize(e.g),src:(e.from&&e.from.nom)||e.g.animateur||"?",recu:e.recu,mine:false})});
+  return rows;
+}
+function importPacket(text){
+  var data;try{data=JSON.parse(text)}catch(e){toast(t("invalid"));return 0}
+  var list=[];if(data&&Array.isArray(data.groups))list=data.groups;else if(data&&data.groups&&typeof data.groups==="object")list=Object.keys(data.groups).map(function(k){return data.groups[k]});
+  var n=0;list.forEach(function(x){if(x&&x.id&&x.nom){globalDb[x.id]={g:normalize(x),from:data.from||{},recu:today()};n++}});
+  if(n){saveGlobal();toast(t("imported",{n:n}))}else toast(t("invalid"));
+  return n;
+}
+function vGlobal(){
+  var rows=allGlobal();
+  function uniq(key,filter){var o={};rows.forEach(function(r){if(filter(r)&&r.g[key])o[r.g[key]]=1});return Object.keys(o).sort()}
+  function sel(id,key,list){return '<select id="'+id+'"><option value="">'+esc(t(key))+' : '+esc(t("filterAll"))+'</option>'+list.map(function(v){return '<option'+(gFilter[key]===v?' selected':'')+'>'+esc(v)+'</option>'}).join("")+'</select>'}
+  var regs=uniq("region",function(){return true});
+  var cers=uniq("cercle",function(r){return !gFilter.region||r.g.region===gFilter.region});
+  var coms=uniq("commune",function(r){return (!gFilter.region||r.g.region===gFilter.region)&&(!gFilter.cercle||r.g.cercle===gFilter.cercle)});
+  var vis=rows.filter(function(r){return (!gFilter.region||r.g.region===gFilter.region)&&(!gFilter.cercle||r.g.cercle===gFilter.cercle)&&(!gFilter.commune||r.g.commune===gFilter.commune)});
+  var T={m:0,ep:0,so:0,enc:0,late:0,caisse:0};
+  vis.forEach(function(r){var s=stats(r.g);r.s=s;r.m=active(r.g).length;T.m+=r.m;T.ep+=s.ep;T.so+=s.so;T.enc+=s.enc;T.late+=s.late.length;T.caisse+=s.caisse});
+  var h='<h2>🌍 '+esc(t("globalT"))+'</h2><div class="card"><p class="muted">'+esc(t("globalHint"))+'</p>'+
+    '<label>'+esc(t("importFile"))+'</label><input type="file" id="gFile" accept=".json,.txt,application/json,text/plain">'+
+    '<label>'+esc(t("importPaste"))+'</label><textarea id="gPaste" style="min-height:70px"></textarea><button class="btn full" id="gImp">'+esc(t("importBtn"))+'</button></div>'+
+    '<div class="filters">'+sel("fR","region",regs)+sel("fC","cercle",cers)+sel("fM","commune",coms)+'</div>'+
+    '<div class="kpis" style="margin-top:8px"><div class="kpi main"><div class="l">'+esc(t("cash"))+'</div><div class="v">'+f(T.caisse)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("nbGroups"))+'</div><div class="v">'+vis.length+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("nbMembers"))+'</div><div class="v">'+T.m+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("savings"))+'</div><div class="v">'+f(T.ep)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("social"))+'</div><div class="v">'+f(T.so)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("toRecover"))+'</div><div class="v">'+f(T.enc)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("lateCount"))+'</div><div class="v">'+T.late+'</div></div></div>';
+  if(!vis.length)h+='<div class="card empty">'+esc(t("globalEmpty"))+'</div>';
+  else{
+    h+='<div class="card" style="overflow-x:auto"><table class="small"><tr><th>'+esc(t("colGroup"))+'</th><th>'+esc(t("colAnim"))+'</th><th class="n">'+esc(t("nbMembers"))+'</th><th class="n">'+esc(t("savings"))+'</th><th class="n">'+esc(t("toRecover"))+'</th><th></th></tr>';
+    vis.forEach(function(r){h+='<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(place(r.g))+'</span></td><td>'+esc(r.src)+(r.recu?'<span class="sub">'+esc(t("updated"))+' '+fdate(r.recu)+'</span>':'')+'</td><td class="n">'+r.m+'</td><td class="n">'+f(r.s.ep)+'</td><td class="n">'+f(r.s.enc)+(r.s.late.length?' ⚠':'')+'</td><td class="n"><button class="x" data-gv="'+r.g.id+'">👁</button>'+(r.mine?'':'<button class="x" data-gd="'+r.g.id+'">×</button>')+'</td></tr>'});
+    h+='</table><button class="btn sec full" id="gCsv">'+esc(t("exportCsv"))+'</button></div>';
+  }
+  $("view").innerHTML=h;
+  $("fR").onchange=function(){gFilter.region=this.value;gFilter.cercle="";gFilter.commune="";render()};
+  $("fC").onchange=function(){gFilter.cercle=this.value;gFilter.commune="";render()};
+  $("fM").onchange=function(){gFilter.commune=this.value;render()};
+  $("gImp").onclick=function(){var v=$("gPaste").value.trim();if(v&&importPacket(v))render()};
+  $("gFile").onchange=function(){var fl=this.files&&this.files[0];if(!fl)return;var rd=new FileReader();rd.onload=function(){if(importPacket(String(rd.result)))render()};rd.readAsText(fl)};
+  document.querySelectorAll("[data-gv]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-gv"),r=rows.find(function(x){return x.g.id===id});var txt=reportText(r.g);
+    modal('<h3>'+esc(t("groupDetail"))+'</h3><textarea class="big" readonly>'+esc(txt)+'</textarea><div class="actions"><button class="btn sec" id="gvNo">'+esc(t("close"))+'</button><button class="btn" id="gvCp">'+esc(t("copyText"))+'</button></div>',function(m,close){$("gvNo").onclick=close;$("gvCp").onclick=function(){copyText(txt,t("textCopied"))}})}});
+  document.querySelectorAll("[data-gd]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-gd");ask(t("removeImportQ",{n:globalDb[id].g.nom}),t("remove"),function(){delete globalDb[id];saveGlobal();render()})}});
+  if($("gCsv"))$("gCsv").onclick=function(){
+    var head=[t("colGroup"),t("region"),t("cercle"),t("commune"),t("village"),t("colAnim"),t("nbMembers"),t("savings"),t("social"),t("toRecover"),t("lateCount"),t("cash"),t("updated")];
+    var q=function(v){v=String(v==null?"":v);return /[";\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+    var lines=[head.map(q).join(";")];
+    vis.forEach(function(r){lines.push([r.g.nom,r.g.region,r.g.cercle,r.g.commune,r.g.village,r.src,r.m,Math.round(r.s.ep),Math.round(r.s.so),Math.round(r.s.enc),r.s.late.length,Math.round(r.s.caisse),r.recu?fdate(r.recu):""].map(q).join(";"))});
+    var csv="﻿"+lines.join("\n");
+    shareFileOrCopy(csv,"base-globale-avec-"+today()+".csv","text/csv",t("csvCopied"));
   };
 }
 function vWelcome(){
@@ -666,7 +912,9 @@ function render(){
   sel.innerHTML=ids.length?ids.map(function(id){return '<option value="'+id+'"'+(id===currentId?" selected":"")+'>'+esc(groups[id].nom)+'</option>'}).join(""):'<option>'+esc(t("noGroup"))+'</option>';
   sel.disabled=!ids.length;
   document.querySelectorAll("#nav button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-v")===view)});
-  $("nav").classList.toggle("hidden",!g());
+  $("nav").classList.toggle("hidden",!g()&&view!=="share"&&view!=="global");
+  if(view==="share"){vShare();return}
+  if(view==="global"){vGlobal();return}
   var gr=g();if(!gr){vWelcome();return}
   ({home:vHome,members:vMembers,meeting:vMeeting,loans:vLoans,docs:vDocs,report:vReport})[view](gr);
 }
@@ -675,6 +923,7 @@ function render(){
 $("langSel").onchange=function(){lang=this.value;try{localStorage.setItem(LANG_KEY,lang)}catch(e){}render()};
 $("groupSel").onchange=function(){currentId=this.value;saveLocal();render()};
 $("newGroupBtn").onclick=function(){groupForm(null)};
+$("menuBtn").onclick=openMenu;
 document.querySelectorAll("#nav button").forEach(function(b){b.onclick=function(){view=b.getAttribute("data-v");render();window.scrollTo(0,0)}});
 loadLocal();render();startCloud();
 })();
