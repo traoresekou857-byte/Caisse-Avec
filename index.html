@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#1f6b4a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Caisse AVEC">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Caisse AVEC – Gestion de tontine</title>
+<style>
+:root{--g:#1f6b4a;--g2:#e6f2ec;--o:#d9822b;--o2:#fbefe2;--r:#b3261e;--r2:#fbe7e5;--t:#1d2421;--m:#5d6a64;--b:#dde4e0;--bg:#f6f8f7;--w:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif;background:var(--bg);color:var(--t);font-size:16px;padding-bottom:76px}
+header{background:var(--g);color:#fff;padding:12px 14px 10px;position:sticky;top:0;z-index:5}
+.top{display:flex;align-items:center;gap:8px}
+header h1{margin:0;font-size:17px;font-weight:700;flex:1}
+#langSel{width:auto;padding:5px 6px;font-size:13px;border-radius:8px;border:0;background:rgba(255,255,255,.18);color:#fff}
+#langSel option{color:#1d2421}
+header .row{display:flex;gap:8px;align-items:center;margin-top:8px}
+header .row select{flex:1;padding:8px;border-radius:8px;border:0;font-size:15px;background:#fff;color:var(--t)}
+header button{background:rgba(255,255,255,.18);color:#fff;border:0;border-radius:8px;padding:8px 10px;font-size:14px;white-space:nowrap}
+#status{font-size:12px;opacity:.85;margin-top:4px}
+main{padding:14px;max-width:720px;margin:0 auto}
+h2{font-size:17px;margin:18px 0 8px}
+.card{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:12px;margin-bottom:10px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpi{background:var(--w);border:1px solid var(--b);border-radius:12px;padding:10px}
+.kpi .l{font-size:12px;color:var(--m)}
+.kpi .v{font-size:18px;font-weight:700;margin-top:2px}
+.kpi.main{grid-column:1/3;background:var(--g);color:#fff;border:0}
+.kpi.main .l{color:#d6eadf}.kpi.main .v{font-size:24px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{text-align:left;padding:7px 4px;border-bottom:1px solid var(--b);vertical-align:middle}
+th{font-size:12px;color:var(--m);font-weight:600}
+td.n,th.n{text-align:right;white-space:nowrap}
+label{display:block;font-size:13px;color:var(--m);margin:8px 0 3px}
+input,select,textarea{width:100%;padding:10px;border:1px solid var(--b);border-radius:8px;font-size:16px;background:#fff;color:var(--t)}
+textarea{min-height:120px;font-family:inherit;font-size:14px}
+.btn{display:inline-block;background:var(--g);color:#fff;border:0;border-radius:10px;padding:11px 14px;font-size:15px;font-weight:600;cursor:pointer}
+.btn.sec{background:var(--g2);color:var(--g)}
+.btn.o{background:var(--o)}
+.btn.d{background:var(--r2);color:var(--r)}
+.btn.sm{padding:6px 10px;font-size:13px;border-radius:8px}
+.btn.full{width:100%;margin-top:10px}
+.x{background:none;border:0;color:var(--m);font-size:18px;padding:2px 6px;cursor:pointer}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px}
+.tag.ok{background:var(--g2);color:var(--g)}.tag.late{background:var(--r2);color:var(--r)}.tag.run{background:var(--o2);color:#8a4c0f}
+.muted{color:var(--m);font-size:13px}
+.empty{text-align:center;color:var(--m);padding:22px 10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.alert{background:var(--r2);color:var(--r);border-radius:10px;padding:10px;font-size:14px;margin-bottom:10px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--b);display:flex;z-index:6;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:none;border:0;padding:8px 2px 9px;font-size:11px;color:var(--m);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+nav button .i{font-size:20px;line-height:1}
+nav button.on{color:var(--g);font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:20}
+.modal .box{background:#fff;width:100%;max-width:520px;border-radius:16px 16px 0 0;padding:16px;max-height:90vh;overflow:auto}
+.modal h3{margin:0 0 6px;font-size:17px}
+.actions{display:flex;gap:8px;margin-top:14px}.actions .btn{flex:1}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#222;color:#fff;padding:9px 14px;border-radius:20px;font-size:14px;z-index:30;max-width:90%;text-align:center}
+.meet td input{padding:7px;font-size:15px}
+.hidden{display:none}
+ol{margin:6px 0 0;padding-left:20px}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <h1 id="appTitle">Caisse AVEC</h1>
+    <select id="langSel" aria-label="Langue">
+      <option value="fr">Français</option>
+      <option value="bm">Bamanankan</option>
+      <option value="en">English</option>
+    </select>
+  </div>
+  <div class="row">
+    <select id="groupSel" aria-label="Groupe"></select>
+    <button id="newGroupBtn">+</button>
+  </div>
+  <div id="status"></div>
+</header>
+<main id="view"></main>
+<nav id="nav">
+  <button data-v="home" class="on"><span class="i">🏠</span><span data-t="navHome"></span></button>
+  <button data-v="members"><span class="i">👥</span><span data-t="navMembers"></span></button>
+  <button data-v="meeting"><span class="i">💰</span><span data-t="navMeeting"></span></button>
+  <button data-v="loans"><span class="i">🤝</span><span data-t="navLoans"></span></button>
+  <button data-v="report"><span class="i">📋</span><span data-t="navReport"></span></button>
+</nav>
+<div id="modalRoot"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* =========================================================
+   TRADUCTIONS  (fr = français, bm = bamanankan, en = English)
+   Pour corriger un mot bambara, modifiez simplement le texte ci-dessous.
+   ========================================================= */
+var I18N={
+fr:{
+ appTitle:"Caisse AVEC",newGroup:"+ Groupe",noGroup:"Aucun groupe",
+ navHome:"Accueil",navMembers:"Membres",navMeeting:"Réunion",navLoans:"Prêts",navReport:"Rapport",
+ loading:"Chargement…",connecting:"Connexion à votre compte…",saved:"✔ Enregistré",synced:"✔ Synchronisé avec votre compte",
+ saveFail:"⚠ Échec en ligne – copie gardée sur ce téléphone",slow:"Connexion lente… données du téléphone affichées",
+ offline:"Données gardées sur ce téléphone (faites des sauvegardes)",full:"Espace plein : supprimez d'anciens groupes",
+ confirm:"Confirmer",cancel:"Annuler",del:"Supprimer",save:"Enregistrer",cont:"Continuer",
+ newGroupT:"Nouveau groupe",editGroupT:"Modifier le groupe",gName:"Nom du groupement",gNamePh:"ex. Benkadi de Tourakabougou",
+ gPlace:"Village / quartier",gPart:"Valeur d'une part (F)",gSoc:"Fonds social par réunion (F)",gRate:"Intérêt des prêts (% par mois)",
+ gDelQ:"Supprimer le groupe « {n} » et toutes ses données ?",gSaved:"Groupe enregistré",
+ lateAlert:"{n} prêt(s) en retard",cash:"Argent en caisse",savings:"Épargne totale",social:"Fonds social",
+ toRecover:"Prêts à récupérer",interest:"Intérêts prévus",membersSit:"Situation des membres",
+ noMembers:"Aucun membre. Ajoutez-les dans l'onglet « Membres ».",colMember:"Membre",colSav:"Épargne",colOwes:"Doit",
+ rulesLine:"Part : {p} · Fonds social : {s} · Intérêt : {r} %/mois",editRules:"Modifier les règles du groupe",
+ members:"Membres",name:"Nom",phone:"Téléphone",addMember:"Ajouter le membre",added:"{n} ajouté(e)",
+ cantDel:"Impossible : ce membre a des opérations",removeQ:"Retirer {n} du groupe ?",remove:"Retirer",
+ meetT:"Saisie de réunion",addFirst:"Ajoutez d'abord des membres.",meetDate:"Date de la réunion",
+ partsHint:"Nombre de parts achetées par chaque membre (1 part = {v}).",colParts:"Parts",colSocial:"Social",
+ totalLine:"Total : épargne {a} · fonds social {b}",saveMeet:"Enregistrer la réunion",past:"Réunions passées",
+ noMeet:"Aucune réunion enregistrée.",date:"Date",nMembers:"{n} membres",nothing:"Rien à enregistrer",
+ meetSaved:"Réunion du {d} enregistrée",delMeetQ:"Supprimer toutes les cotisations du {d} ?",
+ loansT:"Prêts",amount:"Montant (F)",duration:"Durée (mois)",rate:"Intérêt %/mois",
+ willRepay:"Le membre remboursera {a} (dont {b} d'intérêts).",avail:"Caisse disponible : {a}",grant:"Accorder le prêt",
+ follow:"Suivi des prêts",noLoans:"Aucun prêt.",stOk:"Soldé",stLate:"En retard",stRun:"En cours",
+ lent:"Prêté {a} le {d} · {m} mois à {r} % · échéance {e}",toRepay:"À rembourser",paid:"Déjà payé",rest:"Reste",
+ addPay:"+ Remboursement",loanSaved:"Prêt enregistré",overQ:"Ce prêt dépasse l'argent en caisse ({a}). Continuer ?",
+ payT:"Remboursement – {n}",restPay:"Reste à payer : {a}",paySaved:"Remboursement enregistré",
+ delLoanQ:"Supprimer ce prêt et ses remboursements ?",
+ repT:"Rapport à partager",repHint:"Copiez ce résumé et collez-le dans le groupe WhatsApp des membres, ou envoyez-le au partenaire.",
+ copyRep:"Copier le rapport",copied:"Rapport copié",backup:"Sauvegarde",
+ bkCloud:"Vos données sont enregistrées dans votre compte. Une copie de secours reste utile.",
+ bkLocal:"Vos données sont seulement sur ce téléphone. Copiez la sauvegarde chaque semaine et envoyez-la-vous sur WhatsApp ou par e-mail.",
+ copyBk:"Copier la sauvegarde de tous les groupes",bkCopied:"Sauvegarde copiée",restoreL:"Restaurer : collez une sauvegarde ici",
+ restore:"Restaurer",invalid:"Texte de sauvegarde invalide",restored:"{n} groupe(s) restauré(s)",selectCopy:"Sélectionnez le texte et copiez-le",
+ asOf:"Situation au {d}",lateL:"⚠ Retards :",dueOn:"échéance {d}",savByMember:"Épargne par membre :",owes:"doit {a}",
+ welcome:"Bienvenue",welcomeTxt:"Gérez l'épargne, le fonds social et les prêts de vos groupements (AVEC, tontines, caisses de femmes) sans cahier.",
+ createFirst:"Créer mon premier groupe",how:"Comment ça marche",
+ steps:["Créez le groupe et ses règles (valeur de la part, intérêt).","Ajoutez les membres.","À chaque réunion, saisissez les parts achetées.","Enregistrez les prêts et les remboursements.","Partagez le rapport sur WhatsApp."],
+ deleted:"(supprimé)"
+},
+bm:{
+ appTitle:"AVEC Kɛsu",newGroup:"+ Tɔn",noGroup:"Tɔn si tɛ",
+ navHome:"Daminɛ",navMembers:"Tɔndenw",navMeeting:"Ɲɔgɔnye",navLoans:"Juruw",navReport:"Jatebɔ",
+ loading:"A bɛ na…",connecting:"A bɛ ka siri…",saved:"✔ A marala",synced:"✔ A marala i ka kɔnti la",
+ saveFail:"⚠ A ma se ka mara ɛntɛrinɛti kan – a marala telefɔni kɔnɔ",slow:"Siri ka gɛlɛn… telefɔni ka kunnafoniw bɛ yira",
+ offline:"Kunnafoniw marala nin telefɔni kɔnɔ (u kopi ka u mara)",full:"Yɔrɔ fanna : tɔn kɔrɔw dɔw jɔsi",
+ confirm:"A sinsin",cancel:"A dabila",del:"A jɔsi",save:"A mara",cont:"Taa a fɛ",
+ newGroupT:"Tɔn kura",editGroupT:"Tɔn yɛlɛma",gName:"Tɔn tɔgɔ",gNamePh:"m. Benkadi Tourakabougou",
+ gPlace:"Dugu / kin",gPart:"Niyɔrɔ kelen sɔngɔ (F)",gSoc:"Dɛmɛ kɛsu ɲɔgɔnye o ɲɔgɔnye (F)",gRate:"Juru tɔnɔ (% kalo o kalo)",
+ gDelQ:"Tɔn « {n} » n'a kunnafoniw bɛɛ jɔsi wa?",gSaved:"Tɔn marala",
+ lateAlert:"Juru {n} waati tɛmɛna",cash:"Wari min bɛ kɛsu kɔnɔ",savings:"Wari maralen bɛɛ",social:"Dɛmɛ kɛsu",
+ toRecover:"Juru minnu ma sara fɔlɔ",interest:"Juru tɔnɔ makɔnɔnen",membersSit:"Tɔndenw ka jate",
+ noMembers:"Tɔnden si tɛ. U fara a kan « Tɔndenw » la.",colMember:"Tɔnden",colSav:"Maralen",colOwes:"Juru",
+ rulesLine:"Niyɔrɔ : {p} · Dɛmɛ kɛsu : {s} · Tɔnɔ : {r} %/kalo",editRules:"Tɔn sariyaw yɛlɛma",
+ members:"Tɔndenw",name:"Tɔgɔ",phone:"Telefɔni",addMember:"Tɔnden fara a kan",added:"{n} farala a kan",
+ cantDel:"A tɛ se : nin tɔnden ye wari baara kɛ",removeQ:"{n} bɔ tɔn na wa?",remove:"A bɔ",
+ meetT:"Ɲɔgɔnye sɛbɛn",addFirst:"Tɔndenw fara a kan fɔlɔ.",meetDate:"Ɲɔgɔnye don",
+ partsHint:"Tɔnden kelen kelen ka niyɔrɔ hakɛ (niyɔrɔ 1 = {v}).",colParts:"Niyɔrɔ",colSocial:"Dɛmɛ",
+ totalLine:"A bɛɛ : maralen {a} · dɛmɛ kɛsu {b}",saveMeet:"Ɲɔgɔnye mara",past:"Ɲɔgɔnye tɛmɛnenw",
+ noMeet:"Ɲɔgɔnye si ma sɛbɛn fɔlɔ.",date:"Don",nMembers:"tɔnden {n}",nothing:"Foyi tɛ yen ka mara",
+ meetSaved:"{d} ɲɔgɔnye marala",delMeetQ:"{d} wari donnenw bɛɛ jɔsi wa?",
+ loansT:"Juruw",amount:"Wari hakɛ (F)",duration:"Kalo hakɛ",rate:"Tɔnɔ %/kalo",
+ willRepay:"Tɔnden bɛna {a} sara (tɔnɔ ye {b} ye).",avail:"Wari min bɛ kɛsu kɔnɔ : {a}",grant:"Juru di",
+ follow:"Juruw kɔlɔsili",noLoans:"Juru si tɛ.",stOk:"A sarala",stLate:"A waati tɛmɛna",stRun:"A bɛ taa",
+ lent:"Juru {a} · {d} · kalo {m} · {r} % · sara don {e}",toRepay:"Ka sara",paid:"Sarala ka ban",rest:"A tolen",
+ addPay:"+ Juru sara",loanSaved:"Juru marala",overQ:"Nin juru ka bon ni kɛsu wari ye ({a}). I bɛ taa a fɛ wa?",
+ payT:"Juru sara – {n}",restPay:"A tolen : {a}",paySaved:"Juru sara marala",
+ delLoanQ:"Nin juru n'a sarali bɛɛ jɔsi wa?",
+ repT:"Jatebɔ ka ci",repHint:"Nin jatebɔ kopi ka a bila tɔndenw ka WhatsApp jɛkulu kɔnɔ, walima ka a ci dɛmɛbaga ma.",
+ copyRep:"Jatebɔ kopi",copied:"Jatebɔ kopira",backup:"Marali",
+ bkCloud:"I ka kunnafoniw marala i ka kɔnti la. Kopi wɛrɛ marali ka ɲi.",
+ bkLocal:"I ka kunnafoniw bɛ nin telefɔni dɔrɔn kɔnɔ. Marali kopi dɔgɔkun o dɔgɔkun ka a ci i yɛrɛ ma WhatsApp kan.",
+ copyBk:"Tɔnw bɛɛ marali kopi",bkCopied:"Marali kopira",restoreL:"Ka segin : marali bila yan",
+ restore:"A segin",invalid:"Nin marali tɛ ɲɛ",restored:"Tɔn {n} seginna",selectCopy:"Sɛbɛn sugandi ka a kopi",
+ asOf:"Jate {d}",lateL:"⚠ Juru waati tɛmɛnenw :",dueOn:"sara don {d}",savByMember:"Tɔnden kelen kelen ka maralen :",owes:"juru {a}",
+ welcome:"I ni ce",welcomeTxt:"I ka tɔnw ka wari maralen, dɛmɛ kɛsu ani juruw ɲɛnabɔ (AVEC, tontine, musow ka kɛsu) k'a sɔrɔ sɛbɛnnikɛ tɛ.",
+ createFirst:"N ka tɔn fɔlɔ dabɔ",how:"A bɛ kɛ cogo min",
+ steps:["Tɔn n'a sariyaw dabɔ (niyɔrɔ sɔngɔ, tɔnɔ).","Tɔndenw fara a kan.","Ɲɔgɔnye o ɲɔgɔnye, niyɔrɔ sannenw sɛbɛn.","Juruw ani u sarali sɛbɛn.","Jatebɔ ci WhatsApp kan."],
+ deleted:"(a jɔsira)"
+},
+en:{
+ appTitle:"VSLA Cashbox",newGroup:"+ Group",noGroup:"No group",
+ navHome:"Home",navMembers:"Members",navMeeting:"Meeting",navLoans:"Loans",navReport:"Report",
+ loading:"Loading…",connecting:"Connecting to your account…",saved:"✔ Saved",synced:"✔ Synced with your account",
+ saveFail:"⚠ Online save failed – copy kept on this phone",slow:"Slow connection… showing data from this phone",
+ offline:"Data kept on this phone (make backups)",full:"Storage full: delete old groups",
+ confirm:"Confirm",cancel:"Cancel",del:"Delete",save:"Save",cont:"Continue",
+ newGroupT:"New group",editGroupT:"Edit group",gName:"Group name",gNamePh:"e.g. Benkadi Tourakabougou",
+ gPlace:"Village / area",gPart:"Value of one share (F)",gSoc:"Social fund per meeting (F)",gRate:"Loan interest (% per month)",
+ gDelQ:"Delete group “{n}” and all its data?",gSaved:"Group saved",
+ lateAlert:"{n} late loan(s)",cash:"Cash in the box",savings:"Total savings",social:"Social fund",
+ toRecover:"Loans outstanding",interest:"Expected interest",membersSit:"Members' status",
+ noMembers:"No members yet. Add them in the “Members” tab.",colMember:"Member",colSav:"Savings",colOwes:"Owes",
+ rulesLine:"Share: {p} · Social fund: {s} · Interest: {r} %/month",editRules:"Edit group rules",
+ members:"Members",name:"Name",phone:"Phone",addMember:"Add member",added:"{n} added",
+ cantDel:"Not possible: this member has transactions",removeQ:"Remove {n} from the group?",remove:"Remove",
+ meetT:"Record a meeting",addFirst:"Add members first.",meetDate:"Meeting date",
+ partsHint:"Number of shares bought by each member (1 share = {v}).",colParts:"Shares",colSocial:"Social",
+ totalLine:"Total: savings {a} · social fund {b}",saveMeet:"Save meeting",past:"Past meetings",
+ noMeet:"No meetings recorded yet.",date:"Date",nMembers:"{n} members",nothing:"Nothing to save",
+ meetSaved:"Meeting of {d} saved",delMeetQ:"Delete all contributions of {d}?",
+ loansT:"Loans",amount:"Amount (F)",duration:"Duration (months)",rate:"Interest %/month",
+ willRepay:"The member will repay {a} (including {b} interest).",avail:"Available cash: {a}",grant:"Grant loan",
+ follow:"Loan tracking",noLoans:"No loans.",stOk:"Repaid",stLate:"Late",stRun:"Ongoing",
+ lent:"Lent {a} on {d} · {m} months at {r}% · due {e}",toRepay:"To repay",paid:"Paid so far",rest:"Balance",
+ addPay:"+ Repayment",loanSaved:"Loan saved",overQ:"This loan is more than the cash in the box ({a}). Continue?",
+ payT:"Repayment – {n}",restPay:"Balance due: {a}",paySaved:"Repayment saved",
+ delLoanQ:"Delete this loan and its repayments?",
+ repT:"Report to share",repHint:"Copy this summary and paste it into the members' WhatsApp group, or send it to the partner.",
+ copyRep:"Copy report",copied:"Report copied",backup:"Backup",
+ bkCloud:"Your data is saved in your account. A spare copy is still useful.",
+ bkLocal:"Your data is only on this phone. Copy the backup every week and send it to yourself on WhatsApp or by email.",
+ copyBk:"Copy backup of all groups",bkCopied:"Backup copied",restoreL:"Restore: paste a backup here",
+ restore:"Restore",invalid:"Invalid backup text",restored:"{n} group(s) restored",selectCopy:"Select the text and copy it",
+ asOf:"Status as of {d}",lateL:"⚠ Late:",dueOn:"due {d}",savByMember:"Savings per member:",owes:"owes {a}",
+ welcome:"Welcome",welcomeTxt:"Manage savings, social fund and loans for your groups (VSLA, tontines, women's savings) without a notebook.",
+ createFirst:"Create my first group",how:"How it works",
+ steps:["Create the group and its rules (share value, interest).","Add the members.","At each meeting, enter the shares bought.","Record loans and repayments.","Share the report on WhatsApp."],
+ deleted:"(deleted)"
+}};
+
+var LS_KEY="caisse_avec_v1",LANG_KEY="caisse_avec_lang";
+var lang="fr";
+try{var sl=localStorage.getItem(LANG_KEY);if(sl&&I18N[sl])lang=sl}catch(e){}
+function t(k,v){var s=(I18N[lang]&&I18N[lang][k]!=null)?I18N[lang][k]:I18N.fr[k];if(s==null)return k;if(v&&typeof s==="string")s=s.replace(/\{(\w+)\}/g,function(_,n){return v[n]!=null?v[n]:""});return s}
+
+var groups={},currentId=null,view="home",mode="local",col=null,writeChains={},lastJson={},statusKey="loading";
+
+/* ---------- utilitaires ---------- */
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7)}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function num(v){var n=parseFloat(String(v).replace(/\s/g,"").replace(",","."));return isFinite(n)?n:0}
+function f(n){return Math.round(n).toLocaleString("fr-FR")+" F"}
+function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function fdate(s){if(!s)return"";var p=s.split("-");return p[2]+"/"+p[1]+"/"+p[0]}
+function addMonths(s,m){var d=new Date(s+"T12:00:00");d.setMonth(d.getMonth()+Math.round(m));return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function sum(a,fn){return a.reduce(function(s,x){return s+fn(x)},0)}
+function $(id){return document.getElementById(id)}
+function toast(msg){var el=document.createElement("div");el.className="toast";el.textContent=msg;document.body.appendChild(el);setTimeout(function(){el.remove()},2200)}
+function g(){return groups[currentId]||null}
+function mName(gr,id){var m=gr.membres.find(function(x){return x.id===id});return m?m.nom:t("deleted")}
+function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+
+/* ---------- stockage ---------- */
+function setStatus(k){statusKey=k;$("status").textContent=t(k)}
+function saveLocal(){try{localStorage.setItem(LS_KEY,JSON.stringify({groups:groups,currentId:currentId}))}catch(e){}}
+function loadLocal(){try{var s=JSON.parse(localStorage.getItem(LS_KEY)||"null");if(s&&s.groups){groups=s.groups;currentId=s.currentId;Object.keys(groups).forEach(function(k){normalize(groups[k])})}}catch(e){}}
+function persist(gr){
+  if(mode==="cloud"&&col){
+    var id=gr.id,body=JSON.parse(JSON.stringify(gr));lastJson[id]=JSON.stringify(body);
+    var prev=writeChains[id]||Promise.resolve();
+    writeChains[id]=prev.then(function(){return col.doc(id).set(body)}).then(function(){setStatus("saved")},function(e){setStatus("saveFail");if(e&&e.code==="quota_exceeded")toast(t("full"))});
+  }
+  saveLocal();
+}
+function removeGroup(id){
+  delete groups[id];
+  if(mode==="cloud"&&col){var prev=writeChains[id]||Promise.resolve();writeChains[id]=prev.then(function(){return col.doc(id).delete()}).catch(function(){})}
+  saveLocal();
+}
+function fallback(){mode="local";setStatus("offline")}
+function startCloud(){
+  if(!window.claude||typeof window.claude.use!=="function"){fallback();return}
+  setStatus("connecting");
+  Promise.all([window.claude.use("db"),window.claude.use("user")]).then(function(r){
+    var db=r[0],user=r[1];if(!db||!user){fallback();return}
+    return user.id().then(function(id){
+      if(!id){fallback();return}
+      col=db.collection("data/users/"+id);
+      var timer=setTimeout(function(){setStatus("slow")},10000),first=true;
+      col.onSnapshot(function(snap){
+        if(!snap.metadata.fromCache)clearTimeout(timer);
+        var remote={};
+        snap.docs.forEach(function(d){if(d.exists){var b=d.data();if(b&&b.id)remote[b.id]=normalize(JSON.parse(JSON.stringify(b)))}});
+        if(first){first=false;mode="cloud";Object.keys(groups).forEach(function(k){if(!remote[k]){remote[k]=groups[k];persist(groups[k])}})}
+        var changed=false;
+        Object.keys(remote).forEach(function(k){var j=JSON.stringify(remote[k]);if(lastJson[k]!==j){lastJson[k]=j;groups[k]=remote[k];changed=true}});
+        if(!snap.metadata.fromCache){Object.keys(groups).forEach(function(k){if(!remote[k]&&!writeChains[k]){delete groups[k];changed=true}});setStatus("synced")}
+        saveLocal();if(changed)render();
+      },function(){clearTimeout(timer);mode="local";setStatus("offline")});
+    });
+  }).catch(fallback);
+}
+
+/* ---------- calculs ---------- */
+function loanInfo(gr,p){
+  var du=p.montant*(1+(p.taux/100)*p.duree);
+  var paye=sum(gr.remboursements.filter(function(r){return r.pretId===p.id}),function(r){return r.montant});
+  var reste=Math.max(0,du-paye),ech=addMonths(p.date,p.duree);
+  return {du:du,paye:paye,reste:reste,ech:ech,st:reste<=0.5?"ok":(ech<today()?"late":"run")};
+}
+function stats(gr){
+  var ep=sum(gr.cotisations,function(c){return c.epargne}),so=sum(gr.cotisations,function(c){return c.social});
+  var pr=sum(gr.prets,function(p){return p.montant}),rb=sum(gr.remboursements,function(r){return r.montant});
+  var enc=0,late=[],interets=0;
+  gr.prets.forEach(function(p){var i=loanInfo(gr,p);enc+=i.reste;interets+=i.du-p.montant;if(i.st==="late")late.push({p:p,i:i})});
+  return {ep:ep,so:so,caisse:ep+so+rb-pr,enc:enc,late:late,interets:interets};
+}
+function memberStats(gr,m){
+  var ep=sum(gr.cotisations.filter(function(c){return c.membreId===m.id}),function(c){return c.epargne}),reste=0;
+  gr.prets.filter(function(p){return p.membreId===m.id}).forEach(function(p){reste+=loanInfo(gr,p).reste});
+  return {ep:ep,reste:reste};
+}
+
+/* ---------- modales ---------- */
+function modal(html,onMount){
+  var root=$("modalRoot");root.innerHTML='<div class="modal"><div class="box">'+html+'</div></div>';
+  var m=root.firstChild;function close(){root.innerHTML=""}
+  m.addEventListener("click",function(e){if(e.target===m)close()});
+  if(onMount)onMount(m,close);
+}
+function ask(msg,okLabel,cb){
+  modal('<h3>'+esc(t("confirm"))+'</h3><p>'+esc(msg)+'</p><div class="actions"><button class="btn sec" id="mNo">'+esc(t("cancel"))+'</button><button class="btn d" id="mYes">'+esc(okLabel)+'</button></div>',function(m,close){
+    $("mNo").onclick=close;$("mYes").onclick=function(){close();cb()};
+  });
+}
+function groupForm(gr){
+  var isNew=!gr,d=gr||{nom:"",lieu:"",part:500,taux:10,social:100};
+  modal('<h3>'+esc(t(isNew?"newGroupT":"editGroupT"))+'</h3>'+
+    '<label>'+esc(t("gName"))+'</label><input id="fNom" value="'+esc(d.nom)+'" placeholder="'+esc(t("gNamePh"))+'">'+
+    '<label>'+esc(t("gPlace"))+'</label><input id="fLieu" value="'+esc(d.lieu)+'">'+
+    '<div class="grid2"><div><label>'+esc(t("gPart"))+'</label><input id="fPart" inputmode="numeric" value="'+esc(d.part)+'"></div>'+
+    '<div><label>'+esc(t("gSoc"))+'</label><input id="fSoc" inputmode="numeric" value="'+esc(d.social||0)+'"></div></div>'+
+    '<label>'+esc(t("gRate"))+'</label><input id="fTaux" inputmode="decimal" value="'+esc(d.taux)+'">'+
+    '<div class="actions">'+(isNew?'':'<button class="btn d" id="fDel">'+esc(t("del"))+'</button>')+'<button class="btn sec" id="fCan">'+esc(t("cancel"))+'</button><button class="btn" id="fOk">'+esc(t("save"))+'</button></div>',
+  function(m,close){
+    $("fCan").onclick=close;
+    if(!isNew)$("fDel").onclick=function(){close();ask(t("gDelQ",{n:gr.nom}),t("del"),function(){removeGroup(gr.id);currentId=Object.keys(groups)[0]||null;saveLocal();render()})};
+    $("fOk").onclick=function(){
+      var nom=$("fNom").value.trim();if(!nom){$("fNom").focus();return}
+      var x=isNew?normalize({id:uid(),cree:today()}):gr;
+      x.nom=nom;x.lieu=$("fLieu").value.trim();x.part=num($("fPart").value);x.social=num($("fSoc").value);x.taux=num($("fTaux").value);
+      groups[x.id]=x;currentId=x.id;persist(x);close();render();toast(t("gSaved"));
+    };
+  });
+}
+
+/* ---------- vues ---------- */
+function vHome(gr){
+  var s=stats(gr),h="";
+  if(s.late.length)h+='<div class="alert">⚠ '+esc(t("lateAlert",{n:s.late.length}))+' : '+s.late.map(function(x){return esc(mName(gr,x.p.membreId))+" ("+f(x.i.reste)+")"}).join(", ")+'</div>';
+  h+='<div class="kpis"><div class="kpi main"><div class="l">'+esc(t("cash"))+'</div><div class="v">'+f(s.caisse)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("savings"))+'</div><div class="v">'+f(s.ep)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("social"))+'</div><div class="v">'+f(s.so)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("toRecover"))+'</div><div class="v">'+f(s.enc)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("interest"))+'</div><div class="v">'+f(s.interets)+'</div></div></div>';
+  h+='<h2>'+esc(t("membersSit"))+'</h2>';
+  if(!gr.membres.length)h+='<div class="card empty">'+esc(t("noMembers"))+'</div>';
+  else{
+    h+='<div class="card"><table><tr><th>'+esc(t("colMember"))+'</th><th class="n">'+esc(t("colSav"))+'</th><th class="n">'+esc(t("colOwes"))+'</th></tr>';
+    gr.membres.forEach(function(m){var ms=memberStats(gr,m);h+='<tr><td>'+esc(m.nom)+'</td><td class="n">'+f(ms.ep)+'</td><td class="n">'+(ms.reste>0?'<b>'+f(ms.reste)+'</b>':'–')+'</td></tr>'});
+    h+='</table></div>';
+  }
+  h+='<div class="card muted">'+esc(t("rulesLine",{p:f(gr.part),s:f(gr.social||0),r:gr.taux}))+(gr.lieu?' · '+esc(gr.lieu):'')+'<br><button class="btn sec sm" id="editG" style="margin-top:8px">'+esc(t("editRules"))+'</button></div>';
+  $("view").innerHTML=h;$("editG").onclick=function(){groupForm(gr)};
+}
+function vMembers(gr){
+  var h='<h2>'+esc(t("members"))+' ('+gr.membres.length+')</h2><div class="card"><div class="grid2"><div><label>'+esc(t("name"))+'</label><input id="mNom"></div><div><label>'+esc(t("phone"))+'</label><input id="mTel" inputmode="tel"></div></div><button class="btn full" id="mAdd">'+esc(t("addMember"))+'</button></div>';
+  if(gr.membres.length){
+    h+='<div class="card"><table><tr><th>'+esc(t("name"))+'</th><th>'+esc(t("phone"))+'</th><th></th></tr>';
+    gr.membres.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'</td><td>'+esc(m.tel||"")+'</td><td class="n"><button class="x" data-del="'+m.id+'" aria-label="'+esc(t("remove"))+'">×</button></td></tr>'});
+    h+='</table></div>';
+  }
+  $("view").innerHTML=h;
+  $("mAdd").onclick=function(){var n=$("mNom").value.trim();if(!n){$("mNom").focus();return}gr.membres.push({id:uid(),nom:n,tel:$("mTel").value.trim()});persist(gr);render();toast(t("added",{n:n}));setTimeout(function(){var e=$("mNom");if(e)e.focus()},50)};
+  document.querySelectorAll("[data-del]").forEach(function(b){b.onclick=function(){
+    var id=b.getAttribute("data-del");
+    if(gr.cotisations.some(function(c){return c.membreId===id})||gr.prets.some(function(p){return p.membreId===id})){toast(t("cantDel"));return}
+    ask(t("removeQ",{n:mName(gr,id)}),t("remove"),function(){gr.membres=gr.membres.filter(function(m){return m.id!==id});persist(gr);render()});
+  }});
+}
+function vMeeting(gr){
+  var h='<h2>'+esc(t("meetT"))+'</h2>';
+  if(!gr.membres.length){$("view").innerHTML=h+'<div class="card empty">'+esc(t("addFirst"))+'</div>';return}
+  h+='<div class="card"><label>'+esc(t("meetDate"))+'</label><input type="date" id="dDate" value="'+today()+'"><p class="muted">'+esc(t("partsHint",{v:f(gr.part)}))+'</p>'+
+     '<table class="meet"><tr><th>'+esc(t("colMember"))+'</th><th class="n">'+esc(t("colParts"))+'</th><th class="n">'+esc(t("colSocial"))+'</th></tr>';
+  gr.membres.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'</td><td class="n" style="width:74px"><input inputmode="numeric" data-parts="'+m.id+'" value="1"></td><td class="n" style="width:90px"><input inputmode="numeric" data-soc="'+m.id+'" value="'+(gr.social||0)+'"></td></tr>'});
+  h+='</table><p id="dTot" class="muted"></p><button class="btn full" id="dSave">'+esc(t("saveMeet"))+'</button></div>';
+  var byDate={};gr.cotisations.forEach(function(c){(byDate[c.date]=byDate[c.date]||[]).push(c)});
+  var dates=Object.keys(byDate).sort().reverse();
+  h+='<h2>'+esc(t("past"))+'</h2>';
+  if(!dates.length)h+='<div class="card empty">'+esc(t("noMeet"))+'</div>';
+  else{h+='<div class="card"><table><tr><th>'+esc(t("date"))+'</th><th class="n">'+esc(t("colSav"))+'</th><th class="n">'+esc(t("colSocial"))+'</th><th></th></tr>';
+    dates.forEach(function(d){var l=byDate[d];h+='<tr><td>'+fdate(d)+'<div class="muted">'+esc(t("nMembers",{n:l.length}))+'</div></td><td class="n">'+f(sum(l,function(c){return c.epargne}))+'</td><td class="n">'+f(sum(l,function(c){return c.social}))+'</td><td class="n"><button class="x" data-deld="'+d+'" aria-label="'+esc(t("del"))+'">×</button></td></tr>'});
+    h+='</table></div>'}
+  $("view").innerHTML=h;
+  function tot(){var e=0,s=0;document.querySelectorAll("[data-parts]").forEach(function(i){e+=num(i.value)*gr.part});document.querySelectorAll("[data-soc]").forEach(function(i){s+=num(i.value)});$("dTot").textContent=t("totalLine",{a:f(e),b:f(s)})}
+  document.querySelectorAll(".meet input").forEach(function(i){i.oninput=tot});tot();
+  $("dSave").onclick=function(){
+    var d=$("dDate").value||today(),n=0;
+    gr.membres.forEach(function(m){
+      var parts=num(document.querySelector('[data-parts="'+m.id+'"]').value),soc=num(document.querySelector('[data-soc="'+m.id+'"]').value);
+      if(parts>0||soc>0){gr.cotisations.push({id:uid(),date:d,membreId:m.id,parts:parts,epargne:parts*gr.part,social:soc});n++}
+    });
+    if(!n){toast(t("nothing"));return}
+    persist(gr);render();toast(t("meetSaved",{d:fdate(d)}));
+  };
+  document.querySelectorAll("[data-deld]").forEach(function(b){b.onclick=function(){var d=b.getAttribute("data-deld");ask(t("delMeetQ",{d:fdate(d)}),t("del"),function(){gr.cotisations=gr.cotisations.filter(function(c){return c.date!==d});persist(gr);render()})}});
+}
+function vLoans(gr){
+  var s=stats(gr),h='<h2>'+esc(t("loansT"))+'</h2>';
+  if(!gr.membres.length){$("view").innerHTML=h+'<div class="card empty">'+esc(t("addFirst"))+'</div>';return}
+  h+='<div class="card"><label>'+esc(t("colMember"))+'</label><select id="pM">'+gr.membres.map(function(m){return '<option value="'+m.id+'">'+esc(m.nom)+'</option>'}).join("")+'</select>'+
+    '<div class="grid2"><div><label>'+esc(t("amount"))+'</label><input id="pMt" inputmode="numeric"></div><div><label>'+esc(t("duration"))+'</label><input id="pDu" inputmode="numeric" value="3"></div></div>'+
+    '<div class="grid2"><div><label>'+esc(t("date"))+'</label><input type="date" id="pDt" value="'+today()+'"></div><div><label>'+esc(t("rate"))+'</label><input id="pTx" inputmode="decimal" value="'+gr.taux+'"></div></div>'+
+    '<p class="muted" id="pInfo"></p><button class="btn o full" id="pAdd">'+esc(t("grant"))+'</button></div>';
+  var list=gr.prets.slice().sort(function(a,b){return a.date<b.date?1:-1});
+  h+='<h2>'+esc(t("follow"))+'</h2>';
+  if(!list.length)h+='<div class="card empty">'+esc(t("noLoans"))+'</div>';
+  var stl={ok:t("stOk"),late:t("stLate"),run:t("stRun")};
+  list.forEach(function(p){var i=loanInfo(gr,p);
+    h+='<div class="card"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>'+esc(mName(gr,p.membreId))+'</b><span class="tag '+i.st+'">'+esc(stl[i.st])+'</span></div>'+
+      '<div class="muted">'+esc(t("lent",{a:f(p.montant),d:fdate(p.date),m:p.duree,r:p.taux,e:fdate(i.ech)}))+'</div>'+
+      '<table style="margin-top:6px"><tr><td>'+esc(t("toRepay"))+'</td><td class="n">'+f(i.du)+'</td></tr><tr><td>'+esc(t("paid"))+'</td><td class="n">'+f(i.paye)+'</td></tr><tr><td><b>'+esc(t("rest"))+'</b></td><td class="n"><b>'+f(i.reste)+'</b></td></tr></table>'+
+      '<div class="actions">'+(i.reste>0?'<button class="btn sm" data-pay="'+p.id+'">'+esc(t("addPay"))+'</button>':'')+'<button class="btn sm d" data-delp="'+p.id+'">'+esc(t("del"))+'</button></div></div>';
+  });
+  $("view").innerHTML=h;
+  function info(){var mt=num($("pMt").value),du=num($("pDu").value),tx=num($("pTx").value),tot=mt*(1+tx/100*du);$("pInfo").textContent=(mt?t("willRepay",{a:f(tot),b:f(tot-mt)})+" ":"")+t("avail",{a:f(s.caisse)})}
+  ["pMt","pDu","pTx"].forEach(function(k){$(k).oninput=info});info();
+  $("pAdd").onclick=function(){
+    var mt=num($("pMt").value);if(mt<=0){$("pMt").focus();return}
+    function go(){gr.prets.push({id:uid(),membreId:$("pM").value,montant:mt,duree:Math.max(1,num($("pDu").value)),taux:num($("pTx").value),date:$("pDt").value||today()});persist(gr);render();toast(t("loanSaved"))}
+    if(mt>s.caisse)ask(t("overQ",{a:f(s.caisse)}),t("cont"),go);else go();
+  };
+  document.querySelectorAll("[data-pay]").forEach(function(b){b.onclick=function(){
+    var p=gr.prets.find(function(x){return x.id===b.getAttribute("data-pay")}),i=loanInfo(gr,p);
+    modal('<h3>'+esc(t("payT",{n:mName(gr,p.membreId)}))+'</h3><p class="muted">'+esc(t("restPay",{a:f(i.reste)}))+'</p><label>'+esc(t("amount"))+'</label><input id="rMt" inputmode="numeric" value="'+Math.round(i.reste)+'"><label>'+esc(t("date"))+'</label><input type="date" id="rDt" value="'+today()+'"><div class="actions"><button class="btn sec" id="rNo">'+esc(t("cancel"))+'</button><button class="btn" id="rOk">'+esc(t("save"))+'</button></div>',function(m,close){
+      $("rNo").onclick=close;$("rOk").onclick=function(){var v=num($("rMt").value);if(v<=0)return;gr.remboursements.push({id:uid(),pretId:p.id,montant:v,date:$("rDt").value||today()});persist(gr);close();render();toast(t("paySaved"))};
+    });
+  }});
+  document.querySelectorAll("[data-delp]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-delp");ask(t("delLoanQ"),t("del"),function(){gr.prets=gr.prets.filter(function(p){return p.id!==id});gr.remboursements=gr.remboursements.filter(function(r){return r.pretId!==id});persist(gr);render()})}});
+}
+function reportText(gr){
+  var s=stats(gr),L=[];
+  L.push("*"+gr.nom+"*"+(gr.lieu?" – "+gr.lieu:""));
+  L.push(t("asOf",{d:fdate(today())}));L.push("");
+  L.push("💰 "+t("cash")+" : "+f(s.caisse));
+  L.push(t("savings")+" : "+f(s.ep));
+  L.push(t("social")+" : "+f(s.so));
+  L.push(t("toRecover")+" : "+f(s.enc));
+  if(s.late.length){L.push("");L.push(t("lateL"));s.late.forEach(function(x){L.push("- "+mName(gr,x.p.membreId)+" : "+f(x.i.reste)+" ("+t("dueOn",{d:fdate(x.i.ech)})+")")})}
+  if(gr.membres.length){L.push("");L.push(t("savByMember"));gr.membres.forEach(function(m){var ms=memberStats(gr,m);L.push("- "+m.nom+" : "+f(ms.ep)+(ms.reste>0?" | "+t("owes",{a:f(ms.reste)}):""))})}
+  return L.join("\n");
+}
+function copyText(txt,okMsg){
+  function fb(){var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}ta.remove();toast(ok?okMsg:t("selectCopy"))}
+  try{navigator.clipboard.writeText(txt).then(function(){toast(okMsg)},fb)}catch(e){fb()}
+}
+function vReport(gr){
+  var txt=reportText(gr);
+  var h='<h2>'+esc(t("repT"))+'</h2><div class="card"><p class="muted">'+esc(t("repHint"))+'</p><textarea id="rep" readonly>'+esc(txt)+'</textarea><button class="btn full" id="cp">'+esc(t("copyRep"))+'</button></div>'+
+    '<h2>'+esc(t("backup"))+'</h2><div class="card"><p class="muted">'+esc(t(mode==="cloud"?"bkCloud":"bkLocal"))+'</p>'+
+    '<button class="btn sec full" id="bk">'+esc(t("copyBk"))+'</button>'+
+    '<label style="margin-top:14px">'+esc(t("restoreL"))+'</label><textarea id="rs"></textarea><button class="btn sec full" id="rsOk">'+esc(t("restore"))+'</button></div>';
+  $("view").innerHTML=h;
+  $("cp").onclick=function(){copyText(txt,t("copied"))};
+  $("bk").onclick=function(){copyText(JSON.stringify({app:"caisse-avec",groups:groups}),t("bkCopied"))};
+  $("rsOk").onclick=function(){
+    var data;try{data=JSON.parse($("rs").value)}catch(e){toast(t("invalid"));return}
+    if(!data||!data.groups){toast(t("invalid"));return}
+    var n=0,firstId=null;Object.keys(data.groups).forEach(function(k){var x=normalize(data.groups[k]);if(x&&x.id&&x.nom){groups[x.id]=x;persist(x);n++;firstId=firstId||x.id}});
+    if(n){currentId=firstId;render();toast(t("restored",{n:n}))}else toast(t("invalid"));
+  };
+}
+function vWelcome(){
+  $("view").innerHTML='<div class="card" style="text-align:center;padding:24px 16px"><div style="font-size:40px">🤝</div><h2 style="margin-top:6px">'+esc(t("welcome"))+'</h2><p class="muted">'+esc(t("welcomeTxt"))+'</p><button class="btn full" id="w1">'+esc(t("createFirst"))+'</button></div>'+
+  '<div class="card muted"><b>'+esc(t("how"))+'</b><ol>'+t("steps").map(function(s){return '<li>'+esc(s)+'</li>'}).join("")+'</ol></div>';
+  $("w1").onclick=function(){groupForm(null)};
+}
+function applyChrome(){
+  document.documentElement.lang=lang;
+  $("appTitle").textContent=t("appTitle");
+  $("newGroupBtn").textContent=t("newGroup");
+  $("langSel").value=lang;
+  document.querySelectorAll("[data-t]").forEach(function(el){el.textContent=t(el.getAttribute("data-t"))});
+  $("status").textContent=t(statusKey);
+}
+function render(){
+  applyChrome();
+  var sel=$("groupSel"),ids=Object.keys(groups).sort(function(a,b){return groups[a].nom.localeCompare(groups[b].nom)});
+  if(currentId&&!groups[currentId])currentId=null;
+  if(!currentId&&ids.length)currentId=ids[0];
+  sel.innerHTML=ids.length?ids.map(function(id){return '<option value="'+id+'"'+(id===currentId?" selected":"")+'>'+esc(groups[id].nom)+'</option>'}).join(""):'<option>'+esc(t("noGroup"))+'</option>';
+  sel.disabled=!ids.length;
+  document.querySelectorAll("#nav button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-v")===view)});
+  $("nav").classList.toggle("hidden",!g());
+  var gr=g();if(!gr){vWelcome();return}
+  ({home:vHome,members:vMembers,meeting:vMeeting,loans:vLoans,report:vReport})[view](gr);
+}
+
+/* ---------- démarrage ---------- */
+$("langSel").onchange=function(){lang=this.value;try{localStorage.setItem(LANG_KEY,lang)}catch(e){}render()};
+$("groupSel").onchange=function(){currentId=this.value;saveLocal();render()};
+$("newGroupBtn").onclick=function(){groupForm(null)};
+document.querySelectorAll("#nav button").forEach(function(b){b.onclick=function(){view=b.getAttribute("data-v");render();window.scrollTo(0,0)}});
+loadLocal();render();startCloud();
+})();
+</script>
+
+<script>
+if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)){
+  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+}
+</script>
+</body>
+</html>

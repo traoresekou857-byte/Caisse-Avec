@@ -1,0 +1,41 @@
+CAISSE AVEC – Transformer le site en vraie application Android
+===============================================================
+
+Ce dossier contient l'application complète (index.html), son icône,
+son manifeste (manifest.json) et le fichier sw.js qui la fait marcher hors ligne.
+
+ÉTAPE 1 – Mettre l'application en ligne (gratuit, une seule fois)
+-----------------------------------------------------------------
+Avec GitHub Pages (plus facile sur ordinateur, possible sur téléphone en "version ordinateur") :
+ 1. Créez un compte gratuit sur https://github.com
+ 2. Cliquez "New repository", nom : caisse-avec, choisissez "Public", puis "Create repository".
+ 3. Cliquez "uploading an existing file" et envoyez TOUS les fichiers de ce dossier
+    (index.html, manifest.json, sw.js et les 4 images .png). Cliquez "Commit changes".
+ 4. Allez dans Settings > Pages. Source : "Deploy from a branch", branche "main", dossier "/ (root)". Save.
+ 5. Après 1 à 2 minutes, votre application est en ligne à l'adresse :
+       https://VOTRE-NOM-GITHUB.github.io/caisse-avec/
+
+ÉTAPE 2 – L'installer comme application sur le téléphone
+--------------------------------------------------------
+ Ouvrez l'adresse ci-dessus dans Chrome sur Android.
+ Menu ⋮ > "Installer l'application" (ou "Ajouter à l'écran d'accueil").
+ L'icône "Caisse AVEC" apparaît avec vos autres applications. Elle marche sans internet.
+ Envoyez simplement l'adresse aux trésoriers des groupements : ils font la même chose.
+
+ÉTAPE 3 (facultatif) – Obtenir un fichier .apk / Google Play
+------------------------------------------------------------
+ 1. Allez sur https://www.pwabuilder.com
+ 2. Collez l'adresse de l'étape 1 et cliquez "Start".
+ 3. Cliquez "Package for stores" > Android > "Generate Package". Téléchargez le zip.
+ 4. Le zip contient un fichier .apk (à installer directement sur les téléphones)
+    et un fichier .aab (pour publier sur Google Play, compte développeur : 25 $ une seule fois).
+ 5. Le zip contient aussi "assetlinks.json" : mettez-le dans un dossier ".well-known"
+    de votre dépôt GitHub pour que la barre d'adresse disparaisse dans l'application.
+ IMPORTANT : gardez précieusement le fichier "signing.keystore" et le mot de passe du zip.
+ Ils sont obligatoires pour publier les mises à jour.
+
+ATTENTION – LES DONNÉES
+-----------------------
+Les données de chaque groupe restent dans le téléphone où elles sont saisies.
+Chaque semaine : onglet Rapport > "Copier la sauvegarde", puis envoyez-la-vous sur WhatsApp.
+Pour changer de téléphone : collez cette sauvegarde dans "Restaurer".
