@@ -95,6 +95,7 @@ textarea.big{min-height:380px;font-size:14px;line-height:1.45}
     <button id="newGroupBtn">+</button>
   </div>
   <div id="status"></div>
+  <div id="sync" style="font-size:12px;opacity:.9"></div>
 </header>
 <main id="view"></main>
 <div id="foot"></div>
@@ -156,6 +157,10 @@ fr:{
  createFirst:"Créer mon premier groupe",how:"Comment ça marche",
  steps:["Créez le groupe et ses règles (valeur de la part, intérêt).","Ajoutez les membres.","À chaque réunion, saisissez les parts achetées.","Enregistrez les prêts et les remboursements.","Partagez le rapport sur WhatsApp."],
  deleted:"(supprimé)",
+ syncPending:"⏳ {n} groupement(s) en attente d'envoi à la base globale",syncOk:"☁ Base globale à jour",autoSync:"Envoi automatique à la base globale",
+ autoSyncHint:"Chaque fois qu'un groupement est créé ou modifié, il est envoyé automatiquement à la base globale du superviseur dès que le téléphone a internet. Rien à faire de plus.",
+ syncNow:"Envoyer maintenant",refreshServer:"🔄 Actualiser depuis le serveur",refreshed:"{n} groupement(s) reçus du serveur",syncFail:"Impossible de joindre le serveur. Vérifiez la connexion internet.",
+ server:"Adresse du serveur (ne pas modifier sauf indication)",noServer:"L'envoi automatique n'est pas encore activé sur cette application.",lastSync:"Dernier envoi : {d}",
  region:"Région",cercle:"Cercle",commune:"Commune",village:"Village / quartier",animateur:"Animateur / facilitateur",
  maxMembers:"Limite atteinte : 30 membres maximum par groupement.",memberParts:"Nombre de parts",partsN:"{n} part(s)",
  meetHint:"Cochez les membres qui ont cotisé. Le nombre de parts de chacun est fixé à son inscription (onglet Membres) et reste le même jusqu'à la fin du cycle.",
@@ -229,6 +234,10 @@ bm:{
  createFirst:"N ka tɔn fɔlɔ dabɔ",how:"A bɛ kɛ cogo min",
  steps:["Tɔn n'a sariyaw dabɔ (niyɔrɔ sɔngɔ, tɔnɔ).","Tɔndenw fara a kan.","Ɲɔgɔnye o ɲɔgɔnye, niyɔrɔ sannenw sɛbɛn.","Juruw ani u sarali sɛbɛn.","Jatebɔ ci WhatsApp kan."],
  deleted:"(a jɔsira)",
+ syncPending:"⏳ Tɔn {n} bɛ makɔnɔ ka ci kunnafoni bɛɛ ma",syncOk:"☁ Kunnafoni bɛɛ labɛnnen don",autoSync:"A bɛ ci a yɛrɛ ma kunnafoni bɛɛ ma",
+ autoSyncHint:"Tuma o tuma tɔn dabɔra walima a yɛlɛmana, a bɛ ci a yɛrɛ ma kɔlɔsibaga ka kunnafoni bɛɛ ma, ni ɛntɛrinɛti sɔrɔla telefɔni kan. Foyi wɛrɛ tɛ kɛ.",
+ syncNow:"A ci sisan",refreshServer:"🔄 Kunnafoniw ta sɛriwɛri la",refreshed:"Tɔn {n} sɔrɔla sɛriwɛri la",syncFail:"Sɛriwɛri ma sɔrɔ. Ɛntɛrinɛti lajɛ.",
+ server:"Sɛriwɛri adiresi (kana a yɛlɛma ni a ma fɔ aw ye)",noServer:"A yɛrɛ cili ma daminɛ fɔlɔ nin aplikasiyɔn in kan.",lastSync:"A cili laban : {d}",
  region:"Mara",cercle:"Serikili",commune:"Komini",village:"Dugu / kin",animateur:"Animatɛri / dɛmɛbaga",
  maxMembers:"Dan sera : tɔn kelen tɛ se ka tɛmɛ tɔnden 30 kan.",memberParts:"Niyɔrɔ hakɛ",partsN:"niyɔrɔ {n}",
  meetHint:"Tɔnden minnu ye wari don, olu taamasiyɛn. Tɔnden kelen kelen ka niyɔrɔ hakɛ sɛbɛnna a donni waati la (Tɔndenw), a bɛ to a cogo la fo sikili ka ban.",
@@ -302,6 +311,10 @@ en:{
  createFirst:"Create my first group",how:"How it works",
  steps:["Create the group and its rules (share value, interest).","Add the members.","At each meeting, enter the shares bought.","Record loans and repayments.","Share the report on WhatsApp."],
  deleted:"(deleted)",
+ syncPending:"⏳ {n} group(s) waiting to be sent to the global database",syncOk:"☁ Global database up to date",autoSync:"Automatic sending to the global database",
+ autoSyncHint:"Each time a group is created or changed, it is sent automatically to the supervisor's global database as soon as the phone has internet. Nothing else to do.",
+ syncNow:"Send now",refreshServer:"🔄 Refresh from server",refreshed:"{n} group(s) received from the server",syncFail:"Cannot reach the server. Check the internet connection.",
+ server:"Server address (do not change unless told to)",noServer:"Automatic sending is not yet activated in this app.",lastSync:"Last sent: {d}",
  region:"Region",cercle:"Cercle (district)",commune:"Commune",village:"Village / area",animateur:"Field officer",
  maxMembers:"Limit reached: maximum 30 members per group.",memberParts:"Number of shares",partsN:"{n} share(s)",
  meetHint:"Tick the members who paid. Each member's number of shares is set when they join (Members tab) and stays the same until the end of the cycle.",
@@ -343,6 +356,46 @@ var globalDb={},profile={};
 try{globalDb=JSON.parse(localStorage.getItem(GL_KEY)||"{}")||{}}catch(e){}
 try{profile=JSON.parse(localStorage.getItem(PR_KEY)||"{}")||{}}catch(e){}
 function saveGlobal(){try{localStorage.setItem(GL_KEY,JSON.stringify(globalDb))}catch(e){}}
+var SYNC_URL="https://script.google.com/macros/s/AKfycbzfRRbhDrd_jkAnxsiAlgfRN2gFQNM6jhwcaJK5LkkW-JCzcuuVK3EBUWQV5fyjTLgA/exec",SYNC_KEY="avec-ea807024887f4b2e",PEND_KEY="caisse_avec_pending_v1",pending={},pendSeq=0,flushing=false,flushTimer=null;
+try{pending=JSON.parse(localStorage.getItem(PEND_KEY)||"{}")||{}}catch(e){}
+function serverUrl(){return String(profile.server||SYNC_URL||"").trim()}
+function savePending(){try{localStorage.setItem(PEND_KEY,JSON.stringify(pending))}catch(e){}}
+function markPending(id,act){pendSeq++;pending[id]={a:act||"up",v:Date.now()+"-"+pendSeq};savePending();updateSync();scheduleFlush()}
+function scheduleFlush(){clearTimeout(flushTimer);flushTimer=setTimeout(flush,2500)}
+function buildPayload(gr){
+  var s=stats(gr),dates={};gr.cotisations.forEach(function(c){dates[c.date]=1});var dl=Object.keys(dates).sort();
+  return {key:SYNC_KEY,action:"upsert",from:{nom:profile.nom||"",tel:profile.tel||"",structure:profile.structure||""},
+    summary:{membres:active(gr).length,epargne:Math.round(s.ep),social:Math.round(s.so),encours:Math.round(s.enc),retards:s.late.length,caisse:Math.round(s.caisse),reunions:dl.length,derniere:dl.length?fdate(dl[dl.length-1]):""},
+    membres:gr.membres.map(function(m){var ms=memberStats(gr,m);return {nom:m.nom,tel:m.tel||"",parts:m.parts||1,statut:m.sorti?t("memberOut"):"Actif",epargne:Math.round(ms.ep),doit:Math.round(ms.reste)}}),
+    group:gr};
+}
+function flush(){
+  var u=serverUrl();if(!u||flushing)return;if(navigator.onLine===false)return;
+  var ids=Object.keys(pending);if(!ids.length)return;
+  var id=ids[0],job=pending[id],body;
+  if(job.a==="del")body={key:SYNC_KEY,action:"delete",id:id};
+  else if(groups[id])body=buildPayload(groups[id]);
+  else{delete pending[id];savePending();return flush()}
+  flushing=true;
+  fetch(u,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(function(){
+    if(pending[id]&&pending[id].v===job.v)delete pending[id];
+    savePending();try{localStorage.setItem("caisse_avec_lastsync",new Date().toISOString())}catch(e){}
+    flushing=false;updateSync();flush();
+  },function(){flushing=false;updateSync()});
+}
+function updateSync(){
+  var el=document.getElementById("sync");if(!el)return;
+  if(!serverUrl()){el.textContent="";return}
+  var n=Object.keys(pending).length;el.textContent=n?t("syncPending",{n:n}):t("syncOk");
+}
+function pullServer(silent){
+  var u=serverUrl();if(!u){if(!silent)toast(t("noServer"));return}
+  fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&t="+Date.now()).then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok)throw 0;var n=0;
+    (d.groups||[]).forEach(function(x){if(x&&x.id){var fr=(d.from&&d.from[x.id])||{};globalDb[x.id]={g:normalize(x),from:fr,recu:today()};n++}});
+    saveGlobal();if(view==="global")render();if(!silent)toast(t("refreshed",{n:n}));
+  }).catch(function(){if(!silent)toast(t("syncFail"))});
+}
 function saveProfile(){try{localStorage.setItem(PR_KEY,JSON.stringify(profile))}catch(e){}}
 var lang="fr";
 try{var sl=localStorage.getItem(LANG_KEY);if(sl&&I18N[sl])lang=sl}catch(e){}
@@ -449,6 +502,7 @@ function setStatus(k){statusKey=k;$("status").textContent=t(k)}
 function saveLocal(){try{localStorage.setItem(LS_KEY,JSON.stringify({groups:groups,currentId:currentId}))}catch(e){}}
 function loadLocal(){try{var s=JSON.parse(localStorage.getItem(LS_KEY)||"null");if(s&&s.groups){groups=s.groups;currentId=s.currentId;Object.keys(groups).forEach(function(k){normalize(groups[k])})}}catch(e){}}
 function persist(gr){
+  markPending(gr.id,"up");
   if(mode==="cloud"&&col){
     var id=gr.id,body=JSON.parse(JSON.stringify(gr));lastJson[id]=JSON.stringify(body);
     var prev=writeChains[id]||Promise.resolve();
@@ -457,7 +511,7 @@ function persist(gr){
   saveLocal();
 }
 function removeGroup(id){
-  delete groups[id];
+  delete groups[id];markPending(id,"del");
   if(mode==="cloud"&&col){var prev=writeChains[id]||Promise.resolve();writeChains[id]=prev.then(function(){return col.doc(id).delete()}).catch(function(){})}
   saveLocal();
 }
@@ -775,6 +829,7 @@ function copyText(txt,okMsg){
 function vReport(gr){
   var txt=reportText(gr);
   var h='<h2>'+esc(t("repT"))+'</h2><div class="card"><p class="muted">'+esc(t("repHint"))+'</p><textarea id="rep" readonly>'+esc(txt)+'</textarea><button class="btn full" id="cp">'+esc(t("copyRep"))+'</button></div>'+
+    (serverUrl()?'<h2>☁ '+esc(t("autoSync"))+'</h2><div class="card"><p class="muted">'+esc(t("autoSyncHint"))+'</p><p><b>'+esc(Object.keys(pending).length?t("syncPending",{n:Object.keys(pending).length}):t("syncOk"))+'</b>'+(function(){try{var l=localStorage.getItem("caisse_avec_lastsync");return l?'<span class="sub">'+esc(t("lastSync",{d:new Date(l).toLocaleString("fr-FR")}))+'</span>':''}catch(e){return ''}})()+'</p><button class="btn full" id="syncNow">'+esc(t("syncNow"))+'</button></div>':'')+
     '<h2>📤 '+esc(t("sendSup"))+'</h2><div class="card"><p class="muted">'+esc(t("sendSupHint"))+'</p><button class="btn full" id="supFile">'+esc(t("shareFile"))+'</button><button class="btn sec full" id="supCopy">'+esc(t("copyData"))+'</button></div>'+
     '<h2>'+esc(t("backup"))+'</h2><div class="card"><p class="muted">'+esc(t(mode==="cloud"?"bkCloud":"bkLocal"))+'</p>'+
     '<button class="btn sec full" id="bk">'+esc(t("copyBk"))+'</button>'+
@@ -782,6 +837,7 @@ function vReport(gr){
   $("view").innerHTML=h;
   $("cp").onclick=function(){copyText(txt,t("copied"))};
   $("supFile").onclick=function(){var pk=exportPacket();shareFileOrCopy(JSON.stringify(pk),"groupements-"+((profile.nom||"animateur").replace(/[^\w\-]+/g,"_"))+"-"+today()+".json","application/json",t("dataCopied"))};
+  if($("syncNow"))$("syncNow").onclick=function(){Object.keys(groups).forEach(function(k){markPending(k,"up")});clearTimeout(flushTimer);flush();setTimeout(render,2500)};
   $("supCopy").onclick=function(){copyText(JSON.stringify(exportPacket()),t("dataCopied"))};
   $("bk").onclick=function(){copyText(JSON.stringify({app:"caisse-avec",groups:groups}),t("bkCopied"))};
   $("rsOk").onclick=function(){
@@ -819,8 +875,9 @@ function profileForm(){
     '<label>'+esc(t("name"))+'</label><input id="pNom" value="'+esc(profile.nom||"")+'">'+
     '<label>'+esc(t("phone"))+'</label><input id="pTel" inputmode="tel" value="'+esc(profile.tel||"")+'">'+
     '<label>'+esc(t("structure"))+'</label><input id="pStr" value="'+esc(profile.structure||"")+'">'+
+    '<label>'+esc(t("server"))+'</label><input id="pSrv" value="'+esc(profile.server||"")+'" placeholder="'+esc(SYNC_URL||"https://script.google.com/…")+'">'+
     '<div class="actions"><button class="btn sec" id="pNo">'+esc(t("cancel"))+'</button><button class="btn" id="pOk">'+esc(t("save"))+'</button></div>',function(m,close){
-    $("pNo").onclick=close;$("pOk").onclick=function(){profile={nom:$("pNom").value.trim(),tel:$("pTel").value.trim(),structure:$("pStr").value.trim()};saveProfile();close();toast(t("profileSaved"))};
+    $("pNo").onclick=close;$("pOk").onclick=function(){var oldSrv=serverUrl();profile={nom:$("pNom").value.trim(),tel:$("pTel").value.trim(),structure:$("pStr").value.trim(),server:$("pSrv").value.trim()};saveProfile();if(serverUrl()&&serverUrl()!==oldSrv){Object.keys(groups).forEach(function(k){markPending(k,"up")})}else{Object.keys(groups).forEach(function(k){markPending(k,"up")})}updateSync();close();toast(t("profileSaved"))};
   });
 }
 function vShare(){
@@ -858,6 +915,7 @@ function vGlobal(){
   var h='<h2>🌍 '+esc(t("globalT"))+'</h2><div class="card"><p class="muted">'+esc(t("globalHint"))+'</p>'+
     '<label>'+esc(t("importFile"))+'</label><input type="file" id="gFile" accept=".json,.txt,application/json,text/plain">'+
     '<label>'+esc(t("importPaste"))+'</label><textarea id="gPaste" style="min-height:70px"></textarea><button class="btn full" id="gImp">'+esc(t("importBtn"))+'</button></div>'+
+    (serverUrl()?'<button class="btn o full" id="gPull" style="margin:0 0 10px">'+esc(t("refreshServer"))+'</button>':'')+
     '<div class="filters">'+sel("fR","region",regs)+sel("fC","cercle",cers)+sel("fM","commune",coms)+'</div>'+
     '<div class="kpis" style="margin-top:8px"><div class="kpi main"><div class="l">'+esc(t("cash"))+'</div><div class="v">'+f(T.caisse)+'</div></div>'+
     '<div class="kpi"><div class="l">'+esc(t("nbGroups"))+'</div><div class="v">'+vis.length+'</div></div>'+
@@ -876,6 +934,8 @@ function vGlobal(){
   $("fR").onchange=function(){gFilter.region=this.value;gFilter.cercle="";gFilter.commune="";render()};
   $("fC").onchange=function(){gFilter.cercle=this.value;gFilter.commune="";render()};
   $("fM").onchange=function(){gFilter.commune=this.value;render()};
+  if($("gPull"))$("gPull").onclick=function(){pullServer(false)};
+  if(!window.__pulled&&serverUrl()){window.__pulled=true;pullServer(true)}
   $("gImp").onclick=function(){var v=$("gPaste").value.trim();if(v&&importPacket(v))render()};
   $("gFile").onchange=function(){var fl=this.files&&this.files[0];if(!fl)return;var rd=new FileReader();rd.onload=function(){if(importPacket(String(rd.result)))render()};rd.readAsText(fl)};
   document.querySelectorAll("[data-gv]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-gv"),r=rows.find(function(x){return x.g.id===id});var txt=reportText(r.g);
@@ -903,6 +963,7 @@ function applyChrome(){
   document.querySelectorAll("[data-t]").forEach(function(el){el.textContent=t(el.getAttribute("data-t"))});
   $("status").textContent=t(statusKey);
   $("foot").textContent=t("copyright");
+  updateSync();
 }
 function render(){
   applyChrome();
@@ -926,6 +987,8 @@ $("newGroupBtn").onclick=function(){groupForm(null)};
 $("menuBtn").onclick=openMenu;
 document.querySelectorAll("#nav button").forEach(function(b){b.onclick=function(){view=b.getAttribute("data-v");render();window.scrollTo(0,0)}});
 loadLocal();render();startCloud();
+try{if(serverUrl()&&localStorage.getItem("caisse_avec_synced_for")!==serverUrl()){Object.keys(groups).forEach(function(k){markPending(k,"up")});localStorage.setItem("caisse_avec_synced_for",serverUrl())}}catch(e){}
+updateSync();setTimeout(flush,3000);setInterval(flush,60000);window.addEventListener("online",flush);
 })();
 </script>
 <script>
