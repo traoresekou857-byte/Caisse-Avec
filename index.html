@@ -157,6 +157,9 @@ fr:{
  createFirst:"Créer mon premier groupe",how:"Comment ça marche",
  steps:["Créez le groupe et ses règles (valeur de la part, intérêt).","Ajoutez les membres.","À chaque réunion, saisissez les parts achetées.","Enregistrez les prêts et les remboursements.","Partagez le rapport sur WhatsApp."],
  deleted:"(supprimé)",
+ delGroupBtn:"🗑 Supprimer ce groupement",delGroupQ:"Supprimer définitivement le groupement « {n} », avec tous ses membres, cotisations, prêts et PV ? Il sera aussi retiré de la base globale. Cette action est irréversible.",groupDeleted:"Groupement supprimé",
+ chooseRemove:"Que faire avec {n} ?",keepHist:"Marquer comme sorti(e) (garder les chiffres)",delAll:"Supprimer avec tous ses chiffres",
+ delAllQ:"Supprimer {n} ET toutes ses cotisations, prêts et remboursements ? Les totaux du groupe seront recalculés. Action irréversible.",memberDeleted:"Membre supprimé",
  adminT:"Accès superviseur",adminHint:"La base globale est protégée. Entrez votre mot de passe superviseur.",password:"Mot de passe",enter:"Entrer",
  wrongPwd:"Mot de passe incorrect.",lockBtn:"🔒 Verrouiller",lockedMsg:"Base globale verrouillée.",
  globalHint2:"Données envoyées automatiquement par tous les téléphones qui utilisent l'outil. Accès réservé au superviseur.",
@@ -238,6 +241,9 @@ bm:{
  createFirst:"N ka tɔn fɔlɔ dabɔ",how:"A bɛ kɛ cogo min",
  steps:["Tɔn n'a sariyaw dabɔ (niyɔrɔ sɔngɔ, tɔnɔ).","Tɔndenw fara a kan.","Ɲɔgɔnye o ɲɔgɔnye, niyɔrɔ sannenw sɛbɛn.","Juruw ani u sarali sɛbɛn.","Jatebɔ ci WhatsApp kan."],
  deleted:"(a jɔsira)",
+ delGroupBtn:"🗑 Nin tɔn jɔsi",delGroupQ:"Tɔn « {n} » jɔsi pewu, a tɔndenw, a wari donnenw, a juruw ani a PVw bɛɛ ? A bɛna bɔ kunnafoni bɛɛ la fana. A tɛ se ka segin.",groupDeleted:"Tɔn jɔsira",
+ chooseRemove:"Mun bɛ kɛ ni {n} ye ?",keepHist:"A jate bɔlen ye (jateminɛw bɛ to)",delAll:"A jɔsi n'a jateminɛw bɛɛ ye",
+ delAllQ:"{n} jɔsi ANI a ka wari donnenw, juruw ani sarali bɛɛ ? Tɔn ka jateminɛw bɛna kɛ kokura. A tɛ se ka segin.",memberDeleted:"Tɔnden jɔsira",
  adminT:"Kɔlɔsibaga ka donda",adminHint:"Kunnafoni bɛɛ lakanana. Aw ka kɔlɔsibaga gundo daɲɛ sɛbɛn.",password:"Gundo daɲɛ",enter:"Don",
  wrongPwd:"Gundo daɲɛ tɛ ɲɛ.",lockBtn:"🔒 A datugu",lockedMsg:"Kunnafoni bɛɛ datugura.",
  globalHint2:"Telefɔni minnu bɛ baara kɛ ni minɛn in ye, olu bɛɛ ka kunnafoniw bɛ na yan u yɛrɛ ma. Kɔlɔsibaga dɔrɔn de bɛ se ka don.",
@@ -319,6 +325,9 @@ en:{
  createFirst:"Create my first group",how:"How it works",
  steps:["Create the group and its rules (share value, interest).","Add the members.","At each meeting, enter the shares bought.","Record loans and repayments.","Share the report on WhatsApp."],
  deleted:"(deleted)",
+ delGroupBtn:"🗑 Delete this group",delGroupQ:"Permanently delete the group “{n}” with all its members, contributions, loans and minutes? It will also be removed from the global database. This cannot be undone.",groupDeleted:"Group deleted",
+ chooseRemove:"What should be done with {n}?",keepHist:"Mark as left (keep the figures)",delAll:"Delete with all their figures",
+ delAllQ:"Delete {n} AND all their contributions, loans and repayments? The group's totals will be recalculated. This cannot be undone.",memberDeleted:"Member deleted",
  adminT:"Supervisor access",adminHint:"The global database is protected. Enter your supervisor password.",password:"Password",enter:"Enter",
  wrongPwd:"Wrong password.",lockBtn:"🔒 Lock",lockedMsg:"Global database locked.",
  globalHint2:"Data sent automatically by every phone using the tool. Access reserved for the supervisor.",
@@ -641,7 +650,9 @@ function vHome(gr){
     h+='</table></div>';
   }
   h+='<div class="card muted">'+esc(t("rulesLine",{p:f(gr.part),s:f(gr.social||0),r:gr.taux}))+(place(gr)?'<br>📍 '+esc(place(gr)):'')+(gr.animateur?'<br>👤 '+esc(gr.animateur):'')+'<br><button class="btn sec sm" id="editG" style="margin-top:8px">'+esc(t("editRules"))+'</button></div>';
+  h+='<button class="btn d full" id="delG" style="margin-top:4px">'+esc(t("delGroupBtn"))+'</button>';
   $("view").innerHTML=h;$("editG").onclick=function(){groupForm(gr)};
+  $("delG").onclick=function(){ask(t("delGroupQ",{n:gr.nom}),t("del"),function(){removeGroup(gr.id);currentId=Object.keys(groups)[0]||null;saveLocal();view="home";render();toast(t("groupDeleted"))})};
 }
 function vMembers(gr){
   var act=active(gr),out=gr.membres.filter(function(m){return m.sorti});
@@ -672,9 +683,21 @@ function memberForm(gr,id){
     $("eDel").onclick=function(){
       close();
       if(ops){
-        if(m.sorti){toast(t("hasOps"));return}
-        var msg=t("hasOps")+" "+t("markOutQ",{n:m.nom})+(ms.reste>0?" "+t("owesWarn",{n:m.nom,a:f(ms.reste)}):"");
-        ask(msg,t("markOut"),function(){m.sorti=today();persist(gr);render();toast(t("memberSaved"))});
+        modal('<h3>'+esc(t("chooseRemove",{n:m.nom}))+'</h3>'+(ms.reste>0?'<div class="alert">'+esc(t("owesWarn",{n:m.nom,a:f(ms.reste)}))+'</div>':'')+
+          (m.sorti?'':'<button class="btn sec full" id="rOut">'+esc(t("keepHist"))+'</button>')+
+          '<button class="btn d full" id="rAll">🗑 '+esc(t("delAll"))+'</button><button class="btn sec full" id="rNo2">'+esc(t("cancel"))+'</button>',function(md,close2){
+          $("rNo2").onclick=close2;
+          if($("rOut"))$("rOut").onclick=function(){close2();m.sorti=today();persist(gr);render();toast(t("memberSaved"))};
+          $("rAll").onclick=function(){close2();ask(t("delAllQ",{n:m.nom}),t("del"),function(){
+            var loanIds=gr.prets.filter(function(p){return p.membreId===id}).map(function(p){return p.id});
+            gr.cotisations=gr.cotisations.filter(function(c){return c.membreId!==id});
+            gr.prets=gr.prets.filter(function(p){return p.membreId!==id});
+            gr.remboursements=gr.remboursements.filter(function(r){return loanIds.indexOf(r.pretId)<0});
+            gr.membres=gr.membres.filter(function(x){return x.id!==id});
+            gr.pvs.forEach(function(p){p.presents=(p.presents||[]).filter(function(x){return x!==id})});
+            persist(gr);render();toast(t("memberDeleted"));
+          })};
+        });
       }else{
         ask(t("delForeverQ",{n:m.nom}),t("delForever"),function(){gr.membres=gr.membres.filter(function(x){return x.id!==id});gr.pvs.forEach(function(p){p.presents=(p.presents||[]).filter(function(x){return x!==id})});persist(gr);render()});
       }
