@@ -58,6 +58,10 @@ textarea{min-height:120px;font-family:inherit;font-size:14px}
 .muted{color:var(--m);font-size:13px}
 .empty{text-align:center;color:var(--m);padding:22px 10px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.offer{border:1px solid var(--b);border-radius:12px;padding:12px;margin-bottom:10px;background:#fff}.offer .pr{font-size:18px;font-weight:700;color:var(--g)}
+.btn.wa{background:#25D366}
+a.btn{text-decoration:none;text-align:center}
 .alert{background:var(--r2);color:var(--r);border-radius:10px;padding:10px;font-size:14px;margin-bottom:10px}
 nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--b);display:flex;z-index:6;padding-bottom:env(safe-area-inset-bottom)}
 nav button{flex:1;background:none;border:0;padding:8px 2px 9px;font-size:11px;color:var(--m);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
@@ -157,6 +161,13 @@ fr:{
  createFirst:"Créer mon premier groupe",how:"Comment ça marche",
  steps:["Créez le groupe et ses règles (valeur de la part, intérêt).","Ajoutez les membres.","À chaque réunion, saisissez les parts achetées.","Enregistrez les prêts et les remboursements.","Partagez le rapport sur WhatsApp."],
  deleted:"(supprimé)",
+ objectif:"Objectif du groupement",objectifPh:"ex. Financer le petit commerce et la transformation du karité",reseau:"Réseau VSLA (facultatif)",reseauPh:"ex. Réseau Benkadi de Bougouni",
+ finesCfg:"Amendes prévues par le règlement (F)",fine_retard:"Retard",fine_absence:"Absence",fine_remb:"Retard de remboursement",fine_autre:"Autre sanction",
+ finesT:"⚖️ Amendes et sanctions",fineAdd:"Enregistrer l'amende",fineType:"Motif",fineAmount:"Montant (F)",fineNote:"Précision",finePaid:"Payée",fineUnpaid:"Non payée",markPaid:"Marquer payée",noFines:"Aucune amende enregistrée.",fineSaved:"Amende enregistrée",delFineQ:"Supprimer cette amende ?",
+ absFine:"Amende d'absence ({a}) pour les membres non cochés",finesPaid:"Amendes perçues",finesDue:"Amendes à payer",objLbl:"🎯 Objectif",resLbl:"🔗 Réseau",
+ tabAGR:"AGR",agrT:"Activités génératrices de revenus (AGR)",agrHint:"Enregistrez les produits et services des membres. Cochez « Publier » pour les proposer aux autres groupements dans le Marché des AGR.",agrAdd:"+ Ajouter une AGR",agrActivity:"Activité",agrActivityPh:"ex. Transformation du karité",agrProduct:"Produit / service",agrProductPh:"ex. Beurre de karité",agrUnit:"Unité",agrUnitPh:"ex. kg, sac, litre",agrPrice:"Prix par unité (F)",agrQty:"Quantité disponible",agrDesc:"Description",agrContact:"Téléphone de contact",agrPublish:"Publier dans le Marché des AGR",agrPublished:"Publiée",agrSaved:"AGR enregistrée",noAGR:"Aucune AGR enregistrée.",delAGRQ:"Supprimer cette AGR ?",agrConsent:"Le membre est d'accord pour que son produit et son numéro soient visibles par les autres groupements.",
+ market:"Marché des AGR",marketT:"🛒 Marché des AGR",marketHint:"Produits et services proposés par les membres des groupements de toutes les localités. Contactez directement le vendeur.",marketSearch:"Rechercher un produit…",marketEmpty:"Aucune offre pour le moment.",marketFail:"Marché indisponible. Vérifiez la connexion internet.",call:"📞 Appeler",whatsapp:"WhatsApp",available:"Disponible : {q}",waMsg:"Bonjour, j'ai vu votre offre « {p} » dans le Marché des AGR (Outils AVEC). Est-elle toujours disponible ?",
+ groupBy:"Regrouper par",byGroup:"Groupement",byNet:"Réseau",noNet:"(sans réseau)",nbAGR:"AGR",
  pays:"Pays",
  cat_F:"Femme",cat_H:"Homme",cat_Fi:"Fille",cat_G:"Garçon",cats_F:"Femmes",cats_H:"Hommes",cats_Fi:"Filles",cats_G:"Garçons",
  category:"Catégorie",composition:"Composition",listByCat:"📋 Liste par catégorie",listT:"Liste des membres par catégorie",
@@ -252,6 +263,13 @@ bm:{
  createFirst:"N ka tɔn fɔlɔ dabɔ",how:"A bɛ kɛ cogo min",
  steps:["Tɔn n'a sariyaw dabɔ (niyɔrɔ sɔngɔ, tɔnɔ).","Tɔndenw fara a kan.","Ɲɔgɔnye o ɲɔgɔnye, niyɔrɔ sannenw sɛbɛn.","Juruw ani u sarali sɛbɛn.","Jatebɔ ci WhatsApp kan."],
  deleted:"(a jɔsira)",
+ objectif:"Tɔn laɲini",objectifPh:"m. ka jago fitinin ni sìtulu dilanni dɛmɛ",reseau:"Tɔnw jɛkulu (réseau) – a tɛ wajibi ye",reseauPh:"m. Bougouni Benkadi jɛkulu",
+ finesCfg:"Ɲangiliw sariyasɛbɛn kɔnɔ (F)",fine_retard:"Nali kɔfɛ",fine_absence:"Nali tɛ",fine_remb:"Juru sarali mɛnni",fine_autre:"Ɲangili wɛrɛ",
+ finesT:"⚖️ Ɲangiliw (amandiw)",fineAdd:"Ɲangili sɛbɛn",fineType:"Sababu",fineAmount:"Hakɛ (F)",fineNote:"Kunnafoni",finePaid:"A sarala",fineUnpaid:"A ma sara",markPaid:"A sarala",noFines:"Ɲangili si ma sɛbɛn.",fineSaved:"Ɲangili marala",delFineQ:"Nin ɲangili jɔsi wa?",
+ absFine:"Nali tɛ ɲangili ({a}) minnu ma taamasiyɛn",finesPaid:"Ɲangili saralenw",finesDue:"Ɲangili minnu ma sara",objLbl:"🎯 Laɲini",resLbl:"🔗 Jɛkulu",
+ tabAGR:"AGR",agrT:"Wari sɔrɔ baaraw (AGR)",agrHint:"Tɔndenw ka fɛnw ni baaraw sɛbɛn. « A jira » taamasiyɛn walasa tɔn wɛrɛw k'u ye AGR sugu la.",agrAdd:"+ AGR fara a kan",agrActivity:"Baara",agrActivityPh:"m. Sìtulu dilanni",agrProduct:"Fɛn / baara",agrProductPh:"m. Sìtulu",agrUnit:"Hakɛ suguya",agrUnitPh:"m. kilo, bɔrɔ, litiri",agrPrice:"Sɔngɔ (F)",agrQty:"Hakɛ min bɛ yen",agrDesc:"Ɲɛfɔli",agrContact:"Telefɔni",agrPublish:"A jira AGR sugu la",agrPublished:"A jirala",agrSaved:"AGR marala",noAGR:"AGR si ma sɛbɛn.",delAGRQ:"Nin AGR jɔsi wa?",agrConsent:"Tɔnden sɔnna a ka fɛn n'a ka telefɔni ka ye tɔn wɛrɛw fɛ.",
+ market:"AGR sugu",marketT:"🛒 AGR sugu",marketHint:"Dugu bɛɛ tɔndenw ka fɛnw ni baaraw. Feerelikɛla wele a yɛrɛ ma.",marketSearch:"Fɛn ɲini…",marketEmpty:"Fɛn si tɛ yen fɔlɔ.",marketFail:"Sugu tɛ sɔrɔ. Ɛntɛrinɛti lajɛ.",call:"📞 A wele",whatsapp:"WhatsApp",available:"A bɛ yen : {q}",waMsg:"I ni ce, n ye i ka « {p} » ye AGR sugu la (Outils AVEC). A bɛ yen hali bi wa?",
+ groupBy:"A tila ka kɛɲɛ ni",byGroup:"Tɔn",byNet:"Jɛkulu",noNet:"(jɛkulu tɛ)",nbAGR:"AGR",
  pays:"Jamana",
  cat_F:"Muso",cat_H:"Cɛ",cat_Fi:"Npogotigi",cat_G:"Kamalenni",cats_F:"Musow",cats_H:"Cɛw",cats_Fi:"Npogotigiw",cats_G:"Kamalenninw",
  category:"Suguya",composition:"Tɔndenw suguyaw",listByCat:"📋 Lisi suguya la",listT:"Tɔndenw lisi suguya ni suguya",
@@ -347,6 +365,13 @@ en:{
  createFirst:"Create my first group",how:"How it works",
  steps:["Create the group and its rules (share value, interest).","Add the members.","At each meeting, enter the shares bought.","Record loans and repayments.","Share the report on WhatsApp."],
  deleted:"(deleted)",
+ objectif:"Group objective",objectifPh:"e.g. Finance small trade and shea processing",reseau:"VSLA network (optional)",reseauPh:"e.g. Benkadi network of Bougouni",
+ finesCfg:"Fines set by the by-laws (F)",fine_retard:"Lateness",fine_absence:"Absence",fine_remb:"Late repayment",fine_autre:"Other sanction",
+ finesT:"⚖️ Fines and sanctions",fineAdd:"Record fine",fineType:"Reason",fineAmount:"Amount (F)",fineNote:"Details",finePaid:"Paid",fineUnpaid:"Unpaid",markPaid:"Mark as paid",noFines:"No fines recorded.",fineSaved:"Fine recorded",delFineQ:"Delete this fine?",
+ absFine:"Absence fine ({a}) for members not ticked",finesPaid:"Fines collected",finesDue:"Fines due",objLbl:"🎯 Objective",resLbl:"🔗 Network",
+ tabAGR:"IGAs",agrT:"Income-generating activities (IGAs)",agrHint:"Record members' products and services. Tick “Publish” to offer them to other groups in the IGA Market.",agrAdd:"+ Add an IGA",agrActivity:"Activity",agrActivityPh:"e.g. Shea processing",agrProduct:"Product / service",agrProductPh:"e.g. Shea butter",agrUnit:"Unit",agrUnitPh:"e.g. kg, bag, litre",agrPrice:"Price per unit (F)",agrQty:"Quantity available",agrDesc:"Description",agrContact:"Contact phone",agrPublish:"Publish in the IGA Market",agrPublished:"Published",agrSaved:"IGA saved",noAGR:"No IGA recorded.",delAGRQ:"Delete this IGA?",agrConsent:"The member agrees that their product and phone number can be seen by other groups.",
+ market:"IGA Market",marketT:"🛒 IGA Market",marketHint:"Products and services offered by group members from all locations. Contact the seller directly.",marketSearch:"Search a product…",marketEmpty:"No offers yet.",marketFail:"Market unavailable. Check the internet connection.",call:"📞 Call",whatsapp:"WhatsApp",available:"Available: {q}",waMsg:"Hello, I saw your offer “{p}” in the IGA Market (Outils AVEC). Is it still available?",
+ groupBy:"Group by",byGroup:"Group",byNet:"Network",noNet:"(no network)",nbAGR:"IGAs",
  pays:"Country",
  cat_F:"Woman",cat_H:"Man",cat_Fi:"Girl",cat_G:"Boy",cats_F:"Women",cats_H:"Men",cats_Fi:"Girls",cats_G:"Boys",
  category:"Category",composition:"Composition",listByCat:"📋 List by category",listT:"Members list by category",
@@ -437,7 +462,8 @@ function buildPayload(gr){
   var s=stats(gr),dates={};gr.cotisations.forEach(function(c){dates[c.date]=1});var dl=Object.keys(dates).sort();
   var cc=catCounts(gr);gr.projet=(projet&&projet.code)||gr.projet||"";
   return {key:SYNC_KEY,action:"upsert",projet:gr.projet,from:{nom:profile.nom||"",tel:profile.tel||"",structure:profile.structure||""},
-    summary:{membres:active(gr).length,epargne:Math.round(s.ep),social:Math.round(s.so),encours:Math.round(s.enc),retards:s.late.length,caisse:Math.round(s.caisse),reunions:dl.length,derniere:dl.length?fdate(dl[dl.length-1]):"",femmes:cc.F,hommes:cc.H,filles:cc.Fi,garcons:cc.G},
+    summary:{membres:active(gr).length,epargne:Math.round(s.ep),social:Math.round(s.so),encours:Math.round(s.enc),retards:s.late.length,caisse:Math.round(s.caisse),reunions:dl.length,derniere:dl.length?fdate(dl[dl.length-1]):"",femmes:cc.F,hommes:cc.H,filles:cc.Fi,garcons:cc.G,amendesP:Math.round(s.amP),amendesNP:Math.round(s.amNP),nbAgr:(gr.agr||[]).length},
+    agr:(gr.agr||[]).map(function(a){return {membre:mName(gr,a.membreId),activite:a.activite,produit:a.produit,unite:a.unite,prix:a.prix,quantite:a.quantite,description:a.description,publier:!!a.publier,contact:a.publier?a.contact:""}}),
     membres:gr.membres.map(function(m){var ms=memberStats(gr,m);return {nom:m.nom,tel:m.tel||"",parts:m.parts||1,statut:m.sorti?t("memberOut"):"Actif",epargne:Math.round(ms.ep),doit:Math.round(ms.reste),categorie:t("cat_"+catOf(m))}}),
     group:gr};
 }
@@ -577,7 +603,8 @@ function $(id){return document.getElementById(id)}
 function toast(msg){document.querySelectorAll(".toast").forEach(function(x){x.remove()});var el=document.createElement("div");el.className="toast";el.textContent=msg;document.body.appendChild(el);setTimeout(function(){el.remove()},2200)}
 function g(){return groups[currentId]||null}
 function mName(gr,id){var m=gr.membres.find(function(x){return x.id===id});return m?m.nom:t("deleted")}
-function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";if(x.village==null)x.village=x.lieu||"";if(!x.pays)x.pays="Mali";x.lieu=x.village;x.membres.forEach(function(m){if(!m.parts)m.parts=1});x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";x.amendes=x.amendes||[];x.agr=x.agr||[];x.amendesCfg=x.amendesCfg||{};if(x.village==null)x.village=x.lieu||"";if(!x.pays)x.pays="Mali";x.lieu=x.village;x.membres.forEach(function(m){if(!m.parts)m.parts=1});x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+function knownNets(){var o={};Object.keys(groups).forEach(function(k){if(groups[k].reseau)o[groups[k].reseau]=1});Object.keys(globalDb).forEach(function(k){var g=globalDb[k].g;if(g&&g.reseau)o[g.reseau]=1});return Object.keys(o).sort()}
 function place(gr){return [gr.village,gr.commune,gr.cercle,gr.region,gr.pays].filter(function(x){return x}).join(", ")}
 function active(gr){return gr.membres.filter(function(m){return !m.sorti})}
 function hasOps(gr,id){return gr.cotisations.some(function(c){return c.membreId===id})||gr.prets.some(function(p){return p.membreId===id})}
@@ -636,7 +663,8 @@ function stats(gr){
   var pr=sum(gr.prets,function(p){return p.montant}),rb=sum(gr.remboursements,function(r){return r.montant});
   var enc=0,late=[],interets=0;
   gr.prets.forEach(function(p){var i=loanInfo(gr,p);enc+=i.reste;interets+=i.du-p.montant;if(i.st==="late")late.push({p:p,i:i})});
-  return {ep:ep,so:so,caisse:ep+so+rb-pr,enc:enc,late:late,interets:interets};
+  var am=gr.amendes||[],amP=sum(am.filter(function(a){return a.paye}),function(a){return a.montant}),amNP=sum(am.filter(function(a){return !a.paye}),function(a){return a.montant});
+  return {ep:ep,so:so,caisse:ep+so+rb-pr+amP,enc:enc,late:late,interets:interets,amP:amP,amNP:amNP};
 }
 function memberStats(gr,m){
   var ep=sum(gr.cotisations.filter(function(c){return c.membreId===m.id}),function(c){return c.epargne}),reste=0;
@@ -667,12 +695,15 @@ function groupForm(gr){
     '<div class="grid2"><div>'+inp("fReg","region",d.region,' list="regList"')+'</div><div>'+inp("fCer","cercle",d.cercle)+'</div></div>'+
     '<datalist id="regList">'+REGIONS.map(function(r){return '<option value="'+esc(r)+'">'}).join("")+'</datalist>'+
     '<div class="grid2"><div>'+inp("fCom","commune",d.commune)+'</div><div>'+inp("fVil","village",d.village)+'</div></div>'+
+    '<label>'+esc(t("objectif"))+'</label><textarea id="fObj" style="min-height:60px" placeholder="'+esc(t("objectifPh"))+'">'+esc(d.objectif||"")+'</textarea>'+
+    inp("fRes","reseau",d.reseau,' list="resList" placeholder="'+esc(t("reseauPh"))+'"')+'<datalist id="resList">'+knownNets().map(function(r){return '<option value="'+esc(r)+'">'}).join("")+'</datalist>'+
     inp("fAni","animateur",d.animateur)+
     '<label>'+esc(t("gps"))+'</label><div class="grid2"><div><input id="fLat" inputmode="decimal" placeholder="'+esc(t("lat"))+'" value="'+esc(d.lat||"")+'"></div><div><input id="fLng" inputmode="decimal" placeholder="'+esc(t("lng"))+'" value="'+esc(d.lng||"")+'"></div></div>'+
     '<button class="btn sec full" id="fGps" type="button" style="margin-top:6px">'+esc(t("gpsBtn"))+'</button><p class="muted" id="fGpsMsg" style="margin:4px 0 0"></p>'+
     '<div class="grid2"><div><label>'+esc(t("gPart"))+'</label><input id="fPart" inputmode="numeric" value="'+esc(d.part)+'"></div>'+
     '<div><label>'+esc(t("gSoc"))+'</label><input id="fSoc" inputmode="numeric" value="'+esc(d.social||0)+'"></div></div>'+
     '<label>'+esc(t("gRate"))+'</label><input id="fTaux" inputmode="decimal" value="'+esc(d.taux)+'">'+
+    '<label>'+esc(t("finesCfg"))+'</label><div class="grid3"><div><span class="sub">'+esc(t("fine_retard"))+'</span><input id="fAmR" inputmode="numeric" value="'+esc((d.amendesCfg||{}).retard||"")+'"></div><div><span class="sub">'+esc(t("fine_absence"))+'</span><input id="fAmA" inputmode="numeric" value="'+esc((d.amendesCfg||{}).absence||"")+'"></div><div><span class="sub">'+esc(t("fine_remb"))+'</span><input id="fAmP" inputmode="numeric" value="'+esc((d.amendesCfg||{}).remb||"")+'"></div></div>'+
     '<div class="actions">'+(isNew?'':'<button class="btn d" id="fDel">'+esc(t("del"))+'</button>')+'<button class="btn sec" id="fCan">'+esc(t("cancel"))+'</button><button class="btn" id="fOk">'+esc(t("save"))+'</button></div>',
   function(m,close){
     $("fCan").onclick=close;
@@ -686,6 +717,7 @@ function groupForm(gr){
       var x=isNew?normalize({id:uid(),cree:today()}):gr;
       x.nom=nom;x.pays=$("fPays").value.trim()||"Mali";x.region=$("fReg").value.trim();x.cercle=$("fCer").value.trim();x.commune=$("fCom").value.trim();x.village=$("fVil").value.trim();x.lieu=x.village;
       x.animateur=$("fAni").value.trim();var la=parseFloat(String($("fLat").value).replace(",",".")),lo=parseFloat(String($("fLng").value).replace(",","."));if(isFinite(la)&&isFinite(lo)&&Math.abs(la)<=90&&Math.abs(lo)<=180){x.lat=+la.toFixed(6);x.lng=+lo.toFixed(6)}else{delete x.lat;delete x.lng}if(isNew&&projet)x.projet=projet.code;x.part=num($("fPart").value);x.social=num($("fSoc").value);x.taux=num($("fTaux").value);
+      x.objectif=$("fObj").value.trim();x.reseau=$("fRes").value.trim();x.amendesCfg={retard:num($("fAmR").value),absence:num($("fAmA").value),remb:num($("fAmP").value)};
       groups[x.id]=x;currentId=x.id;persist(x);close();render();toast(t("gSaved"));
     };
   });
@@ -699,7 +731,9 @@ function vHome(gr){
     '<div class="kpi"><div class="l">'+esc(t("savings"))+'</div><div class="v">'+f(s.ep)+'</div></div>'+
     '<div class="kpi"><div class="l">'+esc(t("social"))+'</div><div class="v">'+f(s.so)+'</div></div>'+
     '<div class="kpi"><div class="l">'+esc(t("toRecover"))+'</div><div class="v">'+f(s.enc)+'</div></div>'+
-    '<div class="kpi"><div class="l">'+esc(t("interest"))+'</div><div class="v">'+f(s.interets)+'</div></div></div>';
+    '<div class="kpi"><div class="l">'+esc(t("interest"))+'</div><div class="v">'+f(s.interets)+'</div></div>'+
+    ((s.amP||s.amNP)?'<div class="kpi"><div class="l">'+esc(t("finesPaid"))+'</div><div class="v">'+f(s.amP)+'</div></div><div class="kpi"><div class="l">'+esc(t("finesDue"))+'</div><div class="v">'+f(s.amNP)+'</div></div>':'')+'</div>';
+  if(gr.objectif||gr.reseau)h+='<div class="card" style="margin-top:8px">'+(gr.objectif?'<b>'+esc(t("objLbl"))+'</b><br>'+esc(gr.objectif):'')+(gr.reseau?(gr.objectif?'<br>':'')+'<b>'+esc(t("resLbl"))+'</b> : '+esc(gr.reseau):'')+'</div>';
   h+='<div class="card muted" style="margin-top:8px">👥 <b>'+esc(t("composition"))+'</b> : '+esc(catLine(gr))+'</div>';
   h+='<h2>'+esc(t("membersSit"))+'</h2>';
   if(!gr.membres.length)h+='<div class="card empty">'+esc(t("noMembers"))+'</div>';
@@ -777,7 +811,9 @@ function vMeeting(gr){
      '<button class="btn sec sm" id="dAll" type="button">'+esc(t("allPresent"))+'</button>'+
      '<table class="meet"><tr><th>'+esc(t("colPaid"))+'</th><th>'+esc(t("colMember"))+'</th><th class="n">'+esc(t("colParts"))+'</th><th class="n">'+esc(t("colAmount"))+'</th></tr>';
   act.forEach(function(m){var pa=m.parts||1;h+='<tr><td style="width:44px"><input type="checkbox" data-paid="'+m.id+'" checked style="width:22px;height:22px"></td><td>'+esc(m.nom)+'</td><td class="n">'+pa+'</td><td class="n">'+f(pa*gr.part)+'</td></tr>'});
-  h+='</table><p id="dTot" class="muted"></p><button class="btn full" id="dSave">'+esc(t("saveMeet"))+'</button></div>';
+  var cfg=gr.amendesCfg||{};
+  h+='</table><p id="dTot" class="muted"></p>'+(cfg.absence?'<label class="chk"><input type="checkbox" id="dAbsFine">'+esc(t("absFine",{a:f(cfg.absence)}))+'</label>':'')+'<button class="btn full" id="dSave">'+esc(t("saveMeet"))+'</button></div>';
+  h+=finesHtml(gr);
   var byDate={};gr.cotisations.forEach(function(c){(byDate[c.date]=byDate[c.date]||[]).push(c)});
   var dates=Object.keys(byDate).sort().reverse();
   h+='<h2>'+esc(t("past"))+'</h2>';
@@ -793,13 +829,39 @@ function vMeeting(gr){
     var d=$("dDate").value||today();
     function go(){
       var n=0;
-      act.forEach(function(m){var c=document.querySelector('[data-paid="'+m.id+'"]');if(c&&c.checked){var pa=m.parts||1;gr.cotisations.push({id:uid(),date:d,membreId:m.id,parts:pa,epargne:pa*gr.part,social:gr.social||0});n++}});
+      var absF=$("dAbsFine")&&$("dAbsFine").checked;
+      act.forEach(function(m){var c=document.querySelector('[data-paid="'+m.id+'"]');if(c&&c.checked){var pa=m.parts||1;gr.cotisations.push({id:uid(),date:d,membreId:m.id,parts:pa,epargne:pa*gr.part,social:gr.social||0});n++}else if(absF){gr.amendes.push({id:uid(),date:d,membreId:m.id,type:"absence",montant:cfg.absence,motif:"",paye:false})}});
       if(!n){toast(t("nothing"));return}
       persist(gr);render();toast(t("meetSaved",{d:fdate(d)}));
     }
     if(byDate[d])ask(t("sameDayQ",{d:fdate(d)}),t("add"),go);else go();
   };
   document.querySelectorAll("[data-deld]").forEach(function(b){b.onclick=function(){var d=b.getAttribute("data-deld");ask(t("delMeetQ",{d:fdate(d)}),t("del"),function(){gr.cotisations=gr.cotisations.filter(function(c){return c.date!==d});persist(gr);render()})}});
+  bindFines(gr);
+}
+var FINE_TYPES=["retard","absence","remb","autre"];
+function finesHtml(gr){
+  var cfg=gr.amendesCfg||{},s=stats(gr),act=active(gr);
+  var h='<h2>'+esc(t("finesT"))+'</h2><div class="card">'+
+    '<div class="grid2"><div><label>'+esc(t("colMember"))+'</label><select id="amM">'+act.map(function(m){return '<option value="'+m.id+'">'+esc(m.nom)+'</option>'}).join("")+'</select></div>'+
+    '<div><label>'+esc(t("fineType"))+'</label><select id="amT">'+FINE_TYPES.map(function(k){return '<option value="'+k+'">'+esc(t("fine_"+k))+'</option>'}).join("")+'</select></div></div>'+
+    '<div class="grid2"><div><label>'+esc(t("fineAmount"))+'</label><input id="amA" inputmode="numeric" value="'+esc(cfg.retard||"")+'"></div><div><label>'+esc(t("date"))+'</label><input type="date" id="amD" value="'+today()+'"></div></div>'+
+    '<label>'+esc(t("fineNote"))+'</label><input id="amN"><label class="chk"><input type="checkbox" id="amP" checked>'+esc(t("finePaid"))+'</label>'+
+    '<button class="btn o full" id="amAdd">'+esc(t("fineAdd"))+'</button>'+
+    '<p class="muted" style="margin-top:8px">'+esc(t("finesPaid"))+' : <b>'+f(s.amP)+'</b> · '+esc(t("finesDue"))+' : <b>'+f(s.amNP)+'</b></p></div>';
+  var list=(gr.amendes||[]).slice().sort(function(a,b){return (a.paye===b.paye)?(a.date<b.date?1:-1):(a.paye?1:-1)});
+  if(!list.length)h+='<div class="card empty">'+esc(t("noFines"))+'</div>';
+  else{h+='<div class="card"><table>';list.forEach(function(a){h+='<tr><td>'+esc(mName(gr,a.membreId))+'<span class="sub">'+fdate(a.date)+' · '+esc(t("fine_"+a.type))+(a.motif?' · '+esc(a.motif):'')+'</span></td><td class="n">'+f(a.montant)+'<span class="sub">'+(a.paye?'<span class="tag ok">'+esc(t("finePaid"))+'</span>':'<button class="btn sm" data-ampay="'+a.id+'">'+esc(t("markPaid"))+'</button>')+'</span></td><td class="n"><button class="x" data-amdel="'+a.id+'">×</button></td></tr>'});h+='</table></div>'}
+  return h;
+}
+function bindFines(gr){
+  var cfg=gr.amendesCfg||{};
+  if(!$("amAdd"))return;
+  $("amT").onchange=function(){var v=cfg[this.value];$("amA").value=v||""};
+  $("amAdd").onclick=function(){var mt=num($("amA").value);if(mt<=0){$("amA").focus();return}var paid=$("amP").checked,d=$("amD").value||today();
+    gr.amendes.push({id:uid(),date:d,membreId:$("amM").value,type:$("amT").value,montant:mt,motif:$("amN").value.trim(),paye:paid,datePaye:paid?d:""});persist(gr);render();toast(t("fineSaved"))};
+  document.querySelectorAll("[data-ampay]").forEach(function(b){b.onclick=function(){var a=gr.amendes.find(function(x){return x.id===b.getAttribute("data-ampay")});a.paye=true;a.datePaye=today();persist(gr);render()}});
+  document.querySelectorAll("[data-amdel]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-amdel");ask(t("delFineQ"),t("del"),function(){gr.amendes=gr.amendes.filter(function(x){return x.id!==id});persist(gr);render()})}});
 }
 function vLoans(gr){
   var s=stats(gr),h='<h2>'+esc(t("loansT"))+'</h2>',act=active(gr);
@@ -836,14 +898,19 @@ function vLoans(gr){
 }
 var docTab="rules";
 function statsUntil(gr,d){
-  var c={membres:gr.membres,cotisations:gr.cotisations.filter(function(x){return x.date<=d}),prets:gr.prets.filter(function(x){return x.date<=d}),remboursements:gr.remboursements.filter(function(x){return x.date<=d})};
+  var c={membres:gr.membres,cotisations:gr.cotisations.filter(function(x){return x.date<=d}),prets:gr.prets.filter(function(x){return x.date<=d}),remboursements:gr.remboursements.filter(function(x){return x.date<=d}),amendes:(gr.amendes||[]).filter(function(x){return x.paye&&(x.datePaye||x.date)<=d})};
   return stats(c);
 }
 function rulesFromTemplate(gr){
-  return t("rulesTpl",{nom:gr.nom,lieu:place(gr)||"______",part:f(gr.part),social:f(gr.social||0),taux:gr.taux,date:fdate(today())});
+  var txt=t("rulesTpl",{nom:gr.nom,lieu:place(gr)||"______",part:f(gr.part),social:f(gr.social||0),taux:gr.taux,date:fdate(today())});
+  var cfg=gr.amendesCfg||{},vals=[cfg.retard,cfg.absence,cfg.remb],i=0;
+  txt=txt.replace(/______ F/g,function(m){var v=vals[i++];return v?f(v):m});
+  if(gr.objectif)txt=txt.replace(/\n\n(Article 3|Sariya 3)/,"\n"+t("objLbl").replace("🎯 ","")+" : "+gr.objectif+"\n\n$1");
+  return txt;
 }
 function vDocs(gr){
-  var h='<h2>'+esc(t("docsT"))+'</h2><div class="seg"><button data-tab="rules" class="'+(docTab==="rules"?"on":"")+'">📜 '+esc(t("tabRules"))+'</button><button data-tab="pv" class="'+(docTab==="pv"?"on":"")+'">📝 '+esc(t("tabPV"))+'</button></div>';
+  var h='<h2>'+esc(t("docsT"))+'</h2><div class="seg"><button data-tab="rules" class="'+(docTab==="rules"?"on":"")+'">📜 '+esc(t("tabRules"))+'</button><button data-tab="pv" class="'+(docTab==="pv"?"on":"")+'">📝 '+esc(t("tabPV"))+'</button><button data-tab="agr" class="'+(docTab==="agr"?"on":"")+'">🧺 '+esc(t("tabAGR"))+'</button></div>';
+  if(docTab==="agr"){$("view").innerHTML=h+agrHtml(gr);document.querySelectorAll("[data-tab]").forEach(function(b){b.onclick=function(){docTab=b.getAttribute("data-tab");render()}});bindAgr(gr);return}
   if(docTab==="rules"){
     if(!gr.reglement)h+='<div class="card empty">'+esc(t("rulesEmpty"))+'<button class="btn full" id="rGen">'+esc(t("genRules"))+'</button></div>';
     else h+='<div class="card"><p class="muted">'+esc(t("rulesHint"))+'</p><textarea id="rTxt" class="big">'+esc(gr.reglement)+'</textarea><button class="btn full" id="rSave">'+esc(t("save"))+'</button><div class="actions"><button class="btn sec" id="rCopy">'+esc(t("copyText"))+'</button><button class="btn sec" id="rRegen">'+esc(t("genRules"))+'</button></div></div>';
@@ -870,6 +937,64 @@ function vDocs(gr){
     document.querySelectorAll("[data-pvv]").forEach(function(b){b.onclick=function(){pvView(gr,gr.pvs.find(function(p){return p.id===b.getAttribute("data-pvv")}))}});
     document.querySelectorAll("[data-pvd]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-pvd");ask(t("delPVQ"),t("del"),function(){gr.pvs=gr.pvs.filter(function(p){return p.id!==id});persist(gr);render()})}});
   }
+}
+function agrHtml(gr){
+  var h='<p class="muted">'+esc(t("agrHint"))+'</p><button class="btn full" id="agNew" style="margin:0 0 12px">'+esc(t("agrAdd"))+'</button>';
+  if(!gr.agr.length)return h+'<div class="card empty">'+esc(t("noAGR"))+'</div>';
+  gr.agr.forEach(function(a){h+='<div class="offer"><b>'+esc(a.produit)+'</b>'+(a.publier?' <span class="tag ok">'+esc(t("agrPublished"))+'</span>':'')+'<span class="sub">'+esc(a.activite)+' · '+esc(mName(gr,a.membreId))+'</span>'+
+    (a.prix?'<div class="pr">'+f(a.prix)+(a.unite?' / '+esc(a.unite):'')+'</div>':'')+(a.quantite?'<span class="sub">'+esc(t("available",{q:a.quantite+(a.unite?" "+a.unite:"")}))+'</span>':'')+(a.description?'<p class="muted" style="margin:4px 0">'+esc(a.description)+'</p>':'')+
+    '<div class="actions"><button class="btn sec sm" data-age="'+a.id+'">✏️ '+esc(t("edit"))+'</button><button class="btn d sm" data-agd="'+a.id+'">🗑</button></div></div>'});
+  return h;
+}
+function bindAgr(gr){
+  $("agNew").onclick=function(){agrForm(gr,null)};
+  document.querySelectorAll("[data-age]").forEach(function(b){b.onclick=function(){agrForm(gr,gr.agr.find(function(x){return x.id===b.getAttribute("data-age")}))}});
+  document.querySelectorAll("[data-agd]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-agd");ask(t("delAGRQ"),t("del"),function(){gr.agr=gr.agr.filter(function(x){return x.id!==id});persist(gr);render()})}});
+}
+function agrForm(gr,a){
+  var isNew=!a,act=active(gr);if(!act.length){toast(t("addFirst"));return}
+  a=a||{membreId:act[0].id,activite:"",produit:"",unite:"",prix:"",quantite:"",description:"",contact:"",publier:false};
+  var mm=gr.membres.find(function(m){return m.id===a.membreId});
+  modal('<h3>'+esc(t("agrT"))+'</h3><label>'+esc(t("colMember"))+'</label><select id="gaM">'+gr.membres.filter(function(m){return !m.sorti||m.id===a.membreId}).map(function(m){return '<option value="'+m.id+'"'+(m.id===a.membreId?" selected":"")+'>'+esc(m.nom)+'</option>'}).join("")+'</select>'+
+    '<label>'+esc(t("agrActivity"))+'</label><input id="gaA" value="'+esc(a.activite)+'" placeholder="'+esc(t("agrActivityPh"))+'">'+
+    '<label>'+esc(t("agrProduct"))+'</label><input id="gaP" value="'+esc(a.produit)+'" placeholder="'+esc(t("agrProductPh"))+'">'+
+    '<div class="grid3"><div><label>'+esc(t("agrPrice"))+'</label><input id="gaPr" inputmode="numeric" value="'+esc(a.prix)+'"></div><div><label>'+esc(t("agrUnit"))+'</label><input id="gaU" value="'+esc(a.unite)+'" placeholder="'+esc(t("agrUnitPh"))+'"></div><div><label>'+esc(t("agrQty"))+'</label><input id="gaQ" value="'+esc(a.quantite)+'"></div></div>'+
+    '<label>'+esc(t("agrDesc"))+'</label><textarea id="gaD" style="min-height:60px">'+esc(a.description)+'</textarea>'+
+    '<label>'+esc(t("agrContact"))+'</label><input id="gaC" inputmode="tel" value="'+esc(a.contact||(mm&&mm.tel)||"")+'">'+
+    '<label class="chk"><input type="checkbox" id="gaPub"'+(a.publier?" checked":"")+'>'+esc(t("agrPublish"))+'</label><p class="muted">'+esc(t("agrConsent"))+'</p>'+
+    '<div class="actions"><button class="btn sec" id="gaNo">'+esc(t("cancel"))+'</button><button class="btn" id="gaOk">'+esc(t("save"))+'</button></div>',function(md,close){
+    $("gaNo").onclick=close;
+    $("gaM").onchange=function(){var m=gr.membres.find(function(x){return x.id===$("gaM").value});if(m&&m.tel&&!$("gaC").value)$("gaC").value=m.tel};
+    $("gaOk").onclick=function(){var p=$("gaP").value.trim();if(!p){$("gaP").focus();return}
+      var x=isNew?{id:uid()}:a;x.membreId=$("gaM").value;x.activite=$("gaA").value.trim();x.produit=p;x.prix=num($("gaPr").value)||"";x.unite=$("gaU").value.trim();x.quantite=$("gaQ").value.trim();x.description=$("gaD").value.trim();x.contact=$("gaC").value.trim();x.publier=$("gaPub").checked;
+      if(isNew)gr.agr.push(x);persist(gr);close();docTab="agr";render();toast(t("agrSaved"))};
+  });
+}
+function waNum(tel){var d=String(tel||"").replace(/\D/g,"");if(d.length===8)d="223"+d;return d}
+var marketData=null,marketQ="",marketReg="";
+function loadMarket(){
+  var u=serverUrl();if(!u||!projet){marketData={err:1};render();return}
+  fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&action=market&code="+encodeURIComponent(projet.code)+"&t="+Date.now()).then(function(r){return r.json()}).then(function(d){marketData=(d&&d.ok)?{offers:d.offers||[]}:{err:1};if(view==="market")render()}).catch(function(){marketData={err:1};if(view==="market")render()});
+}
+function vMarket(){
+  var h='<h2>'+esc(t("marketT"))+'</h2><p class="muted">'+esc(t("marketHint"))+'</p>';
+  if(!marketData){$("view").innerHTML=h+'<div class="card empty">…</div>';loadMarket();return}
+  if(marketData.err){$("view").innerHTML=h+'<div class="card empty">'+esc(t("marketFail"))+'<button class="btn full" id="mkR">'+esc(t("retry"))+'</button></div>';$("mkR").onclick=function(){marketData=null;render()};return}
+  var regs={};marketData.offers.forEach(function(o){if(o.region)regs[o.region]=1});
+  h+='<div class="grid2" style="margin-bottom:10px"><input id="mkQ" placeholder="'+esc(t("marketSearch"))+'" value="'+esc(marketQ)+'"><select id="mkReg"><option value="">'+esc(t("region"))+' : '+esc(t("filterAll"))+'</option>'+Object.keys(regs).sort().map(function(r){return '<option'+(marketReg===r?' selected':'')+'>'+esc(r)+'</option>'}).join("")+'</select></div><div id="mkList"></div>'+
+    '<button class="btn sec full" id="mkRef">'+esc(t("refreshServer"))+'</button>';
+  $("view").innerHTML=h;
+  function draw(){
+    var q=marketQ.toLowerCase(),list=marketData.offers.filter(function(o){return (!marketReg||o.region===marketReg)&&(!q||(o.produit+" "+o.activite+" "+o.description+" "+o.village).toLowerCase().indexOf(q)>=0)});
+    $("mkList").innerHTML=list.length?list.map(function(o){var wa=waNum(o.contact);return '<div class="offer"><b>'+esc(o.produit)+'</b><span class="sub">'+esc(o.activite)+' · '+esc(o.membre)+' – '+esc(o.groupement)+'</span>'+
+      (o.prix?'<div class="pr">'+f(o.prix)+(o.unite?' / '+esc(o.unite):'')+'</div>':'')+(o.quantite?'<span class="sub">'+esc(t("available",{q:o.quantite+(o.unite?" "+o.unite:"")}))+'</span>':'')+(o.description?'<p class="muted" style="margin:4px 0">'+esc(o.description)+'</p>':'')+
+      '<span class="sub">📍 '+esc([o.village,o.commune,o.cercle,o.region].filter(function(x){return x}).join(", "))+'</span>'+
+      (o.contact?'<div class="actions"><a class="btn sm" href="tel:'+esc(o.contact)+'">'+esc(t("call"))+' '+esc(o.contact)+'</a>'+(wa?'<a class="btn wa sm" target="_blank" rel="noopener" href="https://wa.me/'+wa+'?text='+encodeURIComponent(t("waMsg",{p:o.produit}))+'">'+esc(t("whatsapp"))+'</a>':'')+'</div>':'')+'</div>'}).join(""):'<div class="card empty">'+esc(t("marketEmpty"))+'</div>';
+  }
+  draw();
+  $("mkQ").oninput=function(){marketQ=this.value;draw()};
+  $("mkReg").onchange=function(){marketReg=this.value;draw()};
+  $("mkRef").onclick=function(){marketData=null;render()};
 }
 function pvForm(gr,pv){
   var isNew=!pv;pv=pv||{date:today(),lieu:gr.lieu||"",heure:"",presents:active(gr).map(function(m){return m.id}),odj:"",decisions:"",prochaine:"",secretaire:""};
@@ -913,6 +1038,7 @@ function pvText(gr,pv){
   L.push("- "+t("pvSocialDay")+" : "+f(sum(day(gr.cotisations),function(c){return c.social})));
   L.push("- "+t("pvLoansDay")+" : "+f(sum(day(gr.prets),function(p){return p.montant})));
   L.push("- "+t("pvRepayDay")+" : "+f(sum(day(gr.remboursements),function(r){return r.montant})));
+  var amD=sum((gr.amendes||[]).filter(function(a){return a.paye&&(a.datePaye||a.date)===d}),function(a){return a.montant});if(amD)L.push("- "+t("finesPaid")+" : "+f(amD));
   L.push("- "+t("pvCashEnd")+" : "+f(s.caisse));
   if(pv.prochaine){L.push("");L.push(t("pvNext")+" : "+fdate(pv.prochaine))}
   if(pv.secretaire){L.push(t("pvSecretary")+" : "+pv.secretaire)}
@@ -927,12 +1053,12 @@ function pvView(gr,pv){
 }
 function reportText(gr){
   var s=stats(gr),L=[];
-  L.push("*"+gr.nom+"*");if(place(gr))L.push("📍 "+place(gr));if(mapUrl(gr))L.push("🗺 "+mapUrl(gr));if(gr.animateur)L.push("👤 "+gr.animateur);L.push("👥 "+catLine(gr));
+  L.push("*"+gr.nom+"*");if(place(gr))L.push("📍 "+place(gr));if(mapUrl(gr))L.push("🗺 "+mapUrl(gr));if(gr.animateur)L.push("👤 "+gr.animateur);L.push("👥 "+catLine(gr));if(gr.reseau)L.push("🔗 "+gr.reseau);if(gr.objectif)L.push("🎯 "+gr.objectif);
   L.push(t("asOf",{d:fdate(today())}));L.push("");
   L.push("💰 "+t("cash")+" : "+f(s.caisse));
   L.push(t("savings")+" : "+f(s.ep));
   L.push(t("social")+" : "+f(s.so));
-  L.push(t("toRecover")+" : "+f(s.enc));
+  L.push(t("toRecover")+" : "+f(s.enc));if(s.amP||s.amNP)L.push(t("finesPaid")+" : "+f(s.amP)+" · "+t("finesDue")+" : "+f(s.amNP));
   if(s.late.length){L.push("");L.push(t("lateL"));s.late.forEach(function(x){L.push("- "+mName(gr,x.p.membreId)+" : "+f(x.i.reste)+" ("+t("dueOn",{d:fdate(x.i.ech)})+")")})}
   if(gr.membres.length){L.push("");L.push(t("savByMember"));gr.membres.forEach(function(m){var ms=memberStats(gr,m);L.push("- "+m.nom+" : "+f(ms.ep)+(ms.reste>0?" | "+t("owes",{a:f(ms.reste)}):""))})}
   L.push("");L.push(t("signLine"));
@@ -978,6 +1104,7 @@ function appUrl(){return /^https?:$/.test(location.protocol)&&/github\.io$/.test
 function openMenu(){
   modal('<h3>'+esc(t("menu"))+'</h3>'+
     '<button class="menuitem" data-go="share">📲 '+esc(t("shareApp"))+'</button>'+
+    '<button class="menuitem" data-go="market">'+esc(t("marketT"))+'</button>'+
     '<button class="menuitem" data-go="global">🌍 '+esc(t("global"))+'</button>'+
     '<button class="menuitem" data-go="profile">👤 '+esc(t("profile"))+'</button>'+
     '<button class="menuitem" data-go="projet">'+esc(t("changeProj"))+(projet&&projet.nom?' <span class="sub">'+esc(projet.nom)+'</span>':'')+'</button>'+
@@ -1005,7 +1132,7 @@ function vShare(){
   $("cpL").onclick=function(){copyText(u,t("linkCopied"))};
   $("shL").onclick=function(){try{if(navigator.share){navigator.share({title:t("appTitle"),text:t("appTitle"),url:u}).catch(function(){});return}}catch(e){}copyText(u,t("linkCopied"))};
 }
-var gFilter={projet:"",pays:"",region:"",cercle:"",commune:""};
+var gFilter={projet:"",pays:"",region:"",cercle:"",commune:""},gBy="groupe";
 function allGlobal(){
   var rows=[];
   Object.keys(groups).forEach(function(k){if(globalRole==="projet"&&Object.keys(globalProjets).indexOf(String(groups[k].projet||(projet&&projet.code)||"").toUpperCase())<0)return;rows.push({g:groups[k],src:t("mine"),recu:"",mine:true})});
@@ -1031,8 +1158,8 @@ function vGlobal(){
   var projList=Object.keys(globalProjets);
   if(gFilter.projet&&projList.indexOf(gFilter.projet)<0)gFilter.projet="";
   var vis=rows.filter(function(r){return (!gFilter.projet||String(r.g.projet||"").toUpperCase()===gFilter.projet)&&(!gFilter.pays||r.g.pays===gFilter.pays)&&(!gFilter.region||r.g.region===gFilter.region)&&(!gFilter.cercle||r.g.cercle===gFilter.cercle)&&(!gFilter.commune||r.g.commune===gFilter.commune)});
-  var T={m:0,ep:0,so:0,enc:0,late:0,caisse:0,F:0,H:0,Fi:0,G:0};
-  vis.forEach(function(r){var s=stats(r.g);r.s=s;r.m=active(r.g).length;r.c=catCounts(r.g);CATS.forEach(function(k){T[k]+=r.c[k]});T.m+=r.m;T.ep+=s.ep;T.so+=s.so;T.enc+=s.enc;T.late+=s.late.length;T.caisse+=s.caisse});
+  var T={m:0,ep:0,so:0,enc:0,late:0,caisse:0,F:0,H:0,Fi:0,G:0,amP:0,agr:0};
+  vis.forEach(function(r){var s=stats(r.g);r.s=s;r.m=active(r.g).length;r.c=catCounts(r.g);CATS.forEach(function(k){T[k]+=r.c[k]});T.m+=r.m;T.amP+=s.amP;T.agr+=(r.g.agr||[]).length;T.ep+=s.ep;T.so+=s.so;T.enc+=s.enc;T.late+=s.late.length;T.caisse+=s.caisse});
   var h='<h2>🌍 '+esc(t("globalT"))+'</h2><div class="card"><p class="muted">'+esc(t("globalHint2"))+'</p>'+
     '<div class="actions" style="margin-top:6px"><button class="btn o" id="gPull">'+esc(t("refreshServer"))+'</button><button class="btn sec" id="gLock">'+esc(t("lockBtn"))+'</button></div></div>'+
     (globalRole==="admin"&&projList.length>1?'<select id="fP" style="margin-bottom:6px"><option value="">'+esc(t("allProjects"))+'</option>'+projList.map(function(c){return '<option value="'+esc(c)+'"'+(gFilter.projet===c?' selected':'')+'>'+esc(globalProjets[c])+' ('+esc(c)+')</option>'}).join("")+'</select>':(projList.length===1?'<p class="muted">📁 '+esc(globalProjets[projList[0]])+'</p>':''))+
@@ -1045,8 +1172,15 @@ function vGlobal(){
     '<div class="kpi"><div class="l">'+esc(t("social"))+'</div><div class="v">'+f(T.so)+'</div></div>'+
     '<div class="kpi"><div class="l">'+esc(t("toRecover"))+'</div><div class="v">'+f(T.enc)+'</div></div>'+
     '<div class="kpi"><div class="l">'+esc(t("lateCount"))+'</div><div class="v">'+T.late+'</div></div></div>'+
-    '<div class="card muted" style="margin-top:8px">👥 <b>'+esc(t("composition"))+'</b> : '+CATS.map(function(k){return esc(t("cats_"+k))+' : '+T[k]}).join(" · ")+'</div>';
+    '<div class="card muted" style="margin-top:8px">👥 <b>'+esc(t("composition"))+'</b> : '+CATS.map(function(k){return esc(t("cats_"+k))+' : '+T[k]}).join(" · ")+'<br>⚖️ '+esc(t("finesPaid"))+' : '+f(T.amP)+' · 🧺 '+esc(t("nbAGR"))+' : '+T.agr+'</div>'+
+    '<label>'+esc(t("groupBy"))+'</label><select id="gBy">'+[["groupe",t("byGroup")],["village",t("village")],["commune",t("commune")],["cercle",t("cercle")],["region",t("region")],["reseau",t("byNet")]].map(function(o){return '<option value="'+o[0]+'"'+(gBy===o[0]?' selected':'')+'>'+esc(o[1])+'</option>'}).join("")+'</select>';
   if(!vis.length)h+='<div class="card empty">'+esc(t("globalEmpty"))+'</div>';
+  else if(gBy!=="groupe"){
+    var agg={};vis.forEach(function(r){var k=r.g[gBy]||(gBy==="reseau"?t("noNet"):"—");var a=agg[k]=agg[k]||{k:k,n:0,m:0,F:0,H:0,Fi:0,G:0,ep:0,enc:0,amP:0,late:0};a.n++;a.m+=r.m;CATS.forEach(function(c){a[c]+=r.c[c]});a.ep+=r.s.ep;a.enc+=r.s.enc;a.amP+=r.s.amP;a.late+=r.s.late.length});
+    window.__agg=Object.keys(agg).sort().map(function(k){return agg[k]});
+    h+='<div class="card" style="overflow-x:auto;margin-top:8px"><table class="small"><tr><th>'+esc(gBy==="reseau"?t("byNet"):t(gBy))+'</th><th class="n">'+esc(t("nbGroups"))+'</th><th class="n">'+esc(t("nbMembers"))+'</th><th class="n">F/H/Fi/G</th><th class="n">'+esc(t("savings"))+'</th><th class="n">'+esc(t("toRecover"))+'</th></tr>'+
+      window.__agg.map(function(a){return '<tr><td><b>'+esc(a.k)+'</b></td><td class="n">'+a.n+'</td><td class="n">'+a.m+'</td><td class="n">'+a.F+'/'+a.H+'/'+a.Fi+'/'+a.G+'</td><td class="n">'+f(a.ep)+'</td><td class="n">'+f(a.enc)+(a.late?' ⚠':'')+'</td></tr>'}).join("")+'</table><button class="btn sec full" id="gCsv">'+esc(t("exportCsv"))+'</button></div>';
+  }
   else{
     h+='<div class="card" style="overflow-x:auto"><table class="small"><tr><th>'+esc(t("colGroup"))+'</th><th>'+esc(t("colAnim"))+'</th><th class="n">'+esc(t("nbMembers"))+'</th><th class="n">'+esc(t("savings"))+'</th><th class="n">'+esc(t("toRecover"))+'</th><th></th></tr>';
     vis.forEach(function(r){h+='<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(place(r.g))+(mapUrl(r.g)?' · <a href="'+mapUrl(r.g)+'" target="_blank" rel="noopener">🗺</a>':'')+(globalRole==="admin"&&r.g.projet?' · 📁 '+esc(r.g.projet):'')+'</span></td><td>'+esc(r.src)+(r.recu?'<span class="sub">'+esc(t("updated"))+' '+fdate(r.recu)+'</span>':'')+'</td><td class="n">'+r.m+'</td><td class="n">'+f(r.s.ep)+'</td><td class="n">'+f(r.s.enc)+(r.s.late.length?' ⚠':'')+'</td><td class="n"><button class="x" data-gv="'+r.g.id+'">👁</button></td></tr>'});
@@ -1054,6 +1188,7 @@ function vGlobal(){
   }
   $("view").innerHTML=h;
   if($("fPy"))$("fPy").onchange=function(){gFilter.pays=this.value;gFilter.region="";gFilter.cercle="";gFilter.commune="";render()};
+  if($("gBy"))$("gBy").onchange=function(){gBy=this.value;render()};
   if($("fP"))$("fP").onchange=function(){gFilter.projet=this.value;render()};
   $("fR").onchange=function(){gFilter.region=this.value;gFilter.cercle="";gFilter.commune="";render()};
   $("fC").onchange=function(){gFilter.cercle=this.value;gFilter.commune="";render()};
@@ -1064,10 +1199,14 @@ function vGlobal(){
   document.querySelectorAll("[data-gv]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-gv"),r=rows.find(function(x){return x.g.id===id});var txt=reportText(r.g);
     modal('<h3>'+esc(t("groupDetail"))+'</h3><textarea class="big" readonly>'+esc(txt)+'</textarea><div class="actions"><button class="btn sec" id="gvNo">'+esc(t("close"))+'</button><button class="btn" id="gvCp">'+esc(t("copyText"))+'</button></div>',function(m,close){$("gvNo").onclick=close;$("gvCp").onclick=function(){copyText(txt,t("textCopied"))}})}});
   if($("gCsv"))$("gCsv").onclick=function(){
-    var head=[t("colProj"),t("colGroup"),t("pays"),t("region"),t("cercle"),t("commune"),t("village"),t("lat"),t("lng"),t("colAnim"),t("nbMembers"),t("cats_F"),t("cats_H"),t("cats_Fi"),t("cats_G"),t("savings"),t("social"),t("toRecover"),t("lateCount"),t("cash"),t("updated")];
+    var q0=function(v){v=String(v==null?"":v);return /[";\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+    if(gBy!=="groupe"){var L2=[[gBy==="reseau"?t("byNet"):t(gBy),t("nbGroups"),t("nbMembers"),t("cats_F"),t("cats_H"),t("cats_Fi"),t("cats_G"),t("savings"),t("toRecover"),t("finesPaid"),t("lateCount")].map(q0).join(";")];
+      (window.__agg||[]).forEach(function(a){L2.push([a.k,a.n,a.m,a.F,a.H,a.Fi,a.G,Math.round(a.ep),Math.round(a.enc),Math.round(a.amP),a.late].map(q0).join(";"))});
+      shareFileOrCopy("\ufeff"+L2.join("\n"),"base-avec-par-"+gBy+"-"+today()+".csv","text/csv",t("csvCopied"));return}
+    var head=[t("colProj"),t("colGroup"),t("pays"),t("region"),t("cercle"),t("commune"),t("village"),t("lat"),t("lng"),t("colAnim"),t("nbMembers"),t("cats_F"),t("cats_H"),t("cats_Fi"),t("cats_G"),t("savings"),t("social"),t("toRecover"),t("lateCount"),t("cash"),t("byNet"),t("objectif"),t("finesPaid"),t("finesDue"),t("nbAGR"),t("updated")];
     var q=function(v){v=String(v==null?"":v);return /[";\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
     var lines=[head.map(q).join(";")];
-    vis.forEach(function(r){lines.push([globalProjets[String(r.g.projet||"").toUpperCase()]||r.g.projet||"",r.g.nom,r.g.pays||"",r.g.region,r.g.cercle,r.g.commune,r.g.village,r.g.lat||"",r.g.lng||"",r.src,r.m,r.c.F,r.c.H,r.c.Fi,r.c.G,Math.round(r.s.ep),Math.round(r.s.so),Math.round(r.s.enc),r.s.late.length,Math.round(r.s.caisse),r.recu?fdate(r.recu):""].map(q).join(";"))});
+    vis.forEach(function(r){lines.push([globalProjets[String(r.g.projet||"").toUpperCase()]||r.g.projet||"",r.g.nom,r.g.pays||"",r.g.region,r.g.cercle,r.g.commune,r.g.village,r.g.lat||"",r.g.lng||"",r.src,r.m,r.c.F,r.c.H,r.c.Fi,r.c.G,Math.round(r.s.ep),Math.round(r.s.so),Math.round(r.s.enc),r.s.late.length,Math.round(r.s.caisse),r.g.reseau||"",r.g.objectif||"",Math.round(r.s.amP),Math.round(r.s.amNP),(r.g.agr||[]).length,r.recu?fdate(r.recu):""].map(q).join(";"))});
     var csv="﻿"+lines.join("\n");
     shareFileOrCopy(csv,"base-globale-avec-"+today()+".csv","text/csv",t("csvCopied"));
   };
@@ -1110,11 +1249,12 @@ function render(){
   sel.innerHTML=ids.length?ids.map(function(id){return '<option value="'+id+'"'+(id===currentId?" selected":"")+'>'+esc(groups[id].nom)+'</option>'}).join(""):'<option>'+esc(t("noGroup"))+'</option>';
   sel.disabled=!ids.length;
   document.querySelectorAll("#nav button").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-v")===view)});
-  $("nav").classList.toggle("hidden",!g()&&view!=="share"&&view!=="global");
+  $("nav").classList.toggle("hidden",!g()&&view!=="share"&&view!=="global"&&view!=="market");
   if(!projet||!projet.code||projet.bloque){$("nav").classList.add("hidden");$("groupSel").disabled=true;$("newGroupBtn").style.display="none";if(projet&&projet.bloque)vBlocked();else vActivate();return}
   $("newGroupBtn").style.display="";
   if(view==="share"){vShare();return}
   if(view==="global"){vGlobal();return}
+  if(view==="market"){vMarket();return}
   var gr=g();if(!gr){vWelcome();return}
   ({home:vHome,members:vMembers,meeting:vMeeting,loans:vLoans,docs:vDocs,report:vReport})[view](gr);
 }
