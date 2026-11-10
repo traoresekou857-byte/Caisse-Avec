@@ -430,11 +430,13 @@ en:{
 }};
 
 Object.assign(I18N.fr,{
+ bCtrl:"Contrôleur(euse)",bOther:"Autre poste",bureauT_g:"Comité de gestion",bureauT_n:"Bureau du réseau",bureauEdit:"✏️ Modifier",bureauHint:"Au moins 5 membres : prénom, nom et numéro de téléphone.",bureauMin5:"Il faut au moins 5 membres complets (prénom, nom, téléphone) : {n}/5.",bureauInc:"{t} incomplet : {n}/5 membres renseignés.",bureauFill:"Compléter maintenant",firstName:"Prénom",lastName:"Nom",pickMember:"— Choisir un membre —",addPoste:"+ Ajouter un poste",posteLbl:"Poste",bureauSaved:"Bureau enregistré",telBad:"Numéro incomplet (8 chiffres)",bureauShort:"Bureau complet",
+ freq_village:"chaque mois",freq_commune:"chaque trimestre",freq_cercle:"chaque semestre",freq_region:"une fois par an",meetFreq:"Réunions du réseau : {f}",lastMeet:"Dernière réunion : {d}",nextMeet:"Prochaine réunion prévue : {d}",meetLate:"Réunion en retard : elle était prévue le {d}.",noMeetYet:"Aucune réunion enregistrée pour le moment.",
  newGroup:"+ Nouveau",
  niv_village:"villageois",niv_commune:"communal",niv_cercle:"de cercle",niv_region:"régional",netOf:"Réseau {n}",
  newWhat:"Que voulez-vous créer ?",newIsGroup:"Un groupement AVEC",newIsGroupH:"Membres, épargne, prêts, réunions",newIsNet:"Un réseau de groupements",newIsNetH:"Pour la secrétaire d'un réseau villageois, communal, de cercle ou régional",
  newNetT:"Nouveau réseau",editNetT:"Modifier le réseau",netLevel:"Niveau du réseau",
- netHelp_village:"Le réseau villageois regroupe les groupements AVEC du village.",netHelp_commune:"Le réseau communal regroupe les réseaux villageois de la commune.",netHelp_cercle:"Le réseau de cercle regroupe les réseaux communaux du cercle.",netHelp_region:"Le réseau régional regroupe les réseaux de cercle de la région.",
+ netHelp_village:"Le réseau villageois regroupe les groupements AVEC du village. Il se réunit chaque mois.",netHelp_commune:"Le réseau communal regroupe les réseaux villageois de la commune. Il se réunit chaque trimestre.",netHelp_cercle:"Le réseau de cercle regroupe les réseaux communaux du cercle. Il se réunit chaque semestre.",netHelp_region:"Le réseau régional regroupe les réseaux de cercle de la région. Il se réunit une fois par an.",
  netName:"Nom du réseau",netNamePh:"ex. Réseau Jigiya de Kola",netObjPh:"ex. Renforcer les groupements, vendre ensemble, faire du plaidoyer",bureau:"Bureau du réseau",bPres:"Président(e)",bSec:"Secrétaire",bTres:"Trésorier(ère)",netPhone:"Téléphone du réseau",cotisNet:"Cotisation annuelle par membre du réseau (F)",
  delNetQ:"Supprimer le réseau « {n} » et toutes ses données ?",netSaved:"Réseau enregistré",
  compOf_village:"Groupements membres",compOf_commune:"Réseaux villageois membres",compOf_cercle:"Réseaux communaux membres",compOf_region:"Réseaux de cercle membres",
@@ -452,7 +454,7 @@ Object.assign(I18N.fr,{
  pvRepCount:"{p} membre(s) représenté(s) sur {t}",pvRep:"Membres représentés",pvNotRep:"Membres non représentés",pvOthers:"Autres participants",pvOthersPh:"ex. maire, ONG, agent technique",pvNetTitle:"PROCÈS-VERBAL DE RÉUNION DU RÉSEAU",
  membersShort:"membres",groupsShort:"groupements",navComp:"Composition",navCash:"Caisse",netsT:"Réseaux",compShort:"Membres du réseau",syncNow:"Envoyer maintenant",createNet:"Créer un réseau",
  netObjDefault:"Renforcer les groupements membres, favoriser les échanges d'expériences, la commercialisation des produits locaux et le plaidoyer auprès des autorités.",
- rulesNetTpl:"RÈGLEMENT INTÉRIEUR DU RÉSEAU\n« {nom} » – Réseau {niv}\n\nArticle 1 – Dénomination et siège\nIl est créé un réseau {niv} des groupements AVEC dénommé « {nom} », dont le siège est à {lieu}.\n\nArticle 2 – Membres\nSont membres du réseau : {membres}.\nToute nouvelle adhésion est décidée par l'Assemblée Générale du réseau.\n\nArticle 3 – Objectif\n{objectif}\n\nArticle 4 – Autonomie des membres\nLe réseau ne gère pas l'épargne des groupements. Chaque caisse reste autonome et garde son propre règlement intérieur.\n\nArticle 5 – Organes\nL'Assemblée Générale (AG) est l'organe suprême ; elle est composée de deux délégué(e)s par membre. Elle élit un bureau : président(e), secrétaire, trésorier(ère) et deux contrôleurs(euses), pour un mandat de ______ ans renouvelable une fois.\n\nArticle 6 – Ressources\nLes ressources du réseau sont : le droit d'adhésion, la cotisation annuelle de {cot} par membre, les dons et appuis, les recettes des activités communes.\nToute dépense est approuvée par le bureau et présentée à l'AG.\n\nArticle 7 – Réunions\nLe bureau se réunit chaque mois. L'AG se réunit tous les ______ mois. Chaque réunion fait l'objet d'un procès-verbal.\n\nArticle 8 – Redevabilité\nLe bureau présente le rapport d'activités et les comptes à chaque AG. Les délégué(e)s rendent compte à leurs membres.\n\nArticle 9 – Sanctions\n- Absence non justifiée d'un(e) délégué(e) à l'AG : ______ F\n- Retard de paiement de la cotisation : ______ F\n- Tout manquement grave peut entraîner la suspension décidée par l'AG.\n\nArticle 10 – Modification\nLe présent règlement peut être modifié par l'AG à la majorité des deux tiers des délégué(e)s présent(e)s.\n\nFait le {date}.\n\nSignatures du bureau :\nPrésident(e) : ______________   Secrétaire : ______________   Trésorier(ère) : ______________",
+ rulesNetTpl:"RÈGLEMENT INTÉRIEUR DU RÉSEAU\n« {nom} » – Réseau {niv}\n\nArticle 1 – Dénomination et siège\nIl est créé un réseau {niv} des groupements AVEC dénommé « {nom} », dont le siège est à {lieu}.\n\nArticle 2 – Membres\nSont membres du réseau : {membres}.\nToute nouvelle adhésion est décidée par l'Assemblée Générale du réseau.\n\nArticle 3 – Objectif\n{objectif}\n\nArticle 4 – Autonomie des membres\nLe réseau ne gère pas l'épargne des groupements. Chaque caisse reste autonome et garde son propre règlement intérieur.\n\nArticle 5 – Organes\nL'Assemblée Générale (AG) est l'organe suprême ; elle est composée de deux délégué(e)s par membre. Elle élit un bureau d'au moins cinq membres : président(e), secrétaire, trésorier(ère) et deux contrôleurs(euses), pour un mandat de ______ ans renouvelable une fois.\n\nArticle 6 – Ressources\nLes ressources du réseau sont : le droit d'adhésion, la cotisation annuelle de {cot} par membre, les dons et appuis, les recettes des activités communes.\nToute dépense est approuvée par le bureau et présentée à l'AG.\n\nArticle 7 – Réunions\nLe réseau {niv} tient ses réunions ordinaires {freq}. Le bureau peut convoquer une réunion extraordinaire en cas de besoin. Chaque réunion fait l'objet d'un procès-verbal.\n\nArticle 8 – Redevabilité\nLe bureau présente le rapport d'activités et les comptes à chaque AG. Les délégué(e)s rendent compte à leurs membres.\n\nArticle 9 – Sanctions\n- Absence non justifiée d'un(e) délégué(e) à l'AG : ______ F\n- Retard de paiement de la cotisation : ______ F\n- Tout manquement grave peut entraîner la suspension décidée par l'AG.\n\nArticle 10 – Modification\nLe présent règlement peut être modifié par l'AG à la majorité des deux tiers des délégué(e)s présent(e)s.\n\nFait le {date}.\n\nSignatures du bureau :\nPrésident(e) : ______________   Secrétaire : ______________   Trésorier(ère) : ______________",
  catalogT:"🏷️ Produits locaux et prix",catalogHint:"Prix indicatifs (Mali sud, 2026). Adaptez-les à votre marché : vos prix restent sur ce téléphone. Ajoutez aussi vos propres produits.",
  pc_karite:"Karité",pc_cereale:"Céréales",pc_transfo:"Produits transformés",pc_leg:"Légumes, condiments, miel",pc_elevage:"Élevage et pêche",pc_artisanat:"Artisanat et services",pc_perso:"Mes produits",
  prodAdd:"+ Ajouter un produit",prodCat:"Catégorie",prodSaved:"Produit ajouté au catalogue",refPrice:"Prix de référence",editPrice:"Prix",sellThis:"Vendre",delProdQ:"Supprimer ce produit du catalogue ?",priceHint:"Indiquez le prix pratiqué sur votre marché.",resetPrice:"Prix de référence",priceSaved:"Prix enregistré",
@@ -463,11 +465,13 @@ Object.assign(I18N.fr,{
  trainT:"📚 Modules de formation",trainHint:"Fiches d'animation pour les animatrices, secrétaires et responsables de réseau. Elles s'utilisent sans Internet.",trainFrOnly:"Le contenu des modules est en français.",trMjt:"Les 7 thèmes MJT (Musow Ka Jigiya Ton)",trPlus:"Modules complémentaires",trShare:"📤 Partager ou copier la fiche"
 });
 Object.assign(I18N.bm,{
+ bCtrl:"Lajɛbaga",bOther:"Baara wɛrɛ",bureauT_g:"Tɔn ɲɛmɔgɔw",bureauT_n:"Jɛ ɲɛmɔgɔw",bureauEdit:"✏️ A yɛlɛma",bureauHint:"Mɔgɔ 5 ka dɔgɔya : tɔgɔ, jamu ani telefɔni nimɔrɔ.",bureauMin5:"Mɔgɔ 5 dafalen de ka kan (tɔgɔ, jamu, telefɔni) : {n}/5.",bureauInc:"{t} ma dafa : mɔgɔ {n}/5 sɛbɛnna.",bureauFill:"A dafa sisan",firstName:"Tɔgɔ",lastName:"Jamu",pickMember:"— Tɔnden dɔ sugandi —",addPoste:"+ Baara wɛrɛ fara a kan",posteLbl:"Baara",bureauSaved:"Ɲɛmɔgɔw sɛbɛnna",telBad:"Nimɔrɔ ma dafa (nimɔrɔ 8)",bureauShort:"Ɲɛmɔgɔw dafalen",
+ freq_village:"kalo o kalo",freq_commune:"kalo saba o kalo saba",freq_cercle:"kalo wɔɔrɔ o kalo wɔɔrɔ",freq_region:"siɲɛ kelen saan kɔnɔ",meetFreq:"Jɛ ka ɲɔgɔnyew : {f}",lastMeet:"Ɲɔgɔnye laban : {d}",nextMeet:"Ɲɔgɔnye nata : {d}",meetLate:"Ɲɔgɔnye mɛnna : a tun ka kan ka kɛ {d}.",noMeetYet:"Ɲɔgɔnye si ma sɛbɛn fɔlɔ.",
  newGroup:"+ Kura",
  niv_village:"dugu",niv_commune:"komini",niv_cercle:"serikili",niv_region:"mara",netOf:"{n} tɔnw ka jɛ",
  newWhat:"Mun b'a fɛ ka dabɔ ?",newIsGroup:"AVEC tɔn",newIsGroupH:"Tɔndenw, wari maracɛ, juru, ɲɔgɔnye",newIsNet:"Tɔnw ka jɛ (réseau)",newIsNetH:"Dugu, komini, serikili walima mara tɔnw ka jɛ sɛbɛnnikɛla ye",
  newNetT:"Jɛ kura",editNetT:"Jɛ yɛlɛma",netLevel:"Jɛ hakɛ",
- netHelp_village:"Dugu jɛ bɛ dugu AVEC tɔnw ladɛn.",netHelp_commune:"Komini jɛ bɛ komini dugu jɛw ladɛn.",netHelp_cercle:"Serikili jɛ bɛ serikili komini jɛw ladɛn.",netHelp_region:"Mara jɛ bɛ mara serikili jɛw ladɛn.",
+ netHelp_village:"Dugu jɛ bɛ dugu AVEC tɔnw ladɛn. A bɛ ɲɔgɔn ye kalo o kalo.",netHelp_commune:"Komini jɛ bɛ komini dugu jɛw ladɛn. A bɛ ɲɔgɔn ye kalo saba o kalo saba.",netHelp_cercle:"Serikili jɛ bɛ serikili komini jɛw ladɛn. A bɛ ɲɔgɔn ye kalo wɔɔrɔ o kalo wɔɔrɔ.",netHelp_region:"Mara jɛ bɛ mara serikili jɛw ladɛn. A bɛ ɲɔgɔn ye siɲɛ kelen saan kɔnɔ.",
  netName:"Jɛ tɔgɔ",netNamePh:"m. Kola Jigiya jɛ",netObjPh:"m. Tɔnw barika bonya, ka feere ɲɔgɔn fɛ",bureau:"Jɛ ɲɛmɔgɔw",bPres:"Ɲɛmɔgɔ",bSec:"Sɛbɛnnikɛla",bTres:"Wari marala",netPhone:"Jɛ telefɔni",cotisNet:"Jɛ den kelen kelen saan sara (F)",
  delNetQ:"« {n} » jɛ ni a sɛbɛnw bɛɛ jɔsi ?",netSaved:"Jɛ sɛbɛnna",
  compOf_village:"Tɔn minnu bɛ jɛ in na",compOf_commune:"Dugu jɛ minnu bɛ a la",compOf_cercle:"Komini jɛ minnu bɛ a la",compOf_region:"Serikili jɛ minnu bɛ a la",
@@ -485,7 +489,7 @@ Object.assign(I18N.bm,{
  pvRepCount:"Jɛ den {p} nana {t} la",pvRep:"Jɛ den minnu nana",pvNotRep:"Jɛ den minnu ma na",pvOthers:"Mɔgɔ wɛrɛw",pvOthersPh:"m. meri, ONG, baarakɛla",pvNetTitle:"JƐ ƝƆGƆNYE SƐBƐN (PV)",
  membersShort:"tɔnden",groupsShort:"tɔn",navComp:"Jɛ denw",navCash:"Wari",netsT:"Jɛw",compShort:"Jɛ denw",syncNow:"A ci sisan",createNet:"Jɛ dabɔ",
  netObjDefault:"Tɔnw barika bonya, ka hakilinaw falen-ɲɔgɔn-na, ka dugu fɛnw feere ɲɔgɔn fɛ ani ka kuma fanga ɲɛmɔgɔw ɲɛ kɔrɔ.",
- rulesNetTpl:"JƐ SARIYASƐBƐN\n« {nom} » – {niv} jɛ\n\nSariya 1 – Tɔgɔ ni sigiyɔrɔ\nAVEC tɔnw ye {niv} jɛ dabɔ, a tɔgɔ ye « {nom} ». A sigiyɔrɔ ye {lieu} ye.\n\nSariya 2 – Jɛ denw\nJɛ denw ye : {membres}.\nJɛ den kura donni bɛ latigɛ jɛ ka ɲɔgɔnye ba (AG) de fɛ.\n\nSariya 3 – Laɲini\n{objectif}\n\nSariya 4 – Tɔnw ka yɛrɛmahɔrɔnya\nJɛ tɛ tɔnw ka wari maracɛ mara. Tɔn kelen kelen bɛ a ka kɛsu ni a ka sariyasɛbɛn mara.\n\nSariya 5 – Ɲɛmɔgɔw\nƝɔgɔnye ba (AG) ye fanga laban ye; jɛ den kelen kelen bɛ ciden fila ci. AG bɛ ɲɛmɔgɔw sugandi: ɲɛmɔgɔ, sɛbɛnnikɛla, wari marala ani lajɛbaga fila, saan ______ kɔnɔ.\n\nSariya 6 – Nafolo\nJɛ ka nafolo ye : donni sara, jɛ den kelen kelen saan sara {cot}, dɛmɛw, baara ɲɔgɔn fɛ tɔnɔ.\nMusaka bɛɛ bɛ ɲɛmɔgɔw ka sɔn de la, ka jira AG la.\n\nSariya 7 – Ɲɔgɔnyew\nƝɛmɔgɔw bɛ ɲɔgɔn ye kalo o kalo. AG bɛ kɛ kalo ______ o kalo ______ la. Ɲɔgɔnye bɛɛ sɛbɛn bɛ ta (PV).\n\nSariya 8 – Jatebɔ\nƝɛmɔgɔw bɛ baara ni wari jatebɔ AG bɛɛ la. Cidenw bɛ kunnafoni di u ka tɔnw ma.\n\nSariya 9 – Ɲangiliw\n- Ciden ma na AG la, kun tɛ min na : ______ F\n- Sara mɛnni : ______ F\n- Fili ba bɛ se ka kɛ jɛ den jɔli sababu ye, AG bɛ o latigɛ.\n\nSariya 10 – Yɛlɛmali\nAG bɛ se ka sariyasɛbɛn in yɛlɛma cidenw tilan saba la fila sɔnni fɛ.\n\nA kɛra {date}.\n\nƝɛmɔgɔw bolonɔw :\nƝɛmɔgɔ : ______________   Sɛbɛnnikɛla : ______________   Wari marala : ______________",
+ rulesNetTpl:"JƐ SARIYASƐBƐN\n« {nom} » – {niv} jɛ\n\nSariya 1 – Tɔgɔ ni sigiyɔrɔ\nAVEC tɔnw ye {niv} jɛ dabɔ, a tɔgɔ ye « {nom} ». A sigiyɔrɔ ye {lieu} ye.\n\nSariya 2 – Jɛ denw\nJɛ denw ye : {membres}.\nJɛ den kura donni bɛ latigɛ jɛ ka ɲɔgɔnye ba (AG) de fɛ.\n\nSariya 3 – Laɲini\n{objectif}\n\nSariya 4 – Tɔnw ka yɛrɛmahɔrɔnya\nJɛ tɛ tɔnw ka wari maracɛ mara. Tɔn kelen kelen bɛ a ka kɛsu ni a ka sariyasɛbɛn mara.\n\nSariya 5 – Ɲɛmɔgɔw\nƝɔgɔnye ba (AG) ye fanga laban ye; jɛ den kelen kelen bɛ ciden fila ci. AG bɛ ɲɛmɔgɔ 5 ka dɔgɔya sugandi: ɲɛmɔgɔ, sɛbɛnnikɛla, wari marala ani lajɛbaga fila, saan ______ kɔnɔ.\n\nSariya 6 – Nafolo\nJɛ ka nafolo ye : donni sara, jɛ den kelen kelen saan sara {cot}, dɛmɛw, baara ɲɔgɔn fɛ tɔnɔ.\nMusaka bɛɛ bɛ ɲɛmɔgɔw ka sɔn de la, ka jira AG la.\n\nSariya 7 – Ɲɔgɔnyew\n{niv} jɛ bɛ a ka ɲɔgɔnye gɛlɛnw kɛ {freq}. Ɲɛmɔgɔw bɛ se ka ɲɔgɔnye kɛrɛnkɛrɛnnen wele n'a mago bɛ a la. Ɲɔgɔnye bɛɛ sɛbɛn bɛ ta (PV).\n\nSariya 8 – Jatebɔ\nƝɛmɔgɔw bɛ baara ni wari jatebɔ AG bɛɛ la. Cidenw bɛ kunnafoni di u ka tɔnw ma.\n\nSariya 9 – Ɲangiliw\n- Ciden ma na AG la, kun tɛ min na : ______ F\n- Sara mɛnni : ______ F\n- Fili ba bɛ se ka kɛ jɛ den jɔli sababu ye, AG bɛ o latigɛ.\n\nSariya 10 – Yɛlɛmali\nAG bɛ se ka sariyasɛbɛn in yɛlɛma cidenw tilan saba la fila sɔnni fɛ.\n\nA kɛra {date}.\n\nƝɛmɔgɔw bolonɔw :\nƝɛmɔgɔ : ______________   Sɛbɛnnikɛla : ______________   Wari marala : ______________",
  catalogT:"🏷️ Dugu fɛnw ni u songow",catalogHint:"Songo minnu bɛ yan, olu ye taamasiyɛnw ye (Mali worodugu, 2026). U yɛlɛma i ka sugu kan : i ka songow bɛ to telefɔni in kan. I yɛrɛ ka fɛnw fana fara a kan.",
  pc_karite:"Sì",pc_cereale:"Suman",pc_transfo:"Fɛn dilannenw",pc_leg:"Nakɔfɛnw, nanfɛnw, lì",pc_elevage:"Bagan ni jɛgɛ",pc_artisanat:"Bololabaara ni baaraw",pc_perso:"Ne ka fɛnw",
  prodAdd:"+ Fɛn fara a kan",prodCat:"Suguya",prodSaved:"Fɛn farala a kan",refPrice:"Songo taamasiyɛn",editPrice:"Songo",sellThis:"A feere",delProdQ:"Nin fɛn bɔ a la ?",priceHint:"I ka sugu songo sɛbɛn.",resetPrice:"Songo taamasiyɛn",priceSaved:"Songo sɛbɛnna",
@@ -496,11 +500,13 @@ Object.assign(I18N.bm,{
  trainT:"📚 Kalanw",trainHint:"Kalan sɛbɛnw tɔnw lamɔgɔw, sɛbɛnnikɛlaw ani jɛ ɲɛmɔgɔw ye. U bɛ baara kɛ ni ɛntɛrinɛti tɛ yen.",trainFrOnly:"Kalan sɛbɛnw bɛ tubabukan na.",trMjt:"MJT kalan 7 (Musow Ka Jigiya Ton)",trPlus:"Kalan wɛrɛw",trShare:"📤 A ci walima a kopi"
 });
 Object.assign(I18N.en,{
+ bCtrl:"Controller",bOther:"Other position",bureauT_g:"Management committee",bureauT_n:"Network board",bureauEdit:"✏️ Edit",bureauHint:"At least 5 people: first name, last name and phone number.",bureauMin5:"At least 5 complete members are required (first name, last name, phone): {n}/5.",bureauInc:"{t} incomplete: {n}/5 members filled in.",bureauFill:"Complete now",firstName:"First name",lastName:"Last name",pickMember:"— Pick a member —",addPoste:"+ Add a position",posteLbl:"Position",bureauSaved:"Board saved",telBad:"Incomplete number (8 digits)",bureauShort:"Board complete",
+ freq_village:"every month",freq_commune:"every quarter",freq_cercle:"every six months",freq_region:"once a year",meetFreq:"Network meetings: {f}",lastMeet:"Last meeting: {d}",nextMeet:"Next meeting due: {d}",meetLate:"Meeting overdue: it was due on {d}.",noMeetYet:"No meeting recorded yet.",
  newGroup:"+ New",
  niv_village:"village",niv_commune:"commune",niv_cercle:"district (cercle)",niv_region:"regional",netOf:"{n} network",
  newWhat:"What do you want to create?",newIsGroup:"A VSLA group",newIsGroupH:"Members, savings, loans, meetings",newIsNet:"A network of groups",newIsNetH:"For the secretary of a village, commune, district or regional network",
  newNetT:"New network",editNetT:"Edit network",netLevel:"Network level",
- netHelp_village:"The village network brings together the village's VSLA groups.",netHelp_commune:"The commune network brings together the commune's village networks.",netHelp_cercle:"The district network brings together the district's commune networks.",netHelp_region:"The regional network brings together the region's district networks.",
+ netHelp_village:"The village network brings together the village's VSLA groups. It meets every month.",netHelp_commune:"The commune network brings together the commune's village networks. It meets every quarter.",netHelp_cercle:"The district network brings together the district's commune networks. It meets every six months.",netHelp_region:"The regional network brings together the region's district networks. It meets once a year.",
  netName:"Network name",netNamePh:"e.g. Jigiya network of Kola",netObjPh:"e.g. Strengthen groups, sell together, advocacy",bureau:"Network board",bPres:"President",bSec:"Secretary",bTres:"Treasurer",netPhone:"Network phone",cotisNet:"Annual fee per network member (F)",
  delNetQ:"Delete the network “{n}” and all its data?",netSaved:"Network saved",
  compOf_village:"Member groups",compOf_commune:"Member village networks",compOf_cercle:"Member commune networks",compOf_region:"Member district networks",
@@ -518,7 +524,7 @@ Object.assign(I18N.en,{
  pvRepCount:"{p} of {t} members represented",pvRep:"Members represented",pvNotRep:"Members not represented",pvOthers:"Other participants",pvOthersPh:"e.g. mayor, NGO, technical officer",pvNetTitle:"NETWORK MEETING MINUTES",
  membersShort:"members",groupsShort:"groups",navComp:"Members",navCash:"Cash",netsT:"Networks",compShort:"Network members",syncNow:"Send now",createNet:"Create a network",
  netObjDefault:"Strengthen member groups, share experience, market local products together and advocate with the authorities.",
- rulesNetTpl:"NETWORK BY-LAWS\n“{nom}” – {niv} network\n\nArticle 1 – Name and seat\nA {niv} network of VSLA groups named “{nom}” is hereby created, based in {lieu}.\n\nArticle 2 – Members\nThe network members are: {membres}.\nNew members are admitted by the network's General Assembly.\n\nArticle 3 – Objective\n{objectif}\n\nArticle 4 – Autonomy of members\nThe network does not manage the groups' savings. Each group keeps its own cash box and by-laws.\n\nArticle 5 – Bodies\nThe General Assembly (GA) is the supreme body; it is made up of two delegates per member. It elects a board: president, secretary, treasurer and two controllers, for a term of ______ years, renewable once.\n\nArticle 6 – Resources\nThe network's resources are: joining fees, the annual fee of {cot} per member, donations and support, income from joint activities.\nAll expenses are approved by the board and reported to the GA.\n\nArticle 7 – Meetings\nThe board meets monthly. The GA meets every ______ months. Minutes are taken at every meeting.\n\nArticle 8 – Accountability\nThe board presents the activity report and accounts at each GA. Delegates report back to their members.\n\nArticle 9 – Sanctions\n- Unjustified absence of a delegate from the GA: ______ F\n- Late payment of the annual fee: ______ F\n- Any serious breach may lead to suspension decided by the GA.\n\nArticle 10 – Amendment\nThese by-laws may be amended by the GA with a two-thirds majority of delegates present.\n\nDone on {date}.\n\nBoard signatures:\nPresident: ______________   Secretary: ______________   Treasurer: ______________",
+ rulesNetTpl:"NETWORK BY-LAWS\n“{nom}” – {niv} network\n\nArticle 1 – Name and seat\nA {niv} network of VSLA groups named “{nom}” is hereby created, based in {lieu}.\n\nArticle 2 – Members\nThe network members are: {membres}.\nNew members are admitted by the network's General Assembly.\n\nArticle 3 – Objective\n{objectif}\n\nArticle 4 – Autonomy of members\nThe network does not manage the groups' savings. Each group keeps its own cash box and by-laws.\n\nArticle 5 – Bodies\nThe General Assembly (GA) is the supreme body; it is made up of two delegates per member. It elects a board of at least five members: president, secretary, treasurer and two controllers, for a term of ______ years, renewable once.\n\nArticle 6 – Resources\nThe network's resources are: joining fees, the annual fee of {cot} per member, donations and support, income from joint activities.\nAll expenses are approved by the board and reported to the GA.\n\nArticle 7 – Meetings\nThe {niv} network holds its ordinary meetings {freq}. The board may call an extraordinary meeting when needed. Minutes are taken at every meeting.\n\nArticle 8 – Accountability\nThe board presents the activity report and accounts at each GA. Delegates report back to their members.\n\nArticle 9 – Sanctions\n- Unjustified absence of a delegate from the GA: ______ F\n- Late payment of the annual fee: ______ F\n- Any serious breach may lead to suspension decided by the GA.\n\nArticle 10 – Amendment\nThese by-laws may be amended by the GA with a two-thirds majority of delegates present.\n\nDone on {date}.\n\nBoard signatures:\nPresident: ______________   Secretary: ______________   Treasurer: ______________",
  catalogT:"🏷️ Local products and prices",catalogHint:"Indicative prices (southern Mali, 2026). Adjust them to your market: your prices stay on this phone. You can also add your own products.",
  pc_karite:"Shea",pc_cereale:"Cereals",pc_transfo:"Processed products",pc_leg:"Vegetables, condiments, honey",pc_elevage:"Livestock and fish",pc_artisanat:"Crafts and services",pc_perso:"My products",
  prodAdd:"+ Add a product",prodCat:"Category",prodSaved:"Product added to the catalogue",refPrice:"Reference price",editPrice:"Price",sellThis:"Sell",delProdQ:"Remove this product from the catalogue?",priceHint:"Enter the price on your local market.",resetPrice:"Reference price",priceSaved:"Price saved",
@@ -618,7 +624,7 @@ retenir:"La confiance vient de la transparence : montrer les chiffres, rendre co
 {id:"reseau",grp:"plus",icon:"🌐",titre:"Créer et animer un réseau VSLA",duree:"2 séances de 90 min",methode:"Discussion – travail en groupe – planification",
 obj:["Comprendre l'intérêt de se regrouper en réseau","Connaître l'organisation par niveau : village, commune, cercle, région","Élaborer le plan d'action du réseau"],
 etapes:["Pourquoi un réseau ? (force du nombre, échanges, plaidoyer, marché)","Les niveaux : groupements → réseau villageois → communal → de cercle → régional","Les organes : AG du réseau, bureau, commissions","Les ressources : cotisation d'adhésion, cotisations annuelles, AGR collectives","Élaborer un plan d'action annuel","Suivi : rapports, réunions périodiques, chiffres consolidés"],
-cles:["Village : les groupements → commune : les réseaux villageois → cercle : les réseaux communaux → région : les réseaux de cercle.","Chaque niveau envoie ses délégués au niveau supérieur et rend compte au niveau inférieur.","Le réseau ne gère pas l'épargne des groupements : chaque caisse reste autonome.","Le réseau sert à : partager l'expérience, appuyer les groupements en difficulté, faire du plaidoyer, organiser l'achat et la vente groupés.","Le réseau a son propre règlement, son bureau élu et une caisse alimentée par les cotisations des membres.","Le secrétaire du réseau suit dans l'application la composition et la caisse du réseau, et tient les PV."],
+cles:["Village : les groupements → commune : les réseaux villageois → cercle : les réseaux communaux → région : les réseaux de cercle.","Chaque niveau envoie ses délégués au niveau supérieur et rend compte au niveau inférieur.","Rythme des réunions : réseau villageois chaque mois, communal chaque trimestre, de cercle chaque semestre, régional une fois par an.","Chaque groupement et chaque réseau a un bureau d'au moins 5 membres, avec prénom, nom et téléphone de chacun.","Le réseau ne gère pas l'épargne des groupements : chaque caisse reste autonome.","Le réseau sert à : partager l'expérience, appuyer les groupements en difficulté, faire du plaidoyer, organiser l'achat et la vente groupés.","Le réseau a son propre règlement, son bureau élu et une caisse alimentée par les cotisations des membres.","Le secrétaire du réseau suit dans l'application la composition et la caisse du réseau, et tient les PV."],
 recit:"Les 6 groupements de Kola ont créé un réseau villageois. Ensemble, ils ont acheté du savon en gros et négocié un prix plus bas, puis organisé une journée d'échanges avec un village voisin.",
 questions:["Qu'est-ce que notre réseau peut faire qu'un groupement seul ne peut pas faire ?","Qui seront nos délégués au niveau supérieur ?","Quelles 3 activités pour notre plan d'action ?"],
 retenir:"Un réseau fort repose sur des groupements forts, des délégués qui rendent compte et un plan d'action partagé."},
@@ -673,6 +679,7 @@ function buildPayload(gr){
   var cc=catCounts(gr);gr.projet=(projet&&projet.code)||gr.projet||"";
   return {key:SYNC_KEY,action:"upsert",projet:gr.projet,from:{nom:profile.nom||"",tel:profile.tel||"",structure:profile.structure||""},
     summary:{membres:active(gr).length,epargne:Math.round(s.ep),social:Math.round(s.so),encours:Math.round(s.enc),retards:s.late.length,caisse:Math.round(s.caisse),reunions:dl.length,derniere:dl.length?fdate(dl[dl.length-1]):"",femmes:cc.F,hommes:cc.H,filles:cc.Fi,garcons:cc.G,amendesP:Math.round(s.amP),amendesNP:Math.round(s.amNP),nbAgr:(gr.agr||[]).length},
+    bureau:bureauPayload(gr),
     agr:(gr.agr||[]).map(function(a){return {membre:mName(gr,a.membreId),activite:a.activite,produit:a.produit,unite:a.unite,prix:a.prix,quantite:a.quantite,description:a.description,publier:!!a.publier,contact:a.publier?a.contact:""}}),
     membres:gr.membres.map(function(m){var ms=memberStats(gr,m);return {nom:m.nom,tel:m.tel||"",parts:m.parts||1,statut:m.sorti?t("memberOut"):"Actif",epargne:Math.round(ms.ep),doit:Math.round(ms.reste),categorie:t("cat_"+catOf(m))}}),
     group:gr};
@@ -813,7 +820,7 @@ function $(id){return document.getElementById(id)}
 function toast(msg){document.querySelectorAll(".toast").forEach(function(x){x.remove()});var el=document.createElement("div");el.className="toast";el.textContent=msg;document.body.appendChild(el);setTimeout(function(){el.remove()},2200)}
 function g(){return groups[currentId]||null}
 function mName(gr,id){if(isNet(gr))return compName(gr,id);var m=gr.membres.find(function(x){return x.id===id});return m?m.nom:t("deleted")}
-function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";x.amendes=x.amendes||[];x.agr=x.agr||[];x.amendesCfg=x.amendesCfg||{};if(x.type==="reseau"){x.composantes=x.composantes||[];x.caisse=x.caisse||[];x.bureau=x.bureau||{};x.niveau=x.niveau||"village"}if(x.village==null)x.village=x.lieu||"";if(!x.pays)x.pays="Mali";x.lieu=x.village;x.membres.forEach(function(m){if(!m.parts)m.parts=1});x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";x.amendes=x.amendes||[];x.agr=x.agr||[];x.amendesCfg=x.amendesCfg||{};if(x.bureau&&!Array.isArray(x.bureau))bureauList(x);if(!x.bureau)x.bureau=[];if(x.type==="reseau"){x.composantes=x.composantes||[];x.caisse=x.caisse||[];x.niveau=x.niveau||"village"}if(x.village==null)x.village=x.lieu||"";if(!x.pays)x.pays="Mali";x.lieu=x.village;x.membres.forEach(function(m){if(!m.parts)m.parts=1});x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
 function knownNets(){var o={};Object.keys(groups).forEach(function(k){if(isNet(groups[k])&&groups[k].niveau==="village")o[groups[k].nom]=1});Object.keys(groups).forEach(function(k){if(groups[k].reseau)o[groups[k].reseau]=1});Object.keys(globalDb).forEach(function(k){var g=globalDb[k].g;if(g&&g.reseau)o[g.reseau]=1});return Object.keys(o).sort()}
 function place(gr){return [gr.village,gr.commune,gr.cercle,gr.region,gr.pays].filter(function(x){return x}).join(", ")}
 function active(gr){return gr.membres.filter(function(m){return !m.sorti})}
@@ -955,8 +962,9 @@ function vHome(gr){
     h+='</table></div>';
   }
   h+='<div class="card muted">'+esc(t("rulesLine",{p:f(gr.part),s:f(gr.social||0),r:gr.taux}))+(place(gr)?'<br>📍 '+esc(place(gr)):'')+(mapUrl(gr)?'<br><a href="'+mapUrl(gr)+'" target="_blank" rel="noopener">'+esc(t("seeMap"))+'</a> ('+gr.lat+', '+gr.lng+')':'')+(gr.animateur?'<br>👤 '+esc(gr.animateur):'')+'<br><button class="btn sec sm" id="editG" style="margin-top:8px">'+esc(t("editRules"))+'</button></div>';
+  h+=bureauCard(gr);
   h+='<button class="btn d full" id="delG" style="margin-top:4px">'+esc(t("delGroupBtn"))+'</button>';
-  $("view").innerHTML=h;$("editG").onclick=function(){groupForm(gr)};
+  $("view").innerHTML=h;bindBureau(gr);$("editG").onclick=function(){groupForm(gr)};
   $("delG").onclick=function(){ask(t("delGroupQ",{n:gr.nom}),t("del"),function(){removeGroup(gr.id);currentId=Object.keys(groups)[0]||null;saveLocal();view="home";render();toast(t("groupDeleted"))})};
 }
 function vMembers(gr){
@@ -1118,7 +1126,7 @@ function rulesFromTemplate(gr){
   var cfg=gr.amendesCfg||{},vals=[cfg.retard,cfg.absence,cfg.remb],i=0;
   txt=txt.replace(/______ F/g,function(m){var v=vals[i++];return v?f(v):m});
   if(gr.objectif)txt=txt.replace(/\n\n(Article 3|Sariya 3)/,"\n"+t("objLbl").replace("🎯 ","")+" : "+gr.objectif+"\n\n$1");
-  return txt;
+  return withBureau(gr,txt);
 }
 function vDocs(gr){
   var h='<h2>'+esc(t("docsT"))+'</h2><div class="seg"><button data-tab="rules" class="'+(docTab==="rules"?"on":"")+'">📜 '+esc(t("tabRules"))+'</button><button data-tab="pv" class="'+(docTab==="pv"?"on":"")+'">📝 '+esc(t("tabPV"))+'</button><button data-tab="agr" class="'+(docTab==="agr"?"on":"")+'">🧺 '+esc(t("tabAGR"))+'</button></div>';
@@ -1216,7 +1224,7 @@ function vMarket(){
   $("mkRef").onclick=function(){marketData=null;render()};
 }
 function pvForm(gr,pv){
-  var isNew=!pv;pv=pv||{date:today(),lieu:gr.lieu||"",heure:"",presents:active(gr).map(function(m){return m.id}),odj:"",decisions:"",prochaine:"",secretaire:""};
+  var isNew=!pv;pv=pv||{date:today(),lieu:gr.lieu||"",heure:"",presents:active(gr).map(function(m){return m.id}),odj:"",decisions:"",prochaine:"",secretaire:bureauName(gr,"sec")};
   var people=gr.membres.filter(function(m){return !m.sorti||(pv.presents||[]).indexOf(m.id)>=0});
   var chks=people.map(function(m){return '<label class="chk"><input type="checkbox" data-pres="'+m.id+'"'+((pv.presents||[]).indexOf(m.id)>=0?" checked":"")+'>'+esc(m.nom)+'</label>'}).join("");
   modal('<h3>'+esc(t("pvT"))+'</h3>'+
@@ -1279,6 +1287,7 @@ function reportText(gr){
   L.push(t("social")+" : "+f(s.so));
   L.push(t("toRecover")+" : "+f(s.enc));if(s.amP||s.amNP)L.push(t("finesPaid")+" : "+f(s.amP)+" · "+t("finesDue")+" : "+f(s.amNP));
   if(s.late.length){L.push("");L.push(t("lateL"));s.late.forEach(function(x){L.push("- "+mName(gr,x.p.membreId)+" : "+f(x.i.reste)+" ("+t("dueOn",{d:fdate(x.i.ech)})+")")})}
+  var bt=bureauText(gr);if(bt.length){L.push("");L.push(bureauTitle(gr)+" ("+bureauCount(gr)+"/5) :");bt.forEach(function(x){L.push("- "+x)})}
   if(gr.membres.length){L.push("");L.push(t("savByMember"));gr.membres.forEach(function(m){var ms=memberStats(gr,m);L.push("- "+m.nom+" : "+f(ms.ep)+(ms.reste>0?" | "+t("owes",{a:f(ms.reste)}):""))})}
   L.push("");L.push(t("signLine"));
   return L.join("\n");
@@ -1412,7 +1421,7 @@ function vGlobal(){
   }
   if(nvis.length){
     h+='<h2>🌐 '+esc(t("netsT"))+' ('+nvis.length+')</h2><div class="card" style="overflow-x:auto"><table class="small"><tr><th>'+esc(t("netName"))+'</th><th class="n">'+esc(t("compShort"))+'</th><th class="n">'+esc(t("nbGroups"))+'</th><th class="n">'+esc(t("nbMembers"))+'</th><th class="n">'+esc(t("netSav"))+'</th><th class="n">'+esc(t("netCash"))+'</th><th></th></tr>'+
-      nvis.map(function(r){var ns=netStats(r.g);return '<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(netTitle(r.g))+' · '+esc(netPlace(r.g))+'</span></td><td class="n">'+ns.nbComp+'</td><td class="n">'+ns.nbGr+'</td><td class="n">'+ns.m+'</td><td class="n">'+f(ns.ep)+'</td><td class="n">'+f(ns.solde)+'</td><td class="n"><button class="x" data-nv="'+r.g.id+'">👁</button></td></tr>'}).join("")+'</table></div>';
+      nvis.map(function(r){var ns=netStats(r.g);return '<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(netTitle(r.g))+' · '+esc(netPlace(r.g))+'</span></td><td class="n">'+ns.nbComp+'</td><td class="n">'+ns.nbGr+'</td><td class="n">'+ns.m+'</td><td class="n">'+f(ns.ep)+'</td><td class="n">'+f(ns.solde)+(bureauCount(r.g)<5?' ⚠':'')+(netNextMeet(r.g)<today()?' 📅':'')+'</td><td class="n"><button class="x" data-nv="'+r.g.id+'">👁</button></td></tr>'}).join("")+'</table></div>';
   }
   $("view").innerHTML=h;
   document.querySelectorAll("[data-nv]").forEach(function(b){b.onclick=function(){var r=netRows.find(function(x){return x.g.id===b.getAttribute("data-nv")});var txt=netReportText(r.g);
@@ -1433,10 +1442,10 @@ function vGlobal(){
     if(gBy!=="groupe"){var L2=[[gBy==="reseau"?t("byNet"):t(gBy),t("nbGroups"),t("nbMembers"),t("cats_F"),t("cats_H"),t("cats_Fi"),t("cats_G"),t("savings"),t("toRecover"),t("finesPaid"),t("lateCount")].map(q0).join(";")];
       (window.__agg||[]).forEach(function(a){L2.push([a.k,a.n,a.m,a.F,a.H,a.Fi,a.G,Math.round(a.ep),Math.round(a.enc),Math.round(a.amP),a.late].map(q0).join(";"))});
       shareFileOrCopy("\ufeff"+L2.join("\n"),"base-avec-par-"+gBy+"-"+today()+".csv","text/csv",t("csvCopied"));return}
-    var head=[t("colProj"),t("colGroup"),t("pays"),t("region"),t("cercle"),t("commune"),t("village"),t("lat"),t("lng"),t("colAnim"),t("nbMembers"),t("cats_F"),t("cats_H"),t("cats_Fi"),t("cats_G"),t("savings"),t("social"),t("toRecover"),t("lateCount"),t("cash"),t("byNet"),t("objectif"),t("finesPaid"),t("finesDue"),t("nbAGR"),t("updated")];
+    var head=[t("colProj"),t("colGroup"),t("pays"),t("region"),t("cercle"),t("commune"),t("village"),t("lat"),t("lng"),t("colAnim"),t("nbMembers"),t("cats_F"),t("cats_H"),t("cats_Fi"),t("cats_G"),t("savings"),t("social"),t("toRecover"),t("lateCount"),t("cash"),t("byNet"),t("objectif"),t("finesPaid"),t("finesDue"),t("nbAGR"),t("bureauT_g"),t("updated")];
     var q=function(v){v=String(v==null?"":v);return /[";\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
     var lines=[head.map(q).join(";")];
-    vis.forEach(function(r){lines.push([globalProjets[String(r.g.projet||"").toUpperCase()]||r.g.projet||"",r.g.nom,r.g.pays||"",r.g.region,r.g.cercle,r.g.commune,r.g.village,r.g.lat||"",r.g.lng||"",r.src,r.m,r.c.F,r.c.H,r.c.Fi,r.c.G,Math.round(r.s.ep),Math.round(r.s.so),Math.round(r.s.enc),r.s.late.length,Math.round(r.s.caisse),r.g.reseau||"",r.g.objectif||"",Math.round(r.s.amP),Math.round(r.s.amNP),(r.g.agr||[]).length,r.recu?fdate(r.recu):""].map(q).join(";"))});
+    vis.forEach(function(r){lines.push([globalProjets[String(r.g.projet||"").toUpperCase()]||r.g.projet||"",r.g.nom,r.g.pays||"",r.g.region,r.g.cercle,r.g.commune,r.g.village,r.g.lat||"",r.g.lng||"",r.src,r.m,r.c.F,r.c.H,r.c.Fi,r.c.G,Math.round(r.s.ep),Math.round(r.s.so),Math.round(r.s.enc),r.s.late.length,Math.round(r.s.caisse),r.g.reseau||"",r.g.objectif||"",Math.round(r.s.amP),Math.round(r.s.amNP),(r.g.agr||[]).length,bureauText(r.g).join(" | "),r.recu?fdate(r.recu):""].map(q).join(";"))});
     var csv="﻿"+lines.join("\n");
     shareFileOrCopy(csv,"base-globale-avec-"+today()+".csv","text/csv",t("csvCopied"));
   };
@@ -1498,6 +1507,55 @@ function render(){
   ({home:vHome,members:vMembers,meeting:vMeeting,loans:vLoans,docs:vDocs,report:vReport})[view](gr);
 }
 
+
+/* ---------- bureau / comité de gestion ---------- */
+var POSTES=["pres","sec","tres","ctrl1","ctrl2"],NET_FREQ={village:1,commune:3,cercle:6,region:12};
+function posteLabel(p){return {pres:t("bPres"),sec:t("bSec"),tres:t("bTres"),ctrl1:t("bCtrl")+" 1",ctrl2:t("bCtrl")+" 2"}[p]||p}
+function telOk(v){return String(v||"").replace(/\D/g,"").length>=8}
+function bureauList(gr){var b=gr.bureau;if(b&&!Array.isArray(b)){b=["pres","sec","tres"].filter(function(k){return b[k]}).map(function(k){return {poste:k,prenom:"",nom:gr.bureau[k],tel:""}})}b=Array.isArray(b)?b:[];gr.bureau=b;return b}
+function bureauCount(gr){return bureauList(gr).filter(function(r){return r.prenom&&r.nom&&telOk(r.tel)}).length}
+function bName(r){return [r.prenom,r.nom].filter(function(x){return x}).join(" ")}
+function bureauName(gr,p){var r=bureauList(gr).find(function(x){return x.poste===p&&(x.prenom||x.nom)});return r?bName(r):""}
+function bureauTitle(gr){return t(isNet(gr)?"bureauT_n":"bureauT_g")}
+function bureauCard(gr){
+  var b=bureauList(gr),n=bureauCount(gr),h='';
+  if(n<5)h+='<div class="alert">⚠ '+esc(t("bureauInc",{t:bureauTitle(gr),n:n}))+'<br><button class="btn sm" id="buFill" style="margin-top:6px">'+esc(t("bureauFill"))+'</button></div>';
+  h+='<div class="card"><b>👥 '+esc(bureauTitle(gr))+'</b> <span class="tag '+(n>=5?'ok':'late')+'">'+(n>=5?n+' ✓':n+'/5')+'</span>';
+  if(b.length)h+='<table style="margin-top:6px">'+b.filter(function(r){return r.prenom||r.nom}).map(function(r){return '<tr><td><span class="sub">'+esc(posteLabel(r.poste))+'</span>'+esc(bName(r))+'</td><td class="n">'+(r.tel?'<a href="tel:'+esc(r.tel)+'">📞 '+esc(r.tel)+'</a>':'')+'</td></tr>'}).join("")+'</table>';
+  h+='<button class="btn sec sm" id="buEdit" style="margin-top:8px">'+esc(t("bureauEdit"))+'</button></div>';
+  return h;
+}
+function bindBureau(gr){if($("buEdit"))$("buEdit").onclick=function(){bureauForm(gr)};if($("buFill"))$("buFill").onclick=function(){bureauForm(gr)}}
+function bureauForm(gr){
+  var rows=bureauList(gr).map(function(r){return {poste:r.poste,prenom:r.prenom||"",nom:r.nom||"",tel:r.tel||""}});
+  POSTES.forEach(function(p){if(!rows.some(function(r){return r.poste===p}))rows.push({poste:p,prenom:"",nom:"",tel:""})});
+  rows.sort(function(a,b){var ia=POSTES.indexOf(a.poste),ib=POSTES.indexOf(b.poste);return (ia<0?99:ia)-(ib<0?99:ib)});
+  var mem=isNet(gr)?[]:active(gr);
+  function rowHtml(r,i){var custom=POSTES.indexOf(r.poste)<0;
+    return '<div class="card" style="padding:10px" data-row="'+i+'">'+(custom?'<label>'+esc(t("posteLbl"))+'</label><input data-f="poste" value="'+esc(r.poste)+'">':'<b>'+esc(posteLabel(r.poste))+'</b><input type="hidden" data-f="poste" value="'+r.poste+'">')+
+      (mem.length?'<select data-f="pick" style="margin-top:6px"><option value="">'+esc(t("pickMember"))+'</option>'+mem.map(function(m){return '<option value="'+m.id+'">'+esc(m.nom)+'</option>'}).join("")+'</select>':'')+
+      '<div class="grid2"><div><label>'+esc(t("firstName"))+'</label><input data-f="prenom" value="'+esc(r.prenom)+'"></div><div><label>'+esc(t("lastName"))+'</label><input data-f="nom" value="'+esc(r.nom)+'"></div></div>'+
+      '<label>'+esc(t("phone"))+'</label><input data-f="tel" inputmode="tel" value="'+esc(r.tel)+'"></div>'}
+  modal('<h3>👥 '+esc(bureauTitle(gr))+'</h3><p class="muted">'+esc(t("bureauHint"))+'</p><div id="buRows">'+rows.map(rowHtml).join("")+'</div><button class="btn sec full" id="buAdd" type="button">'+esc(t("addPoste"))+'</button><p class="muted" id="buMsg" style="color:var(--r)"></p>'+
+    '<div class="actions"><button class="btn sec" id="buNo">'+esc(t("cancel"))+'</button><button class="btn" id="buOk">'+esc(t("save"))+'</button></div>',function(m,close){
+    $("buNo").onclick=close;
+    function bindPick(){m.querySelectorAll('[data-f="pick"]').forEach(function(sel){sel.onchange=function(){var mm=mem.find(function(x){return x.id===sel.value});if(!mm)return;var box=sel.closest("[data-row]"),parts=String(mm.nom).trim().split(/\s+/);box.querySelector('[data-f="prenom"]').value=parts.length>1?parts.slice(0,-1).join(" "):parts[0];box.querySelector('[data-f="nom"]').value=parts.length>1?parts[parts.length-1]:"";if(mm.tel)box.querySelector('[data-f="tel"]').value=mm.tel}})}
+    bindPick();
+    $("buAdd").onclick=function(){var d=document.createElement("div");d.innerHTML=rowHtml({poste:t("bOther"),prenom:"",nom:"",tel:""},$("buRows").children.length);$("buRows").appendChild(d.firstChild);bindPick()};
+    $("buOk").onclick=function(){
+      var out=[],bad=false;
+      m.querySelectorAll("[data-row]").forEach(function(box){var g2=function(f){var e=box.querySelector('[data-f="'+f+'"]');return e?String(e.value).trim():""};var r={poste:g2("poste")||t("bOther"),prenom:g2("prenom"),nom:g2("nom"),tel:g2("tel")};
+        var any=r.prenom||r.nom||r.tel,full=r.prenom&&r.nom&&telOk(r.tel);box.style.borderColor=(any&&!full)?"var(--r)":"";if(any&&!full)bad=true;if(any)out.push(r)});
+      var n=out.filter(function(r){return r.prenom&&r.nom&&telOk(r.tel)}).length;
+      if(bad||n<5){$("buMsg").textContent=bad?t("telBad")+" · "+t("bureauMin5",{n:n}):t("bureauMin5",{n:n});return}
+      gr.bureau=out;persist(gr);close();render();toast(t("bureauSaved"));
+    };
+  });
+}
+function bureauText(gr){return bureauList(gr).filter(function(r){return r.prenom||r.nom}).map(function(r){return posteLabel(r.poste)+" : "+bName(r)+(r.tel?" ("+r.tel+")":"")})}
+function bureauPayload(gr){return bureauList(gr).filter(function(r){return r.prenom||r.nom}).map(function(r){return {poste:posteLabel(r.poste),prenom:r.prenom||"",nom:r.nom||"",tel:r.tel||""}})}
+function lastPvDate(gr){var d="";(gr.pvs||[]).forEach(function(p){if(p.date>d)d=p.date});return d}
+function netNextMeet(nw){var last=lastPvDate(nw),per=NET_FREQ[nw.niveau]||1;return last?addMonths(last,per):addMonths(nw.cree||today(),per)}
 /* =========================================================
    RÉSEAUX VSLA (village / commune / cercle / région)
    ========================================================= */
@@ -1539,7 +1597,6 @@ function chooseType(){
 }
 function netForm(nw){
   var isNew=!nw,d=nw||{nom:"",niveau:"village",pays:"Mali",region:"",cercle:"",commune:"",village:"",animateur:profile.nom||"",bureau:{},cotisNet:""};
-  var b=d.bureau||{};
   function inp(id,key,val,extra){return '<label>'+esc(t(key))+'</label><input id="'+id+'" value="'+esc(val||"")+'"'+(extra||"")+'>'}
   modal('<h3>'+esc(t(isNew?"newNetT":"editNetT"))+'</h3>'+
     '<label>'+esc(t("netLevel"))+'</label><select id="nNiv">'+NIVEAUX.map(function(n){return '<option value="'+n+'"'+(d.niveau===n?" selected":"")+'>'+esc(t("netOf",{n:nivName(n)}))+'</option>'}).join("")+'</select><p class="muted" id="nNivH" style="margin:4px 0 0"></p>'+
@@ -1549,7 +1606,6 @@ function netForm(nw){
     '<datalist id="regList">'+REGIONS.map(function(r){return '<option value="'+esc(r)+'">'}).join("")+'</datalist>'+
     '<div class="grid2"><div id="wCom">'+inp("nCom","commune",d.commune)+'</div><div id="wVil">'+inp("nVil","village",d.village)+'</div></div>'+
     '<label>'+esc(t("objectif"))+'</label><textarea id="nObj" style="min-height:60px" placeholder="'+esc(t("netObjPh"))+'">'+esc(d.objectif||"")+'</textarea>'+
-    '<label>'+esc(t("bureau"))+'</label><div class="grid3"><div><span class="sub">'+esc(t("bPres"))+'</span><input id="nBP" value="'+esc(b.pres||"")+'"></div><div><span class="sub">'+esc(t("bSec"))+'</span><input id="nBS" value="'+esc(b.sec||"")+'"></div><div><span class="sub">'+esc(t("bTres"))+'</span><input id="nBT" value="'+esc(b.tres||"")+'"></div></div>'+
     inp("nTel","netPhone",d.tel,' inputmode="tel"')+
     inp("nCot","cotisNet",d.cotisNet,' inputmode="numeric"')+
     inp("nAni","animateur",d.animateur)+
@@ -1563,15 +1619,15 @@ function netForm(nw){
       var x=isNew?normalize({id:uid(),type:"reseau",cree:today()}):nw,n=$("nNiv").value;
       x.type="reseau";x.niveau=n;x.nom=nom;x.pays=$("nPays").value.trim()||"Mali";x.region=$("nReg").value.trim();
       x.cercle=n==="region"?"":$("nCer").value.trim();x.commune=(n==="village"||n==="commune")?$("nCom").value.trim():"";x.village=n==="village"?$("nVil").value.trim():"";x.lieu=x.village;
-      x.objectif=$("nObj").value.trim();x.bureau={pres:$("nBP").value.trim(),sec:$("nBS").value.trim(),tres:$("nBT").value.trim()};x.tel=$("nTel").value.trim();x.cotisNet=num($("nCot").value)||"";x.animateur=$("nAni").value.trim();
+      x.objectif=$("nObj").value.trim();x.tel=$("nTel").value.trim();x.cotisNet=num($("nCot").value)||"";x.animateur=$("nAni").value.trim();
       if(isNew&&projet)x.projet=projet.code;
-      groups[x.id]=x;currentId=x.id;persist(x);close();view="home";render();toast(t("netSaved"));
+      groups[x.id]=x;currentId=x.id;persist(x);close();view="home";render();toast(t("netSaved"));if(isNew)setTimeout(function(){bureauForm(x)},300);
     };
   });
 }
 function netPlace(nw){var a=nw.niveau==="region"?[nw.region,nw.pays]:nw.niveau==="cercle"?[nw.cercle,nw.region,nw.pays]:nw.niveau==="commune"?[nw.commune,nw.cercle,nw.region,nw.pays]:[nw.village,nw.commune,nw.cercle,nw.region,nw.pays];return a.filter(function(x){return x}).join(", ")}
 function vNetHome(nw){
-  var s=netStats(nw),b=nw.bureau||{},h='<div class="card" style="background:var(--g2);border-color:var(--g2)"><b>🌐 '+esc(netTitle(nw))+'</b><span class="sub">'+esc(netPlace(nw))+'</span></div>';
+  var s=netStats(nw),h='<div class="card" style="background:var(--g2);border-color:var(--g2)"><b>🌐 '+esc(netTitle(nw))+'</b><span class="sub">'+esc(netPlace(nw))+'</span></div>';
   h+='<div class="kpis"><div class="kpi main"><div class="l">'+esc(t("compOf_"+nw.niveau))+'</div><div class="v">'+s.nbComp+'</div></div>'+
     (nw.niveau!=="village"?'<div class="kpi"><div class="l">'+esc(t("nbGroups"))+'</div><div class="v">'+s.nbGr+'</div></div>':'')+
     '<div class="kpi"><div class="l">'+esc(t("nbMembers"))+'</div><div class="v">'+s.m+'</div></div>'+
@@ -1582,8 +1638,11 @@ function vNetHome(nw){
   if(!nw.composantes.length)h+='<div class="card empty">'+esc(t("noComp_"+nw.niveau))+'<button class="btn full" id="goComp">'+esc(t("addComp"))+'</button></div>';
   else h+='<div class="card"><ol style="margin:0">'+nw.composantes.map(function(c){var x=compFig(nw,c);return '<li style="margin-bottom:4px"><b>'+esc(c.nom)+'</b>'+(c.localite?' – '+esc(c.localite):'')+'<span class="sub">'+(nw.niveau!=="village"?esc(t("nbGroups"))+' : '+x.nbGr+' · ':'')+esc(t("nbMembers"))+' : '+x.m+(x.ep?' · '+f(x.ep):'')+(x.linked?' · 🔗':'')+'</span></li>'}).join("")+'</ol></div>';
   if(nw.objectif)h+='<div class="card"><b>'+esc(t("objLbl"))+'</b><br>'+esc(nw.objectif)+'</div>';
-  h+='<div class="card muted">'+(b.pres?'👑 '+esc(t("bPres"))+' : '+esc(b.pres)+'<br>':'')+(b.sec?'✍️ '+esc(t("bSec"))+' : '+esc(b.sec)+'<br>':'')+(b.tres?'💼 '+esc(t("bTres"))+' : '+esc(b.tres)+'<br>':'')+(nw.tel?'📞 '+esc(nw.tel)+'<br>':'')+(nw.cotisNet?esc(t("cotisNet"))+' : '+f(nw.cotisNet)+'<br>':'')+(nw.animateur?'👤 '+esc(nw.animateur)+'<br>':'')+'<button class="btn sec sm" id="editN" style="margin-top:8px">'+esc(t("editNet"))+'</button></div>';
-  $("view").innerHTML=h;$("editN").onclick=function(){netForm(nw)};if($("goComp"))$("goComp").onclick=function(){compForm(nw,null)};
+  var lm=lastPvDate(nw),nm=netNextMeet(nw);
+  h+='<div class="card'+(nm<today()?' alert':'')+'" style="margin-top:8px">📅 <b>'+esc(t("meetFreq",{f:t("freq_"+nw.niveau)}))+'</b><br>'+(lm?esc(t("lastMeet",{d:fdate(lm)})):esc(t("noMeetYet")))+'<br>'+esc(nm<today()?t("meetLate",{d:fdate(nm)}):t("nextMeet",{d:fdate(nm)}))+'</div>';
+  h+=bureauCard(nw);
+  h+='<div class="card muted">'+(nw.tel?'📞 '+esc(nw.tel)+'<br>':'')+(nw.cotisNet?esc(t("cotisNet"))+' : '+f(nw.cotisNet)+'<br>':'')+(nw.animateur?'👤 '+esc(nw.animateur)+'<br>':'')+'<button class="btn sec sm" id="editN" style="margin-top:8px">'+esc(t("editNet"))+'</button></div>';
+  $("view").innerHTML=h;bindBureau(nw);$("editN").onclick=function(){netForm(nw)};if($("goComp"))$("goComp").onclick=function(){compForm(nw,null)};
 }
 function vNetComp(nw){
   var h='<h2>'+esc(t("compOf_"+nw.niveau))+' ('+nw.composantes.length+')</h2><p class="muted">'+esc(t("compHelp_"+nw.niveau))+'</p><button class="btn full" id="cAdd" style="margin:0 0 12px">'+esc(t("addComp"))+'</button>';
@@ -1652,9 +1711,10 @@ function cashForm(nw,sens){
   });
 }
 var netDocTab="pv";
+function withBureau(gr,txt){var bt=bureauText(gr);if(!bt.length)return txt;var i=txt.lastIndexOf("\n\n");return txt.slice(0,i)+"\n\n"+bureauTitle(gr)+" :\n"+bt.map(function(x){return "- "+x}).join("\n")+txt.slice(i)}
 function netRules(nw){
   var cfg=nw.amendesCfg||{};
-  return t("rulesNetTpl",{nom:nw.nom,niv:nivName(nw.niveau),lieu:netPlace(nw)||"______",membres:nw.composantes.map(function(c){return c.nom}).join(", ")||"______",objectif:nw.objectif||t("netObjDefault"),cot:nw.cotisNet?f(nw.cotisNet):"______ F",date:fdate(today())});
+  return withBureau(nw,t("rulesNetTpl",{nom:nw.nom,niv:nivName(nw.niveau),lieu:netPlace(nw)||"______",membres:nw.composantes.map(function(c){return c.nom}).join(", ")||"______",objectif:nw.objectif||t("netObjDefault"),freq:t("freq_"+(nw.niveau||"village")),cot:nw.cotisNet?f(nw.cotisNet):"______ F",date:fdate(today())}));
 }
 function vNetDocs(nw){
   var h='<h2>'+esc(t("docsT"))+'</h2><div class="seg"><button data-tab="pv" class="'+(netDocTab==="pv"?"on":"")+'">📝 '+esc(t("tabPV"))+'</button><button data-tab="rules" class="'+(netDocTab==="rules"?"on":"")+'">📜 '+esc(t("tabRules"))+'</button><button data-tab="agr" class="'+(netDocTab==="agr"?"on":"")+'">🧺 '+esc(t("tabAGR"))+'</button></div>';
@@ -1686,7 +1746,7 @@ function vNetDocs(nw){
   }
 }
 function netPvForm(nw,pv){
-  var isNew=!pv;pv=pv||{date:today(),lieu:netPlace(nw).split(",")[0]||"",heure:"",presents:nw.composantes.map(function(c){return c.id}),autres:"",odj:"",decisions:"",prochaine:"",secretaire:(nw.bureau||{}).sec||""};
+  var isNew=!pv;pv=pv||{date:today(),lieu:netPlace(nw).split(",")[0]||"",heure:"",presents:nw.composantes.map(function(c){return c.id}),autres:"",odj:"",decisions:"",prochaine:addMonths(today(),NET_FREQ[nw.niveau]||1),secretaire:bureauName(nw,"sec")};
   var chks=nw.composantes.map(function(c){return '<label class="chk"><input type="checkbox" data-pres="'+c.id+'"'+((pv.presents||[]).indexOf(c.id)>=0?" checked":"")+'>'+esc(c.nom)+'</label>'}).join("");
   modal('<h3>'+esc(t("pvT"))+'</h3><div class="grid2"><div><label>'+esc(t("date"))+'</label><input type="date" id="vD" value="'+esc(pv.date)+'"></div><div><label>'+esc(t("pvTime"))+'</label><input type="time" id="vH" value="'+esc(pv.heure||"")+'"></div></div>'+
     '<label>'+esc(t("pvPlace"))+'</label><input id="vL" value="'+esc(pv.lieu||"")+'">'+
@@ -1719,13 +1779,14 @@ function netPvText(nw,pv){
   L.push("");L.push(t("pvSign"));L.push("");L.push(t("signLine"));return L.join("\n");
 }
 function netReportText(nw){
-  var s=netStats(nw),b=nw.bureau||{},L=[];
-  L.push("*"+nw.nom+"* – "+netTitle(nw));if(netPlace(nw))L.push("📍 "+netPlace(nw));if(b.pres)L.push("👑 "+b.pres);if(nw.animateur)L.push("👤 "+nw.animateur);if(nw.objectif)L.push("🎯 "+nw.objectif);
+  var s=netStats(nw),L=[];
+  L.push("*"+nw.nom+"* – "+netTitle(nw));if(netPlace(nw))L.push("📍 "+netPlace(nw));L.push("📅 "+t("meetFreq",{f:t("freq_"+nw.niveau)}));if(nw.animateur)L.push("👤 "+nw.animateur);if(nw.objectif)L.push("🎯 "+nw.objectif);
   L.push(t("asOf",{d:fdate(today())}));L.push("");
   L.push(t("compOf_"+nw.niveau)+" : "+s.nbComp);if(nw.niveau!=="village")L.push(t("nbGroups")+" : "+s.nbGr);
   L.push(t("nbMembers")+" : "+s.m+" ("+netCatLine(s)+")");L.push(t("netSav")+" : "+f(s.ep));L.push("💰 "+t("netCash")+" : "+f(s.solde)+" ("+t("cashIn")+" "+f(s.cin)+" / "+t("cashOut")+" "+f(s.cout)+")");
   if(nw.composantes.length){L.push("");L.push(t("compOf_"+nw.niveau)+" :");nw.composantes.forEach(function(c){var x=compFig(nw,c);L.push("- "+c.nom+(c.localite?" ("+c.localite+")":"")+" : "+x.m+" "+t("membersShort")+(nw.niveau!=="village"?", "+x.nbGr+" "+t("groupsShort"):"")+(x.ep?", "+f(x.ep):""))})}
   if((nw.agr||[]).length)L.push("🧺 "+t("nbAGR")+" : "+nw.agr.length);
+  var bt=bureauText(nw);if(bt.length){L.push("");L.push(bureauTitle(nw)+" ("+bureauCount(nw)+"/5) :");bt.forEach(function(x){L.push("- "+x)})}
   L.push("");L.push(t("signLine"));return L.join("\n");
 }
 function vNetReport(nw){
@@ -1739,7 +1800,7 @@ function buildNetPayload(nw){
   var s=netStats(nw);nw.projet=(projet&&projet.code)||nw.projet||"";
   return {key:SYNC_KEY,action:"upsert",type:"reseau",projet:nw.projet,from:{nom:profile.nom||"",tel:profile.tel||"",structure:profile.structure||""},
     summary:{niveau:nivName(nw.niveau),composantes:s.nbComp,groupements:s.nbGr,membres:s.m,femmes:s.F,hommes:s.H,filles:s.Fi,garcons:s.G,epargne:Math.round(s.ep),caisse:Math.round(s.solde),entrees:Math.round(s.cin),sorties:Math.round(s.cout),reunions:nw.pvs.length,nbAgr:(nw.agr||[]).length},
-    composition:nw.composantes.map(function(c){var x=compFig(nw,c);return {nom:c.nom,localite:c.localite||"",groupements:x.nbGr,membres:x.m,femmes:x.F,hommes:x.H,filles:x.Fi,garcons:x.G,epargne:Math.round(x.ep),responsable:c.resp||"",tel:c.tel||"",adhesion:c.dateAdh?fdate(c.dateAdh):""}}),
+    bureau:bureauPayload(nw),composition:nw.composantes.map(function(c){var x=compFig(nw,c);return {nom:c.nom,localite:c.localite||"",groupements:x.nbGr,membres:x.m,femmes:x.F,hommes:x.H,filles:x.Fi,garcons:x.G,epargne:Math.round(x.ep),responsable:c.resp||"",tel:c.tel||"",adhesion:c.dateAdh?fdate(c.dateAdh):""}}),
     agr:(nw.agr||[]).map(function(a){return {membre:compName(nw,a.membreId),activite:a.activite,produit:a.produit,unite:a.unite,prix:a.prix,quantite:a.quantite,description:a.description,publier:!!a.publier,contact:a.publier?a.contact:""}}),
     group:nw};
 }
