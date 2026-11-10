@@ -944,7 +944,7 @@ function groupForm(gr){
 
 /* ---------- vues ---------- */
 function vHome(gr){
-  var s=stats(gr),h="";
+  var s=stats(gr),h=bureauAlert(gr);
   if(s.late.length)h+='<div class="alert">⚠ '+esc(t("lateAlert",{n:s.late.length}))+' : '+s.late.map(function(x){return esc(mName(gr,x.p.membreId))+" ("+f(x.i.reste)+")"}).join(", ")+'</div>';
   h+='<div class="kpis"><div class="kpi main"><div class="l">'+esc(t("cash"))+'</div><div class="v">'+f(s.caisse)+'</div></div>'+
     '<div class="kpi"><div class="l">'+esc(t("savings"))+'</div><div class="v">'+f(s.ep)+'</div></div>'+
@@ -1519,12 +1519,12 @@ function bureauName(gr,p){var r=bureauList(gr).find(function(x){return x.poste==
 function bureauTitle(gr){return t(isNet(gr)?"bureauT_n":"bureauT_g")}
 function bureauCard(gr){
   var b=bureauList(gr),n=bureauCount(gr),h='';
-  if(n<5)h+='<div class="alert">⚠ '+esc(t("bureauInc",{t:bureauTitle(gr),n:n}))+'<br><button class="btn sm" id="buFill" style="margin-top:6px">'+esc(t("bureauFill"))+'</button></div>';
   h+='<div class="card"><b>👥 '+esc(bureauTitle(gr))+'</b> <span class="tag '+(n>=5?'ok':'late')+'">'+(n>=5?n+' ✓':n+'/5')+'</span>';
   if(b.length)h+='<table style="margin-top:6px">'+b.filter(function(r){return r.prenom||r.nom}).map(function(r){return '<tr><td><span class="sub">'+esc(posteLabel(r.poste))+'</span>'+esc(bName(r))+'</td><td class="n">'+(r.tel?'<a href="tel:'+esc(r.tel)+'">📞 '+esc(r.tel)+'</a>':'')+'</td></tr>'}).join("")+'</table>';
   h+='<button class="btn sec sm" id="buEdit" style="margin-top:8px">'+esc(t("bureauEdit"))+'</button></div>';
   return h;
 }
+function bureauAlert(gr){var n=bureauCount(gr);return n<5?'<div class="alert">⚠ '+esc(t("bureauInc",{t:bureauTitle(gr),n:n}))+'<br><button class="btn sm" id="buFill" style="margin-top:6px">'+esc(t("bureauFill"))+'</button></div>':''}
 function bindBureau(gr){if($("buEdit"))$("buEdit").onclick=function(){bureauForm(gr)};if($("buFill"))$("buFill").onclick=function(){bureauForm(gr)}}
 function bureauForm(gr){
   var rows=bureauList(gr).map(function(r){return {poste:r.poste,prenom:r.prenom||"",nom:r.nom||"",tel:r.tel||""}});
@@ -1627,7 +1627,7 @@ function netForm(nw){
 }
 function netPlace(nw){var a=nw.niveau==="region"?[nw.region,nw.pays]:nw.niveau==="cercle"?[nw.cercle,nw.region,nw.pays]:nw.niveau==="commune"?[nw.commune,nw.cercle,nw.region,nw.pays]:[nw.village,nw.commune,nw.cercle,nw.region,nw.pays];return a.filter(function(x){return x}).join(", ")}
 function vNetHome(nw){
-  var s=netStats(nw),h='<div class="card" style="background:var(--g2);border-color:var(--g2)"><b>🌐 '+esc(netTitle(nw))+'</b><span class="sub">'+esc(netPlace(nw))+'</span></div>';
+  var s=netStats(nw),h=bureauAlert(nw)+'<div class="card" style="background:var(--g2);border-color:var(--g2)"><b>🌐 '+esc(netTitle(nw))+'</b><span class="sub">'+esc(netPlace(nw))+'</span></div>';
   h+='<div class="kpis"><div class="kpi main"><div class="l">'+esc(t("compOf_"+nw.niveau))+'</div><div class="v">'+s.nbComp+'</div></div>'+
     (nw.niveau!=="village"?'<div class="kpi"><div class="l">'+esc(t("nbGroups"))+'</div><div class="v">'+s.nbGr+'</div></div>':'')+
     '<div class="kpi"><div class="l">'+esc(t("nbMembers"))+'</div><div class="v">'+s.m+'</div></div>'+
