@@ -184,7 +184,8 @@ fr:{
  delAllQ:"Supprimer {n} ET toutes ses cotisations, prêts et remboursements ? Les totaux du groupe seront recalculés. Action irréversible.",memberDeleted:"Membre supprimé",
  adminT:"Accès superviseur",adminHint:"La base globale est protégée. Entrez votre mot de passe superviseur.",password:"Mot de passe",enter:"Entrer",
  wrongPwd:"Mot de passe incorrect.",lockBtn:"🔒 Verrouiller",lockedMsg:"Base globale verrouillée.",
- globalHint2:"Données envoyées automatiquement par tous les téléphones qui utilisent l'outil. Accès réservé au superviseur.",
+ globalHint2:"Données envoyées automatiquement par tous les téléphones qui utilisent l'outil. Accès réservé au superviseur. Touchez 🗑 pour effacer un groupement test ou en double.",
+ gDelSrvQ:"Supprimer « {n} » de la base globale ? Toutes ses données seront effacées du serveur et il ne pourra plus y être renvoyé. Action irréversible.",gDelSrvOk:"« {n} » supprimé de la base globale",gDelSrvNo:"Suppression refusée : ce groupement appartient à un autre projet",
  designedBy:"Conçu par Sékou Traoré",signLine:"— Outils de gestion des groupements AVEC · © Sékou Traoré",
  syncPending:"⏳ {n} groupement(s) en attente d'envoi à la base globale",syncOk:"☁ Base globale à jour",autoSync:"Envoi automatique à la base globale",
  autoSyncHint:"Chaque fois qu'un groupement est créé ou modifié, il est envoyé automatiquement à la base globale du superviseur dès que le téléphone a internet. Rien à faire de plus.",
@@ -286,7 +287,8 @@ bm:{
  delAllQ:"{n} jɔsi ANI a ka wari donnenw, juruw ani sarali bɛɛ ? Tɔn ka jateminɛw bɛna kɛ kokura. A tɛ se ka segin.",memberDeleted:"Tɔnden jɔsira",
  adminT:"Kɔlɔsibaga ka donda",adminHint:"Kunnafoni bɛɛ lakanana. Aw ka kɔlɔsibaga gundo daɲɛ sɛbɛn.",password:"Gundo daɲɛ",enter:"Don",
  wrongPwd:"Gundo daɲɛ tɛ ɲɛ.",lockBtn:"🔒 A datugu",lockedMsg:"Kunnafoni bɛɛ datugura.",
- globalHint2:"Telefɔni minnu bɛ baara kɛ ni minɛn in ye, olu bɛɛ ka kunnafoniw bɛ na yan u yɛrɛ ma. Kɔlɔsibaga dɔrɔn de bɛ se ka don.",
+ globalHint2:"Telefɔni minnu bɛ baara kɛ ni minɛn in ye, olu bɛɛ ka kunnafoniw bɛ na yan u yɛrɛ ma. Kɔlɔsibaga dɔrɔn de bɛ se ka don. 🗑 digi ka tɔn kɔrɔbɔli walima tɔn fila jɔsi.",
+ gDelSrvQ:"« {n} » jɔsi tɔnw bɛɛ ka kunnafoniw na ? A kunnafoniw bɛɛ bɛna jɔsi, a tɛna se ka lasegin yen tugun. A tɛ se ka kɔsegin.",gDelSrvOk:"« {n} » jɔsira",gDelSrvNo:"A ma se ka jɔsi : nin tɔn ye porozɛ wɛrɛ ta ye",
  designedBy:"Sékou Traoré de y'a dilan",signLine:"— AVEC tɔnw ɲɛnabɔ minɛnw · © Sékou Traoré",
  syncPending:"⏳ Tɔn {n} bɛ makɔnɔ ka ci kunnafoni bɛɛ ma",syncOk:"☁ Kunnafoni bɛɛ labɛnnen don",autoSync:"A bɛ ci a yɛrɛ ma kunnafoni bɛɛ ma",
  autoSyncHint:"Tuma o tuma tɔn dabɔra walima a yɛlɛmana, a bɛ ci a yɛrɛ ma kɔlɔsibaga ka kunnafoni bɛɛ ma, ni ɛntɛrinɛti sɔrɔla telefɔni kan. Foyi wɛrɛ tɛ kɛ.",
@@ -388,7 +390,8 @@ en:{
  delAllQ:"Delete {n} AND all their contributions, loans and repayments? The group's totals will be recalculated. This cannot be undone.",memberDeleted:"Member deleted",
  adminT:"Supervisor access",adminHint:"The global database is protected. Enter your supervisor password.",password:"Password",enter:"Enter",
  wrongPwd:"Wrong password.",lockBtn:"🔒 Lock",lockedMsg:"Global database locked.",
- globalHint2:"Data sent automatically by every phone using the tool. Access reserved for the supervisor.",
+ globalHint2:"Data sent automatically by every phone using the tool. Access reserved for the supervisor. Tap 🗑 to erase a test or duplicate group.",
+ gDelSrvQ:"Delete “{n}” from the global database? All its data will be erased from the server and it can no longer be sent back. This cannot be undone.",gDelSrvOk:"“{n}” deleted from the global database",gDelSrvNo:"Deletion refused: this group belongs to another project",
  designedBy:"Designed by Sékou Traoré",signLine:"— VSLA Group Management Tools · © Sékou Traoré",
  syncPending:"⏳ {n} group(s) waiting to be sent to the global database",syncOk:"☁ Global database up to date",autoSync:"Automatic sending to the global database",
  autoSyncHint:"Each time a group is created or changed, it is sent automatically to the supervisor's global database as soon as the phone has internet. Nothing else to do.",
@@ -430,6 +433,25 @@ en:{
 }};
 
 Object.assign(I18N.fr,{
+ aideT:"Aides du fonds social",aideHint:"Le fonds social aide les membres en cas de maladie, décès, naissance… Solde disponible :",aideType:"Motif",aide_maladie:"Maladie",aide_deces:"Décès",aide_naissance:"Naissance",aide_mariage:"Mariage",aide_autre:"Autre",
+ aideAdd:"Enregistrer l'aide",aideSaved:"Aide enregistrée",aideTooMuch:"Le fonds social n'a que {a}",aideDelQ:"Supprimer cette aide ?",
+ tabCycle:"Partage",cyHint:"À la fin du cycle (souvent 9 à 12 mois), l'argent de la caisse est partagé entre les membres selon leur épargne. Le fonds social reste dans la caisse pour le nouveau cycle. Les prêts et amendes encore dus sont retenus sur la part du membre.",
+ cyLoansOpen:"Il reste {a} de prêts à rembourser : récupérez-les avant le partage, sinon ils seront retenus sur la part des membres concernés.",
+ cyToShare:"Argent à partager",cyProfit:"Bénéfice (intérêts + amendes)",cyRend:"Rendement",cyEmpty:"Pas encore d'épargne à partager.",cyShare:"Part",cyDeduct:"Retenue",cyReceive:"À recevoir",
+ cyRemainder:"Reste d'arrondi (gardé dans la caisse)",cyPvBtn:"Procès-verbal du partage",cyPvT:"PROCÈS-VERBAL DU PARTAGE DE FIN DE CYCLE",cyValue:"Valeur totale de la caisse (avec prêts et amendes dus)",
+ cySocialStays:"reste dans la caisse",cyStillOwes:"doit encore {a}",cyShort:"Certains membres doivent plus que leur part ({a} au total). Faites rembourser ces prêts avant de clôturer le cycle.",cyTotalPaid:"Total remis aux membres",cyCloseBtn:"Clôturer le cycle et commencer un nouveau",
+ cyCloseQ:"Clôturer le cycle ? {a} seront remis aux membres et {b} resteront dans la caisse (fonds social). Les réunions, prêts et amendes du cycle seront archivés et le compteur repartira à zéro. Les membres restent inscrits.",cyCloseOk:"Clôturer",
+ cyCantClose:"Un membre doit plus que sa part : réglez son prêt avant de clôturer",cyClosed:"Cycle clôturé. Le PV du partage est dans les Documents.",cyPast:"Cycles précédents",
+ livT:"Livret du membre",livMeet:"réunion",livNbMeet:"{n} versement(s)",livLast:"dernier le",livLoans:"Prêts",livPaid:"payé",livRest:"reste",livDue:"échéance",livAides:"Aides reçues du fonds social",livEstim:"Part estimée si le partage avait lieu aujourd'hui",livFoot:"Outils de gestion des groupements AVEC",
+ langMore:"Autres langues…",langT:"Langues de l'application",langHint:"Au Mali, chaque zone a sa langue. Ajoutez la langue de votre zone et faites-la traduire par une personne qui la lit et l'écrit bien. Les textes pas encore traduits restent en français. Commencez par les mots courts (boutons et menus) : ils apparaissent en premier.",
+ langFromSrv:"reçue de l'administrateur",langLocal:"sur ce téléphone",langUse:"Utiliser",langAdd:"Ajouter une langue",langOther:"Autre langue…",langOtherPh:"Nom de la langue",langAddBtn:"Ajouter et traduire",
+ langShareT:"Partager une traduction",langShareHint:"Une traduction faite sur un téléphone peut être envoyée aux autres : par fichier (WhatsApp), ou par l'administrateur principal à tous les téléphones d'un coup.",
+ langImport:"Importer une traduction",langRecvBtn:"Recevoir les langues partagées",langImpHint:"Choisissez le fichier reçu (langue-….json) ou collez son contenu ci-dessous.",langChooseFile:"Choisir le fichier",langImportBtn:"Importer",
+ langBadFile:"Ce fichier n'est pas une traduction de l'outil",langImported:"Traduction « {n} » importée",langRecv:"{n} langue(s) reçue(s)",
+ langEditHint:"Écrivez la traduction sous chaque texte français ; elle est enregistrée tout de suite. Gardez tels quels les mots entre accolades, par exemple {n}, ainsi que les émojis.",
+ langSearch:"Chercher un mot",langTodo:"Seulement les textes pas encore traduits",langCount:"{n} texte(s)",langAllDone:"Tout est traduit sur cette sélection 👍",
+ langShareFile:"Partager le fichier de traduction",langSendAll:"Envoyer à tous les téléphones",langSendHint:"Réservé à l'administrateur principal : entrez votre mot de passe. Tous les téléphones qui utilisent l'outil recevront cette langue à leur prochaine connexion.",
+ langSending:"Envoi…",langSentOk:"Langue envoyée à tous les téléphones ✅",langSentNo:"Envoi non confirmé : vérifiez le mot de passe et la connexion",langDel:"Supprimer mes traductions",langDelQ:"Supprimer les traductions « {n} » de ce téléphone ?",send:"Envoyer",
  bCtrl:"Contrôleur(euse)",bOther:"Autre poste",bureauT_g:"Comité de gestion",bureauT_n:"Bureau du réseau",bureauEdit:"✏️ Modifier",bureauHint:"Au moins 5 membres : prénom, nom et numéro de téléphone.",bureauMin5:"Il faut au moins 5 membres complets (prénom, nom, téléphone) : {n}/5.",bureauInc:"{t} incomplet : {n}/5 membres renseignés.",bureauFill:"Compléter maintenant",firstName:"Prénom",lastName:"Nom",pickMember:"— Choisir un membre —",addPoste:"+ Ajouter un poste",posteLbl:"Poste",bureauSaved:"Bureau enregistré",telBad:"Numéro incomplet (8 chiffres)",bureauShort:"Bureau complet",
  freq_village:"chaque mois",freq_commune:"chaque trimestre",freq_cercle:"chaque semestre",freq_region:"une fois par an",meetFreq:"Réunions du réseau : {f}",lastMeet:"Dernière réunion : {d}",nextMeet:"Prochaine réunion prévue : {d}",meetLate:"Réunion en retard : elle était prévue le {d}.",noMeetYet:"Aucune réunion enregistrée pour le moment.",
  newGroup:"+ Nouveau",
@@ -462,9 +484,28 @@ Object.assign(I18N.fr,{
  u_kg:"kg",u_litre:"litre",u_morceau:"morceau",u_pot:"pot",u_tête:"tête",u_plaquette:"plaquette de 30",u_pagne:"pagne",u_pièce:"pièce",
  agrCatalog:"Choisir dans le catalogue",agrCatalogNone:"— Autre produit (saisir) —",prodAutoAdded:"Nouveau produit ajouté au catalogue",
  mjtTheme:"Thème {n}",trObj:"Objectifs",trSteps:"Déroulement",trKeys:"Messages clés",trStory:"Récit",trQuestions:"Questions pour la discussion",trRemember:"À retenir",
- trainT:"📚 Modules de formation",trainHint:"Fiches d'animation pour les animatrices, secrétaires et responsables de réseau. Elles s'utilisent sans Internet.",trainFrOnly:"Le contenu des modules est en français.",trMjt:"Les 7 thèmes MJT (Musow Ka Jigiya Ton)",trPlus:"Modules complémentaires",trShare:"📤 Partager ou copier la fiche"
+ trainT:"📚 Modules de formation",trainHint:"Fiches d'animation pour les animatrices, secrétaires et responsables de réseau. Elles s'utilisent sans Internet.",trainFrOnly:"Le contenu des modules est en français.",trMjt:"Les 7 thèmes MJT (Musow Ka Jigiya Ton)",trPlus:"Modules complémentaires",trSante:"Santé, droits et protection",trClimat:"Climat et résilience",trShare:"📤 Partager ou copier la fiche"
 });
 Object.assign(I18N.bm,{
+ aideT:"Dɛmɛ kɛsu dɛmɛw",aideHint:"Dɛmɛ kɛsu bɛ tɔndenw dɛmɛ bana, saya, jiginni… waatiw la. Wari min bɛ a kɔnɔ :",aideType:"Kun",aide_maladie:"Bana",aide_deces:"Saya",aide_naissance:"Jiginni",aide_mariage:"Furu",aide_autre:"Wɛrɛ",
+ aideAdd:"Dɛmɛ sɛbɛn",aideSaved:"Dɛmɛ sɛbɛnna",aideTooMuch:"Dɛmɛ kɛsu kɔnɔ wari ye {a} dɔrɔn ye",aideDelQ:"Nin dɛmɛ jɔsi ?",
+ tabCycle:"Tilali",cyHint:"Sankɔrɔ laban na (kalo 9 fo 12), kɛsu wari bɛ tila tɔndenw cɛ ka kɛɲɛ ni u ka maralen ye. Dɛmɛ kɛsu bɛ to kɛsu kɔnɔ sankɔrɔ kura kama. Juru ni ɲangili minnu ma sara, olu bɛ bɔ tɔnden ka niyɔrɔ la.",
+ cyLoansOpen:"Juru {a} ma sara fɔlɔ : u ka sara ka kɔn tilali ɲɛ, n'o tɛ u bɛna bɔ o tɔndenw ka niyɔrɔ la.",
+ cyToShare:"Wari min bɛ tila",cyProfit:"Tɔnɔ (juru tɔnɔ + ɲangili)",cyRend:"Tɔnɔ hakɛ",cyEmpty:"Maralen tɛ yen fɔlɔ ka tila.",cyShare:"Niyɔrɔ",cyDeduct:"Bɔli",cyReceive:"Min bɛ sɔrɔ",
+ cyRemainder:"Wari fitinin min tora (a bɛ to kɛsu kɔnɔ)",cyPvBtn:"Tilali PV",cyPvT:"SANKƆRƆ LABAN TILALI PV",cyValue:"Kɛsu nafolo bɛɛ (ni juru ni ɲangili minnu ma sara)",
+ cySocialStays:"a bɛ to kɛsu kɔnɔ",cyStillOwes:"a ka juru tora {a}",cyShort:"Tɔnden dɔw ka juru ka bon ni u niyɔrɔ ye ({a} bɛɛ lajɛlen). Olu ka juru ka sara ka sɔrɔ ka sankɔrɔ datugu.",cyTotalPaid:"Wari min dira tɔndenw ma",cyCloseBtn:"Sankɔrɔ datugu ka kura daminɛ",
+ cyCloseQ:"Sankɔrɔ datugu ? {a} bɛna di tɔndenw ma, {b} bɛna to kɛsu kɔnɔ (dɛmɛ kɛsu). Sankɔrɔ in ɲɔgɔnyew, juruw ani ɲangiliw bɛna mara, jatebɔ bɛ daminɛ kokura. Tɔndenw bɛ to u nɔ na.",cyCloseOk:"A datugu",
+ cyCantClose:"Tɔnden dɔ ka juru ka bon ni a niyɔrɔ ye : a ka juru ka sara fɔlɔ",cyClosed:"Sankɔrɔ datugura. Tilali PV bɛ Sɛbɛnw kɔnɔ.",cyPast:"Sankɔrɔ tɛmɛnenw",
+ livT:"Tɔnden ka gafe",livMeet:"ɲɔgɔnye",livNbMeet:"wari donni {n}",livLast:"laban",livLoans:"Juruw",livPaid:"sarara",livRest:"tora",livDue:"waati",livAides:"Dɛmɛ minnu sɔrɔla dɛmɛ kɛsu la",livEstim:"Niyɔrɔ hakɛ ni tilali kɛra bi",livFoot:"AVEC tɔnw ɲɛnabɔ minɛnw",
+ langMore:"Kan wɛrɛw…",langT:"Minɛn in kanw",langHint:"Mali la, mara kelen-kelen bɛɛ n'a ka kan don. Aw ka mara kan fara a kan, ka a di mɔgɔ ma min bɛ o kan kalan ani ka a sɛbɛn ka ɲɛ, a ka a bayɛlɛma. Sɛbɛn minnu ma bayɛlɛma fɔlɔ, olu bɛ to tubabukan na. Daminɛ ni kuma surunw ye (butɔnw ani menuw) : olu de bɛ na fɔlɔ.",
+ langFromSrv:"bɔra ɲɛmɔgɔba fɛ",langLocal:"nin telefɔni kan",langUse:"A ta",langAdd:"Kan kura fara a kan",langOther:"Kan wɛrɛ…",langOtherPh:"Kan tɔgɔ",langAddBtn:"A fara a kan ka a bayɛlɛma",
+ langShareT:"Bayɛlɛmali tila",langShareHint:"Bayɛlɛmali min kɛra telefɔni kelen kan, o bɛ se ka ci tɔw ma : ni fisiye ye (WhatsApp), walima ɲɛmɔgɔba bɛ se k'a ci telefɔniw bɛɛ ma siɲɛ kelen.",
+ langImport:"Bayɛlɛmali don",langRecvBtn:"Kan tilalenw minɛ",langImpHint:"Fisiye (langue-….json) sugandi walima a kɔnɔkow da duguma yan.",langChooseFile:"Fisiye sugandi",langImportBtn:"A don",
+ langBadFile:"Nin fisiye tɛ minɛn in bayɛlɛmali ye",langImported:"Bayɛlɛmali « {n} » donna",langRecv:"Kan {n} sɔrɔla",
+ langEditHint:"Sɛbɛn tubabukan kelen-kelen bɛɛ jukɔrɔ, a bayɛlɛmali sɛbɛn ; a bɛ mara o yɔrɔnin bɛɛ. Kuma minnu bɛ {n} cogo la, ani emoji, olu to u cogo la.",
+ langSearch:"Kuma ɲini",langTodo:"Minnu ma bayɛlɛma fɔlɔ, olu dɔrɔn",langCount:"Sɛbɛn {n}",langAllDone:"Bɛɛ bayɛlɛmana yan 👍",
+ langShareFile:"Bayɛlɛmali fisiye tila",langSendAll:"A ci telefɔniw bɛɛ ma",langSendHint:"Ɲɛmɔgɔba dɔrɔn : i ka gundodaje sɛbɛn. Telefɔni minnu bɛ baara kɛ ni minɛn in ye, olu bɛɛ bɛna nin kan sɔrɔ u ka sigi nata la ɛntɛrinɛti kan.",
+ langSending:"A bɛ ci…",langSentOk:"Kan cira telefɔniw bɛɛ ma ✅",langSentNo:"Ciliko ma dafa : gundodaje ni ɛntɛrinɛti lajɛ",langDel:"N ka bayɛlɛmaliw jɔsi",langDelQ:"Bayɛlɛmali « {n} » jɔsi nin telefɔni kan ?",send:"A ci",
  bCtrl:"Lajɛbaga",bOther:"Baara wɛrɛ",bureauT_g:"Tɔn ɲɛmɔgɔw",bureauT_n:"Jɛ ɲɛmɔgɔw",bureauEdit:"✏️ A yɛlɛma",bureauHint:"Mɔgɔ 5 ka dɔgɔya : tɔgɔ, jamu ani telefɔni nimɔrɔ.",bureauMin5:"Mɔgɔ 5 dafalen de ka kan (tɔgɔ, jamu, telefɔni) : {n}/5.",bureauInc:"{t} ma dafa : mɔgɔ {n}/5 sɛbɛnna.",bureauFill:"A dafa sisan",firstName:"Tɔgɔ",lastName:"Jamu",pickMember:"— Tɔnden dɔ sugandi —",addPoste:"+ Baara wɛrɛ fara a kan",posteLbl:"Baara",bureauSaved:"Ɲɛmɔgɔw sɛbɛnna",telBad:"Nimɔrɔ ma dafa (nimɔrɔ 8)",bureauShort:"Ɲɛmɔgɔw dafalen",
  freq_village:"kalo o kalo",freq_commune:"kalo saba o kalo saba",freq_cercle:"kalo wɔɔrɔ o kalo wɔɔrɔ",freq_region:"siɲɛ kelen saan kɔnɔ",meetFreq:"Jɛ ka ɲɔgɔnyew : {f}",lastMeet:"Ɲɔgɔnye laban : {d}",nextMeet:"Ɲɔgɔnye nata : {d}",meetLate:"Ɲɔgɔnye mɛnna : a tun ka kan ka kɛ {d}.",noMeetYet:"Ɲɔgɔnye si ma sɛbɛn fɔlɔ.",
  newGroup:"+ Kura",
@@ -497,9 +538,28 @@ Object.assign(I18N.bm,{
  u_kg:"kilo",u_litre:"litiri",u_morceau:"kuru",u_pot:"pɔti",u_tête:"kun",u_plaquette:"plakɛti 30",u_pagne:"tafe",u_pièce:"kelen",
  agrCatalog:"A ta fɛnw lisi kɔnɔ",agrCatalogNone:"— Fɛn wɛrɛ (a sɛbɛn) —",prodAutoAdded:"Fɛn kura farala lisi kan",
  mjtTheme:"Kalan {n}",trObj:"Laɲiniw",trSteps:"A kɛcogo",trKeys:"Kuma kunbabaw",trStory:"Maana",trQuestions:"Ɲininkaliw",trRemember:"Min ka kan ka to hakili la",
- trainT:"📚 Kalanw",trainHint:"Kalan sɛbɛnw tɔnw lamɔgɔw, sɛbɛnnikɛlaw ani jɛ ɲɛmɔgɔw ye. U bɛ baara kɛ ni ɛntɛrinɛti tɛ yen.",trainFrOnly:"Kalan sɛbɛnw bɛ tubabukan na.",trMjt:"MJT kalan 7 (Musow Ka Jigiya Ton)",trPlus:"Kalan wɛrɛw",trShare:"📤 A ci walima a kopi"
+ trainT:"📚 Kalanw",trainHint:"Kalan sɛbɛnw tɔnw lamɔgɔw, sɛbɛnnikɛlaw ani jɛ ɲɛmɔgɔw ye. U bɛ baara kɛ ni ɛntɛrinɛti tɛ yen.",trainFrOnly:"Kalan sɛbɛnw bɛ tubabukan na.",trMjt:"MJT kalan 7 (Musow Ka Jigiya Ton)",trPlus:"Kalan wɛrɛw",trSante:"Kɛnɛya, josariyaw ani lakanali",trClimat:"Waati yɛlɛmali ani muɲuli",trShare:"📤 A ci walima a kopi"
 });
 Object.assign(I18N.en,{
+ aideT:"Social fund support",aideHint:"The social fund helps members in case of illness, death, birth… Available balance:",aideType:"Reason",aide_maladie:"Illness",aide_deces:"Death",aide_naissance:"Birth",aide_mariage:"Wedding",aide_autre:"Other",
+ aideAdd:"Record the support",aideSaved:"Support recorded",aideTooMuch:"The social fund only has {a}",aideDelQ:"Delete this support?",
+ tabCycle:"Share-out",cyHint:"At the end of the cycle (often 9 to 12 months), the cash is shared among members according to their savings. The social fund stays in the box for the new cycle. Loans and fines still due are deducted from the member's share.",
+ cyLoansOpen:"{a} of loans are still unpaid: collect them before the share-out, otherwise they will be deducted from those members' shares.",
+ cyToShare:"Cash to share",cyProfit:"Profit (interest + fines)",cyRend:"Return",cyEmpty:"No savings to share yet.",cyShare:"Share",cyDeduct:"Deduction",cyReceive:"To receive",
+ cyRemainder:"Rounding remainder (kept in the box)",cyPvBtn:"Share-out minutes",cyPvT:"END-OF-CYCLE SHARE-OUT MINUTES",cyValue:"Total value of the fund (with loans and fines due)",
+ cySocialStays:"stays in the box",cyStillOwes:"still owes {a}",cyShort:"Some members owe more than their share ({a} in total). Have these loans repaid before closing the cycle.",cyTotalPaid:"Total paid to members",cyCloseBtn:"Close the cycle and start a new one",
+ cyCloseQ:"Close the cycle? {a} will be paid to members and {b} will stay in the box (social fund). The cycle's meetings, loans and fines will be archived and the counters reset. Members stay registered.",cyCloseOk:"Close",
+ cyCantClose:"A member owes more than their share: settle the loan before closing",cyClosed:"Cycle closed. The share-out minutes are in Documents.",cyPast:"Previous cycles",
+ livT:"Member passbook",livMeet:"meeting",livNbMeet:"{n} payment(s)",livLast:"last on",livLoans:"Loans",livPaid:"paid",livRest:"left",livDue:"due",livAides:"Support received from the social fund",livEstim:"Estimated share if the share-out happened today",livFoot:"VSLA group management tools",
+ langMore:"More languages…",langT:"App languages",langHint:"In Mali each area has its own language. Add the language of your area and have it translated by someone who reads and writes it well. Texts not yet translated stay in French. Start with the short words (buttons and menus): they come first.",
+ langFromSrv:"received from the administrator",langLocal:"on this phone",langUse:"Use",langAdd:"Add a language",langOther:"Other language…",langOtherPh:"Language name",langAddBtn:"Add and translate",
+ langShareT:"Share a translation",langShareHint:"A translation made on one phone can be sent to others: as a file (WhatsApp), or by the main administrator to every phone at once.",
+ langImport:"Import a translation",langRecvBtn:"Receive shared languages",langImpHint:"Choose the file you received (langue-….json) or paste its content below.",langChooseFile:"Choose the file",langImportBtn:"Import",
+ langBadFile:"This file is not a translation of the tool",langImported:"Translation “{n}” imported",langRecv:"{n} language(s) received",
+ langEditHint:"Type the translation under each French text; it is saved immediately. Keep words in braces such as {n}, and emojis, unchanged.",
+ langSearch:"Search a word",langTodo:"Only texts not yet translated",langCount:"{n} text(s)",langAllDone:"Everything in this selection is translated 👍",
+ langShareFile:"Share the translation file",langSendAll:"Send to every phone",langSendHint:"Main administrator only: enter your password. Every phone using the tool will receive this language next time it is online.",
+ langSending:"Sending…",langSentOk:"Language sent to every phone ✅",langSentNo:"Sending not confirmed: check the password and connection",langDel:"Delete my translations",langDelQ:"Delete the “{n}” translations from this phone?",send:"Send",
  bCtrl:"Controller",bOther:"Other position",bureauT_g:"Management committee",bureauT_n:"Network board",bureauEdit:"✏️ Edit",bureauHint:"At least 5 people: first name, last name and phone number.",bureauMin5:"At least 5 complete members are required (first name, last name, phone): {n}/5.",bureauInc:"{t} incomplete: {n}/5 members filled in.",bureauFill:"Complete now",firstName:"First name",lastName:"Last name",pickMember:"— Pick a member —",addPoste:"+ Add a position",posteLbl:"Position",bureauSaved:"Board saved",telBad:"Incomplete number (8 digits)",bureauShort:"Board complete",
  freq_village:"every month",freq_commune:"every quarter",freq_cercle:"every six months",freq_region:"once a year",meetFreq:"Network meetings: {f}",lastMeet:"Last meeting: {d}",nextMeet:"Next meeting due: {d}",meetLate:"Meeting overdue: it was due on {d}.",noMeetYet:"No meeting recorded yet.",
  newGroup:"+ New",
@@ -532,7 +592,7 @@ Object.assign(I18N.en,{
  u_kg:"kg",u_litre:"litre",u_morceau:"bar",u_pot:"jar",u_tête:"head",u_plaquette:"tray of 30",u_pagne:"cloth",u_pièce:"piece",
  agrCatalog:"Choose from the catalogue",agrCatalogNone:"— Other product (type it) —",prodAutoAdded:"New product added to the catalogue",
  mjtTheme:"Theme {n}",trObj:"Objectives",trSteps:"Session plan",trKeys:"Key messages",trStory:"Story",trQuestions:"Discussion questions",trRemember:"Key takeaway",
- trainT:"📚 Training modules",trainHint:"Facilitation sheets for group facilitators, secretaries and network leaders. They work without internet.",trainFrOnly:"Module content is in French.",trMjt:"The 7 MJT themes (Musow Ka Jigiya Ton)",trPlus:"Additional modules",trShare:"📤 Share or copy the sheet"
+ trainT:"📚 Training modules",trainHint:"Facilitation sheets for group facilitators, secretaries and network leaders. They work without internet.",trainFrOnly:"Module content is in French.",trMjt:"The 7 MJT themes (Musow Ka Jigiya Ton)",trPlus:"Additional modules",trSante:"Health, rights and protection",trClimat:"Climate and resilience",trShare:"📤 Share or copy the sheet"
 });
 
 var MODULES=[
@@ -641,7 +701,63 @@ etapes:["Rappel de l'objectif du groupement ou du réseau","Lister les activité
 cles:["Un plan d'action répond à : quoi, qui, quand, où, avec quels moyens, combien.","Chaque activité a un responsable.","Un indicateur permet de savoir si on avance : nombre de membres, épargne totale, nombre de produits vendus…","Faire le point régulièrement permet de corriger avant qu'il soit trop tard.","Les PV gardent la mémoire des décisions."],
 recit:"Le réseau voulait organiser une foire des produits locaux. Sans plan, rien n'a été fait. L'année suivante, il a fixé une date, nommé une responsable par tâche et fait le point chaque mois : la foire a eu lieu.",
 questions:["Quel est notre objectif pour cette année ?","Quelles activités, qui et quand ?","Comment saurons-nous que nous avons réussi ?"],
-retenir:"Un objectif sans plan reste un rêve : écrire le plan, nommer les responsables, suivre chaque mois."}
+retenir:"Un objectif sans plan reste un rêve : écrire le plan, nommer les responsables, suivre chaque mois."},
+{id:"ssr",grp:"sante",icon:"🌸",titre:"La santé sexuelle et reproductive : les bases",duree:"90 min",methode:"Causerie en petits groupes (femmes / hommes / jeunes) – images – questions anonymes",
+obj:["Connaître le corps et les étapes de la vie reproductive (puberté, grossesse, ménopause)","Connaître ses droits en santé sexuelle et reproductive","Savoir quand et où aller au centre de santé (CSCom)"],
+etapes:["Avant la séance : inviter l'agent(e) de santé ou la matrone du CSCom à co-animer","Règles de la causerie : respect, pas de moquerie, ce qui est dit reste dans le groupe","Jeu : la boîte à questions anonymes (chacun dépose sa question sur un papier ou la dit à l'animatrice en privé)","Avec des images : les changements du corps à la puberté chez la fille et le garçon","Les signes de danger pendant la grossesse et l'importance des consultations prénatales","Les infections sexuellement transmissibles (IST) et le VIH : comment se protéger, se faire dépister et se soigner","Réponses aux questions de la boîte, puis engagements"],
+cles:["La santé sexuelle et reproductive, c'est être en bonne santé dans son corps et dans sa vie de couple, et pouvoir décider librement, sans contrainte ni violence.","Chacun a droit à l'information, aux soins, à la confidentialité, et au choix du nombre d'enfants et du moment de les avoir.","Pendant la grossesse : au moins 4 consultations prénatales (8 contacts recommandés par l'OMS) et l'accouchement au centre de santé.","Signes de danger qui demandent d'aller tout de suite au centre : saignement, fortes maux de tête, convulsions, forte fièvre, pertes d'eau, enfant qui ne bouge plus.","Les IST (écoulements, plaies, démangeaisons) se soignent : il faut consulter tôt, avec son ou sa partenaire, et ne pas se soigner seul(e).","Le préservatif protège à la fois des IST, du VIH et des grossesses non désirées.","Les adolescentes et les adolescents ont besoin d'informations justes adaptées à leur âge : les parents et les responsables doivent pouvoir en parler sans honte."],
+recit:"Aminata, enceinte de 6 mois, a de fortes douleurs à la tête et les pieds gonflés. Sa belle-mère dit d'attendre. Sa voisine, membre du groupement, se souvient de la causerie : elles prennent l'argent du fonds social pour le transport et vont au CSCom. L'infirmier dit qu'il était temps : Aminata est soignée et accouche ensuite sans problème.",
+questions:["Quels signes de danger Aminata avait-elle ?","Comment le groupement a-t-il aidé ? Notre fonds social peut-il servir pour ce genre d'urgence ?","Qui, dans notre village, peut donner une information juste sur la santé reproductive ?"],
+retenir:"S'informer, consulter tôt et décider librement : c'est le droit de chaque femme, de chaque homme et de chaque jeune.",
+note:"Thème sensible : faites-le co-animer par un agent de santé, séparez les groupes si nécessaire et respectez la confidentialité. Ne donnez jamais de conseil médical à la place du centre de santé."},
+{id:"hm",grp:"sante",icon:"🩸",titre:"L'hygiène menstruelle",duree:"90 min",methode:"Causerie – démonstration – fabrication de serviettes lavables",
+obj:["Comprendre les règles comme un phénomène naturel et sain","Connaître les bonnes pratiques d'hygiène pendant les règles","Lutter contre la honte et les interdits qui font manquer l'école ou les activités"],
+etapes:["Mise en confiance : causerie entre femmes et filles (une séance séparée peut être faite avec les hommes et les garçons)","Avec une image du corps : comment fonctionne le cycle menstruel","Lister les croyances du village sur les règles et discuter : vrai ou faux ?","Démonstration : les protections (serviettes jetables, serviettes en tissu lavables) et comment les entretenir","Atelier pratique : coudre une serviette lavable ou présenter un kit (savon, sachet, serviettes, culotte)","Discussion : comment rendre les latrines de l'école et du village adaptées aux filles ?","Idée d'AGR : fabrication et vente de serviettes lavables par le groupement"],
+cles:["Les règles sont normales : elles montrent que le corps de la fille est en bonne santé. Elles commencent souvent entre 10 et 16 ans.","Le cycle dure en général de 21 à 35 jours et les saignements de 2 à 7 jours ; il peut être irrégulier au début.","Changer de protection au moins 3 à 4 fois par jour, se laver chaque jour à l'eau propre et au savon, se laver les mains avant et après.","Les serviettes en tissu se lavent à l'eau froide et au savon, puis sèchent au soleil (le soleil tue les microbes) ; ne pas les cacher humides dans un coin sombre.","Les douleurs légères sont normales ; des douleurs très fortes, des saignements très abondants ou qui durent plus de 7 jours demandent d'aller au centre de santé.","Une fille qui a ses règles peut aller à l'école, travailler, se laver et manger de tout.","Les hommes et les garçons ont un rôle : ne pas se moquer, soutenir l'achat des protections et l'aménagement de latrines avec de l'eau et une porte qui ferme."],
+recit:"Kadiatou, 13 ans, ne va plus à l'école quand elle a ses règles, par peur de tacher son habit et des moqueries. Le groupement de sa mère apprend à coudre des serviettes lavables et en vend au marché. Le comité de gestion de l'école installe un seau d'eau et une porte aux latrines. Kadiatou ne manque plus un seul jour de classe.",
+questions:["Pourquoi Kadiatou manquait-elle l'école ?","Qu'ont fait le groupement et l'école ? Que pouvons-nous faire chez nous ?","Quelles croyances sur les règles faut-il changer dans notre village ?"],
+retenir:"Les règles ne sont ni une maladie ni une honte : avec de l'eau, du savon, une protection propre et du respect, chaque fille continue à vivre normalement.",
+note:"Utilisez des mots simples et respectueux en langue locale. Les questions intimes peuvent être posées en privé."},
+{id:"pf",grp:"sante",icon:"👪",titre:"La planification familiale",duree:"90 min",methode:"Causerie avec l'agent de santé – témoignages – jeu « vrai ou faux »",
+obj:["Comprendre les avantages de l'espacement des naissances pour la mère, l'enfant et la famille","Connaître les méthodes modernes disponibles au centre de santé","Encourager le dialogue dans le couple et le libre choix"],
+etapes:["Inviter l'agent(e) de santé ou la sage-femme du CSCom","Jeu : deux familles dessinées, l'une avec des naissances rapprochées, l'autre espacées : quelles différences ?","Les avantages de l'espacement pour la santé et l'économie du ménage","Présentation des méthodes par l'agent de santé (avec le présentoir du CSCom)","Jeu « vrai ou faux » sur les rumeurs","Discussion : comment parler de PF dans le couple ?","Où et quand aller au CSCom ; engagement à transmettre l'information"],
+cles:["Planifier sa famille, c'est choisir le nombre d'enfants et le moment de les avoir, pour la santé de la mère et des enfants.","Il est recommandé d'attendre au moins 2 ans après une naissance avant une nouvelle grossesse.","Méthodes modernes : pilule, injection, implant, stérilet (DIU), préservatif masculin et féminin, allaitement exclusif les 6 premiers mois (MAMA), collier du cycle. L'agent de santé aide à choisir.","Ces méthodes sont sûres et réversibles (sauf la stérilisation) : on peut avoir un enfant après les avoir arrêtées.","Le choix est libre : personne ne doit être forcé à utiliser ou à ne pas utiliser une méthode.","Le dialogue dans le couple est important ; les hommes ont un rôle de soutien.","Des naissances espacées permettent de mieux nourrir, soigner et scolariser les enfants, et à la femme de mener son AGR."],
+recit:"Oumou a eu 4 enfants en 5 ans ; elle est souvent malade et ne peut plus travailler à son petit commerce. Après la causerie, elle et son mari vont ensemble au CSCom. Ils choisissent une méthode. Deux ans plus tard, Oumou est en forme, ses enfants sont mieux nourris et son commerce a repris grâce à un prêt du groupement.",
+questions:["Qu'est-ce qui a changé pour Oumou et sa famille ?","Quelles rumeurs entend-on chez nous sur la PF ? Lesquelles sont fausses ?","Comment un mari peut-il soutenir sa femme ?"],
+retenir:"Espacer les naissances, c'est protéger la vie de la mère et des enfants : on s'informe au centre de santé et on décide ensemble, librement.",
+note:"L'animatrice ne prescrit pas de méthode : elle oriente vers le centre de santé. Respectez les convictions de chacun."},
+{id:"vbg",grp:"sante",icon:"🛡️",titre:"Sensibilisation aux violences basées sur le genre (VBG)",duree:"2 h",methode:"Causerie – études de cas – jeux de rôle",
+obj:["Reconnaître les différentes formes de VBG","Savoir comment accueillir et orienter une survivante","Connaître les services de prise en charge de la zone"],
+etapes:["Règles : confidentialité, respect, ne citer aucun nom réel","Différence entre le sexe (biologique) et le genre (rôles donnés par la société)","Jeu des cartes : classer des situations en violence physique, sexuelle, psychologique, économique ou pratique néfaste","Étude de cas : que faire quand une femme se confie à nous ?","Les services : centre de santé, service social, police ou gendarmerie, juridiction, organisations d'aide (centres de prise en charge intégrée)","Rôle du groupement : prévention, solidarité, autonomie économique","Engagements du groupe"],
+cles:["Une VBG est un acte fait contre la volonté d'une personne à cause de son sexe ou de son genre : coups, viol, harcèlement, insultes, menaces, privation d'argent ou de biens, mariage forcé, excision.","Les VBG touchent surtout les femmes et les filles, mais aussi des hommes et des garçons ; elles ne sont jamais la faute de la survivante.","Si une personne se confie : écouter calmement, la croire, ne pas la juger, garder le secret, lui demander ce qu'elle veut et l'orienter vers les services.","En cas de viol, aller au centre de santé le plus vite possible, idéalement dans les 72 heures : des soins existent pour éviter le VIH et une grossesse.","Ne jamais affronter l'agresseur soi-même ni forcer une réconciliation : cela peut mettre la survivante en danger.","L'épargne, le crédit et les AGR renforcent l'autonomie des femmes et leur pouvoir de décision dans le ménage.","Les hommes leaders et les chefs coutumiers sont des alliés importants pour changer les normes."],
+recit:"Sitan, membre du groupement, arrive avec des bleus et dit qu'elle est « tombée ». Après la réunion, la présidente l'écoute en privé. Sitan raconte que son mari la frappe quand il lui prend l'argent de son commerce. La présidente garde le secret, lui explique où elle peut être aidée et l'accompagne au service social, avec son accord.",
+questions:["Quelles formes de violence Sitan subit-elle ?","Qu'a fait la présidente de bien ? Que fallait-il éviter ?","Quels sont les services d'aide près de chez nous et comment les joindre ?"],
+retenir:"Écouter, croire, garder le secret et orienter : chacun peut aider une survivante, sans se mettre à la place des services spécialisés.",
+note:"Avant la séance, listez les services de la zone (noms, lieux, téléphones) avec le service social du cercle. Si une personne se confie pendant la séance, continuez en privé."},
+{id:"mp",grp:"sante",icon:"🎒",titre:"Les mariages précoces et forcés",duree:"90 min",methode:"Causerie – débat entre générations – témoignages",
+obj:["Comprendre les conséquences du mariage des enfants","Connaître les droits des filles et la loi","Trouver ensemble des solutions pour garder les filles à l'école"],
+etapes:["Arbre à problèmes : les causes (pauvreté, coutumes, peur de la grossesse hors mariage) et les conséquences","Les risques pour la santé de la jeune fille et de son bébé","La loi et les droits de l'enfant","Débat entre mères, pères et jeunes : « À quel âge une fille est-elle prête ? »","Solutions : école, AGR, épargne pour la scolarité, dialogue avec les leaders religieux et coutumiers","Engagement du groupement"],
+cles:["Le mariage d'enfants est un mariage avant 18 ans ; le mariage forcé se fait sans le libre consentement de la personne.","Une grossesse trop jeune met en danger la vie de la fille : accouchement difficile, fistule, décès de la mère ou du bébé.","Les filles mariées tôt quittent souvent l'école et ont moins de moyens pour gagner leur vie.","Au Mali, le Code des personnes et de la famille (2011) fixe l'âge minimum du mariage à 18 ans pour l'homme et 16 ans pour la femme, sauf dispense ; la Charte africaine des droits de l'enfant, signée par le Mali, demande 18 ans pour tous.","Le consentement libre des deux époux est obligatoire.","L'épargne du groupement peut aider à payer la scolarité et à créer des AGR qui réduisent la pression économique sur les familles.","Les leaders religieux et coutumiers sont des alliés pour changer les pratiques."],
+recit:"Le père de Fatoumata, 14 ans, veut la marier car la récolte a été mauvaise. Sa mère, membre du groupement, obtient un prêt pour son commerce de soumbala et convainc son mari, avec l'aide de l'imam, d'attendre. Fatoumata réussit son DEF et devient plus tard animatrice de groupements.",
+questions:["Pourquoi le père voulait-il marier Fatoumata ?","Comment le groupement et l'imam ont-ils aidé ?","Que pouvons-nous faire dans notre village pour retarder le mariage des filles ?"],
+retenir:"Une fille à l'école plutôt qu'au mariage, c'est une famille et un village plus forts demain.",
+note:"Restez respectueux des croyances : on cherche des solutions avec les familles, sans les condamner."},
+{id:"cc",grp:"climat",icon:"🌦️",titre:"Comprendre le changement climatique et s'adapter",duree:"2 h",methode:"Calendrier saisonnier – échanges d'expériences – visite de champ",
+obj:["Reconnaître les signes du changement climatique dans notre zone","Connaître des pratiques agricoles et de vie adaptées","Choisir des actions concrètes pour le groupement"],
+etapes:["Ligne du temps : comparer les pluies, la chaleur et les récoltes d'il y a 20 ans et aujourd'hui","Calendrier saisonnier : quand arrivent les difficultés (soudure, inondations, chaleur) ?","Les causes en mots simples et pourquoi le Sahel est touché","Échange d'expériences : techniques qui marchent déjà dans le village","Présentation des bonnes pratiques (avec le service d'agriculture ou une ONG si possible)","Choix de 2 ou 3 actions pour le groupement et plan simple (qui, quoi, quand)"],
+cles:["Le climat change : pluies plus irrégulières, poches de sécheresse, fortes pluies et inondations, chaleur plus forte, vents.","Ces changements viennent surtout des gaz rejetés par l'activité humaine dans le monde ; le Sahel en subit fortement les effets.","S'adapter dans les champs : semences améliorées à cycle court, zaï et demi-lunes, cordons pierreux, compost et fumure organique, association de cultures.","Protéger les arbres : régénération naturelle assistée (RNA), plantation de karité, néré, baobab, moringa ; les arbres protègent le sol et donnent des revenus.","Économiser le bois : foyers améliorés, ce qui réduit aussi la fumée et le travail des femmes.","Suivre les informations météo et les conseils agrométéo (radio, téléphone) pour décider des dates de semis.","Diversifier les sources de revenus (maraîchage, transformation, petit élevage) pour ne pas dépendre d'une seule récolte."],
+recit:"À Kéléya, les pluies s'arrêtent souvent trois semaines en juillet. Le groupement de Mariam utilise un prêt pour acheter des semences de mil à cycle court et apprend le zaï avec le conseiller agricole. L'année suivante, malgré une poche de sécheresse, leurs champs produisent presque deux fois plus que ceux des voisins.",
+questions:["Quels changements du climat voyons-nous chez nous ?","Quelle technique a aidé le groupement de Mariam ?","Quelles 2 actions notre groupement peut-il commencer cette saison ?"],
+retenir:"On ne peut pas arrêter seul le changement du climat, mais ensemble on peut s'adapter : sol protégé, arbres plantés, semences adaptées et revenus variés.",
+note:"Appuyez-vous sur les savoirs des anciens et sur le service local de l'agriculture."},
+{id:"res",grp:"climat",icon:"🛟",titre:"La résilience : se préparer aux chocs",duree:"90 min",methode:"Carte des risques – jeu « et si… ? » – plan d'action",
+obj:["Identifier les chocs qui menacent le groupement et les ménages","Utiliser l'épargne, le fonds social et l'entraide pour mieux résister","Préparer un plan simple de réponse aux crises"],
+etapes:["Carte des risques du village : sécheresse, inondation, maladie, hausse des prix, insécurité, perte d'animaux","Jeu « et si… ? » : et si la récolte était perdue ? et si un membre tombait gravement malade ?","Ce que le groupement a déjà : épargne, fonds social, solidarité, réseau","Idées : stock de céréales, épargne de précaution, AGR variées, assurance agricole si elle existe, entraide entre groupements du réseau","Plan de réponse : qui alerte, quelles règles pour le fonds social, qui contacter (mairie, services, partenaires)","Inscrire le plan dans le PV et le revoir chaque année"],
+cles:["La résilience, c'est la capacité d'un ménage ou d'un groupement à faire face à un choc, à s'en remettre et à repartir plus fort.","L'épargne régulière, même petite, est la première protection contre les imprévus.","Le fonds social doit avoir des règles claires (qui peut en bénéficier, combien, à quelles conditions) écrites dans le règlement intérieur.","Un stock de céréales acheté après la récolte, quand les prix sont bas, aide à passer la période de soudure.","Plusieurs sources de revenus valent mieux qu'une seule.","Le réseau de groupements permet l'entraide quand un village est touché.","S'informer tôt (alerte précoce, radio, services techniques) donne le temps d'agir."],
+recit:"Après une inondation, plusieurs membres du groupement Benkadi ont perdu leurs greniers. Grâce au fonds social et au stock de céréales acheté en novembre, aucune famille n'a manqué de nourriture. Le réseau villageois a aussi prêté des semences pour la saison suivante. Le groupement a ensuite ajouté un « plan en cas de crise » à son règlement.",
+questions:["Qu'est-ce qui a aidé les familles de Benkadi ?","Quels sont les 3 plus grands risques pour notre groupement ?","Quelles règles ajouter à notre fonds social ?"],
+retenir:"Épargner, diversifier, s'informer et rester solidaires : c'est ainsi qu'un groupement traverse les crises.",
+note:"Reliez cette séance aux thèmes MJT sur l'épargne et le fonds social."}
 ];
 
 var LS_KEY="caisse_avec_v1",LANG_KEY="caisse_avec_lang",GL_KEY="caisse_avec_global_v1",PR_KEY="caisse_avec_profile_v1",MAXM=30;
@@ -715,6 +831,11 @@ function pullServer(silent,pwd,cb){
     if(view==="global")render();if(!silent)toast(t("refreshed",{n:n}));
   }).catch(function(){toast(t("syncFail"));if(cb)cb(false)});
 }
+function serverDelete(ids,cb){
+  var u=serverUrl();if(!u){toast(t("noServer"));cb(false);return}
+  fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&pwd="+encodeURIComponent(adminPwd)+"&action=del&ids="+encodeURIComponent(ids.join(","))+"&t="+Date.now()).then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok){toast(t(d&&d.err==="mdp"?"wrongPwd":"syncFail"));cb(false);return}cb(true,d)}).catch(function(){toast(t("syncFail"));cb(false)});
+}
 function adminLogin(){
   modal('<h3>🔒 '+esc(t("adminT"))+'</h3><p class="muted">'+esc(t("adminHint"))+'</p><label>'+esc(t("password"))+'</label><input type="password" id="aPwd" autocomplete="current-password">'+
     '<div class="actions"><button class="btn sec" id="aNo">'+esc(t("cancel"))+'</button><button class="btn" id="aOk">'+esc(t("enter"))+'</button></div>',function(m,close){
@@ -725,6 +846,118 @@ function adminLogin(){
   });
 }
 function saveProfile(){try{localStorage.setItem(PR_KEY,JSON.stringify(profile))}catch(e){}}
+/* ---------- langues supplémentaires (traductions locales) ---------- */
+var LANGX_KEY="caisse_avec_langs_v1",LANGSRV_KEY="caisse_avec_langs_srv_v1",LANGT_KEY="caisse_avec_langs_t";
+var BASE_LANGS={fr:"Français",bm:"Bamanankan",en:"English"};
+var MALI_LANGS=[["ff","Fulfulde (Peul)"],["son","Songhay (Sonrai)"],["snk","Soninké"],["tmh","Tamasheq"],["dgn","Dogon"],["bmq","Bomu (Bobo)"],["myk","Mamara (Minianka)"],["sen","Sénoufo (Syenara)"],["kao","Khassonké"],["emk","Maninka (Malinké)"],["boz","Bozo"],["mey","Hassaniya"],["bmd","Bobo madaré"]];
+var langX={},langSrv={},LANGNAMES={},FR_BASE=null;
+function loadLangStores(){try{langX=JSON.parse(localStorage.getItem(LANGX_KEY)||"{}")||{}}catch(e){langX={}}try{langSrv=JSON.parse(localStorage.getItem(LANGSRV_KEY)||"{}")||{}}catch(e){langSrv={}}}
+function saveLangX(){try{localStorage.setItem(LANGX_KEY,JSON.stringify(langX))}catch(e){toast(t("full"))}}
+function mergeLangs(){
+  if(!FR_BASE)FR_BASE=Object.keys(I18N.fr);
+  Object.keys(I18N).forEach(function(k){if(!BASE_LANGS[k])delete I18N[k]});
+  LANGNAMES={};Object.keys(BASE_LANGS).forEach(function(k){LANGNAMES[k]=BASE_LANGS[k]});
+  [langSrv,langX].forEach(function(st){Object.keys(st).forEach(function(c){var x=st[c];if(!x||BASE_LANGS[c])return;I18N[c]=Object.assign(I18N[c]||{},x.dict||{});LANGNAMES[c]=x.nom||LANGNAMES[c]||c})});
+}
+function langKeys(){return FR_BASE.filter(function(k){var v=I18N.fr[k];return typeof v==="string"||Array.isArray(v)})}
+function langProgress(c){var ks=langKeys(),d=I18N[c]||{},n=0;ks.forEach(function(k){if(d[k]!=null&&String(d[k]).trim()!=="")n++});return n?Math.max(1,Math.floor(100*n/ks.length)):0}
+function buildLangSel(){
+  var s=$("langSel");if(!s)return;
+  s.innerHTML=Object.keys(LANGNAMES).map(function(c){return '<option value="'+esc(c)+'">'+esc(LANGNAMES[c])+(BASE_LANGS[c]?'':' ('+langProgress(c)+'%)')+'</option>'}).join("")+'<option value="__more">➕ '+esc(t("langMore"))+'</option>';
+  s.value=lang;
+}
+function fetchLangs(force){
+  var u=serverUrl();if(!u||!navigator.onLine)return;
+  var last=0;try{last=+localStorage.getItem(LANGT_KEY)||0}catch(e){}
+  if(!force&&Date.now()-last<6*3600*1000)return;
+  fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&action=langs&t="+Date.now()).then(function(r){return r.json()}).then(function(d){
+    if(!d||!d.ok)return;var o={};(d.langs||[]).forEach(function(x){if(x&&x.code)o[x.code]={nom:x.nom,dict:x.dict||{}}});
+    langSrv=o;try{localStorage.setItem(LANGSRV_KEY,JSON.stringify(o));localStorage.setItem(LANGT_KEY,String(Date.now()))}catch(e){}
+    mergeLangs();if(!I18N[lang])lang="fr";buildLangSel();if(force)toast(t("langRecv",{n:Object.keys(o).length}));if(view==="langs"||force)render();
+  }).catch(function(){if(force)toast(t("syncFail"))});
+}
+function addLang(code,nom){
+  if(!code)return;if(!langX[code])langX[code]={nom:nom,dict:{},maj:today()};else langX[code].nom=nom||langX[code].nom;
+  saveLangX();mergeLangs();buildLangSel();langEditCode=code;langPage=0;view="langedit";render();window.scrollTo(0,0);
+}
+function slug(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"").slice(0,12)}
+function langFile(c){var x=I18N[c]||{},d={};langKeys().forEach(function(k){if(x[k]!=null&&String(x[k]).trim()!=="")d[k]=x[k]});return {app:"outils-avec-langue",version:1,code:c,nom:LANGNAMES[c]||c,dict:d}}
+function importLang(txt){
+  var o;try{o=JSON.parse(txt)}catch(e){toast(t("langBadFile"));return}
+  if(!o||o.app!=="outils-avec-langue"||!o.code||!o.dict){toast(t("langBadFile"));return}
+  var c=slug(o.code)||slug(o.nom);if(!c||BASE_LANGS[c]){toast(t("langBadFile"));return}
+  var cur=langX[c]||{nom:o.nom,dict:{}};cur.nom=o.nom||cur.nom;cur.dict=Object.assign(cur.dict||{},o.dict);cur.maj=today();langX[c]=cur;saveLangX();mergeLangs();buildLangSel();
+  toast(t("langImported",{n:cur.nom}));view="langs";render();
+}
+function vLangs(){
+  var custom=Object.keys(LANGNAMES).filter(function(c){return !BASE_LANGS[c]});
+  var avail=MALI_LANGS.filter(function(x){return !LANGNAMES[x[0]]});
+  var h='<h2>🗣 '+esc(t("langT"))+'</h2><div class="card muted">'+esc(t("langHint"))+'</div>'+
+    '<div class="card"><table class="small">'+Object.keys(LANGNAMES).map(function(c){var p=BASE_LANGS[c]?100:langProgress(c);
+      return '<tr><td><b>'+esc(LANGNAMES[c])+'</b>'+(BASE_LANGS[c]?'':'<span class="sub">'+esc(langSrv[c]?t("langFromSrv"):t("langLocal"))+'</span>')+'<div style="height:6px;background:#e3efe8;border-radius:3px;margin-top:4px"><div style="height:6px;width:'+p+'%;background:#1f6b4a;border-radius:3px"></div></div></td><td class="n">'+p+'%</td><td class="n" style="white-space:nowrap">'+
+        (c===lang?'✅':'<button class="x" data-lu="'+esc(c)+'">'+esc(t("langUse"))+'</button>')+(BASE_LANGS[c]?'':' <button class="x" data-le="'+esc(c)+'">✏️</button>')+'</td></tr>'}).join("")+'</table></div>'+
+    '<div class="card"><label>'+esc(t("langAdd"))+'</label><select id="lgPick"><option value="">—</option>'+avail.map(function(x){return '<option value="'+x[0]+'">'+esc(x[1])+'</option>'}).join("")+'<option value="__other">'+esc(t("langOther"))+'</option></select>'+
+    '<input id="lgOther" placeholder="'+esc(t("langOtherPh"))+'" style="display:none;margin-top:6px"><button class="btn full" id="lgAdd">➕ '+esc(t("langAddBtn"))+'</button></div>'+
+    '<div class="card"><b>'+esc(t("langShareT"))+'</b><p class="muted">'+esc(t("langShareHint"))+'</p>'+
+    '<button class="btn sec full" id="lgImp">📥 '+esc(t("langImport"))+'</button><input type="file" id="lgFile" accept=".json,.txt,application/json,text/plain" style="display:none">'+
+    (serverUrl()?'<button class="btn o full" id="lgRecv">🔄 '+esc(t("langRecvBtn"))+'</button>':'')+'</div>';
+  $("view").innerHTML=h;
+  document.querySelectorAll("[data-lu]").forEach(function(b){b.onclick=function(){setLang(b.getAttribute("data-lu"))}});
+  document.querySelectorAll("[data-le]").forEach(function(b){b.onclick=function(){langEditCode=b.getAttribute("data-le");langPage=0;view="langedit";render();window.scrollTo(0,0)}});
+  $("lgPick").onchange=function(){$("lgOther").style.display=this.value==="__other"?"":"none"};
+  $("lgAdd").onclick=function(){var v=$("lgPick").value;if(!v)return;if(v==="__other"){var n=$("lgOther").value.trim();var c=slug(n);if(!c){$("lgOther").focus();return}if(BASE_LANGS[c])c+="2";addLang(c,n);return}
+    addLang(v,MALI_LANGS.filter(function(x){return x[0]===v})[0][1])};
+  $("lgImp").onclick=function(){
+    modal('<h3>📥 '+esc(t("langImport"))+'</h3><p class="muted">'+esc(t("langImpHint"))+'</p><button class="btn sec full" id="liF">📂 '+esc(t("langChooseFile"))+'</button><textarea id="liT" class="big" placeholder="{ … }"></textarea><div class="actions"><button class="btn sec" id="liNo">'+esc(t("cancel"))+'</button><button class="btn" id="liOk">'+esc(t("langImportBtn"))+'</button></div>',function(m,close){
+      $("liNo").onclick=close;$("liF").onclick=function(){$("lgFile").click()};$("lgFile").onchange=function(){var fl=this.files[0];if(!fl)return;var rd=new FileReader();rd.onload=function(){close();importLang(String(rd.result))};rd.readAsText(fl)};
+      $("liOk").onclick=function(){var v=$("liT").value.trim();if(!v)return;close();importLang(v)}})};
+  if($("lgRecv"))$("lgRecv").onclick=function(){fetchLangs(true)};
+}
+var langEditCode=null,langPage=0,langOnlyTodo=true,langSearch="";
+function vLangEdit(){
+  var c=langEditCode;if(!c||!LANGNAMES[c]||BASE_LANGS[c]){view="langs";vLangs();return}
+  var d=I18N[c]||{},ks=langKeys(),q=langSearch.toLowerCase();
+  var todo=function(k){return d[k]==null||String(d[k]).trim()===""};
+  var list=ks.filter(function(k){var fr=Array.isArray(I18N.fr[k])?I18N.fr[k].join("\n"):I18N.fr[k];if(q&&String(fr).toLowerCase().indexOf(q)<0&&String(d[k]||"").toLowerCase().indexOf(q)<0)return false;return !langOnlyTodo||todo(k)});
+  // les textes courts (boutons, menus) d'abord
+  list.sort(function(a,b){var la=String(I18N.fr[a]).length,lb=String(I18N.fr[b]).length;return (la>140)-(lb>140)||ks.indexOf(a)-ks.indexOf(b)});
+  var PER=20,pages=Math.max(1,Math.ceil(list.length/PER));if(langPage>=pages)langPage=pages-1;
+  var part=list.slice(langPage*PER,langPage*PER+PER),p=langProgress(c);
+  var h='<button class="btn sec" id="leBack">← '+esc(t("langT"))+'</button><h2>✏️ '+esc(LANGNAMES[c])+' · '+p+'%</h2>'+
+    '<div class="card muted">'+esc(t("langEditHint"))+'</div>'+
+    '<div class="card"><input id="leQ" placeholder="🔎 '+esc(t("langSearch"))+'" value="'+esc(langSearch)+'"><label style="display:flex;gap:8px;align-items:center;margin-top:6px"><input type="checkbox" id="leTodo" style="width:auto"'+(langOnlyTodo?' checked':'')+'> '+esc(t("langTodo"))+'</label>'+
+    '<p class="muted">'+esc(t("langCount",{n:list.length}))+'</p></div>';
+  if(!part.length)h+='<div class="card empty">'+esc(t("langAllDone"))+'</div>';
+  part.forEach(function(k){var fr=I18N.fr[k],arr=Array.isArray(fr),frt=arr?fr.join("\n"):fr,cur=d[k]==null?"":(Array.isArray(d[k])?d[k].join("\n"):d[k]),long=String(frt).length>60||arr;
+    h+='<div class="card"><div class="muted" style="white-space:pre-wrap">🇫🇷 '+esc(String(frt).length>600?String(frt).slice(0,600)+" …":frt)+'</div>'+(I18N.bm[k]&&!arr?'<div class="sub" style="white-space:pre-wrap;margin-top:2px">🅱 '+esc(String(I18N.bm[k]).slice(0,300))+'</div>':'')+
+      (long?'<textarea data-lk="'+k+'" rows="'+(arr?4:3)+'">'+esc(cur)+'</textarea>':'<input data-lk="'+k+'" value="'+esc(cur)+'">')+'</div>'});
+  h+='<div class="actions"><button class="btn sec" id="lePrev"'+(langPage?'':' disabled')+'>◀</button><span class="muted" style="align-self:center">'+(langPage+1)+' / '+pages+'</span><button class="btn sec" id="leNext"'+(langPage<pages-1?'':' disabled')+'>▶</button></div>'+
+    '<div class="card"><button class="btn full" id="leUse">✅ '+esc(t("langUse"))+'</button><button class="btn sec full" id="leShare">📤 '+esc(t("langShareFile"))+'</button>'+
+    (serverUrl()?'<button class="btn o full" id="leSend">🌍 '+esc(t("langSendAll"))+'</button>':'')+'<button class="btn d full" id="leDel">🗑 '+esc(t("langDel"))+'</button></div>';
+  $("view").innerHTML=h;
+  $("leBack").onclick=function(){view="langs";render();window.scrollTo(0,0)};
+  var timer=null;
+  document.querySelectorAll("[data-lk]").forEach(function(el){el.oninput=function(){var k=el.getAttribute("data-lk"),v=el.value;
+    var x=langX[c]=langX[c]||{nom:LANGNAMES[c],dict:{}};if(langSrv[c]&&!x.dict)x.dict={};
+    var val=Array.isArray(I18N.fr[k])?v.split("\n").filter(function(s){return s.trim()}):v;
+    if(String(v).trim()===""){delete x.dict[k];if(I18N[c])delete I18N[c][k]}else{x.dict[k]=val;I18N[c][k]=val}x.maj=today();
+    clearTimeout(timer);timer=setTimeout(function(){saveLangX();buildLangSel()},400)}});
+  $("leQ").onchange=function(){langSearch=this.value;langPage=0;render()};
+  $("leTodo").onchange=function(){langOnlyTodo=this.checked;langPage=0;render()};
+  $("lePrev").onclick=function(){saveLangX();langPage--;render();window.scrollTo(0,0)};
+  $("leNext").onclick=function(){saveLangX();langPage++;render();window.scrollTo(0,0)};
+  $("leUse").onclick=function(){saveLangX();setLang(c)};
+  $("leShare").onclick=function(){saveLangX();shareFileOrCopy(JSON.stringify(langFile(c)),"langue-"+c+"-outils-avec.json","application/json",t("dataCopied"))};
+  if($("leSend"))$("leSend").onclick=function(){saveLangX();
+    modal('<h3>🌍 '+esc(t("langSendAll"))+'</h3><p class="muted">'+esc(t("langSendHint"))+'</p><label>'+esc(t("password"))+'</label><input type="password" id="lsP" value="'+esc(adminPwd||"")+'"><div class="actions"><button class="btn sec" id="lsNo">'+esc(t("cancel"))+'</button><button class="btn" id="lsOk">'+esc(t("send"))+'</button></div>',function(m,close){
+      $("lsNo").onclick=close;$("lsOk").onclick=function(){var pw=$("lsP").value;if(!pw)return;var fl=langFile(c);close();toast(t("langSending"));
+        fetch(serverUrl(),{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({key:SYNC_KEY,action:"lang",pwd:pw,code:c,nom:fl.nom,dict:fl.dict})}).then(function(){
+          setTimeout(function(){var u=serverUrl();fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&action=langs&t="+Date.now()).then(function(r){return r.json()}).then(function(dd){
+            var ok=(dd&&dd.langs||[]).some(function(x){return x.code===c&&Object.keys(x.dict||{}).length>=Object.keys(fl.dict).length});toast(t(ok?"langSentOk":"langSentNo"))}).catch(function(){toast(t("syncFail"))})},2500)}).catch(function(){toast(t("syncFail"))})}})};
+  $("leDel").onclick=function(){ask(t("langDelQ",{n:LANGNAMES[c]}),t("del"),function(){delete langX[c];saveLangX();if(lang===c)lang="fr";try{localStorage.setItem(LANG_KEY,lang)}catch(e){}mergeLangs();buildLangSel();view="langs";render()})};
+}
+function setLang(c){lang=c;try{localStorage.setItem(LANG_KEY,lang)}catch(e){}buildLangSel();render();toast(LANGNAMES[c]||c)}
+loadLangStores();mergeLangs();
 var lang="fr";
 try{var sl=localStorage.getItem(LANG_KEY);if(sl&&I18N[sl])lang=sl}catch(e){}
 function t(k,v){var s=(I18N[lang]&&I18N[lang][k]!=null)?I18N[lang][k]:I18N.fr[k];if(s==null)return k;if(v&&typeof s==="string")s=s.replace(/\{(\w+)\}/g,function(_,n){return v[n]!=null?v[n]:""});return s}
@@ -820,7 +1053,7 @@ function $(id){return document.getElementById(id)}
 function toast(msg){document.querySelectorAll(".toast").forEach(function(x){x.remove()});var el=document.createElement("div");el.className="toast";el.textContent=msg;document.body.appendChild(el);setTimeout(function(){el.remove()},2200)}
 function g(){return groups[currentId]||null}
 function mName(gr,id){if(isNet(gr))return compName(gr,id);var m=gr.membres.find(function(x){return x.id===id});return m?m.nom:t("deleted")}
-function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";x.amendes=x.amendes||[];x.agr=x.agr||[];x.amendesCfg=x.amendesCfg||{};if(x.bureau&&!Array.isArray(x.bureau))bureauList(x);if(!x.bureau)x.bureau=[];if(x.type==="reseau"){x.composantes=x.composantes||[];x.caisse=x.caisse||[];x.niveau=x.niveau||"village"}if(x.village==null)x.village=x.lieu||"";if(!x.pays)x.pays="Mali";x.lieu=x.village;x.membres.forEach(function(m){if(!m.parts)m.parts=1});x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
+function normalize(x){x.membres=x.membres||[];x.cotisations=x.cotisations||[];x.prets=x.prets||[];x.remboursements=x.remboursements||[];x.pvs=x.pvs||[];x.reglement=x.reglement||"";x.amendes=x.amendes||[];x.agr=x.agr||[];x.amendesCfg=x.amendesCfg||{};x.aides=x.aides||[];x.cycles=x.cycles||[];if(x.bureau&&!Array.isArray(x.bureau))bureauList(x);if(!x.bureau)x.bureau=[];if(x.type==="reseau"){x.composantes=x.composantes||[];x.caisse=x.caisse||[];x.niveau=x.niveau||"village"}if(x.village==null)x.village=x.lieu||"";if(!x.pays)x.pays="Mali";x.lieu=x.village;x.membres.forEach(function(m){if(!m.parts)m.parts=1});x.part=num(x.part);x.taux=num(x.taux);x.social=num(x.social);return x}
 function knownNets(){var o={};Object.keys(groups).forEach(function(k){if(isNet(groups[k])&&groups[k].niveau==="village")o[groups[k].nom]=1});Object.keys(groups).forEach(function(k){if(groups[k].reseau)o[groups[k].reseau]=1});Object.keys(globalDb).forEach(function(k){var g=globalDb[k].g;if(g&&g.reseau)o[g.reseau]=1});return Object.keys(o).sort()}
 function place(gr){return [gr.village,gr.commune,gr.cercle,gr.region,gr.pays].filter(function(x){return x}).join(", ")}
 function active(gr){return gr.membres.filter(function(m){return !m.sorti})}
@@ -878,12 +1111,13 @@ function loanInfo(gr,p){
   return {du:du,paye:paye,reste:reste,ech:ech,st:reste<=0.5?"ok":(ech<today()?"late":"run")};
 }
 function stats(gr){
-  var ep=sum(gr.cotisations,function(c){return c.epargne}),so=sum(gr.cotisations,function(c){return c.social});
+  var aid=sum(gr.aides||[],function(a){return a.montant});
+  var ep=sum(gr.cotisations,function(c){return c.epargne}),so=sum(gr.cotisations,function(c){return c.social})+num(gr.socialReport)-aid;
   var pr=sum(gr.prets,function(p){return p.montant}),rb=sum(gr.remboursements,function(r){return r.montant});
   var enc=0,late=[],interets=0;
   gr.prets.forEach(function(p){var i=loanInfo(gr,p);enc+=i.reste;interets+=i.du-p.montant;if(i.st==="late")late.push({p:p,i:i})});
   var am=gr.amendes||[],amP=sum(am.filter(function(a){return a.paye}),function(a){return a.montant}),amNP=sum(am.filter(function(a){return !a.paye}),function(a){return a.montant});
-  return {ep:ep,so:so,caisse:ep+so+rb-pr+amP,enc:enc,late:late,interets:interets,amP:amP,amNP:amNP};
+  return {ep:ep,so:so,caisse:ep+so+rb-pr+amP,enc:enc,late:late,interets:interets,amP:amP,amNP:amNP,aid:aid};
 }
 function memberStats(gr,m){
   var ep=sum(gr.cotisations.filter(function(c){return c.membreId===m.id}),function(c){return c.epargne}),reste=0;
@@ -973,7 +1207,7 @@ function vMembers(gr){
   if(act.length){
     h+='<div class="card muted">👥 '+esc(catLine(gr))+'<button class="btn sec full" id="mList" style="margin-top:8px">'+esc(t("listByCat"))+'</button></div>';
     h+='<div class="card"><table>';
-    act.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'<span class="sub">'+esc(t("cat_"+catOf(m)))+' · '+esc(t("partsN",{n:m.parts||1}))+' · '+f((m.parts||1)*gr.part)+(m.tel?' · '+esc(m.tel):'')+'</span></td><td class="n"><button class="btn sec sm" data-edit="'+m.id+'">✏️ '+esc(t("edit"))+'</button></td></tr>'});
+    act.forEach(function(m){h+='<tr><td>'+esc(m.nom)+'<span class="sub">'+esc(t("cat_"+catOf(m)))+' · '+esc(t("partsN",{n:m.parts||1}))+' · '+f((m.parts||1)*gr.part)+(m.tel?' · '+esc(m.tel):'')+'</span></td><td class="n" style="white-space:nowrap"><button class="btn sec sm" data-liv="'+m.id+'" aria-label="'+esc(t("livT"))+'">📒</button> <button class="btn sec sm" data-edit="'+m.id+'">✏️ '+esc(t("edit"))+'</button></td></tr>'});
     h+='</table><p class="muted">'+esc(t("outNote"))+'</p></div>';
   }
   if(out.length){
@@ -984,6 +1218,7 @@ function vMembers(gr){
   $("view").innerHTML=h;
   $("mAdd").onclick=function(){var n=$("mNom").value.trim();if(!n){$("mNom").focus();return}if(active(gr).length>=MAXM){toast(t("maxMembers"));return}var pa=Math.max(1,Math.round(num($("mParts").value)||1));gr.membres.push({id:uid(),nom:n,tel:$("mTel").value.trim(),parts:pa,cat:$("mCat").value});persist(gr);render();toast(t("added",{n:n}));setTimeout(function(){var e=$("mNom");if(e)e.focus()},50)};
   document.querySelectorAll("[data-edit]").forEach(function(b){b.onclick=function(){memberForm(gr,b.getAttribute("data-edit"))}});
+  document.querySelectorAll("[data-liv]").forEach(function(b){b.onclick=function(){livret(gr,b.getAttribute("data-liv"))}});
   if($("mList"))$("mList").onclick=function(){
     var L=["*"+gr.nom+"*"+(place(gr)?" – "+place(gr):""),t("listT"),""];
     CATS.forEach(function(k){var list=active(gr).filter(function(m){return catOf(m)===k});L.push(t("cats_"+k)+" ("+list.length+")");list.forEach(function(m,i){L.push((i+1)+". "+m.nom+(m.tel?" – "+m.tel:""))});L.push("")});
@@ -991,6 +1226,27 @@ function vMembers(gr){
     modal('<h3>'+esc(t("listT"))+'</h3><textarea class="big" readonly>'+esc(txt)+'</textarea><div class="actions"><button class="btn sec" id="lNo">'+esc(t("close"))+'</button><button class="btn" id="lCp">'+esc(t("copyText"))+'</button></div>',function(md,close){$("lNo").onclick=close;$("lCp").onclick=function(){copyText(txt,t("textCopied"))}});
   };
   document.querySelectorAll("[data-back]").forEach(function(b){b.onclick=function(){if(active(gr).length>=MAXM){toast(t("maxMembers"));return}var m=gr.membres.find(function(x){return x.id===b.getAttribute("data-back")});delete m.sorti;persist(gr);render();toast(t("memberSaved"))}});
+}
+function livretText(gr,m){
+  var cots=gr.cotisations.filter(function(c){return c.membreId===m.id}).sort(function(a,b){return a.date<b.date?-1:1}),ms=memberStats(gr,m);
+  var L=["*"+t("livT")+" – "+m.nom+"*",gr.nom+(place(gr)?" – "+place(gr):""),t("date")+" : "+fdate(today()),"",
+    t("partsN",{n:m.parts||1})+" · "+f((m.parts||1)*gr.part)+" / "+t("livMeet"),
+    t("savings")+" : *"+f(ms.ep)+"* ("+t("livNbMeet",{n:cots.length})+(cots.length?", "+t("livLast")+" "+fdate(cots[cots.length-1].date):"")+")",
+    t("social")+" : "+f(sum(cots,function(c){return c.social}))];
+  var pr=gr.prets.filter(function(p){return p.membreId===m.id});
+  if(pr.length){L.push("");L.push(t("livLoans")+" :");pr.forEach(function(p){var i=loanInfo(gr,p);L.push("• "+fdate(p.date)+" : "+f(p.montant)+" → "+f(i.du)+", "+t("livPaid")+" "+f(i.paye)+", "+t("livRest")+" "+f(i.reste)+(i.reste>0.5?" ("+t("livDue")+" "+fdate(i.ech)+(i.st==="late"?" ⚠️":"")+")":" ✅"))})}
+  var am=(gr.amendes||[]).filter(function(a){return a.membreId===m.id});
+  if(am.length){var due=sum(am.filter(function(a){return !a.paye}),function(a){return a.montant});L.push("");L.push(t("finesT")+" : "+am.length+(due?" – "+t("finesDue").toLowerCase()+" "+f(due):""))}
+  var ai=(gr.aides||[]).filter(function(a){return a.membreId===m.id});
+  if(ai.length){L.push("");L.push(t("livAides")+" : "+f(sum(ai,function(a){return a.montant})))}
+  var so=shareOut(gr),r=so.rows.filter(function(x){return x.m.id===m.id})[0];
+  if(r&&so.epTot>0){L.push("");L.push(t("livEstim")+" : *"+f(r.recu)+"*")}
+  L.push("");L.push(t("livFoot"));
+  return L.join("\n");
+}
+function livret(gr,id){
+  var m=gr.membres.find(function(x){return x.id===id});if(!m)return;var txt=livretText(gr,m),wn=waNum(m.tel);if(wn.length<10)wn="";
+  modal('<h3>📒 '+esc(t("livT"))+'</h3><textarea class="big" readonly>'+esc(txt)+'</textarea><div class="actions"><button class="btn sec" id="lvNo">'+esc(t("close"))+'</button><button class="btn sec" id="lvCp">'+esc(t("copyText"))+'</button>'+(wn?'<a class="btn" id="lvWa" target="_blank" rel="noopener" href="https://wa.me/'+wn+'?text='+encodeURIComponent(txt)+'">WhatsApp</a>':'')+'</div>',function(md,close){$("lvNo").onclick=close;$("lvCp").onclick=function(){copyText(txt,t("textCopied"))}});
 }
 function memberForm(gr,id){
   var m=gr.membres.find(function(x){return x.id===id});if(!m)return;
@@ -1033,7 +1289,7 @@ function vMeeting(gr){
   act.forEach(function(m){var pa=m.parts||1;h+='<tr><td style="width:44px"><input type="checkbox" data-paid="'+m.id+'" checked style="width:22px;height:22px"></td><td>'+esc(m.nom)+'</td><td class="n">'+pa+'</td><td class="n">'+f(pa*gr.part)+'</td></tr>'});
   var cfg=gr.amendesCfg||{};
   h+='</table><p id="dTot" class="muted"></p>'+(cfg.absence?'<label class="chk"><input type="checkbox" id="dAbsFine">'+esc(t("absFine",{a:f(cfg.absence)}))+'</label>':'')+'<button class="btn full" id="dSave">'+esc(t("saveMeet"))+'</button></div>';
-  h+=finesHtml(gr);
+  h+=finesHtml(gr)+aidesHtml(gr);
   var byDate={};gr.cotisations.forEach(function(c){(byDate[c.date]=byDate[c.date]||[]).push(c)});
   var dates=Object.keys(byDate).sort().reverse();
   h+='<h2>'+esc(t("past"))+'</h2>';
@@ -1057,7 +1313,25 @@ function vMeeting(gr){
     if(byDate[d])ask(t("sameDayQ",{d:fdate(d)}),t("add"),go);else go();
   };
   document.querySelectorAll("[data-deld]").forEach(function(b){b.onclick=function(){var d=b.getAttribute("data-deld");ask(t("delMeetQ",{d:fdate(d)}),t("del"),function(){gr.cotisations=gr.cotisations.filter(function(c){return c.date!==d});persist(gr);render()})}});
-  bindFines(gr);
+  bindFines(gr);bindAides(gr);
+}
+var AIDE_TYPES=["maladie","deces","naissance","mariage","autre"];
+function aidesHtml(gr){
+  var s=stats(gr),act=active(gr);
+  var h='<h2>🤝 '+esc(t("aideT"))+'</h2><div class="card"><p class="muted">'+esc(t("aideHint"))+' <b>'+f(s.so)+'</b></p>'+
+    '<div class="grid2"><div><label>'+esc(t("colMember"))+'</label><select id="aiM">'+act.map(function(m){return '<option value="'+m.id+'">'+esc(m.nom)+'</option>'}).join("")+'</select></div>'+
+    '<div><label>'+esc(t("aideType"))+'</label><select id="aiT">'+AIDE_TYPES.map(function(k){return '<option value="'+k+'">'+esc(t("aide_"+k))+'</option>'}).join("")+'</select></div></div>'+
+    '<div class="grid2"><div><label>'+esc(t("fineAmount"))+'</label><input id="aiA" inputmode="numeric"></div><div><label>'+esc(t("date"))+'</label><input type="date" id="aiD" value="'+today()+'"></div></div>'+
+    '<label>'+esc(t("fineNote"))+'</label><input id="aiN"><button class="btn o full" id="aiAdd">'+esc(t("aideAdd"))+'</button></div>';
+  var list=(gr.aides||[]).slice().sort(function(a,b){return a.date<b.date?1:-1});
+  if(list.length){h+='<div class="card"><table>';list.forEach(function(a){h+='<tr><td>'+esc(mName(gr,a.membreId))+'<span class="sub">'+fdate(a.date)+' · '+esc(t("aide_"+a.type))+(a.motif?' · '+esc(a.motif):'')+'</span></td><td class="n">'+f(a.montant)+'</td><td class="n"><button class="x" data-aidel="'+a.id+'" aria-label="'+esc(t("del"))+'">×</button></td></tr>'});h+='</table></div>'}
+  return h;
+}
+function bindAides(gr){
+  if(!$("aiAdd"))return;
+  $("aiAdd").onclick=function(){var mt=num($("aiA").value);if(mt<=0){$("aiA").focus();return}if(mt>stats(gr).so+0.5){toast(t("aideTooMuch",{a:f(stats(gr).so)}));return}
+    gr.aides.push({id:uid(),date:$("aiD").value||today(),membreId:$("aiM").value,type:$("aiT").value,montant:mt,motif:$("aiN").value.trim()});persist(gr);render();toast(t("aideSaved"))};
+  document.querySelectorAll("[data-aidel]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-aidel");ask(t("aideDelQ"),t("del"),function(){gr.aides=gr.aides.filter(function(x){return x.id!==id});persist(gr);render()})}});
 }
 var FINE_TYPES=["retard","absence","remb","autre"];
 function finesHtml(gr){
@@ -1128,8 +1402,57 @@ function rulesFromTemplate(gr){
   if(gr.objectif)txt=txt.replace(/\n\n(Article 3|Sariya 3)/,"\n"+t("objLbl").replace("🎯 ","")+" : "+gr.objectif+"\n\n$1");
   return withBureau(gr,txt);
 }
+/* ---------- partage de fin de cycle ---------- */
+function shareOut(gr){
+  var s=stats(gr),act=active(gr),rows=[],epTot=0;
+  act.forEach(function(m){var ms=memberStats(gr,m),dues=sum((gr.amendes||[]).filter(function(a){return a.membreId===m.id&&!a.paye}),function(a){return a.montant});rows.push({m:m,ep:ms.ep,pret:ms.reste,am:dues});epTot+=ms.ep});
+  var cashOut=Math.max(0,s.caisse-s.so),valeur=cashOut+s.enc+s.amNP,profit=valeur-epTot,given=0;
+  var manque=0;
+  rows.forEach(function(r){r.part=epTot>0?valeur*r.ep/epTot:0;var net=r.part-r.pret-r.am;r.doit=net<0?Math.round(-net):0;manque+=r.doit;r.recu=Math.max(0,Math.floor((net+0.01)/5)*5);given+=r.recu});
+  return {rows:rows,epTot:epTot,cashOut:cashOut,valeur:valeur,profit:profit,rend:epTot>0?100*profit/epTot:0,reste:Math.max(0,cashOut-given),manque:manque,s:s};
+}
+function shareOutText(gr,o){
+  var L=["*"+t("cyPvT")+"*","*"+gr.nom+"*"+(place(gr)?" – "+place(gr):""),t("date")+" : "+fdate(today()),"",
+    t("savings")+" : "+f(o.epTot),t("cyValue")+" : "+f(o.valeur),t("cyProfit")+" : "+f(o.profit)+" ("+o.rend.toFixed(1).replace(".",",")+" %)",t("social")+" : "+f(o.s.so)+" ("+t("cySocialStays")+")",""];
+  o.rows.forEach(function(r,i){L.push((i+1)+". "+r.m.nom+" : "+t("colSav").toLowerCase()+" "+f(r.ep)+" → "+t("cyShare").toLowerCase()+" "+f(r.part)+((r.pret||r.am)?" – "+t("cyDeduct").toLowerCase()+" "+f(r.pret+r.am):"")+" = *"+f(r.recu)+"*"+(r.doit?" ("+t("cyStillOwes",{a:f(r.doit)})+")":""))});
+  L.push("");L.push(t("cyTotalPaid")+" : "+f(sum(o.rows,function(r){return r.recu})));if(o.reste>0&&!o.manque)L.push(t("cyRemainder")+" : "+f(o.reste));L.push("");L.push(t("signLine"));
+  return L.join("\n");
+}
+function cycleHtml(gr){
+  var o=shareOut(gr),s=o.s;
+  var h='<div class="card muted">'+esc(t("cyHint"))+'</div>';
+  if(s.enc>0.5)h+='<div class="alert">'+esc(t("cyLoansOpen",{a:f(s.enc)}))+'</div>';
+  if(o.manque>0)h+='<div class="alert">'+esc(t("cyShort",{a:f(o.manque)}))+'</div>';
+  h+='<div class="kpis"><div class="kpi main"><div class="l">'+esc(t("cyToShare"))+'</div><div class="v">'+f(o.cashOut)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("savings"))+'</div><div class="v">'+f(o.epTot)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("cyProfit"))+'</div><div class="v">'+f(o.profit)+'</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("cyRend"))+'</div><div class="v">'+o.rend.toFixed(1).replace(".",",")+' %</div></div>'+
+    '<div class="kpi"><div class="l">'+esc(t("social"))+'</div><div class="v">'+f(s.so)+'</div></div></div>';
+  if(!o.rows.length||o.epTot<=0)h+='<div class="card empty">'+esc(t("cyEmpty"))+'</div>';
+  else{h+='<div class="card" style="overflow-x:auto"><table class="small"><tr><th>'+esc(t("colMember"))+'</th><th class="n">'+esc(t("colSav"))+'</th><th class="n">'+esc(t("cyShare"))+'</th><th class="n">'+esc(t("cyDeduct"))+'</th><th class="n">'+esc(t("cyReceive"))+'</th></tr>'+
+    o.rows.map(function(r){return '<tr><td>'+esc(r.m.nom)+(r.doit?'<span class="sub" style="color:#b3261e">'+esc(t("cyStillOwes",{a:f(r.doit)}))+'</span>':'')+'</td><td class="n">'+f(r.ep)+'</td><td class="n">'+f(r.part)+'</td><td class="n">'+(r.pret+r.am?f(r.pret+r.am):'–')+'</td><td class="n"><b>'+f(r.recu)+'</b></td></tr>'}).join("")+'</table>'+
+    (o.reste>0&&!o.manque?'<p class="muted">'+esc(t("cyRemainder"))+' : '+f(o.reste)+'</p>':'')+
+    '<button class="btn sec full" id="cyPv">📝 '+esc(t("cyPvBtn"))+'</button><button class="btn d full" id="cyClose">🔒 '+esc(t("cyCloseBtn"))+'</button></div>'}
+  if((gr.cycles||[]).length){h+='<h2>'+esc(t("cyPast"))+'</h2><div class="card"><table class="small">'+gr.cycles.slice().reverse().map(function(c){return '<tr><td><b>'+fdate(c.fin)+'</b><span class="sub">'+esc(t("nMembers",{n:c.lignes.length}))+'</span></td><td class="n">'+f(c.verse)+'<span class="sub">'+esc(t("cyRend"))+' '+String(c.rend.toFixed(1)).replace(".",",")+' %</span></td></tr>'}).join("")+'</table></div>'}
+  return h;
+}
+function bindCycle(gr){
+  if(!$("cyPv"))return;
+  $("cyPv").onclick=function(){var txt=shareOutText(gr,shareOut(gr));
+    modal('<h3>'+esc(t("cyPvT"))+'</h3><textarea class="big" readonly>'+esc(txt)+'</textarea><div class="actions"><button class="btn sec" id="cpNo">'+esc(t("close"))+'</button><button class="btn" id="cpCp">'+esc(t("copyText"))+'</button></div>',function(m,close){$("cpNo").onclick=close;$("cpCp").onclick=function(){copyText(txt,t("textCopied"))}})};
+  $("cyClose").onclick=function(){var o=shareOut(gr);
+    if(o.manque>0){toast(t("cyCantClose"));return}
+    var paid=sum(o.rows,function(r){return r.recu});
+    ask(t("cyCloseQ",{a:f(paid),b:f(o.s.so+o.reste)}),t("cyCloseOk"),function(){
+      var deb=gr.cotisations.reduce(function(m,c){return !m||c.date<m?c.date:m},"");
+      gr.pvs.push({id:uid(),date:today(),lieu:gr.village||"",presents:[],total:active(gr).length,odj:t("cyPvT"),decisions:shareOutText(gr,o)});
+      gr.cycles.push({debut:deb,fin:today(),epTot:o.epTot,valeur:o.valeur,profit:o.profit,rend:o.rend,verse:o.cashOut-o.reste,social:o.s.so,lignes:o.rows.map(function(r){return {nom:r.m.nom,ep:r.ep,part:Math.round(r.part),recu:r.recu}})});
+      gr.socialReport=o.s.so+o.reste;gr.cotisations=[];gr.prets=[];gr.remboursements=[];gr.amendes=[];gr.aides=[];gr.cycleDebut=today();
+      persist(gr);render();toast(t("cyClosed"))})};
+}
 function vDocs(gr){
-  var h='<h2>'+esc(t("docsT"))+'</h2><div class="seg"><button data-tab="rules" class="'+(docTab==="rules"?"on":"")+'">📜 '+esc(t("tabRules"))+'</button><button data-tab="pv" class="'+(docTab==="pv"?"on":"")+'">📝 '+esc(t("tabPV"))+'</button><button data-tab="agr" class="'+(docTab==="agr"?"on":"")+'">🧺 '+esc(t("tabAGR"))+'</button></div>';
+  var h='<h2>'+esc(t("docsT"))+'</h2><div class="seg"><button data-tab="rules" class="'+(docTab==="rules"?"on":"")+'">📜 '+esc(t("tabRules"))+'</button><button data-tab="pv" class="'+(docTab==="pv"?"on":"")+'">📝 '+esc(t("tabPV"))+'</button><button data-tab="agr" class="'+(docTab==="agr"?"on":"")+'">🧺 '+esc(t("tabAGR"))+'</button><button data-tab="cycle" class="'+(docTab==="cycle"?"on":"")+'">🎉 '+esc(t("tabCycle"))+'</button></div>';
+  if(docTab==="cycle"){$("view").innerHTML=h+cycleHtml(gr);document.querySelectorAll("[data-tab]").forEach(function(b){b.onclick=function(){docTab=b.getAttribute("data-tab");render()}});bindCycle(gr);return}
   if(docTab==="agr"){$("view").innerHTML=h+agrHtml(gr);document.querySelectorAll("[data-tab]").forEach(function(b){b.onclick=function(){docTab=b.getAttribute("data-tab");render()}});bindAgr(gr);return}
   if(docTab==="rules"){
     if(!gr.reglement)h+='<div class="card empty">'+esc(t("rulesEmpty"))+'<button class="btn full" id="rGen">'+esc(t("genRules"))+'</button></div>';
@@ -1335,6 +1658,7 @@ function openMenu(){
     '<button class="menuitem" data-go="market">'+esc(t("marketT"))+'</button>'+
     '<button class="menuitem" data-go="catalog">'+esc(t("catalogT"))+'</button>'+
     '<button class="menuitem" data-go="train">'+esc(t("trainT"))+'</button>'+
+    '<button class="menuitem" data-go="langs">🗣 '+esc(t("langT"))+'</button>'+
     '<button class="menuitem" data-go="newnet">🌐 '+esc(t("createNet"))+'</button>'+
     '<button class="menuitem" data-go="global">🌍 '+esc(t("global"))+'</button>'+
     '<button class="menuitem" data-go="profile">👤 '+esc(t("profile"))+'</button>'+
@@ -1416,12 +1740,12 @@ function vGlobal(){
   }
   else{
     h+='<div class="card" style="overflow-x:auto"><table class="small"><tr><th>'+esc(t("colGroup"))+'</th><th>'+esc(t("colAnim"))+'</th><th class="n">'+esc(t("nbMembers"))+'</th><th class="n">'+esc(t("savings"))+'</th><th class="n">'+esc(t("toRecover"))+'</th><th></th></tr>';
-    vis.forEach(function(r){h+='<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(place(r.g))+(mapUrl(r.g)?' · <a href="'+mapUrl(r.g)+'" target="_blank" rel="noopener">🗺</a>':'')+(globalRole==="admin"&&r.g.projet?' · 📁 '+esc(r.g.projet):'')+'</span></td><td>'+esc(r.src)+(r.recu?'<span class="sub">'+esc(t("updated"))+' '+fdate(r.recu)+'</span>':'')+'</td><td class="n">'+r.m+'</td><td class="n">'+f(r.s.ep)+'</td><td class="n">'+f(r.s.enc)+(r.s.late.length?' ⚠':'')+'</td><td class="n"><button class="x" data-gv="'+r.g.id+'">👁</button></td></tr>'});
+    vis.forEach(function(r){h+='<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(place(r.g))+(mapUrl(r.g)?' · <a href="'+mapUrl(r.g)+'" target="_blank" rel="noopener">🗺</a>':'')+(globalRole==="admin"&&r.g.projet?' · 📁 '+esc(r.g.projet):'')+'</span></td><td>'+esc(r.src)+(r.recu?'<span class="sub">'+esc(t("updated"))+' '+fdate(r.recu)+'</span>':'')+'</td><td class="n">'+r.m+'</td><td class="n">'+f(r.s.ep)+'</td><td class="n">'+f(r.s.enc)+(r.s.late.length?' ⚠':'')+'</td><td class="n"><button class="x" data-gv="'+r.g.id+'">👁</button><button class="x" data-gd="'+r.g.id+'" title="'+esc(t("del"))+'">🗑</button></td></tr>'});
     h+='</table><button class="btn sec full" id="gCsv">'+esc(t("exportCsv"))+'</button></div>';
   }
   if(nvis.length){
     h+='<h2>🌐 '+esc(t("netsT"))+' ('+nvis.length+')</h2><div class="card" style="overflow-x:auto"><table class="small"><tr><th>'+esc(t("netName"))+'</th><th class="n">'+esc(t("compShort"))+'</th><th class="n">'+esc(t("nbGroups"))+'</th><th class="n">'+esc(t("nbMembers"))+'</th><th class="n">'+esc(t("netSav"))+'</th><th class="n">'+esc(t("netCash"))+'</th><th></th></tr>'+
-      nvis.map(function(r){var ns=netStats(r.g);return '<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(netTitle(r.g))+' · '+esc(netPlace(r.g))+'</span></td><td class="n">'+ns.nbComp+'</td><td class="n">'+ns.nbGr+'</td><td class="n">'+ns.m+'</td><td class="n">'+f(ns.ep)+'</td><td class="n">'+f(ns.solde)+(bureauCount(r.g)<5?' ⚠':'')+(netNextMeet(r.g)<today()?' 📅':'')+'</td><td class="n"><button class="x" data-nv="'+r.g.id+'">👁</button></td></tr>'}).join("")+'</table></div>';
+      nvis.map(function(r){var ns=netStats(r.g);return '<tr><td><b>'+esc(r.g.nom)+'</b><span class="sub">'+esc(netTitle(r.g))+' · '+esc(netPlace(r.g))+'</span></td><td class="n">'+ns.nbComp+'</td><td class="n">'+ns.nbGr+'</td><td class="n">'+ns.m+'</td><td class="n">'+f(ns.ep)+'</td><td class="n">'+f(ns.solde)+(bureauCount(r.g)<5?' ⚠':'')+(netNextMeet(r.g)<today()?' 📅':'')+'</td><td class="n"><button class="x" data-nv="'+r.g.id+'">👁</button><button class="x" data-gd="'+r.g.id+'" title="'+esc(t("del"))+'">🗑</button></td></tr>'}).join("")+'</table></div>';
   }
   $("view").innerHTML=h;
   document.querySelectorAll("[data-nv]").forEach(function(b){b.onclick=function(){var r=netRows.find(function(x){return x.g.id===b.getAttribute("data-nv")});var txt=netReportText(r.g);
@@ -1435,6 +1759,11 @@ function vGlobal(){
   if($("gPull"))$("gPull").onclick=function(){pullServer(false)};
   $("gLock").onclick=function(){adminOk=false;adminPwd="";globalDb={};try{sessionStorage.removeItem("avec_admin")}catch(e){}view="home";render();toast(t("lockedMsg"))};
   if(!window.__pulled&&serverUrl()){window.__pulled=true;pullServer(true)}
+  document.querySelectorAll("[data-gd]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-gd"),r=globalDb[id];if(!r)return;
+    ask(t("gDelSrvQ",{n:r.g.nom}),t("del"),function(){serverDelete([id],function(ok,d){
+      if(!ok)return;if(d.refus&&!d.n){toast(t("gDelSrvNo"));return}
+      delete globalDb[id];if(groups[id]){removeGroup(id);if(currentId===id)currentId=Object.keys(groups)[0]||null;saveLocal()}
+      toast(t("gDelSrvOk",{n:r.g.nom}));render()})})}});
   document.querySelectorAll("[data-gv]").forEach(function(b){b.onclick=function(){var id=b.getAttribute("data-gv"),r=rows.find(function(x){return x.g.id===id});var txt=reportText(r.g);
     modal('<h3>'+esc(t("groupDetail"))+'</h3><textarea class="big" readonly>'+esc(txt)+'</textarea><div class="actions"><button class="btn sec" id="gvNo">'+esc(t("close"))+'</button><button class="btn" id="gvCp">'+esc(t("copyText"))+'</button></div>',function(m,close){$("gvNo").onclick=close;$("gvCp").onclick=function(){copyText(txt,t("textCopied"))}})}});
   if($("gCsv"))$("gCsv").onclick=function(){
@@ -1494,7 +1823,7 @@ function render(){
   var nm=document.querySelector('#nav [data-v="meeting"] [data-t]');if(nm)nm.textContent=t(curNet?"navCash":"navMeeting");
   var nmi=document.querySelector('#nav [data-v="meeting"] .i');if(nmi)nmi.textContent=curNet?"💼":"💰";
   var nl=document.querySelector('#nav [data-v="loans"]');if(nl)nl.style.display=curNet?"none":"";
-  $("nav").classList.toggle("hidden",!g()&&["share","global","market","catalog","train"].indexOf(view)<0);
+  $("nav").classList.toggle("hidden",!g()&&["share","global","market","catalog","train","langs","langedit"].indexOf(view)<0);
   if(!projet||!projet.code||projet.bloque){$("nav").classList.add("hidden");$("groupSel").disabled=true;$("newGroupBtn").style.display="none";if(projet&&projet.bloque)vBlocked();else vActivate();return}
   $("newGroupBtn").style.display="";
   if(view==="share"){vShare();return}
@@ -1502,6 +1831,8 @@ function render(){
   if(view==="market"){vMarket();return}
   if(view==="catalog"){vCatalog();return}
   if(view==="train"){vTrain();return}
+  if(view==="langs"){vLangs();return}
+  if(view==="langedit"){vLangEdit();return}
   var gr=g();if(!gr){vWelcome();return}
   if(isNet(gr)){({home:vNetHome,members:vNetComp,meeting:vNetCash,loans:vNetHome,docs:vNetDocs,report:vNetReport})[view](gr);return}
   ({home:vHome,members:vMembers,meeting:vMeeting,loans:vLoans,docs:vDocs,report:vReport})[view](gr);
@@ -1877,7 +2208,7 @@ function addCustomProduct(nom,unite,prix,cat){
    ========================================================= */
 var trainId=null;
 function moduleText(md){
-  var L=[];L.push((md.grp==="mjt"?t("mjtTheme",{n:md.n})+" – ":"")+md.titre.toUpperCase());L.push("⏱ "+md.duree+" · "+md.methode);L.push("");
+  var L=[];L.push((md.grp==="mjt"?t("mjtTheme",{n:md.n})+" – ":"")+md.titre.toUpperCase());L.push("⏱ "+md.duree+" · "+md.methode);if(md.note)L.push("👩‍🏫 "+md.note);L.push("");
   L.push(t("trObj")+" :");md.obj.forEach(function(x){L.push("- "+x)});L.push("");
   L.push(t("trSteps")+" :");md.etapes.forEach(function(x,i){L.push((i+1)+". "+x)});L.push("");
   L.push(t("trKeys")+" :");md.cles.forEach(function(x){L.push("• "+x)});L.push("");
@@ -1887,7 +2218,7 @@ function moduleText(md){
 function vTrain(){
   if(trainId){var md=MODULES.find(function(m){return m.id===trainId});if(md){vModule(md);return}trainId=null}
   var h='<h2>'+esc(t("trainT"))+'</h2><p class="muted">'+esc(t("trainHint"))+'</p>'+(lang!=="fr"?'<div class="card muted">ℹ️ '+esc(t("trainFrOnly"))+'</div>':'');
-  [["mjt",t("trMjt")],["plus",t("trPlus")]].forEach(function(gp){
+  [["mjt",t("trMjt")],["plus",t("trPlus")],["sante",t("trSante")],["climat",t("trClimat")]].forEach(function(gp){
     h+='<h2>'+esc(gp[1])+'</h2>';
     MODULES.filter(function(m){return m.grp===gp[0]}).forEach(function(m){h+='<button class="menuitem" data-md="'+m.id+'"><span style="font-size:22px">'+m.icon+'</span><span>'+(m.grp==="mjt"?'<b>'+esc(t("mjtTheme",{n:m.n}))+'</b> – ':'')+esc(m.titre)+'<span class="sub">⏱ '+esc(m.duree)+'</span></span></button>'});
   });
@@ -1900,6 +2231,7 @@ function vModule(md){
   var h='<button class="btn sec sm" id="trBack">← '+esc(t("trainT"))+'</button>'+
     '<div class="card" style="margin-top:10px;background:var(--g);color:#fff;border:0"><div style="font-size:30px">'+md.icon+'</div>'+(md.grp==="mjt"?'<div style="font-size:12px;opacity:.85">'+esc(t("mjtTheme",{n:md.n}))+'</div>':'')+'<b style="font-size:18px">'+esc(md.titre)+'</b><div style="font-size:13px;opacity:.9;margin-top:4px">⏱ '+esc(md.duree)+' · '+esc(md.methode)+'</div></div>'+
     '<div class="card"><b>🎯 '+esc(t("trObj"))+'</b>'+ul(md.obj)+'</div>'+
+    (md.note?'<div class="alert">👩‍🏫 '+esc(md.note)+'</div>':'')+
     '<div class="card"><b>🧭 '+esc(t("trSteps"))+'</b><ol style="margin:4px 0 0;padding-left:20px">'+md.etapes.map(function(x){return '<li style="margin-bottom:4px">'+esc(x)+'</li>'}).join("")+'</ol></div>'+
     '<div class="card"><b>🔑 '+esc(t("trKeys"))+'</b>'+ul(md.cles)+'</div>'+
     '<div class="card" style="background:var(--o2);border-color:var(--o2)"><b>📖 '+esc(t("trStory"))+'</b><p style="margin:6px 0">'+esc(md.recit)+'</p><b>💬 '+esc(t("trQuestions"))+'</b>'+ul(md.questions)+'</div>'+
@@ -1914,14 +2246,15 @@ function vModule(md){
 }
 
 /* ---------- démarrage ---------- */
-$("langSel").onchange=function(){lang=this.value;try{localStorage.setItem(LANG_KEY,lang)}catch(e){}render()};
+buildLangSel();
+$("langSel").onchange=function(){if(this.value==="__more"){this.value=lang;view="langs";render();window.scrollTo(0,0);return}setLang(this.value)};
 $("groupSel").onchange=function(){currentId=this.value;saveLocal();render()};
 $("newGroupBtn").onclick=chooseType;
 $("menuBtn").onclick=openMenu;
 document.querySelectorAll("#nav button").forEach(function(b){b.onclick=function(){view=b.getAttribute("data-v");render();window.scrollTo(0,0)}});
 loadLocal();loadPrix();render();startCloud();
 try{if(serverUrl()&&localStorage.getItem("caisse_avec_synced_for")!==serverUrl()){Object.keys(groups).forEach(function(k){markPending(k,"up")});localStorage.setItem("caisse_avec_synced_for",serverUrl())}}catch(e){}
-updateSync();setTimeout(flush,3000);
+updateSync();setTimeout(flush,3000);setTimeout(function(){fetchLangs(false)},4000);
 if(projet&&projet.code){checkProjet(projet.code,function(st,d){if(st==="ok"){var was=projet.bloque;projet.bloque=false;projet.nom=d.nom;saveProjet();if(was)render();updateSync();flush()}else if(st==="bad"){projet.bloque=true;saveProjet();render()}})}setInterval(flush,60000);window.addEventListener("online",flush);
 })();
 </script>
