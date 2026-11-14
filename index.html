@@ -183,7 +183,7 @@ fr:{
  chooseRemove:"Que faire avec {n} ?",keepHist:"Marquer comme sorti(e) (garder les chiffres)",delAll:"Supprimer avec tous ses chiffres",
  delAllQ:"Supprimer {n} ET toutes ses cotisations, prêts et remboursements ? Les totaux du groupe seront recalculés. Action irréversible.",memberDeleted:"Membre supprimé",
  adminT:"Accès superviseur",adminHint:"La base globale est protégée. Entrez votre mot de passe superviseur.",password:"Mot de passe",enter:"Entrer",
- wrongPwd:"Mot de passe incorrect.",lockBtn:"🔒 Verrouiller",lockedMsg:"Base globale verrouillée.",
+ wrongPwd:"Mot de passe incorrect.",pwdBlocked:"Trop d'essais. Réessayez dans 10 minutes.",lockBtn:"🔒 Verrouiller",lockedMsg:"Base globale verrouillée.",
  globalHint2:"Données envoyées automatiquement par tous les téléphones qui utilisent l'outil. Accès réservé au superviseur. Touchez 🗑 pour effacer un groupement test ou en double.",
  gDelSrvQ:"Supprimer « {n} » de la base globale ? Toutes ses données seront effacées du serveur et il ne pourra plus y être renvoyé. Action irréversible.",gDelSrvOk:"« {n} » supprimé de la base globale",gDelSrvNo:"Suppression refusée : ce groupement appartient à un autre projet",
  designedBy:"Conçu par Sékou Traoré",signLine:"— Outils de gestion des groupements AVEC · © Sékou Traoré",
@@ -286,7 +286,7 @@ bm:{
  chooseRemove:"Mun bɛ kɛ ni {n} ye ?",keepHist:"A jate bɔlen ye (jateminɛw bɛ to)",delAll:"A jɔsi n'a jateminɛw bɛɛ ye",
  delAllQ:"{n} jɔsi ANI a ka wari donnenw, juruw ani sarali bɛɛ ? Tɔn ka jateminɛw bɛna kɛ kokura. A tɛ se ka segin.",memberDeleted:"Tɔnden jɔsira",
  adminT:"Kɔlɔsibaga ka donda",adminHint:"Kunnafoni bɛɛ lakanana. Aw ka kɔlɔsibaga gundo daɲɛ sɛbɛn.",password:"Gundo daɲɛ",enter:"Don",
- wrongPwd:"Gundo daɲɛ tɛ ɲɛ.",lockBtn:"🔒 A datugu",lockedMsg:"Kunnafoni bɛɛ datugura.",
+ wrongPwd:"Gundo daɲɛ tɛ ɲɛ.",pwdBlocked:"I ye a kɛ siɲɛ caman. Miniti 10 kɔfɛ, i ka segin.",lockBtn:"🔒 A datugu",lockedMsg:"Kunnafoni bɛɛ datugura.",
  globalHint2:"Telefɔni minnu bɛ baara kɛ ni minɛn in ye, olu bɛɛ ka kunnafoniw bɛ na yan u yɛrɛ ma. Kɔlɔsibaga dɔrɔn de bɛ se ka don. 🗑 digi ka tɔn kɔrɔbɔli walima tɔn fila jɔsi.",
  gDelSrvQ:"« {n} » jɔsi tɔnw bɛɛ ka kunnafoniw na ? A kunnafoniw bɛɛ bɛna jɔsi, a tɛna se ka lasegin yen tugun. A tɛ se ka kɔsegin.",gDelSrvOk:"« {n} » jɔsira",gDelSrvNo:"A ma se ka jɔsi : nin tɔn ye porozɛ wɛrɛ ta ye",
  designedBy:"Sékou Traoré de y'a dilan",signLine:"— AVEC tɔnw ɲɛnabɔ minɛnw · © Sékou Traoré",
@@ -389,7 +389,7 @@ en:{
  chooseRemove:"What should be done with {n}?",keepHist:"Mark as left (keep the figures)",delAll:"Delete with all their figures",
  delAllQ:"Delete {n} AND all their contributions, loans and repayments? The group's totals will be recalculated. This cannot be undone.",memberDeleted:"Member deleted",
  adminT:"Supervisor access",adminHint:"The global database is protected. Enter your supervisor password.",password:"Password",enter:"Enter",
- wrongPwd:"Wrong password.",lockBtn:"🔒 Lock",lockedMsg:"Global database locked.",
+ wrongPwd:"Wrong password.",pwdBlocked:"Too many attempts. Try again in 10 minutes.",lockBtn:"🔒 Lock",lockedMsg:"Global database locked.",
  globalHint2:"Data sent automatically by every phone using the tool. Access reserved for the supervisor. Tap 🗑 to erase a test or duplicate group.",
  gDelSrvQ:"Delete “{n}” from the global database? All its data will be erased from the server and it can no longer be sent back. This cannot be undone.",gDelSrvOk:"“{n}” deleted from the global database",gDelSrvNo:"Deletion refused: this group belongs to another project",
  designedBy:"Designed by Sékou Traoré",signLine:"— VSLA Group Management Tools · © Sékou Traoré",
@@ -820,21 +820,28 @@ function updateSync(){
   if(!serverUrl()){el.textContent="";return}
   var n=Object.keys(pending).length;el.textContent=(projet&&projet.nom?t("projectLbl",{n:projet.nom})+" · ":"")+(n?t("syncPending",{n:n}):t("syncOk"));
 }
+function adminCall(body,getQs,cb){
+  var u=serverUrl();body.key=SYNC_KEY;
+  function viaGet(){fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+getQs+"&t="+Date.now()).then(function(r){return r.json()}).then(cb).catch(function(){cb(null)})}
+  fetch(u,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)}).then(function(r){return r.json()}).then(function(d){
+    if(d&&(d.ok||d.err==="mdp"||d.err==="bloque"))cb(d);else viaGet()}).catch(viaGet);
+}
+function pwdErr(d){if(d&&d.err==="bloque"){toast(t("pwdBlocked"));return true}if(d&&d.err==="mdp"){toast(t("wrongPwd"));return true}return false}
 function pullServer(silent,pwd,cb){
   var u=serverUrl();if(!u){if(!silent)toast(t("noServer"));if(cb)cb(false);return}
   pwd=pwd||adminPwd;
-  fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&pwd="+encodeURIComponent(pwd)+"&t="+Date.now()).then(function(r){return r.json()}).then(function(d){
-    if(!d||!d.ok){if(d&&d.err==="mdp"){toast(t("wrongPwd"));if(cb)cb(false,"mdp");return}throw 0}
+  adminCall({action:"admin",pwd:pwd},"&pwd="+encodeURIComponent(pwd),function(d){try{
+    if(!d||!d.ok){if(pwdErr(d)){if(cb)cb(false,"mdp");return}throw 0}
     globalDb={};var n=0;globalRole=d.role||"";globalProjets=d.projets||{};
     (d.groups||[]).forEach(function(x){if(x&&x.id){var fr=(d.from&&d.from[x.id])||{};globalDb[x.id]={g:normalize(x),from:fr,recu:fr.maj?String(fr.maj).slice(0,10):""};n++}});
     if(cb)cb(true);
     if(view==="global")render();if(!silent)toast(t("refreshed",{n:n}));
-  }).catch(function(){toast(t("syncFail"));if(cb)cb(false)});
+  }catch(e){toast(t("syncFail"));if(cb)cb(false)}});
 }
 function serverDelete(ids,cb){
   var u=serverUrl();if(!u){toast(t("noServer"));cb(false);return}
-  fetch(u+(u.indexOf("?")<0?"?":"&")+"key="+encodeURIComponent(SYNC_KEY)+"&pwd="+encodeURIComponent(adminPwd)+"&action=del&ids="+encodeURIComponent(ids.join(","))+"&t="+Date.now()).then(function(r){return r.json()}).then(function(d){
-    if(!d||!d.ok){toast(t(d&&d.err==="mdp"?"wrongPwd":"syncFail"));cb(false);return}cb(true,d)}).catch(function(){toast(t("syncFail"));cb(false)});
+  adminCall({action:"del",pwd:adminPwd,ids:ids},"&pwd="+encodeURIComponent(adminPwd)+"&action=del&ids="+encodeURIComponent(ids.join(",")),function(d){
+    if(!d||!d.ok){if(!pwdErr(d))toast(t("syncFail"));cb(false);return}cb(true,d)});
 }
 function adminLogin(){
   modal('<h3>🔒 '+esc(t("adminT"))+'</h3><p class="muted">'+esc(t("adminHint"))+'</p><label>'+esc(t("password"))+'</label><input type="password" id="aPwd" autocomplete="current-password">'+
